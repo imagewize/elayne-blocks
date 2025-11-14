@@ -93,8 +93,8 @@ GPL v3 or later - https://www.gnu.org/licenses/gpl-3.0.html
 ## Support
 
 For issues and feature requests, please visit:
-https://github.com/jfrumau/moiraine-blocks
+https://github.com/imagewize/moiraine-blocks
 
 ## Author
 
-Jasper Frumau - https://github.com/jfrumau
+Jasper Frumau - https://github.com/imagewize

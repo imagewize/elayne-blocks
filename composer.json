@@ -1,5 +1,5 @@
 {
-    "name": "jfrumau/moiraine-blocks",
+    "name": "imagewize/moiraine-blocks",
     "type": "wordpress-plugin",
     "description": "Custom WordPress blocks for the Moiraine theme including Mega Menu, Carousel, and Slide blocks",
     "keywords": [
@@ -16,12 +16,12 @@
     "authors": [
         {
             "name": "Jasper Frumau",
-            "homepage": "https://github.com/jfrumau"
+            "homepage": "https://github.com/imagewize"
         }
     ],
     "support": {
-        "issues": "https://github.com/jfrumau/moiraine-blocks/issues",
-        "source": "https://github.com/jfrumau/moiraine-blocks"
+        "issues": "https://github.com/imagewize/moiraine-blocks/issues",
+        "source": "https://github.com/imagewize/moiraine-blocks"
     },
     "require": {
         "php": ">=7.3",

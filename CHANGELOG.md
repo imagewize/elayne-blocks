@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-11-14
+
+### Added
+- Carousel block frontend view script for Slick initialization
+- Slick Carousel library files (CSS and JS) vendored in carousel block directory
+- ViewScript support in carousel block.json for proper frontend asset loading
+
+### Changed
+- Improved carousel block asset loading with dedicated view.js file
+- Excluded PR creation script from repository
+
+### Fixed
+- Carousel block now properly initializes Slick on the frontend with custom arrow colors and dot positioning
+
+## [1.0.1] - 2025-11-14
+
+### Added
+- GPL-3.0 LICENSE.md file with full license text
+
+### Changed
+- Updated carousel block namespace from `moiraine/carousel` to `imagewize/carousel` for consistency
+- Updated package namespace to `imagewize/moiraine-blocks` in composer.json
+- Updated composer package type and metadata for better Packagist compatibility
+
 ## [1.0.0] - 2025-11-14
 
 ### Added
@@ -35,4 +59,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Migrated blocks from Moiraine theme to standalone plugin (WordPress.org theme review compliance)
 
-[1.0.0]: https://github.com/jfrumau/moiraine-blocks/releases/tag/v1.0.0
+[1.1.0]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.1.0
+[1.0.1]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.0.1
+[1.0.0]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.0.0

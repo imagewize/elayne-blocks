@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-11-16
+
+### Added
+- Adaptive Height option in carousel block to automatically adjust carousel height to match current slide height
+- ToggleControl for Adaptive Height in carousel block editor settings with helpful description
+
+### Changed
+- Updated carousel block to include adaptiveHeight attribute in Slick carousel configuration
+
 ## [1.1.0] - 2025-11-14
 
 ### Added
@@ -59,6 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Migrated blocks from Moiraine theme to standalone plugin (WordPress.org theme review compliance)
 
+[1.2.0]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.2.0
 [1.1.0]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.1.0
 [1.0.1]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.0.1
 [1.0.0]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.0.0

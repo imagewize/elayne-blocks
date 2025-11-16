@@ -3,7 +3,7 @@
  * Plugin Name: Moiraine Blocks
  * Plugin URI: https://imagewize.com/moiraine-blocks
  * Description: Custom blocks for the Moiraine WordPress theme including Mega Menu, Carousel, and Slide blocks
- * Version: 1.1.0
+ * Version: 1.2.0
  * Requires at least: 6.7
  * Requires PHP: 7.3
  * Author: Jasper Frumau
@@ -21,7 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'MOIRAINE_BLOCKS_VERSION', '1.1.0' );
+define( 'MOIRAINE_BLOCKS_VERSION', '1.2.0' );
 define( 'MOIRAINE_BLOCKS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MOIRAINE_BLOCKS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 

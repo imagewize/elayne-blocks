@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2025-12-23
+
+### Changed
+- **BREAKING:** Renamed project from "Moiraine Blocks" to "Elayne Blocks"
+- **BREAKING:** Updated all block namespaces from `moiraine/` and `imagewize/` to `elayne/`
+  - `moiraine/mega-menu` → `elayne/mega-menu`
+  - `imagewize/carousel` → `elayne/carousel`
+  - `imagewize/slide` → `elayne/slide`
+- **BREAKING:** Updated text domain from `moiraine-blocks` to `elayne-blocks`
+- **BREAKING:** Updated PHP namespace from `MoiraineBlocks` to `ELayneBlocks`
+- Updated composer package name from `imagewize/moiraine-blocks` to `imagewize/elayne-blocks`
+- Updated all CSS class names to use `elayne` instead of `moiraine` or `imagewize`
+- Updated plugin file name from `moiraine-blocks.php` to `elayne-blocks.php`
+- Updated GitHub repository URLs to point to `elayne-blocks`
+- Updated all references to "Moiraine theme" to "Elayne theme"
+
+### Migration Guide
+This is a major breaking release. Sites using the previous version will need to:
+1. Deactivate and delete the old `moiraine-blocks` plugin
+2. Install and activate `elayne-blocks`
+3. Update any theme template parts that reference the old block names
+4. Update custom CSS that uses the old class names
+
 ## [1.2.0] - 2025-11-16
 
 ### Added
@@ -68,6 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Migrated blocks from Moiraine theme to standalone plugin (WordPress.org theme review compliance)
 
+[2.0.0]: https://github.com/imagewize/elayne-blocks/releases/tag/v2.0.0
 [1.2.0]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.2.0
 [1.1.0]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.1.0
 [1.0.1]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.0.1

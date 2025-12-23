@@ -84,7 +84,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const blockProps = useBlockProps( {
 		className:
-			'wp-block-navigation-item wp-block-moiraine-mega-menu__toggle',
+			'wp-block-navigation-item wp-block-elayne-mega-menu__toggle',
 		style: { color: labelColor || 'inherit' },
 	} );
 
@@ -92,17 +92,17 @@ export default function Edit( { attributes, setAttributes } ) {
 		{
 			value: 'left',
 			icon: justifyLeft,
-			label: __( 'Justify menu left', 'moiraine' ),
+			label: __( 'Justify menu left', 'elayne' ),
 		},
 		{
 			value: 'center',
 			icon: justifyCenter,
-			label: __( 'Justify menu center', 'moiraine' ),
+			label: __( 'Justify menu center', 'elayne' ),
 		},
 		{
 			value: 'right',
 			icon: justifyRight,
-			label: __( 'Justify menu right', 'moiraine' ),
+			label: __( 'Justify menu right', 'elayne' ),
 		},
 	];
 
@@ -112,7 +112,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			icon: alignNone,
 			label: sprintf(
 				// translators: %s: container size (i.e. 600px etc)
-				__( 'Content width (%s wide)', 'moiraine' ),
+				__( 'Content width (%s wide)', 'elayne' ),
 				layout?.contentSize || '1200px'
 			),
 		},
@@ -121,14 +121,14 @@ export default function Edit( { attributes, setAttributes } ) {
 			icon: stretchWide,
 			label: sprintf(
 				// translators: %s: container size (i.e. 600px etc)
-				__( 'Wide width (%s wide)', 'moiraine' ),
+				__( 'Wide width (%s wide)', 'elayne' ),
 				layout?.wideSize || '1600px'
 			),
 		},
 		{
 			value: 'full',
 			icon: stretchFullWidth,
-			label: __( 'Full width', 'moiraine' ),
+			label: __( 'Full width', 'elayne' ),
 		},
 	];
 
@@ -137,11 +137,11 @@ export default function Edit( { attributes, setAttributes } ) {
 			<InspectorControls group="settings">
 				<PanelBody
 					className="mega-menu__settings-panel"
-					title={ __( 'Settings', 'moiraine' ) }
+					title={ __( 'Settings', 'elayne' ) }
 					initialOpen={ true }
 				>
 					<TextControl
-						label={ __( 'Label', 'moiraine' ) }
+						label={ __( 'Label', 'elayne' ) }
 						type="text"
 						value={ label }
 						onChange={ ( value ) =>
@@ -150,7 +150,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						autoComplete="off"
 					/>
 					<TextControl
-						label={ __( 'Description', 'moiraine' ) }
+						label={ __( 'Description', 'elayne' ) }
 						type="text"
 						value={ description }
 						onChange={ ( value ) =>
@@ -158,12 +158,12 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 						help={ __(
 							'Optional description for accessibility',
-							'moiraine'
+							'elayne'
 						) }
 						autoComplete="off"
 					/>
 					<ColorPalette
-						label={ __( 'Label Color', 'moiraine' ) }
+						label={ __( 'Label Color', 'elayne' ) }
 						value={ labelColor }
 						onChange={ ( colorValue ) =>
 							setAttributes( { labelColor: colorValue } )
@@ -171,7 +171,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						clearable={ true }
 					/>
 					<ComboboxControl
-						label={ __( 'Menu Template', 'moiraine' ) }
+						label={ __( 'Menu Template', 'elayne' ) }
 						value={ menuSlug }
 						options={ menuOptions }
 						onChange={ ( value ) =>
@@ -182,7 +182,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							createInterpolateElement(
 								__(
 									'Create and modify menu templates in the <a>Site Editor</a>.',
-									'moiraine'
+									'elayne'
 								),
 								{
 									a: (
@@ -199,13 +199,13 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 				<PanelBody
 					className="mega-menu__layout-panel"
-					title={ __( 'Layout', 'moiraine' ) }
+					title={ __( 'Layout', 'elayne' ) }
 					initialOpen={ true }
 				>
 					<HStack alignment="top" justify="space-between">
 						<ToggleGroupControl
 							className="block-editor-hooks__flex-layout-justification-controls"
-							label={ __( 'Justification', 'moiraine' ) }
+							label={ __( 'Justification', 'elayne' ) }
 							value={ justifyMenu }
 							onChange={ ( justificationValue ) => {
 								setAttributes( {
@@ -229,7 +229,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						</ToggleGroupControl>
 						<ToggleGroupControl
 							className="block-editor-hooks__flex-layout-justification-controls"
-							label={ __( 'Width', 'moiraine' ) }
+							label={ __( 'Width', 'elayne' ) }
 							value={ width || 'content' }
 							onChange={ ( widthValue ) => {
 								setAttributes( {
@@ -255,7 +255,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 			</InspectorControls>
 			<div { ...blockProps }>
-				<button className="wp-block-navigation-item__content wp-block-moiraine-mega-menu__toggle">
+				<button className="wp-block-navigation-item__content wp-block-elayne-mega-menu__toggle">
 					<RichText
 						identifier="label"
 						className="wp-block-navigation-item__label"
@@ -265,7 +265,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								label: labelValue,
 							} );
 						} }
-						placeholder={ __( 'Add label...', 'moiraine' ) }
+						placeholder={ __( 'Add label...', 'elayne' ) }
 						allowedFormats={ [
 							'core/bold',
 							'core/italic',

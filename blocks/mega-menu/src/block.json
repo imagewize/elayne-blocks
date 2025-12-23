@@ -1,14 +1,14 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "imagewize/mega-menu",
+	"name": "elayne/mega-menu",
 	"version": "0.1.3",
 	"title": "Mega Menu",
 	"category": "design",
 	"icon": "menu-alt",
 	"description": "Create dynamic mega menus with template parts and advanced styling options.",
 	"keywords": [ "menu", "navigation", "mega menu", "dropdown" ],
-	"parent": [ "core/navigation", "moiraine/nav-builder" ],
+	"parent": [ "core/navigation", "elayne/nav-builder" ],
 	"attributes": {
 		"label": {
 			"type": "string",
@@ -64,7 +64,7 @@
 		},
 		"__experimentalSlashInserter": true
 	},
-	"textdomain": "moiraine",
+	"textdomain": "elayne",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",

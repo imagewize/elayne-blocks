@@ -1,11 +1,11 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
-    "name": "imagewize/slide",
+    "name": "elayne/slide",
     "version": "1.0.0",
     "title": "Slide",
     "parent": [
-        "imagewize/carousel"
+        "elayne/carousel"
     ],
     "category": "design",
     "icon": "slides",
@@ -13,7 +13,7 @@
     "supports": {
         "html": false
     },
-    "textdomain": "imagewize",
+    "textdomain": "elayne",
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",
     "style": "file:./style-index.css",

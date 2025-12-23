@@ -19,7 +19,7 @@ $z-index-close-button: 100;
     min-width: auto;
 }
 
-.wp-block-moiraine-mega-menu {
+.wp-block-elayne-mega-menu {
     list-style: none;
     position: relative;
 
@@ -58,12 +58,12 @@ $z-index-close-button: 100;
 
         // Expanded state
         &[aria-expanded="true"] {
-            .wp-block-moiraine-mega-menu__toggle-icon svg {
+            .wp-block-elayne-mega-menu__toggle-icon svg {
                 transform: rotate(0deg);
             }
 
-            & ~ .moiraine-mega-menu,
-            & ~ .wp-block-moiraine-mega-menu__menu-container {
+            & ~ .elayne-mega-menu,
+            & ~ .wp-block-elayne-mega-menu__menu-container {
                 opacity: 1;
                 overflow: visible;
                 visibility: visible;
@@ -74,8 +74,8 @@ $z-index-close-button: 100;
 }
 
 // Menu container (shared styles for both classes)
-.moiraine-mega-menu,
-.wp-block-moiraine-mega-menu__menu-container {
+.elayne-mega-menu,
+.wp-block-elayne-mega-menu__menu-container {
     // Base positioning and appearance
     height: auto;
     left: -1px;
@@ -215,8 +215,8 @@ $z-index-close-button: 100;
 @media (max-width: 782px) {
     .wp-block-navigation__responsive-container,
     .wp-block-navigation__responsive-container-content {
-        .moiraine-mega-menu,
-        .wp-block-moiraine-mega-menu__menu-container {
+        .elayne-mega-menu,
+        .wp-block-elayne-mega-menu__menu-container {
             // Override all width settings when inside mobile navigation
             left: 0 !important;
             right: auto !important;

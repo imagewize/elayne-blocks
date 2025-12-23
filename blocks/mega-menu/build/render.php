@@ -2,7 +2,7 @@
 /**
  * Mega Menu Block Server-side Render
  *
- * @package Moiraine
+ * @package Elayne
  */
 
 $label        = esc_html( $attributes['label'] ?? '' );
@@ -12,7 +12,7 @@ $menu_slug    = esc_attr( $attributes['menuSlug'] ?? '' );
 $justify_menu = esc_attr( $attributes['justifyMenu'] ?? 'left' );
 $menu_width   = esc_attr( $attributes['width'] ?? 'content' );
 
-$menu_classes  = 'moiraine-mega-menu wp-block-moiraine-mega-menu__menu-container';
+$menu_classes  = 'elayne-mega-menu wp-block-elayne-mega-menu__menu-container';
 $menu_classes .= ' menu-width-' . $menu_width;
 $menu_classes .= $justify_menu ? ' menu-justified-' . $justify_menu : '';
 
@@ -31,14 +31,14 @@ if ( $label_color ) {
 }
 ?>
 
-<li <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> data-wp-interactive='{"namespace": "moiraine/mega-menu"}' data-wp-context='{"menuOpenedBy": {}}' data-wp-on-document--keydown="actions.handleMenuKeydown" data-wp-on-document--click="actions.handleOutsideClick" data-wp-watch="callbacks.initMenu">
+<li <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> data-wp-interactive='{"namespace": "elayne/mega-menu"}' data-wp-context='{"menuOpenedBy": {}}' data-wp-on-document--keydown="actions.handleMenuKeydown" data-wp-on-document--click="actions.handleOutsideClick" data-wp-watch="callbacks.initMenu">
 
-	<button class="wp-block-navigation-item__content wp-block-moiraine-mega-menu__toggle" data-wp-on--click="actions.toggleMenuOnClick" data-wp-bind--aria-expanded="state.isMenuOpen" <?php echo $button_style; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php
+	<button class="wp-block-navigation-item__content wp-block-elayne-mega-menu__toggle" data-wp-on--click="actions.toggleMenuOnClick" data-wp-bind--aria-expanded="state.isMenuOpen" <?php echo $button_style; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php
 	if ( $description ) :
 		?>
 		aria-describedby="menu-description-<?php echo esc_attr( $menu_slug ); ?>"<?php endif; ?>>
 		<span class="wp-block-navigation-item__label"><?php echo esc_html( $label ); ?></span>
-		<span class="wp-block-moiraine-mega-menu__toggle-icon"><?php echo $toggle_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+		<span class="wp-block-elayne-mega-menu__toggle-icon"><?php echo $toggle_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 	</button>
 
 	<?php if ( $description ) : ?>
@@ -53,14 +53,14 @@ if ( $label_color ) {
 			echo block_template_part( $menu_slug ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			// Fallback for older WordPress versions.
-			$template_part = get_block_template( 'moiraine//' . $menu_slug, 'wp_template_part' );
+			$template_part = get_block_template( 'elayne//' . $menu_slug, 'wp_template_part' );
 			if ( $template_part && $template_part->content ) {
 				echo do_blocks( $template_part->content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 		?>
 
-		<button aria-label="<?php echo esc_attr( __( 'Close menu', 'moiraine' ) ); ?>" class="menu-container__close-button" data-wp-on--click="actions.closeMenuOnClick" type="button">
+		<button aria-label="<?php echo esc_attr( __( 'Close menu', 'elayne' ) ); ?>" class="menu-container__close-button" data-wp-on--click="actions.closeMenuOnClick" type="button">
 			<?php echo $close_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</button>
 	</div>

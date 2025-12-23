@@ -1,93 +1,73 @@
 /**
  * FAQ Tabs Frontend Functionality
  *
- * Handles the interactive tab switching and content updates on the frontend.
+ * Handles the interactive tab switching and content display on the frontend.
+ * Works with the InnerBlocks pattern where FAQ answers are child blocks.
  */
 document.addEventListener('DOMContentLoaded', function () {
 	// Find all FAQ tabs blocks on the page
 	const faqBlocks = document.querySelectorAll('.faq-tabs-wrapper');
 
 	faqBlocks.forEach((block) => {
-		// Get all tab items and content elements within this block
-		const tabItems = block.querySelectorAll('.faq-tab-item');
-		const answerTitle = block.querySelector('.faq-answer-title');
-		const answerDescription = block.querySelector('.faq-answer-description');
+		// Get the tab navigation container and all answer blocks
+		const tabsContainer = block.querySelector('.faq-vertical-tabs');
+		const contentArea = block.querySelector('.faq-content-area');
+		const answerBlocks = contentArea.querySelectorAll('.faq-tab-answer');
 
-		if (!tabItems.length || !answerTitle || !answerDescription) {
+		if (!tabsContainer || !answerBlocks.length) {
 			return; // Exit if elements not found
 		}
 
-		// Build content array from data attributes
-		const faqContent = Array.from(tabItems).map((item) => {
-			const tabIndex = parseInt(item.getAttribute('data-tab-index'));
-			return {
-				title: item.querySelector('.tab-question')?.textContent || '',
-				description: item.querySelector('.tab-question')?.textContent || '',
-			};
-		});
+		// Build tabs from answer blocks
+		answerBlocks.forEach((answerBlock, index) => {
+			const question = answerBlock.getAttribute('data-question') || `Question ${index + 1}`;
 
-		// Get actual content from save function
-		// Since we save the first item's content, we need to extract all from DOM
-		const contentData = [];
-		tabItems.forEach((item, index) => {
-			const question = item.querySelector('.tab-question')?.textContent;
-			// We'll populate this from the block's saved data
-			contentData.push({
-				question: question,
-				title: index === 0 ? answerTitle.textContent : question,
-				description: index === 0 ? answerDescription.textContent : '',
-			});
-		});
+			// Create tab item
+			const tabItem = document.createElement('div');
+			tabItem.className = `faq-tab-item ${index === 0 ? 'active' : ''}`;
+			tabItem.setAttribute('data-tab-index', index);
 
-		// Function to update content box
-		function updateContent(index, title, description) {
-			// Add fade transition
-			answerTitle.style.opacity = '0';
-			answerDescription.style.opacity = '0';
+			// Create question text
+			const tabQuestion = document.createElement('div');
+			tabQuestion.className = 'tab-question';
+			tabQuestion.textContent = question;
 
-			setTimeout(function () {
-				answerTitle.textContent = title;
-				answerDescription.textContent = description;
+			// Create arrow icon
+			const arrowCircle = document.createElement('div');
+			arrowCircle.className = 'tab-arrow-circle';
+			arrowCircle.innerHTML = `
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			`;
 
-				answerTitle.style.opacity = '1';
-				answerDescription.style.opacity = '1';
-			}, 200);
-		}
+			tabItem.appendChild(tabQuestion);
+			tabItem.appendChild(arrowCircle);
+			tabsContainer.appendChild(tabItem);
 
-		// Add click handlers to tab items
-		tabItems.forEach(function (item, index) {
-			item.addEventListener('click', function () {
-				// Remove active class from all tabs
-				tabItems.forEach(function (tab) {
+			// Add click handler
+			tabItem.addEventListener('click', function () {
+				// Remove active from all tabs
+				tabsContainer.querySelectorAll('.faq-tab-item').forEach(tab => {
 					tab.classList.remove('active');
 				});
 
-				// Add active class to clicked tab
+				// Remove active from all answer blocks
+				answerBlocks.forEach(block => {
+					block.classList.remove('active');
+				});
+
+				// Add active to clicked tab
 				this.classList.add('active');
 
-				// Get data from the block's attributes (stored in script tag)
-				const scriptTag = block.querySelector(
-					'script[type="application/json"]'
-				);
-				if (scriptTag) {
-					try {
-						const data = JSON.parse(scriptTag.textContent);
-						if (data.questions && data.questions[index]) {
-							updateContent(
-								index,
-								data.questions[index].title,
-								data.questions[index].description
-							);
-						}
-					} catch (e) {
-						console.error('Error parsing FAQ data:', e);
-					}
-				}
+				// Add active to corresponding answer block
+				answerBlock.classList.add('active');
 			});
 		});
 
-		// Add transition styles
-		answerTitle.style.transition = 'opacity 0.3s ease-in-out';
-		answerDescription.style.transition = 'opacity 0.3s ease-in-out';
+		// Show first answer by default
+		if (answerBlocks[0]) {
+			answerBlocks[0].classList.add('active');
+		}
 	});
 });

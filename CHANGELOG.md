@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.1] - 2025-12-23
+
+### Changed
+- **BREAKING:** Restructured FAQ Tabs block to use parent-child InnerBlocks pattern
+  - FAQ Tabs block (`elayne/faq-tabs`) now uses InnerBlocks instead of attribute-based storage
+  - Content is now stored in child blocks rather than block attributes
+  - Users will need to recreate existing FAQ Tabs blocks with the new structure
+
+### Added
+- FAQ Tab Answer block (`elayne/faq-tab-answer`)
+  - Child block for individual FAQ answers with InnerBlocks support
+  - Accepts any block content (paragraphs, images, buttons, etc.) for rich FAQ answers
+  - Editable question text and answer title
+  - Parent constraint (only works inside FAQ Tabs block)
+  - Full formatting control over answer content
+
+### Fixed
+- FAQ Tabs frontend JavaScript rewritten to work with block-based content structure
+- Tab navigation now dynamically generated from child blocks on page load
+
 ## [2.1.0] - 2025-12-23
 
 ### Added
@@ -103,6 +123,7 @@ This is a major breaking release. Sites using the previous version will need to:
 ### Changed
 - Migrated blocks from Moiraine theme to standalone plugin (WordPress.org theme review compliance)
 
+[2.1.1]: https://github.com/imagewize/elayne-blocks/releases/tag/v2.1.1
 [2.1.0]: https://github.com/imagewize/elayne-blocks/releases/tag/v2.1.0
 [2.0.0]: https://github.com/imagewize/elayne-blocks/releases/tag/v2.0.0
 [1.2.0]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.2.0

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "elayne/faq-tab-answer",
+  "version": "1.0.0",
+  "title": "FAQ Tab Answer",
+  "category": "widgets",
+  "parent": [
+    "elayne/faq-tabs"
+  ],
+  "icon": "editor-alignleft",
+  "description": "A single FAQ tab answer with customizable content.",
+  "keywords": [
+    "faq",
+    "answer",
+    "content"
+  ],
+  "textdomain": "elayne-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "question": {
+      "type": "string",
+      "default": "New Question"
+    },
+    "title": {
+      "type": "string",
+      "default": "Answer Title"
+    }
+  },
+  "supports": {
+    "html": false,
+    "reusable": false,
+    "lock": false
+  }
+}

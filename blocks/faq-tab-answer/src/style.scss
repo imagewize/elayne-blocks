@@ -1,0 +1,32 @@
+/**
+ * Frontend and editor styles for FAQ Tab Answer block.
+ */
+
+.faq-tab-answer {
+	display: none;
+
+	&.active {
+		display: block;
+	}
+
+	.faq-answer-header {
+		margin-bottom: 1.5rem;
+	}
+
+	.faq-answer-title {
+		font-size: 2rem;
+		font-weight: 600;
+		line-height: 1.2;
+		margin: 0 0 1rem 0;
+	}
+
+	.faq-answer-content {
+		> * {
+			margin-bottom: 1rem;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

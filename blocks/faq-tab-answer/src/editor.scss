@@ -1,0 +1,32 @@
+/**
+ * Editor-only styles for FAQ Tab Answer block.
+ */
+
+.faq-tab-answer-editor {
+	padding: 1.5rem;
+	border: 2px dashed #ddd;
+	border-radius: 4px;
+	margin-bottom: 1rem;
+
+	.faq-answer-header {
+		margin-bottom: 1rem;
+
+		.faq-answer-title {
+			font-size: 1.5rem;
+			font-weight: 600;
+			border: none;
+			padding: 0.5rem;
+
+			&:focus {
+				outline: 2px solid #007cba;
+				outline-offset: 2px;
+			}
+		}
+	}
+
+	.faq-answer-content {
+		.block-editor-inner-blocks {
+			margin-top: 1rem;
+		}
+	}
+}

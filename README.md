@@ -13,6 +13,7 @@ This plugin was created to align with WordPress.org Theme Review requirements, w
 - **Mega Menu Block** (`elayne/mega-menu`) - Advanced navigation menu with mega menu functionality (works best with FSE/block themes)
 - **Carousel Block** (`elayne/carousel`) - Responsive image/content carousel with Slick Carousel integration
 - **Slide Block** (`elayne/slide`) - Individual carousel slides with InnerBlocks support
+- **FAQ Tabs Block** (`elayne/faq-tabs`) - Interactive FAQ with vertical tab navigation and dynamic content display
 
 ## Requirements
 
@@ -40,7 +41,7 @@ npm install
 npm run build
 ```
 
-Repeat for `carousel` and `slide` blocks.
+Repeat for `carousel`, `slide`, and `faq-tabs` blocks.
 
 ## Block Details
 
@@ -71,6 +72,18 @@ Companion block for the Carousel block.
 **Features:**
 - InnerBlocks support for flexible content
 - Works seamlessly with Carousel parent block
+
+### FAQ Tabs Block
+
+Interactive FAQ block with vertical tab navigation and dynamic content display.
+
+**Features:**
+- Vertical tab navigation with questions
+- Dynamic content area showing answers
+- Customizable button with configurable text and URL
+- WordPress Interactivity API integration
+- Editable questions, titles, and descriptions via block inspector
+- Responsive design with flexible layout
 
 ## Changelog
 

@@ -5,6 +5,17 @@
  */
 
 .faq-tabs-wrapper {
+	/* Columns layout with proper gap */
+	.wp-block-columns {
+		gap: var(--wp--preset--spacing--medium, 2rem);
+		align-items: flex-start;
+	}
+
+	/* Questions column with padding to accommodate transform */
+	.faq-questions-column {
+		padding-right: 12px; /* Extra space for the transform effect */
+	}
+
 	/* FAQ Vertical Tabs Styling */
 	.faq-vertical-tabs {
 		display: flex;
@@ -100,6 +111,10 @@
 			width: 100%;
 		}
 
+		.faq-questions-column {
+			padding-right: 0; /* Remove extra padding on mobile */
+		}
+
 		.faq-content-box {
 			margin-top: var(--wp--preset--spacing--large, 2rem);
 			min-height: 250px;
@@ -108,7 +123,7 @@
 		.faq-tab-item {
 			&:hover,
 			&.active {
-				transform: translateX(0);
+				transform: translateX(0); /* No transform on mobile to prevent overflow */
 			}
 		}
 	}

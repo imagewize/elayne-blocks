@@ -17,6 +17,20 @@
 		&:last-child {
 			margin-bottom: 0;
 		}
+
+		.tab-question {
+			/* RichText editable styling */
+			min-height: 24px;
+
+			&:focus {
+				outline: none;
+			}
+
+			/* Remove default RichText paragraph margins */
+			p {
+				margin: 0;
+			}
+		}
 	}
 }
 
@@ -24,8 +38,20 @@
 .editor-styles-wrapper {
 	.faq-tabs-wrapper {
 		.faq-tab-item {
-			/* Ensure cursor shows as pointer in editor */
-			cursor: pointer;
+			position: relative;
+
+			.tab-question {
+				cursor: text;
+				flex: 1;
+
+				&:hover {
+					opacity: 0.8;
+				}
+			}
+
+			.tab-arrow-circle {
+				cursor: pointer;
+			}
 		}
 	}
 }

@@ -13,10 +13,10 @@ import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
 	InnerBlocks,
-	useInnerBlocksProps,
+	RichText,
 } from '@wordpress/block-editor';
 
-import { useSelect } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 
 /**
@@ -42,6 +42,8 @@ export default function Edit({ clientId }) {
 		className: 'faq-tabs-wrapper',
 	});
 
+	const { updateBlockAttributes } = useDispatch('core/block-editor');
+
 	// Get inner blocks (FAQ tab answers)
 	const { innerBlocks } = useSelect(
 		(select) => {
@@ -60,6 +62,11 @@ export default function Edit({ clientId }) {
 			setActiveTab(innerBlocks.length - 1);
 		}
 	}, [innerBlocks.length, activeTab]);
+
+	// Handle question text change
+	const handleQuestionChange = (newQuestion, blockId) => {
+		updateBlockAttributes(blockId, { question: newQuestion });
+	};
 
 	const TEMPLATE = [
 		[
@@ -102,13 +109,21 @@ export default function Edit({ clientId }) {
 							<div
 								key={block.clientId}
 								className={`faq-tab-item ${activeTab === index ? 'active' : ''}`}
-								onClick={() => setActiveTab(index)}
-								style={{ cursor: 'pointer' }}
 							>
-								<div className="tab-question">
-									{block.attributes.question || `Question ${index + 1}`}
-								</div>
-								<div className="tab-arrow-circle">
+								<RichText
+									tagName="div"
+									className="tab-question"
+									value={block.attributes.question || ''}
+									onChange={(newQuestion) => handleQuestionChange(newQuestion, block.clientId)}
+									placeholder={__('Enter question...', 'elayne-blocks')}
+									onClick={() => setActiveTab(index)}
+									allowedFormats={[]}
+								/>
+								<div
+									className="tab-arrow-circle"
+									onClick={() => setActiveTab(index)}
+									style={{ cursor: 'pointer' }}
+								>
 									<svg
 										width="16"
 										height="16"

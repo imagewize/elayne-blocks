@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.2] - 2025-12-23
+
+### Added
+- Contributor guidelines in `AGENTS.md`
+
+### Changed
+- FAQ Tabs editor questions are now inline-editable with RichText
+- FAQ Tabs layout spacing and mobile overflow handling improved
+
 ## [2.1.1] - 2025-12-23
 
 ### Changed
@@ -123,6 +132,7 @@ This is a major breaking release. Sites using the previous version will need to:
 ### Changed
 - Migrated blocks from Moiraine theme to standalone plugin (WordPress.org theme review compliance)
 
+[2.1.2]: https://github.com/imagewize/elayne-blocks/releases/tag/v2.1.2
 [2.1.1]: https://github.com/imagewize/elayne-blocks/releases/tag/v2.1.1
 [2.1.0]: https://github.com/imagewize/elayne-blocks/releases/tag/v2.1.0
 [2.0.0]: https://github.com/imagewize/elayne-blocks/releases/tag/v2.0.0

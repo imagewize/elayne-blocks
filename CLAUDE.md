@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Moiraine Blocks is a WordPress plugin providing custom Gutenberg blocks for the Moiraine theme. The plugin contains three blocks: Mega Menu, Carousel, and Slide.
+Elayne Blocks is a WordPress plugin providing custom Gutenberg blocks for the Elayne theme. The plugin contains three blocks: Mega Menu, Carousel, and Slide.
 
 **Requirements:**
 - WordPress 6.7+
@@ -35,7 +35,7 @@ npm run format     # Format code
 
 ### Block Discovery & Registration
 
-The plugin uses **dynamic block discovery** (moiraine-blocks.php:31-55). At runtime:
+The plugin uses **dynamic block discovery** (elayne-blocks.php:31-55). At runtime:
 1. Scans `/blocks` directory during `init` action
 2. Looks for `build/block.json` in each subdirectory
 3. Auto-registers all discovered blocks via `register_block_type()`
@@ -65,27 +65,27 @@ blocks/[block-name]/
 ### Parent-Child Block Relationships
 
 **Carousel → Slide Hierarchy:**
-- Carousel (imagewize/carousel) only allows Slide (imagewize/slide) children
+- Carousel (elayne/carousel) only allows Slide (elayne/slide) children
 - Slide can only exist inside Carousel (enforced via `parent` constraint in block.json)
 - Slide uses InnerBlocks to accept any block content
 
 **Mega Menu:**
-- Can only be placed inside `core/navigation` or `moiraine/nav-builder` blocks
+- Can only be placed inside `core/navigation` or `elayne/nav-builder` blocks
 - Uses WordPress Interactivity API for frontend state management
 - Renders via PHP template (render.php) for dynamic content
 
 ### Conditional Asset Loading
 
-Slick Carousel assets are loaded conditionally (moiraine-blocks.php:60-90):
+Slick Carousel assets are loaded conditionally (elayne-blocks.php:60-90):
 ```php
-if ( has_block( 'moiraine/carousel' ) ) {
+if ( has_block( 'elayne/carousel' ) ) {
   // Only enqueue when carousel block is present on page
 }
 ```
 
 ## WordPress Interactivity API (Mega Menu)
 
-The mega-menu block uses the Interactivity API for frontend reactivity:
+The mega-menu block uses the Interactivity API for frontend reactivity. Implementation is based on [Human Made's HM Mega Menu Block](https://github.com/humanmade/hm-mega-menu-block).
 
 **Structure:**
 - `src/view.js` - Defines state, actions, and callbacks via `store()`
@@ -132,7 +132,7 @@ Metadata from block.json is the single source of truth, with Edit/Save implement
 
 ## Key Files
 
-- `moiraine-blocks.php` - Main plugin file with block discovery logic
+- `elayne-blocks.php` - Main plugin file with block discovery logic
 - `blocks/*/src/block.json` - Block metadata and configuration
 - `blocks/*/src/edit.js` - Block editor interface
 - `blocks/*/src/save.jsx` - Block frontend output
@@ -141,7 +141,7 @@ Metadata from block.json is the single source of truth, with Edit/Save implement
 ## Development Notes
 
 - Each block has isolated `node_modules` (allows independent versioning)
-- Block names use namespace/blockname format (imagewize/carousel, moiraine/mega-menu)
+- Block names use namespace/blockname format (elayne/carousel, elayne/mega-menu)
 - Attributes in block.json define all user-customizable data
 - InnerBlocks pattern used for nested content (carousel/slide relationship)
 - wp-scripts handles Webpack, Babel, and all build tooling

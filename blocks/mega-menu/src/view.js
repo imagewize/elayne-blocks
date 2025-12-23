@@ -7,7 +7,7 @@
  */
 import { store, getContext, getElement } from '@wordpress/interactivity';
 
-const { state, actions } = store( 'moiraine/mega-menu', {
+const { state, actions } = store( 'elayne/mega-menu', {
 	state: {
 		get isMenuOpen() {
 			return Object.values( state.menuOpenedBy ).filter( Boolean ).length > 0;

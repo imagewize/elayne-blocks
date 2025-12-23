@@ -1,26 +1,28 @@
-# Moiraine Blocks
+# Elayne Blocks
 
-Custom WordPress blocks for the Moiraine theme.
+Custom WordPress blocks that work with any theme.
 
 ## Description
 
-Moiraine Blocks is a companion plugin for the Moiraine WordPress theme that provides custom block functionality. This plugin was created to align with WordPress.org Theme Review requirements, which prohibit custom block registration in themes.
+Elayne Blocks is a WordPress plugin that provides custom Gutenberg blocks. While originally developed as a companion plugin for the Elayne theme, **these blocks work with any WordPress theme** - FSE (Full Site Editing) themes, block themes, or classic themes.
+
+This plugin was created to align with WordPress.org Theme Review requirements, which prohibit custom block registration in themes. The blocks are theme-agnostic and can be used in any WordPress site.
 
 ## Included Blocks
 
-- **Mega Menu Block** (`moiraine/mega-menu`) - Advanced navigation menu with mega menu functionality
-- **Carousel Block** (`moiraine/carousel`) - Responsive image/content carousel with Slick Carousel integration
-- **Slide Block** (`moiraine/slide`) - Individual carousel slides with InnerBlocks support
+- **Mega Menu Block** (`elayne/mega-menu`) - Advanced navigation menu with mega menu functionality (works best with FSE/block themes)
+- **Carousel Block** (`elayne/carousel`) - Responsive image/content carousel with Slick Carousel integration
+- **Slide Block** (`elayne/slide`) - Individual carousel slides with InnerBlocks support
 
 ## Requirements
 
 - WordPress 6.7 or higher
 - PHP 7.3 or higher
-- Moiraine theme (recommended but not required)
+- Works with any WordPress theme (FSE, block, or classic)
 
 ## Installation
 
-1. Upload the `moiraine-blocks` folder to the `/wp-content/plugins/` directory
+1. Upload the `elayne-blocks` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. The blocks will be available in the block editor
 
@@ -75,7 +77,7 @@ Companion block for the Carousel block.
 ### 1.0.0 - 2025-11-14
 
 **Initial Release**
-- Migrated blocks from Moiraine theme to standalone plugin
+- Migrated blocks from Elayne theme to standalone plugin
 - Mega Menu block with Interactivity API
 - Carousel block with Slick integration
 - Slide block for carousel content
@@ -86,14 +88,15 @@ GPL v3 or later - https://www.gnu.org/licenses/gpl-3.0.html
 
 ## Credits
 
-- Based on blocks originally developed for the Moiraine theme
+- Based on blocks originally developed for the Elayne theme
+- Mega Menu block implementation based on [Human Made's HM Mega Menu Block](https://github.com/humanmade/hm-mega-menu-block)
 - Built with `@wordpress/scripts`
-- Uses Slick Carousel library
+- Uses [Slick Carousel](https://kenwheeler.github.io/slick/) library for carousel functionality
 
 ## Support
 
 For issues and feature requests, please visit:
-https://github.com/imagewize/moiraine-blocks
+https://github.com/imagewize/elayne-blocks
 
 ## Author
 

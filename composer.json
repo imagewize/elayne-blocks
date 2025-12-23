@@ -1,7 +1,7 @@
 {
-    "name": "imagewize/moiraine-blocks",
+    "name": "imagewize/elayne-blocks",
     "type": "wordpress-plugin",
-    "description": "Custom WordPress blocks for the Moiraine theme including Mega Menu, Carousel, and Slide blocks",
+    "description": "Custom WordPress blocks for the Elayne theme including Mega Menu, Carousel, and Slide blocks",
     "keywords": [
         "wordpress",
         "plugin",
@@ -9,9 +9,9 @@
         "gutenberg",
         "carousel",
         "mega-menu",
-        "moiraine"
+        "elayne"
     ],
-    "homepage": "https://imagewize.com/moiraine-blocks",
+    "homepage": "https://github.com/imagewize/elayne-blocks",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -20,8 +20,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/imagewize/moiraine-blocks/issues",
-        "source": "https://github.com/imagewize/moiraine-blocks"
+        "issues": "https://github.com/imagewize/elayne-blocks/issues",
+        "source": "https://github.com/imagewize/elayne-blocks"
     },
     "require": {
         "php": ">=7.3",
@@ -33,7 +33,7 @@
     },
     "autoload": {
         "psr-4": {
-            "MoiraineBlocks\\": "src/"
+            "ELayneBlocks\\": "src/"
         }
     },
     "config": {

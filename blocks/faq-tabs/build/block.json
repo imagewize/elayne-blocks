@@ -1,0 +1,83 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "elayne/faq-tabs",
+  "version": "1.0.0",
+  "title": "FAQ Tabs",
+  "category": "widgets",
+  "icon": "list-view",
+  "description": "Interactive FAQ tabs with vertical navigation and dynamic content display.",
+  "keywords": [
+    "faq",
+    "tabs",
+    "accordion",
+    "questions",
+    "interactive"
+  ],
+  "textdomain": "elayne-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "attributes": {
+    "questions": {
+      "type": "array",
+      "default": [
+        {
+          "question": "What services do you offer?",
+          "title": "Our Comprehensive Services",
+          "description": "We provide end-to-end digital solutions including web design, development, branding, digital marketing, and strategic consulting. Our integrated approach ensures all aspects of your digital presence work together seamlessly to achieve your business objectives."
+        },
+        {
+          "question": "How long does a typical project take?",
+          "title": "Project Timeline & Process",
+          "description": "Project timelines vary based on scope and complexity. Most projects range from 4-12 weeks. We follow an agile methodology with regular check-ins, milestone reviews, and transparent communication throughout the entire process to ensure timely delivery."
+        },
+        {
+          "question": "What makes your approach different?",
+          "title": "Our Unique Approach",
+          "description": "We focus on building long-term partnerships rather than one-off projects. Our team combines strategic thinking, creative innovation, and technical expertise to deliver solutions that drive measurable business results. We prioritize transparency, collaboration, and your success."
+        },
+        {
+          "question": "Do you work with startups?",
+          "title": "Working with Startups",
+          "description": "Absolutely! We have extensive experience helping startups launch and scale. We offer flexible engagement models, scalable solutions, and strategic guidance to help early-stage companies establish a strong digital foundation and compete effectively in their market."
+        },
+        {
+          "question": "How do we get started?",
+          "title": "Getting Started Process",
+          "description": "Getting started is simple: schedule a free consultation where we discuss your goals and challenges, receive a customized proposal outlining our recommended approach, and once approved, we kick off with a comprehensive discovery session to ensure alignment and success."
+        }
+      ]
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Schedule a Consultation"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#contact"
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true
+    }
+  },
+  "example": {
+    "attributes": {}
+  }
+}

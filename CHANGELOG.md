@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.3] - 2025-12-24
+
+### Changed
+- FAQ Tabs block now uses mobile accordion layout on viewports ≤ 781px
+- Answers now appear directly below their questions on mobile (instead of in separate column)
+- Mobile accordion allows independent expand/collapse for each FAQ item
+- Desktop maintains two-column tab layout with answers on the right
+- Added smooth slide-down animation for mobile accordion expansion
+- Viewport resize automatically switches between desktop tabs and mobile accordion
+
+### Fixed
+- Mobile UX improved: users no longer need to scroll past all questions to see answers
+
 ## [2.1.2] - 2025-12-23
 
 ### Added
@@ -131,12 +144,3 @@ This is a major breaking release. Sites using the previous version will need to:
 
 ### Changed
 - Migrated blocks from Moiraine theme to standalone plugin (WordPress.org theme review compliance)
-
-[2.1.2]: https://github.com/imagewize/elayne-blocks/releases/tag/v2.1.2
-[2.1.1]: https://github.com/imagewize/elayne-blocks/releases/tag/v2.1.1
-[2.1.0]: https://github.com/imagewize/elayne-blocks/releases/tag/v2.1.0
-[2.0.0]: https://github.com/imagewize/elayne-blocks/releases/tag/v2.0.0
-[1.2.0]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.2.0
-[1.1.0]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.1.0
-[1.0.1]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.0.1
-[1.0.0]: https://github.com/imagewize/moiraine-blocks/releases/tag/v1.0.0

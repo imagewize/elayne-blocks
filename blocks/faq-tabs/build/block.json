@@ -27,6 +27,7 @@
       "wide",
       "full"
     ],
+    "default": "wide",
     "spacing": {
       "margin": true,
       "padding": true,

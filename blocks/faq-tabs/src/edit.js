@@ -83,6 +83,22 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 				question: 'What services do you offer?',
 				title: 'Our Comprehensive Services',
 			},
+			[
+				[
+					'core/paragraph',
+					{
+						content:
+							'We provide a comprehensive range of professional services tailored to meet your specific needs. Our experienced team specializes in delivering high-quality solutions that drive results and exceed expectations.',
+					},
+				],
+				[
+					'core/paragraph',
+					{
+						content:
+							"Whether you're looking for strategic consulting, creative design, technical development, or ongoing support, we have the expertise and resources to help you succeed.",
+					},
+				],
+			],
 		],
 		[
 			'elayne/faq-tab-answer',
@@ -90,6 +106,22 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 				question: 'How long does a typical project take?',
 				title: 'Project Timeline & Process',
 			},
+			[
+				[
+					'core/paragraph',
+					{
+						content:
+							'Project timelines vary depending on scope and complexity, but most engagements follow a structured process designed for efficiency and quality. We typically divide projects into clear phases with defined milestones.',
+					},
+				],
+				[
+					'core/paragraph',
+					{
+						content:
+							'During our initial consultation, we assess your requirements and provide a detailed timeline estimate. We maintain transparent communication throughout the project to ensure deadlines are met and expectations are exceeded.',
+					},
+				],
+			],
 		],
 		[
 			'elayne/faq-tab-answer',
@@ -97,6 +129,22 @@ export default function Edit({ clientId, attributes, setAttributes }) {
 				question: 'What makes your approach different?',
 				title: 'Our Unique Approach',
 			},
+			[
+				[
+					'core/paragraph',
+					{
+						content:
+							'Our approach combines industry best practices with innovative thinking and personalized attention. We take the time to understand your business goals, challenges, and vision to create solutions that truly fit your needs.',
+					},
+				],
+				[
+					'core/paragraph',
+					{
+						content:
+							'We believe in collaborative partnerships, transparent communication, and continuous improvement. This client-centered methodology ensures that every project delivers measurable value and long-term success.',
+					},
+				],
+			],
 		],
 	];
 

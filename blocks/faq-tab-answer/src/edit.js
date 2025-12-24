@@ -71,8 +71,17 @@ export default function Edit({ attributes, setAttributes }) {
 							[
 								'core/paragraph',
 								{
-									placeholder: __(
-										'Add content for this FAQ answer...',
+									content: __(
+										'We provide a comprehensive range of professional services tailored to meet your specific needs. Our experienced team specializes in delivering high-quality solutions that drive results and exceed expectations.',
+										'elayne-blocks'
+									),
+								},
+							],
+							[
+								'core/paragraph',
+								{
+									content: __(
+										'Whether you\'re looking for strategic consulting, creative design, technical development, or ongoing support, we have the expertise and resources to help you succeed.',
 										'elayne-blocks'
 									),
 								},

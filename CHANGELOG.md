@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.7] - 2025-12-24
+
+### Added
+- FAQ Tabs block now includes default demo content for answers
+- FAQ Tab Answer block template includes two paragraphs of professional placeholder text
+- Three default FAQ questions now pre-populate with comprehensive demo content about services, project timelines, and unique approach
+
+### Changed
+- FAQ Tab Answer InnerBlocks template updated from placeholder-only to content-populated paragraphs
+
 ## [2.1.6] - 2025-12-24
 
 ### Changed

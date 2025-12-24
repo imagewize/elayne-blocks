@@ -5,10 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.6] - 2025-12-24
+
+### Changed
+- FAQ Tabs block now defaults to wide alignment
+
+### Fixed
+- Corrected default alignment implementation to explicitly set align attribute via useEffect hook in Edit component, working around WordPress Gutenberg limitation where default attribute values don't get serialized to block markup (previous implementations in 2.1.4 and 2.1.5 relied on block.json defaults which don't force attribute serialization)
+
 ## [2.1.5] - 2025-12-24
 
 ### Changed
-- FAQ Tabs block now defaults to wide alignment using supports.default property
+- FAQ Tabs block alignment default (reverted - incorrect implementation using supports.default)
 
 ## [2.1.4] - 2025-12-24
 

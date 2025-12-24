@@ -13,12 +13,16 @@
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
-	"attributes": {},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "wide"
+		}
+	},
 	"supports": {
 		"html": false,
 		"anchor": true,
 		"align": ["wide", "full"],
-		"default": "wide",
 		"spacing": {
 			"margin": true,
 			"padding": true,

@@ -35,8 +35,9 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit({ clientId }) {
+export default function Edit({ clientId, attributes, setAttributes }) {
 	const [activeTab, setActiveTab] = useState(0);
+	const { align } = attributes;
 
 	const blockProps = useBlockProps({
 		className: 'faq-tabs-wrapper',
@@ -55,6 +56,13 @@ export default function Edit({ clientId }) {
 		},
 		[clientId]
 	);
+
+	// Set default alignment on block insertion
+	useEffect(() => {
+		if (align === undefined) {
+			setAttributes({ align: 'wide' });
+		}
+	}, []);
 
 	// Adjust active tab if it's out of bounds
 	useEffect(() => {

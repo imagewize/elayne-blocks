@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.9] - 2025-12-24
+
+### Changed
+- FAQ Tabs block now uses different arrow icons for desktop vs mobile layouts
+- Desktop tabs use right-pointing arrow (indicates content appears to the right)
+- Mobile accordion uses down chevron when closed and up chevron when open (standard accordion pattern)
+
+### Fixed
+- Improved visual communication of FAQ Tabs block interaction patterns
+- Arrow directions now match UI conventions (tabs vs accordions)
+
 ## [2.1.8] - 2025-12-24
 
 ### Fixed

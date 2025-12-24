@@ -4,7 +4,7 @@
  */
 (function($) {
     $(document).ready(function() {
-        $('.wp-block-imagewize-carousel').each(function() {
+        $('.wp-block-elayne-carousel').each(function() {
             const $slider = $(this);
 
             // Apply CSS variables for arrow and dot colors

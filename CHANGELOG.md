@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.11] - 2025-12-31
+
+### Added
+- Repository logo with golden gradient (matching Elayne's lily sigil theme from Wheel of Time)
+- Logo displayed in README header
+
+### Changed
+- Updated README with centered logo at top
+- Added icon credit to Blade UI Kit in README credits section
+
 ## [2.1.10] - 2025-12-24
 
 ### Fixed

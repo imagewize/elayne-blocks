@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/icon.svg" alt="Elayne Blocks Logo" width="128" height="128">
+</p>
+
 # Elayne Blocks
 
 Custom WordPress blocks that work with any theme.
@@ -102,6 +106,7 @@ GPL v3 or later - https://www.gnu.org/licenses/gpl-3.0.html
 ## Credits
 
 - Based on blocks originally developed for the Elayne theme
+- Icon: [IconPark Block One](https://blade-ui-kit.com/blade-icons/iconpark-blockone-o) from [Blade UI Kit](https://blade-ui-kit.com/blade-icons)
 - Mega Menu block implementation based on [Human Made's HM Mega Menu Block](https://github.com/humanmade/hm-mega-menu-block)
 - Built with `@wordpress/scripts`
 - Uses [Slick Carousel](https://kenwheeler.github.io/slick/) library for carousel functionality

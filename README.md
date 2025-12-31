@@ -1,10 +1,11 @@
 <p align="center">
   <img src="assets/icon.svg" alt="Elayne Blocks Logo" width="128" height="128">
 </p>
-
-# Elayne Blocks
+<div align="center">
+<h1>Elayne Blocks</h1>
 
 Custom WordPress blocks that work with any theme.
+</div>
 
 ## Description
 

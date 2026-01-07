@@ -1,0 +1,168 @@
+/**
+ * Search Overlay Trigger & Overlay Styles
+ */
+
+/* Search trigger */
+.search-overlay-trigger {
+	cursor: pointer;
+	transition: opacity 0.2s ease;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	&:hover {
+		opacity: 0.7;
+	}
+
+	svg {
+		display: block;
+	}
+}
+
+/* Search overlay */
+.search-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+
+	&.active {
+		opacity: 1;
+	}
+}
+
+.search-overlay-backdrop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.85);
+	backdrop-filter: blur(4px);
+}
+
+.search-overlay-content {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	padding: 2rem;
+}
+
+.search-overlay-close {
+	position: absolute;
+	top: 2rem;
+	right: 2rem;
+	background: transparent;
+	border: none;
+	color: white;
+	cursor: pointer;
+	padding: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: opacity 0.2s ease;
+	z-index: 3;
+
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
+.search-overlay-form {
+	width: 100%;
+	max-width: 800px;
+	transform: scale(0.9);
+	transition: transform 0.3s ease;
+
+	.search-overlay.active & {
+		transform: scale(1);
+	}
+}
+
+/* Search form styling */
+.search-form-overlay {
+	width: 100%;
+}
+
+.search-form-wrapper {
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	background: white;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.search-field-overlay {
+	flex: 1;
+	padding: 1.5rem 2rem;
+	font-size: 1.25rem;
+	border: none;
+	outline: none;
+	background: transparent;
+	font-family: inherit;
+
+	&::placeholder {
+		color: #999;
+	}
+}
+
+.search-submit-overlay {
+	background: transparent;
+	border: none;
+	padding: 1.5rem 2rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: opacity 0.2s ease;
+	flex-shrink: 0;
+
+	&:hover {
+		opacity: 0.7;
+	}
+
+	svg {
+		display: block;
+	}
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.search-overlay-close {
+		top: 1rem;
+		right: 1rem;
+	}
+
+	.search-overlay-content {
+		padding: 1rem;
+	}
+
+	.search-field-overlay {
+		padding: 1.25rem 1.5rem;
+		font-size: 1rem;
+	}
+
+	.search-submit-overlay {
+		padding: 1.25rem 1.5rem;
+
+		svg {
+			width: 20px !important;
+			height: 20px !important;
+		}
+	}
+}
+
+/* Prevent body scroll when overlay is active */
+body.search-overlay-open {
+	overflow: hidden;
+}

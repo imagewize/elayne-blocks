@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "elayne/search-overlay-trigger",
+    "version": "1.0.0",
+    "title": "Search Overlay Trigger",
+    "category": "widgets",
+    "icon": "search",
+    "description": "A search icon that opens a full-screen search overlay when clicked.",
+    "supports": {
+        "html": false,
+        "anchor": false
+    },
+    "textdomain": "elayne-blocks",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+    "viewScript": "file:./view.js",
+    "attributes": {
+        "iconSize": {
+            "type": "string",
+            "default": "20px"
+        }
+    }
+}

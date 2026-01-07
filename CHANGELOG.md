@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-01-07
+
+### Added
+- Search Overlay Trigger block (`elayne/search-overlay-trigger`)
+  - Clickable search icon that opens full-screen search overlay
+  - Smooth fade-in/scale animations for overlay appearance
+  - Auto-focus on search input when opened
+  - Close via X button, backdrop click, or Escape key
+  - Body scroll lock when overlay is active
+  - Responsive design with mobile-optimized layout
+  - Backdrop blur effect for visual depth
+  - Vanilla JavaScript (no dependencies)
+  - Accessibility features (ARIA labels, keyboard support)
+
 ## [2.1.11] - 2025-12-31
 
 ### Added

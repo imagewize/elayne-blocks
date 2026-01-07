@@ -19,6 +19,7 @@ This plugin was created to align with WordPress.org Theme Review requirements, w
 - **Carousel Block** (`elayne/carousel`) - Responsive image/content carousel with Slick Carousel integration
 - **Slide Block** (`elayne/slide`) - Individual carousel slides with InnerBlocks support
 - **FAQ Tabs Block** (`elayne/faq-tabs`) - Interactive FAQ with vertical tab navigation and dynamic content display
+- **Search Overlay Trigger Block** (`elayne/search-overlay-trigger`) - Search icon that opens a full-screen search overlay
 
 ## Requirements
 
@@ -46,7 +47,7 @@ npm install
 npm run build
 ```
 
-Repeat for `carousel`, `slide`, and `faq-tabs` blocks.
+Repeat for `carousel`, `slide`, `faq-tabs`, and `search-overlay-trigger` blocks.
 
 ## Block Details
 
@@ -89,6 +90,20 @@ Interactive FAQ block with vertical tab navigation and dynamic content display.
 - WordPress Interactivity API integration
 - Editable questions, titles, and descriptions via block inspector
 - Responsive design with flexible layout
+
+### Search Overlay Trigger Block
+
+A clickable search icon that opens a full-screen search overlay with smooth animations.
+
+**Features:**
+- Full-screen search overlay with backdrop blur
+- Smooth fade-in/scale animations
+- Auto-focus on search input when opened
+- Multiple close methods (X button, backdrop click, Escape key)
+- Body scroll lock when overlay active
+- Responsive design optimized for mobile
+- Vanilla JavaScript (no dependencies)
+- ARIA labels and keyboard accessibility
 
 ## Changelog
 

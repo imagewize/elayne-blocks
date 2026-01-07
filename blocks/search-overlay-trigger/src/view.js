@@ -25,7 +25,7 @@
 				</svg>
 			</button>
 			<div class="search-overlay-form">
-				<form role="search" method="get" class="search-form-overlay" action="${window.location.origin}">
+				<form role="search" method="get" class="search-form-overlay">
 					<div class="search-form-wrapper">
 						<input type="search" class="search-field-overlay" placeholder="Search..." name="s" required />
 						<button type="submit" class="search-submit-overlay" aria-label="Search">

@@ -1,0 +1,22 @@
+{
+	"name": "search-overlay-trigger",
+	"version": "1.0.0",
+	"description": "A search icon that opens a full-screen search overlay when clicked.",
+	"author": "Imagewize",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"start": "wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.27.0"
+	},
+	"overrides": {
+		"webpack-dev-server": "^5.2.2"
+	}
+}

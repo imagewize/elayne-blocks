@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Search Overlay Trigger block (`elayne/search-overlay-trigger`)
   - Clickable search icon that opens full-screen search overlay
+  - Customizable overlay background color (with alpha transparency support)
+  - Customizable search bar border color
+  - Customizable close button color
   - Smooth fade-in/scale animations for overlay appearance
   - Auto-focus on search input when opened
   - Close via X button, backdrop click, or Escape key

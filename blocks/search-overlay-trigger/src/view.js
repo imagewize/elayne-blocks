@@ -10,6 +10,10 @@
 		return;
 	}
 
+	// Get default color settings from the first trigger (or use defaults)
+	let overlayBgColor = 'rgba(255, 255, 255, 0.95)';
+	let borderColor = '#cccccc';
+
 	// Create overlay structure dynamically
 	const overlay = document.createElement('div');
 	overlay.id = 'search-overlay';
@@ -58,9 +62,29 @@
 		const closeBtn = overlay.querySelector('#search-overlay-close');
 		const backdrop = overlay.querySelector('.search-overlay-backdrop');
 		const searchField = overlay.querySelector('.search-field-overlay');
+		const searchFormWrapper = overlay.querySelector('.search-form-wrapper');
+
+		// Read color settings from the first trigger and apply them
+		if (triggers.length > 0) {
+			const firstTrigger = triggers[0];
+			overlayBgColor = firstTrigger.dataset.overlayBgColor || 'rgba(255, 255, 255, 0.95)';
+			borderColor = firstTrigger.dataset.borderColor || '#cccccc';
+		}
+
+		// Apply colors to overlay elements
+		backdrop.style.backgroundColor = overlayBgColor;
+		searchFormWrapper.style.borderColor = borderColor;
 
 		// Open overlay
-		function openOverlay() {
+		function openOverlay(e) {
+			// Update colors from the clicked trigger
+			const trigger = e.currentTarget;
+			const bgColor = trigger.dataset.overlayBgColor || 'rgba(255, 255, 255, 0.95)';
+			const border = trigger.dataset.borderColor || '#cccccc';
+
+			backdrop.style.backgroundColor = bgColor;
+			searchFormWrapper.style.borderColor = border;
+
 			overlay.style.display = 'block';
 			// Force reflow for transition
 			overlay.offsetHeight;

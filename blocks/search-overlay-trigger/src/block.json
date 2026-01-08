@@ -20,6 +20,14 @@
         "iconSize": {
             "type": "string",
             "default": "20px"
+        },
+        "overlayBackgroundColor": {
+            "type": "string",
+            "default": "rgba(255, 255, 255, 0.95)"
+        },
+        "searchBarBorderColor": {
+            "type": "string",
+            "default": "#cccccc"
         }
     }
 }

@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls, ColorGradientControl } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls, __experimentalColorGradientControl as ColorGradientControl } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
 
 /**

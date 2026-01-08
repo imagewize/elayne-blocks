@@ -13,6 +13,7 @@
 	// Get default color settings from the first trigger (or use defaults)
 	let overlayBgColor = 'rgba(255, 255, 255, 0.95)';
 	let borderColor = '#cccccc';
+	let closeButtonColor = '#000000';
 
 	// Create overlay structure dynamically
 	const overlay = document.createElement('div');
@@ -69,11 +70,13 @@
 			const firstTrigger = triggers[0];
 			overlayBgColor = firstTrigger.dataset.overlayBgColor || 'rgba(255, 255, 255, 0.95)';
 			borderColor = firstTrigger.dataset.borderColor || '#cccccc';
+			closeButtonColor = firstTrigger.dataset.closeButtonColor || '#000000';
 		}
 
 		// Apply colors to overlay elements
 		backdrop.style.backgroundColor = overlayBgColor;
 		searchFormWrapper.style.borderColor = borderColor;
+		closeBtn.style.color = closeButtonColor;
 
 		// Open overlay
 		function openOverlay(e) {
@@ -81,9 +84,11 @@
 			const trigger = e.currentTarget;
 			const bgColor = trigger.dataset.overlayBgColor || 'rgba(255, 255, 255, 0.95)';
 			const border = trigger.dataset.borderColor || '#cccccc';
+			const closeBtnColor = trigger.dataset.closeButtonColor || '#000000';
 
 			backdrop.style.backgroundColor = bgColor;
 			searchFormWrapper.style.borderColor = border;
+			closeBtn.style.color = closeBtnColor;
 
 			overlay.style.display = 'block';
 			// Force reflow for transition

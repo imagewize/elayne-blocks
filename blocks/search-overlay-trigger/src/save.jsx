@@ -7,7 +7,7 @@ import { useBlockProps } from '@wordpress/block-editor';
  * Save component
  */
 export default function save({ attributes }) {
-	const { overlayBackgroundColor, searchBarBorderColor } = attributes;
+	const { overlayBackgroundColor, searchBarBorderColor, closeButtonColor } = attributes;
 	const blockProps = useBlockProps.save();
 
 	return (
@@ -16,6 +16,7 @@ export default function save({ attributes }) {
 				className="wp-block-image size-full is-resized search-overlay-trigger"
 				data-overlay-bg-color={ overlayBackgroundColor }
 				data-border-color={ searchBarBorderColor }
+				data-close-button-color={ closeButtonColor }
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

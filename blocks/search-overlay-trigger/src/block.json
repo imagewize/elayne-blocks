@@ -28,6 +28,10 @@
         "searchBarBorderColor": {
             "type": "string",
             "default": "#cccccc"
+        },
+        "closeButtonColor": {
+            "type": "string",
+            "default": "#000000"
         }
     }
 }

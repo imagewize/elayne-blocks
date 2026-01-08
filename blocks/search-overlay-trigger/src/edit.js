@@ -9,7 +9,7 @@ import { PanelBody } from '@wordpress/components';
  * Edit component
  */
 export default function Edit({ attributes, setAttributes }) {
-	const { overlayBackgroundColor, searchBarBorderColor } = attributes;
+	const { overlayBackgroundColor, searchBarBorderColor, closeButtonColor } = attributes;
 	const blockProps = useBlockProps();
 
 	return (
@@ -26,6 +26,12 @@ export default function Edit({ attributes, setAttributes }) {
 						label={ __( 'Search Bar Border Color', 'elayne-blocks' ) }
 						colorValue={ searchBarBorderColor }
 						onColorChange={ ( color ) => setAttributes({ searchBarBorderColor: color }) }
+						enableAlpha={ false }
+					/>
+					<ColorGradientControl
+						label={ __( 'Close Button Color', 'elayne-blocks' ) }
+						colorValue={ closeButtonColor }
+						onColorChange={ ( color ) => setAttributes({ closeButtonColor: color }) }
 						enableAlpha={ false }
 					/>
 				</PanelBody>

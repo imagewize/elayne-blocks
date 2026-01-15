@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.3
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -125,6 +125,10 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 
 == Changelog ==
 
+= 2.2.3 =
+* Documentation: Added proper attribution for Carousel Block plugin by Virgiliu Diaconu in Credits section
+* Documentation: Acknowledged original work from https://wordpress.org/plugins/carousel-block/ that the carousel block is based on
+
 = 2.2.2 =
 * Fixed WordPress.org plugin repository compliance issues
 * Fixed text domain consistency: all blocks now use elayne-blocks text domain
@@ -181,11 +185,22 @@ The MIT License is GPL-compatible.
 
 == Credits ==
 
+= Plugin Icon =
+The plugin icon is based on IconPark Block One from Blade UI Kit.
+* Source: https://blade-ui-kit.com/blade-icons/iconpark-blockone-o
+* License: MIT License
+
 = Mega Menu Implementation =
 The mega menu block implementation is inspired by and based on the HM Mega Menu Block by Human Made.
 * Source: https://github.com/humanmade/hm-mega-menu-block
 * License: GPL v2 or later
 * Modifications: Adapted for Elayne theme integration and WordPress Interactivity API
+
+= Carousel Block Implementation =
+The carousel block is based on the original work from the Carousel Block Plugin by Virgiliu Diaconu, enhanced with additional features and improvements.
+* Source: https://wordpress.org/plugins/carousel-block/
+* License: GPL v2 or later
+* Modifications: Enhanced with Slick Carousel integration and additional customization options
 
 == Developer Information ==
 

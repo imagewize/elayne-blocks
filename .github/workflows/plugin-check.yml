@@ -1,0 +1,37 @@
+name: Plugin Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  plugin-check:
+    runs-on: ubuntu-latest
+    name: Plugin Check
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: none
+          tools: composer, cs2pr
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Composer dependencies
+        if: -f composer.json
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Run WordPress Plugin Check
+        uses: wordpress/plugin-check-action@v1
+        with:
+          build-dir: './'
+          checks: 'plugin_repo'

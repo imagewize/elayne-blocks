@@ -8,6 +8,8 @@ node_modules/*
 .gitignore
 .distignore
 .gitattributes
+.editorconfig
+.gitkeep
 phpcs.xml
 phpcs.xml.dist
 composer.json
@@ -31,6 +33,7 @@ blocks/*/package.json
 blocks/*/package-lock.json
 blocks/*/.gitignore
 blocks/*/.npmrc
+blocks/*/.editorconfig
 
 # Temporary files
 *.tmp

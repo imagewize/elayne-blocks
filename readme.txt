@@ -135,6 +135,7 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 * Fixed PHP opening tag formatting in mega-menu render.php
 * Created /languages/ folder for translation files
 * Updated carousel block ALLOWED_BLOCKS constant from imagewize/slide to elayne/slide
+* Documentation: Added Git Commit Guidelines and Version Management section to CLAUDE.md
 
 = 2.2.1 =
 * Added WordPress.org plugin repository infrastructure

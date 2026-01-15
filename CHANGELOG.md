@@ -22,6 +22,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - All text strings now use consistent `elayne-blocks` text domain for proper translation support
 - Function names now properly prefixed to avoid conflicts
 
+### Documentation
+- Added Git Commit Guidelines to CLAUDE.md (never mention AI tools in commits)
+- Added Version Management section to CLAUDE.md (synchronize CHANGELOG.md, readme.txt, and elayne-blocks.php)
+
 ## [2.2.1] - 2026-01-15
 
 ### Added

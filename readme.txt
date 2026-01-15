@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.3
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -125,6 +125,22 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 
 == Changelog ==
 
+= 2.2.2 =
+* Fixed WordPress.org plugin repository compliance issues
+* Fixed text domain consistency: all blocks now use elayne-blocks text domain
+* Added ABSPATH security check to mega-menu render.php
+* Updated load_plugin_textdomain() hook from plugins_loaded to init
+* Added proper function prefixes to prevent naming conflicts
+* Added @package tag to main plugin file header
+* Fixed PHP opening tag formatting in mega-menu render.php
+* Created /languages/ folder for translation files
+* Removed deprecated load_plugin_textdomain() call (WordPress 4.6+ auto-loads translations)
+* Fixed global function prefix: moiraine_mega_menu_block_init renamed to elayne_blocks_mega_menu_block_init
+* Updated .distignore file to exclude AGENTS.md from WordPress.org distribution
+* Updated carousel block ALLOWED_BLOCKS constant from imagewize/slide to elayne/slide
+* Improved Plugin Check workflow to build distribution directory before checking (respects .distignore)
+* Documentation: Added Git Commit Guidelines and Version Management section to CLAUDE.md
+
 = 2.2.1 =
 * Added WordPress.org plugin repository infrastructure
 * Added readme.txt file following WordPress.org standards
@@ -141,6 +157,9 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 * Full translation support
 
 == Upgrade Notice ==
+
+= 2.2.2 =
+Important WordPress.org compliance fixes including consistent text domains and security improvements. Recommended update for all users.
 
 = 2.2.1 =
 Adds WordPress.org distribution infrastructure. No functional changes to blocks.

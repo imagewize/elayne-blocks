@@ -30,8 +30,14 @@ jobs:
         if: hashFiles('composer.json') != ''
         run: composer install --prefer-dist --no-progress --no-interaction
 
+      - name: Create distribution directory
+        run: |
+          mkdir -p dist/elayne-blocks
+          rsync -rc --exclude-from=".distignore" ./ dist/elayne-blocks/ --delete --delete-excluded
+          ls -la dist/elayne-blocks/
+
       - name: Run WordPress Plugin Check
         uses: wordpress/plugin-check-action@v1
         with:
-          build-dir: './'
+          build-dir: './dist/elayne-blocks'
           categories: 'plugin_repo'

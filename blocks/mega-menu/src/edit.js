@@ -92,17 +92,17 @@ export default function Edit( { attributes, setAttributes } ) {
 		{
 			value: 'left',
 			icon: justifyLeft,
-			label: __( 'Justify menu left', 'elayne' ),
+			label: __( 'Justify menu left', 'elayne-blocks' ),
 		},
 		{
 			value: 'center',
 			icon: justifyCenter,
-			label: __( 'Justify menu center', 'elayne' ),
+			label: __( 'Justify menu center', 'elayne-blocks' ),
 		},
 		{
 			value: 'right',
 			icon: justifyRight,
-			label: __( 'Justify menu right', 'elayne' ),
+			label: __( 'Justify menu right', 'elayne-blocks' ),
 		},
 	];
 
@@ -112,7 +112,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			icon: alignNone,
 			label: sprintf(
 				// translators: %s: container size (i.e. 600px etc)
-				__( 'Content width (%s wide)', 'elayne' ),
+				__( 'Content width (%s wide)', 'elayne-blocks' ),
 				layout?.contentSize || '1200px'
 			),
 		},
@@ -121,14 +121,14 @@ export default function Edit( { attributes, setAttributes } ) {
 			icon: stretchWide,
 			label: sprintf(
 				// translators: %s: container size (i.e. 600px etc)
-				__( 'Wide width (%s wide)', 'elayne' ),
+				__( 'Wide width (%s wide)', 'elayne-blocks' ),
 				layout?.wideSize || '1600px'
 			),
 		},
 		{
 			value: 'full',
 			icon: stretchFullWidth,
-			label: __( 'Full width', 'elayne' ),
+			label: __( 'Full width', 'elayne-blocks' ),
 		},
 	];
 
@@ -137,11 +137,11 @@ export default function Edit( { attributes, setAttributes } ) {
 			<InspectorControls group="settings">
 				<PanelBody
 					className="mega-menu__settings-panel"
-					title={ __( 'Settings', 'elayne' ) }
+					title={ __( 'Settings', 'elayne-blocks' ) }
 					initialOpen={ true }
 				>
 					<TextControl
-						label={ __( 'Label', 'elayne' ) }
+						label={ __( 'Label', 'elayne-blocks' ) }
 						type="text"
 						value={ label }
 						onChange={ ( value ) =>
@@ -150,7 +150,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						autoComplete="off"
 					/>
 					<TextControl
-						label={ __( 'Description', 'elayne' ) }
+						label={ __( 'Description', 'elayne-blocks' ) }
 						type="text"
 						value={ description }
 						onChange={ ( value ) =>
@@ -158,12 +158,12 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 						help={ __(
 							'Optional description for accessibility',
-							'elayne'
+							'elayne-blocks'
 						) }
 						autoComplete="off"
 					/>
 					<ColorPalette
-						label={ __( 'Label Color', 'elayne' ) }
+						label={ __( 'Label Color', 'elayne-blocks' ) }
 						value={ labelColor }
 						onChange={ ( colorValue ) =>
 							setAttributes( { labelColor: colorValue } )
@@ -171,7 +171,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						clearable={ true }
 					/>
 					<ComboboxControl
-						label={ __( 'Menu Template', 'elayne' ) }
+						label={ __( 'Menu Template', 'elayne-blocks' ) }
 						value={ menuSlug }
 						options={ menuOptions }
 						onChange={ ( value ) =>
@@ -182,7 +182,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							createInterpolateElement(
 								__(
 									'Create and modify menu templates in the <a>Site Editor</a>.',
-									'elayne'
+									'elayne-blocks'
 								),
 								{
 									a: (
@@ -199,13 +199,13 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 				<PanelBody
 					className="mega-menu__layout-panel"
-					title={ __( 'Layout', 'elayne' ) }
+					title={ __( 'Layout', 'elayne-blocks' ) }
 					initialOpen={ true }
 				>
 					<HStack alignment="top" justify="space-between">
 						<ToggleGroupControl
 							className="block-editor-hooks__flex-layout-justification-controls"
-							label={ __( 'Justification', 'elayne' ) }
+							label={ __( 'Justification', 'elayne-blocks' ) }
 							value={ justifyMenu }
 							onChange={ ( justificationValue ) => {
 								setAttributes( {
@@ -229,7 +229,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						</ToggleGroupControl>
 						<ToggleGroupControl
 							className="block-editor-hooks__flex-layout-justification-controls"
-							label={ __( 'Width', 'elayne' ) }
+							label={ __( 'Width', 'elayne-blocks' ) }
 							value={ width || 'content' }
 							onChange={ ( widthValue ) => {
 								setAttributes( {
@@ -265,7 +265,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								label: labelValue,
 							} );
 						} }
-						placeholder={ __( 'Add label...', 'elayne' ) }
+						placeholder={ __( 'Add label...', 'elayne-blocks' ) }
 						allowedFormats={ [
 							'core/bold',
 							'core/italic',

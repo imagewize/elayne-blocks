@@ -8,6 +8,8 @@ node_modules/*
 .gitignore
 .distignore
 .gitattributes
+.editorconfig
+.gitkeep
 phpcs.xml
 phpcs.xml.dist
 composer.json
@@ -19,6 +21,7 @@ pnpm-lock.yaml
 
 # Documentation and scripts
 CLAUDE.md
+AGENTS.md
 README.md
 *.sh
 create-pr.sh
@@ -30,6 +33,7 @@ blocks/*/package.json
 blocks/*/package-lock.json
 blocks/*/.gitignore
 blocks/*/.npmrc
+blocks/*/.editorconfig
 
 # Temporary files
 *.tmp

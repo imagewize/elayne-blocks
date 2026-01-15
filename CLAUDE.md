@@ -146,3 +146,53 @@ Metadata from block.json is the single source of truth, with Edit/Save implement
 - InnerBlocks pattern used for nested content (carousel/slide relationship)
 - wp-scripts handles Webpack, Babel, and all build tooling
 - **Important:** `build/` directories are committed to Git for Packagist distribution so users get working blocks without needing to run build commands
+
+## Git Commit Guidelines
+
+**IMPORTANT:** Never mention AI tools (Claude, ChatGPT, etc.) in commit messages. Commit messages should be professional and focus on the changes made, not the tools used to make them.
+
+**Good commit messages:**
+- "Fix carousel block initialization on frontend"
+- "Add ABSPATH security check to mega-menu render.php"
+- "Update text domain consistency across all blocks"
+
+**Bad commit messages:**
+- "Fix authentication bug (with help from Claude)" ❌
+- "Claude helped me refactor the carousel code" ❌
+- "Co-Authored-By: Claude Sonnet 4.5" ❌
+
+## Version Management
+
+When updating the plugin version, you must update **three files** in sync:
+
+1. **[CHANGELOG.md](CHANGELOG.md)** - Add new version section with changes
+2. **[readme.txt](readme.txt)** - Update `Stable tag` header and add changelog entry
+3. **[elayne-blocks.php](elayne-blocks.php)** - Update `Version` in plugin header and `ELAYNE_BLOCKS_VERSION` constant
+
+**Example workflow for version 2.2.3:**
+
+```markdown
+# CHANGELOG.md
+## [2.2.3] - 2026-01-16
+### Fixed
+- Description of fix
+```
+
+```
+# readme.txt (line 7)
+Stable tag: 2.2.3
+
+# readme.txt (changelog section)
+= 2.2.3 =
+* Description of fix
+```
+
+```php
+// elayne-blocks.php (line 6)
+* Version: 2.2.3
+
+// elayne-blocks.php (line 26)
+define( 'ELAYNE_BLOCKS_VERSION', '2.2.3' );
+```
+
+**All three files must be updated together** to maintain version consistency across the plugin.

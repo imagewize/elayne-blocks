@@ -16,11 +16,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added `@package ELayneBlocks` tag to main plugin file header
   - Fixed PHP opening tag formatting in mega-menu render.php
   - Created `/languages/` folder for translation files
+  - Removed deprecated `load_plugin_textdomain()` call (WordPress 4.6+ auto-loads translations for WordPress.org plugins)
+  - Fixed global function prefix: `moiraine_mega_menu_block_init` → `elayne_blocks_mega_menu_block_init`
 - Updated carousel block ALLOWED_BLOCKS constant from `imagewize/slide` to `elayne/slide`
 
 ### Changed
 - All text strings now use consistent `elayne-blocks` text domain for proper translation support
 - Function names now properly prefixed to avoid conflicts
+- `.distignore` file updated to exclude `AGENTS.md` from WordPress.org distribution
 
 ### Documentation
 - Added Git Commit Guidelines to CLAUDE.md (never mention AI tools in commits)

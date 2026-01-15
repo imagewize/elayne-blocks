@@ -134,6 +134,9 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 * Added @package tag to main plugin file header
 * Fixed PHP opening tag formatting in mega-menu render.php
 * Created /languages/ folder for translation files
+* Removed deprecated load_plugin_textdomain() call (WordPress 4.6+ auto-loads translations)
+* Fixed global function prefix: moiraine_mega_menu_block_init renamed to elayne_blocks_mega_menu_block_init
+* Updated .distignore file to exclude AGENTS.md from WordPress.org distribution
 * Updated carousel block ALLOWED_BLOCKS constant from imagewize/slide to elayne/slide
 * Documentation: Added Git Commit Guidelines and Version Management section to CLAUDE.md
 

@@ -91,19 +91,6 @@ add_action(
 	}
 );
 
-/**
- * Load plugin textdomain for translations
- */
-add_action(
-	'init',
-	function () {
-		load_plugin_textdomain(
-			'elayne-blocks',
-			false,
-			dirname( plugin_basename( __FILE__ ) ) . '/languages'
-		);
-	}
-);
 
 /**
  * Allow SVG and WebP uploads to the media library.

@@ -27,7 +27,7 @@ jobs:
           node-version: '18'
 
       - name: Install Composer dependencies
-        if: -f composer.json
+        if: hashFiles('composer.json') != ''
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run WordPress Plugin Check

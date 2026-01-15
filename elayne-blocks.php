@@ -3,7 +3,7 @@
  * Plugin Name: Elayne Blocks
  * Plugin URI: https://github.com/imagewize/elayne-blocks
  * Description: Custom blocks for the Elayne WordPress theme including Mega Menu, Carousel, and Slide blocks
- * Version: 2.2.1
+ * Version: 2.2.2
  * Requires at least: 6.7
  * Requires PHP: 7.3
  * Author: Jasper Frumau
@@ -12,6 +12,8 @@
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: elayne-blocks
  * Domain Path: /languages
+ *
+ * @package ELayneBlocks
  */
 
 namespace ELayneBlocks;
@@ -21,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'ELAYNE_BLOCKS_VERSION', '2.2.0' );
+define( 'ELAYNE_BLOCKS_VERSION', '2.2.2' );
 define( 'ELAYNE_BLOCKS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELAYNE_BLOCKS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
@@ -93,7 +95,7 @@ add_action(
  * Load plugin textdomain for translations
  */
 add_action(
-	'plugins_loaded',
+	'init',
 	function () {
 		load_plugin_textdomain(
 			'elayne-blocks',
@@ -109,17 +111,17 @@ add_action(
  * @param array $mimes Allowed MIME types.
  * @return array Modified MIME types array.
  */
-function allow_additional_mime_types( $mimes ) {
+function elayne_blocks_allow_additional_mime_types( $mimes ) {
 	$mimes['svg']  = 'image/svg+xml';
 	$mimes['webp'] = 'image/webp';
 	return $mimes;
 }
-add_filter( 'upload_mimes', __NAMESPACE__ . '\\allow_additional_mime_types' );
+add_filter( 'upload_mimes', __NAMESPACE__ . '\\elayne_blocks_allow_additional_mime_types' );
 
 /**
  * Fix SVG and WebP display in media library.
  */
-function fix_media_display() {
+function elayne_blocks_fix_media_display() {
 	echo '<style>
 		.media-icon img[src$=".svg"], img[src$=".svg"].attachment-post-thumbnail {
 			width: 100% !important;
@@ -131,4 +133,4 @@ function fix_media_display() {
 		}
 	</style>';
 }
-add_action( 'admin_head', __NAMESPACE__ . '\\fix_media_display' );
+add_action( 'admin_head', __NAMESPACE__ . '\\elayne_blocks_fix_media_display' );

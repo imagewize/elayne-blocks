@@ -5,6 +5,10 @@
  * @package Elayne
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 $elayne_blocks_label        = esc_html( $attributes['label'] ?? '' );
 $elayne_blocks_label_color  = esc_attr( $attributes['labelColor'] ?? '' );
 $elayne_blocks_description  = esc_html( $attributes['description'] ?? '' );
@@ -33,10 +37,15 @@ if ( $elayne_blocks_label_color ) {
 
 <li <?php echo $elayne_blocks_wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> data-wp-interactive='{"namespace": "elayne/mega-menu"}' data-wp-context='{"menuOpenedBy": {}}' data-wp-on-document--keydown="actions.handleMenuKeydown" data-wp-on-document--click="actions.handleOutsideClick" data-wp-watch="callbacks.initMenu">
 
-	<button class="wp-block-navigation-item__content wp-block-elayne-mega-menu__toggle" data-wp-on--click="actions.toggleMenuOnClick" data-wp-bind--aria-expanded="state.isMenuOpen" <?php echo $elayne_blocks_button_style; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php
+	<button class="wp-block-navigation-item__content wp-block-elayne-mega-menu__toggle" data-wp-on--click="actions.toggleMenuOnClick" data-wp-bind--aria-expanded="state.isMenuOpen" <?php echo $elayne_blocks_button_style; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<?php
 	if ( $elayne_blocks_description ) :
 		?>
-		aria-describedby="menu-description-<?php echo esc_attr( $elayne_blocks_menu_slug ); ?>"<?php endif; ?>>
+		aria-describedby="menu-description-<?php echo esc_attr( $elayne_blocks_menu_slug ); ?>"
+		<?php
+	endif;
+	?>
+	>
 		<span class="wp-block-navigation-item__label"><?php echo esc_html( $elayne_blocks_label ); ?></span>
 		<span class="wp-block-elayne-mega-menu__toggle-icon"><?php echo $elayne_blocks_toggle_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 	</button>
@@ -60,7 +69,7 @@ if ( $elayne_blocks_label_color ) {
 		}
 		?>
 
-		<button aria-label="<?php echo esc_attr( __( 'Close menu', 'elayne' ) ); ?>" class="menu-container__close-button" data-wp-on--click="actions.closeMenuOnClick" type="button">
+		<button aria-label="<?php echo esc_attr( __( 'Close menu', 'elayne-blocks' ) ); ?>" class="menu-container__close-button" data-wp-on--click="actions.closeMenuOnClick" type="button">
 			<?php echo $elayne_blocks_close_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</button>
 	</div>

@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.2] - 2026-01-15
+
+### Fixed
+- WordPress.org plugin repository compliance
+  - Fixed text domain consistency: all blocks now use `elayne-blocks` instead of mixed `imagewize`, `elayne`, etc.
+  - Added ABSPATH security check to mega-menu render.php
+  - Updated `load_plugin_textdomain()` hook from `plugins_loaded` to `init` (best practice)
+  - Added proper function prefixes: `elayne_blocks_allow_additional_mime_types` and `elayne_blocks_fix_media_display`
+  - Added `@package ELayneBlocks` tag to main plugin file header
+  - Fixed PHP opening tag formatting in mega-menu render.php
+  - Created `/languages/` folder for translation files
+- Updated carousel block ALLOWED_BLOCKS constant from `imagewize/slide` to `elayne/slide`
+
+### Changed
+- All text strings now use consistent `elayne-blocks` text domain for proper translation support
+- Function names now properly prefixed to avoid conflicts
+
 ## [2.2.1] - 2026-01-15
 
 ### Added

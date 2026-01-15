@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.3
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -125,8 +125,15 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 
 == Changelog ==
 
+= 2.2.1 =
+* Added WordPress.org plugin repository infrastructure
+* Added readme.txt file following WordPress.org standards
+* Added .distignore for distribution builds
+* Added GitHub Actions for automated releases and plugin checks
+* Plugin now ready for WordPress.org submission
+
 = 2.2.0 =
-* Current stable release
+* Initial public release
 * Three blocks: Mega Menu, Carousel, and Slide
 * WordPress Interactivity API integration for mega menu
 * Conditional asset loading for Slick Carousel
@@ -134,6 +141,9 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 * Full translation support
 
 == Upgrade Notice ==
+
+= 2.2.1 =
+Adds WordPress.org distribution infrastructure. No functional changes to blocks.
 
 = 2.2.0 =
 Initial public release with three custom blocks optimized for the Elayne theme.

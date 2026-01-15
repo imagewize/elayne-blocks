@@ -1,0 +1,80 @@
+# Directories (need /* suffix for zip -x@ to exclude recursively)
+.git/*
+.github/*
+node_modules/*
+
+# Development files
+.DS_Store
+.gitignore
+.distignore
+.gitattributes
+phpcs.xml
+phpcs.xml.dist
+composer.json
+composer.lock
+package.json
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Documentation and scripts
+CLAUDE.md
+README.md
+*.sh
+create-pr.sh
+
+# Source files (keep only build/)
+blocks/*/src/*
+blocks/*/node_modules/*
+blocks/*/package.json
+blocks/*/package-lock.json
+blocks/*/.gitignore
+blocks/*/.npmrc
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+ziDHI0kh
+
+# Editor files
+.vscode/*
+.idea/*
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+.htaccess
+__MACOSX
+tests/*
+phpunit.xml
+phpunit.xml.dist
+.phpunit.result.cache
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS files
+Thumbs.db
+ehthumbs.db
+.Spotlight-V100
+.Trashes
+._*
+.DS_Store?
+
+# Composer
+vendor/*

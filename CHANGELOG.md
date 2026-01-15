@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - All text strings now use consistent `elayne-blocks` text domain for proper translation support
 - Function names now properly prefixed to avoid conflicts
 - `.distignore` file updated to exclude `AGENTS.md` from WordPress.org distribution
+- Plugin Check workflow now builds distribution directory before checking to respect `.distignore` exclusions
 
 ### Documentation
 - Added Git Commit Guidelines to CLAUDE.md (never mention AI tools in commits)

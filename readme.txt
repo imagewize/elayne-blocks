@@ -138,6 +138,7 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 * Fixed global function prefix: moiraine_mega_menu_block_init renamed to elayne_blocks_mega_menu_block_init
 * Updated .distignore file to exclude AGENTS.md from WordPress.org distribution
 * Updated carousel block ALLOWED_BLOCKS constant from imagewize/slide to elayne/slide
+* Improved Plugin Check workflow to build distribution directory before checking (respects .distignore)
 * Documentation: Added Git Commit Guidelines and Version Management section to CLAUDE.md
 
 = 2.2.1 =

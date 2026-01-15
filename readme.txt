@@ -185,6 +185,11 @@ The MIT License is GPL-compatible.
 
 == Credits ==
 
+= Plugin Icon =
+The plugin icon is based on IconPark Block One from Blade UI Kit.
+* Source: https://blade-ui-kit.com/blade-icons/iconpark-blockone-o
+* License: MIT License
+
 = Mega Menu Implementation =
 The mega menu block implementation is inspired by and based on the HM Mega Menu Block by Human Made.
 * Source: https://github.com/humanmade/hm-mega-menu-block

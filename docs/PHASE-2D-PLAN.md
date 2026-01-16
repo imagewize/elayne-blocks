@@ -1,8 +1,33 @@
 # Phase 2D: Content Block Ecosystem
 
-**Status:** Ready to Begin 🎯
+**Status:** ⚠️ DEPRECATED - See Revised Plan
 **Started:** 2026-01-16
 **Dependencies:** Phase 2C Complete ✅ (Layout Modes & Styling System)
+
+---
+
+## ⚠️ DEPRECATION NOTICE
+
+**This plan has been deprecated and replaced.**
+
+**Date Deprecated:** 2026-01-17
+
+**Reason:** After implementation review, the hybrid content system (Template Parts + Custom InnerBlocks with modal editing) creates UX issues:
+- Modal editing breaks natural WordPress workflow
+- Users must insert blocks before seeing content
+- Navigation bar positioning is problematic with InnerBlocks
+- Site Editor provides better editing experience for Template Parts
+
+**New Approach:** See [PHASE-2D-REVISED-PLAN.md](PHASE-2D-REVISED-PLAN.md)
+
+**What Changed:**
+- ❌ Removed: Custom content blocks (mega-menu-column, mega-menu-section, mega-menu-item)
+- ❌ Removed: Hybrid content source system (template vs custom)
+- ❌ Removed: Modal editing for InnerBlocks
+- ✅ Keeping: Template Parts only (natural WordPress workflow)
+- ✅ Adding: Rich library of 5-6 ready-to-use Template Part patterns
+
+This document is preserved for historical reference only.
 
 ---
 

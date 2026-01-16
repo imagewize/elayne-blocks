@@ -1,0 +1,805 @@
+# Phase 2D (REVISED): Template Part Patterns Library
+
+**Status:** In Progress 🔄
+**Started:** 2026-01-17
+**Dependencies:** Phase 2C Complete ✅ (Layout Modes & Styling System)
+
+---
+
+## Strategic Pivot: Why This Change?
+
+### Problem with Hybrid InnerBlocks System
+
+The Phase 2D plan originally called for custom content blocks (Column, Section, Item) with a hybrid system supporting both Template Parts and InnerBlocks. After implementation review, this approach has UX issues:
+
+❌ **Modal editing breaks natural WordPress workflow**
+- Users must insert blocks first before seeing/editing content
+- Modal dialog interrupts the flow of working in Site Editor
+- Content appears in a popup instead of inline
+
+❌ **Navigation bar positioning issues**
+- Absolute positioning needed to place content in navigation area
+- Limited space makes inline editing problematic
+- Conflicts with native navigation block layout
+
+❌ **Complexity without benefit**
+- Dual content source (template vs custom) adds cognitive overhead
+- InnerBlocks in navigation context feels unnatural
+- Users already know how to edit Template Parts in Site Editor
+
+### Solution: Template Parts + Rich Patterns Library
+
+✅ **Natural WordPress editing experience**
+- Users edit Template Parts directly in Site Editor (native workflow)
+- Full visual editing with no modals or dialogs
+- WYSIWYG experience with all blocks available
+
+✅ **Template Parts are already perfect for this**
+- Reusable across multiple mega menu instances
+- Full access to all blocks and styling
+- Site Editor provides professional editing environment
+
+✅ **Quick-start with patterns**
+- Pre-built patterns for common mega menu layouts
+- Users can customize patterns in Site Editor
+- Demonstrates best practices and capabilities
+
+✅ **All Phase 2C features still work**
+- Layout modes (Dropdown, Overlay, Sidebar, Grid)
+- Icon picker and animation controls
+- Styling systems and interactivity
+
+---
+
+## Revised Goal
+
+**Remove the hybrid content system** and **restore Template Part-only approach** with a **rich patterns library** to provide quick-start options for common mega menu layouts.
+
+---
+
+## Implementation Plan
+
+### Step 1: Remove Hybrid Content System
+
+**Files to modify:**
+
+#### 1. Update `block.json` attributes
+**File:** `blocks/mega-menu/src/block.json`
+
+Remove the `contentSource` attribute:
+
+```json
+{
+  "attributes": {
+    // Remove this:
+    "contentSource": {
+      "type": "string",
+      "default": "template",
+      "enum": ["template", "custom"]
+    },
+
+    // Keep everything else (menuSlug, layoutMode, etc.)
+  }
+}
+```
+
+**Estimated time:** 5 minutes
+
+---
+
+#### 2. Simplify `edit.js`
+**File:** `blocks/mega-menu/src/edit.js`
+
+**Remove:**
+- `contentSource` from attributes destructuring
+- Modal state (`useState` for `isModalOpen`)
+- `SelectControl` for content source
+- Button to open modal
+- Content type indicator
+- Modal component with InnerBlocks
+- All InnerBlocks imports and usage
+
+**Keep:**
+- Template Part selector (ComboboxControl)
+- All layout controls (LayoutPicker, etc.)
+- All styling controls
+- Icon picker
+- Animation controls
+
+**Changes:**
+
+```jsx
+// BEFORE (remove these)
+import { InnerBlocks } from '@wordpress/block-editor';
+import { Modal, Button } from '@wordpress/components';
+const [ isModalOpen, setIsModalOpen ] = useState( false );
+
+// Settings Panel - REMOVE content source selector
+<SelectControl
+  label="Content Source"
+  value={contentSource}
+  options={[...]}
+/>
+
+// REMOVE modal button
+{contentSource === 'custom' && (
+  <Button onClick={() => setIsModalOpen(true)}>
+    Edit Mega Menu Content
+  </Button>
+)}
+
+// REMOVE content indicator
+{contentSource === 'template' && menuSlug && (
+  <span className="wp-block-elayne-mega-menu__content-indicator">...</span>
+)}
+
+// REMOVE modal
+{contentSource === 'custom' && isModalOpen && (
+  <Modal>
+    <InnerBlocks ... />
+  </Modal>
+)}
+
+// AFTER (keep simple)
+<PanelBody title="Settings" initialOpen={true}>
+  <TextControl label="Label" ... />
+  <TextControl label="Description" ... />
+  <ColorPalette label="Label Color" ... />
+
+  {/* Keep template part selector */}
+  <ComboboxControl
+    label="Select Menu Template"
+    value={menuSlug}
+    options={menuOptions}
+    onChange={(value) => setAttributes({ menuSlug: value })}
+    help={
+      hasMenus
+        ? 'Select a template part to display in the mega menu'
+        : createInterpolateElement(
+            'No menu template parts found. <a>Create one in the Site Editor</a>',
+            {
+              a: <a href={menuTemplateUrl} target="_blank" rel="noreferrer noopener" />
+            }
+          )
+    }
+  />
+</PanelBody>
+```
+
+**Estimated time:** 20 minutes
+
+---
+
+#### 3. Update `render.php`
+**File:** `blocks/mega-menu/src/render.php`
+
+**Remove:**
+- `$elayne_blocks_content_source` variable
+- Conditional logic checking `contentSource`
+- InnerBlocks content rendering (`$content`)
+
+**Keep:**
+- Template Part rendering only
+
+**Changes:**
+
+```php
+// BEFORE (remove this)
+$elayne_blocks_content_source = esc_attr( $attributes['contentSource'] ?? 'template' );
+
+// ...
+
+// REMOVE conditional rendering
+if ( 'template' === $elayne_blocks_content_source && ! empty( $elayne_blocks_menu_slug ) ) {
+  // Render template part
+} elseif ( 'custom' === $elayne_blocks_content_source ) {
+  // Render InnerBlocks content
+  echo $content;
+}
+
+// AFTER (keep simple)
+// Just render template part if menuSlug is set
+if ( ! empty( $elayne_blocks_menu_slug ) ) {
+  if ( function_exists( 'block_template_part' ) ) {
+    echo block_template_part( $elayne_blocks_menu_slug );
+  } else {
+    // Fallback for older WordPress versions
+    $elayne_blocks_template_part = get_block_template( 'elayne//' . $elayne_blocks_menu_slug, 'wp_template_part' );
+    if ( $elayne_blocks_template_part && $elayne_blocks_template_part->content ) {
+      echo do_blocks( $elayne_blocks_template_part->content );
+    }
+  }
+}
+```
+
+**Estimated time:** 10 minutes
+
+---
+
+#### 4. Update `save.js`
+**File:** `blocks/mega-menu/src/save.js`
+
+**Remove:**
+- InnerBlocks import
+- InnerBlocks.Content usage
+
+**Keep:**
+- Simple return statement (server-side rendering handles everything)
+
+**Changes:**
+
+```jsx
+// BEFORE (remove InnerBlocks)
+import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+
+export default function Save() {
+  return <InnerBlocks.Content />;
+}
+
+// AFTER (keep simple)
+import { useBlockProps } from '@wordpress/block-editor';
+
+export default function Save() {
+  return null; // Server-side rendering handles output
+}
+```
+
+**Estimated time:** 5 minutes
+
+---
+
+### Step 2: Create Template Part Patterns
+
+**Create 5-6 ready-to-use mega menu Template Part patterns.**
+
+#### Pattern 1: Three Column Products Menu ⭐
+**File:** `elayne-blocks.php` (add pattern registration)
+
+```php
+register_block_pattern(
+  'elayne-blocks/mega-menu-three-column',
+  array(
+    'title'       => __( 'Mega Menu - Three Column Products', 'elayne-blocks' ),
+    'description' => __( 'Three column layout with product categories and links', 'elayne-blocks' ),
+    'categories'  => array( 'elayne-blocks' ),
+    'blockTypes'  => array( 'core/template-part/menu' ),
+    'content'     => '<!-- wp:columns {"align":"wide"} -->
+<div class="wp-block-columns alignwide">
+  <!-- wp:column -->
+  <div class="wp-block-column">
+    <!-- wp:heading {"level":3} -->
+    <h3>Products</h3>
+    <!-- /wp:heading -->
+
+    <!-- wp:list -->
+    <ul><li><a href="#">All Products</a></li><li><a href="#">New Arrivals</a></li><li><a href="#">Best Sellers</a></li><li><a href="#">Sale Items</a></li></ul>
+    <!-- /wp:list -->
+  </div>
+  <!-- /wp:column -->
+
+  <!-- wp:column -->
+  <div class="wp-block-column">
+    <!-- wp:heading {"level":3} -->
+    <h3>Categories</h3>
+    <!-- /wp:heading -->
+
+    <!-- wp:list -->
+    <ul><li><a href="#">Electronics</a></li><li><a href="#">Clothing</a></li><li><a href="#">Home & Garden</a></li><li><a href="#">Sports</a></li></ul>
+    <!-- /wp:list -->
+  </div>
+  <!-- /wp:column -->
+
+  <!-- wp:column -->
+  <div class="wp-block-column">
+    <!-- wp:heading {"level":3} -->
+    <h3>Support</h3>
+    <!-- /wp:heading -->
+
+    <!-- wp:list -->
+    <ul><li><a href="#">Help Center</a></li><li><a href="#">Contact Us</a></li><li><a href="#">FAQ</a></li><li><a href="#">Returns</a></li></ul>
+    <!-- /wp:list -->
+  </div>
+  <!-- /wp:column -->
+</div>
+<!-- /wp:columns -->',
+  )
+);
+```
+
+---
+
+#### Pattern 2: Featured Content Menu ⭐
+**Two-column layout with featured image**
+
+```php
+register_block_pattern(
+  'elayne-blocks/mega-menu-featured-content',
+  array(
+    'title'       => __( 'Mega Menu - Featured Content', 'elayne-blocks' ),
+    'description' => __( 'Two column layout with featured image and links', 'elayne-blocks' ),
+    'categories'  => array( 'elayne-blocks' ),
+    'blockTypes'  => array( 'core/template-part/menu' ),
+    'content'     => '<!-- wp:columns {"align":"wide"} -->
+<div class="wp-block-columns alignwide">
+  <!-- wp:column {"width":"66.66%"} -->
+  <div class="wp-block-column" style="flex-basis:66.66%">
+    <!-- wp:heading {"level":3} -->
+    <h3>Shop by Category</h3>
+    <!-- /wp:heading -->
+
+    <!-- wp:columns -->
+    <div class="wp-block-columns">
+      <!-- wp:column -->
+      <div class="wp-block-column">
+        <!-- wp:list -->
+        <ul><li><a href="#">Women\'s Fashion</a></li><li><a href="#">Men\'s Fashion</a></li><li><a href="#">Accessories</a></li></ul>
+        <!-- /wp:list -->
+      </div>
+      <!-- /wp:column -->
+
+      <!-- wp:column -->
+      <div class="wp-block-column">
+        <!-- wp:list -->
+        <ul><li><a href="#">New Arrivals</a></li><li><a href="#">Sale</a></li><li><a href="#">Collections</a></li></ul>
+        <!-- /wp:list -->
+      </div>
+      <!-- /wp:column -->
+    </div>
+    <!-- /wp:columns -->
+  </div>
+  <!-- /wp:column -->
+
+  <!-- wp:column {"width":"33.33%"} -->
+  <div class="wp-block-column" style="flex-basis:33.33%">
+    <!-- wp:heading {"level":4} -->
+    <h4>Featured This Week</h4>
+    <!-- /wp:heading -->
+
+    <!-- wp:image {"sizeSlug":"medium"} -->
+    <figure class="wp-block-image size-medium"><img src="https://placehold.co/300x200" alt="Featured product"/></figure>
+    <!-- /wp:image -->
+
+    <!-- wp:buttons -->
+    <div class="wp-block-buttons">
+      <!-- wp:button -->
+      <div class="wp-block-button"><a class="wp-block-button__link">Shop Now</a></div>
+      <!-- /wp:button -->
+    </div>
+    <!-- /wp:buttons -->
+  </div>
+  <!-- /wp:column -->
+</div>
+<!-- /wp:columns -->',
+  )
+);
+```
+
+---
+
+#### Pattern 3: Icon Grid Menu ⭐
+**Grid layout with icons and labels**
+
+```php
+register_block_pattern(
+  'elayne-blocks/mega-menu-icon-grid',
+  array(
+    'title'       => __( 'Mega Menu - Icon Grid', 'elayne-blocks' ),
+    'description' => __( 'Grid layout with icons and service links', 'elayne-blocks' ),
+    'categories'  => array( 'elayne-blocks' ),
+    'blockTypes'  => array( 'core/template-part/menu' ),
+    'content'     => '<!-- wp:columns {"align":"wide"} -->
+<div class="wp-block-columns alignwide">
+  <!-- wp:column -->
+  <div class="wp-block-column" style="text-align:center">
+    <!-- wp:paragraph {"fontSize":"large"} -->
+    <p class="has-large-font-size">📦</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:heading {"level":4} -->
+    <h4><a href="#">Free Shipping</a></h4>
+    <!-- /wp:heading -->
+
+    <!-- wp:paragraph {"fontSize":"small"} -->
+    <p class="has-small-font-size">On orders over $50</p>
+    <!-- /wp:paragraph -->
+  </div>
+  <!-- /wp:column -->
+
+  <!-- wp:column -->
+  <div class="wp-block-column" style="text-align:center">
+    <!-- wp:paragraph {"fontSize":"large"} -->
+    <p class="has-large-font-size">💳</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:heading {"level":4} -->
+    <h4><a href="#">Secure Payment</a></h4>
+    <!-- /wp:heading -->
+
+    <!-- wp:paragraph {"fontSize":"small"} -->
+    <p class="has-small-font-size">100% secure checkout</p>
+    <!-- /wp:paragraph -->
+  </div>
+  <!-- /wp:column -->
+
+  <!-- wp:column -->
+  <div class="wp-block-column" style="text-align:center">
+    <!-- wp:paragraph {"fontSize":"large"} -->
+    <p class="has-large-font-size">🔄</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:heading {"level":4} -->
+    <h4><a href="#">Easy Returns</a></h4>
+    <!-- /wp:heading -->
+
+    <!-- wp:paragraph {"fontSize":"small"} -->
+    <p class="has-small-font-size">30-day return policy</p>
+    <!-- /wp:paragraph -->
+  </div>
+  <!-- /wp:column -->
+
+  <!-- wp:column -->
+  <div class="wp-block-column" style="text-align:center">
+    <!-- wp:paragraph {"fontSize":"large"} -->
+    <p class="has-large-font-size">💬</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:heading {"level":4} -->
+    <h4><a href="#">24/7 Support</a></h4>
+    <!-- /wp:heading -->
+
+    <!-- wp:paragraph {"fontSize":"small"} -->
+    <p class="has-small-font-size">Always here to help</p>
+    <!-- /wp:paragraph -->
+  </div>
+  <!-- /wp:column -->
+</div>
+<!-- /wp:columns -->',
+  )
+);
+```
+
+---
+
+#### Pattern 4: Simple List Menu ⭐
+**Clean two-column text links**
+
+```php
+register_block_pattern(
+  'elayne-blocks/mega-menu-simple-list',
+  array(
+    'title'       => __( 'Mega Menu - Simple List', 'elayne-blocks' ),
+    'description' => __( 'Clean two column list of links', 'elayne-blocks' ),
+    'categories'  => array( 'elayne-blocks' ),
+    'blockTypes'  => array( 'core/template-part/menu' ),
+    'content'     => '<!-- wp:columns -->
+<div class="wp-block-columns">
+  <!-- wp:column -->
+  <div class="wp-block-column">
+    <!-- wp:list -->
+    <ul><li><a href="#">About Us</a></li><li><a href="#">Our Team</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Blog</a></li></ul>
+    <!-- /wp:list -->
+  </div>
+  <!-- /wp:column -->
+
+  <!-- wp:column -->
+  <div class="wp-block-column">
+    <!-- wp:list -->
+    <ul><li><a href="#">Contact</a></li><li><a href="#">Support</a></li><li><a href="#">FAQ</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul>
+    <!-- /wp:list -->
+  </div>
+  <!-- /wp:column -->
+</div>
+<!-- /wp:columns -->',
+  )
+);
+```
+
+---
+
+#### Pattern 5: Full-Width Footer Menu 🌟
+**Multi-column footer-style layout**
+
+```php
+register_block_pattern(
+  'elayne-blocks/mega-menu-footer-style',
+  array(
+    'title'       => __( 'Mega Menu - Footer Style', 'elayne-blocks' ),
+    'description' => __( 'Full-width multi-column footer-style layout', 'elayne-blocks' ),
+    'categories'  => array( 'elayne-blocks' ),
+    'blockTypes'  => array( 'core/template-part/menu' ),
+    'content'     => '<!-- wp:columns {"align":"full"} -->
+<div class="wp-block-columns alignfull">
+  <!-- wp:column -->
+  <div class="wp-block-column">
+    <!-- wp:heading {"level":4} -->
+    <h4>Company</h4>
+    <!-- /wp:heading -->
+
+    <!-- wp:list -->
+    <ul><li><a href="#">About</a></li><li><a href="#">Team</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
+    <!-- /wp:list -->
+  </div>
+  <!-- /wp:column -->
+
+  <!-- wp:column -->
+  <div class="wp-block-column">
+    <!-- wp:heading {"level":4} -->
+    <h4>Products</h4>
+    <!-- /wp:heading -->
+
+    <!-- wp:list -->
+    <ul><li><a href="#">Features</a></li><li><a href="#">Pricing</a></li><li><a href="#">Security</a></li><li><a href="#">Updates</a></li></ul>
+    <!-- /wp:list -->
+  </div>
+  <!-- /wp:column -->
+
+  <!-- wp:column -->
+  <div class="wp-block-column">
+    <!-- wp:heading {"level":4} -->
+    <h4>Resources</h4>
+    <!-- /wp:heading -->
+
+    <!-- wp:list -->
+    <ul><li><a href="#">Documentation</a></li><li><a href="#">Tutorials</a></li><li><a href="#">Blog</a></li><li><a href="#">Community</a></li></ul>
+    <!-- /wp:list -->
+  </div>
+  <!-- /wp:column -->
+
+  <!-- wp:column -->
+  <div class="wp-block-column">
+    <!-- wp:heading {"level":4} -->
+    <h4>Support</h4>
+    <!-- /wp:heading -->
+
+    <!-- wp:list -->
+    <ul><li><a href="#">Help Center</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li><li><a href="#">Status</a></li></ul>
+    <!-- /wp:list -->
+  </div>
+  <!-- /wp:column -->
+
+  <!-- wp:column -->
+  <div class="wp-block-column">
+    <!-- wp:heading {"level":4} -->
+    <h4>Legal</h4>
+    <!-- /wp:heading -->
+
+    <!-- wp:list -->
+    <ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">License</a></li><li><a href="#">Cookies</a></li></ul>
+    <!-- /wp:list -->
+  </div>
+  <!-- /wp:column -->
+</div>
+<!-- /wp:columns -->',
+  )
+);
+```
+
+---
+
+#### Pattern 6: Image + Links Menu 🌟
+**Promotional content with image**
+
+```php
+register_block_pattern(
+  'elayne-blocks/mega-menu-image-links',
+  array(
+    'title'       => __( 'Mega Menu - Image + Links', 'elayne-blocks' ),
+    'description' => __( 'Promotional content with featured image and links', 'elayne-blocks' ),
+    'categories'  => array( 'elayne-blocks' ),
+    'blockTypes'  => array( 'core/template-part/menu' ),
+    'content'     => '<!-- wp:columns {"align":"wide"} -->
+<div class="wp-block-columns alignwide">
+  <!-- wp:column {"width":"40%"} -->
+  <div class="wp-block-column" style="flex-basis:40%">
+    <!-- wp:image {"sizeSlug":"large"} -->
+    <figure class="wp-block-image size-large"><img src="https://placehold.co/400x300" alt="Promotional banner"/></figure>
+    <!-- /wp:image -->
+
+    <!-- wp:heading {"level":3} -->
+    <h3>Summer Sale</h3>
+    <!-- /wp:heading -->
+
+    <!-- wp:paragraph -->
+    <p>Save up to 50% on selected items</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:buttons -->
+    <div class="wp-block-buttons">
+      <!-- wp:button -->
+      <div class="wp-block-button"><a class="wp-block-button__link">Shop Sale</a></div>
+      <!-- /wp:button -->
+    </div>
+    <!-- /wp:buttons -->
+  </div>
+  <!-- /wp:column -->
+
+  <!-- wp:column {"width":"60%"} -->
+  <div class="wp-block-column" style="flex-basis:60%">
+    <!-- wp:columns -->
+    <div class="wp-block-columns">
+      <!-- wp:column -->
+      <div class="wp-block-column">
+        <!-- wp:heading {"level":4} -->
+        <h4>Shop</h4>
+        <!-- /wp:heading -->
+
+        <!-- wp:list -->
+        <ul><li><a href="#">New Arrivals</a></li><li><a href="#">Best Sellers</a></li><li><a href="#">Sale</a></li><li><a href="#">Gift Cards</a></li></ul>
+        <!-- /wp:list -->
+      </div>
+      <!-- /wp:column -->
+
+      <!-- wp:column -->
+      <div class="wp-block-column">
+        <!-- wp:heading {"level":4} -->
+        <h4>Collections</h4>
+        <!-- /wp:heading -->
+
+        <!-- wp:list -->
+        <ul><li><a href="#">Summer 2026</a></li><li><a href="#">Essentials</a></li><li><a href="#">Premium</a></li><li><a href="#">Limited Edition</a></li></ul>
+        <!-- /wp:list -->
+      </div>
+      <!-- /wp:column -->
+    </div>
+    <!-- /wp:columns -->
+  </div>
+  <!-- /wp:column -->
+</div>
+<!-- /wp:columns -->',
+  )
+);
+```
+
+---
+
+**Estimated time for all patterns:** 1-2 hours
+
+---
+
+### Step 3: Build and Test
+
+1. ✅ Remove hybrid content system code
+2. ✅ Restore Template Part selector
+3. ✅ Add 5-6 Template Part patterns
+4. ✅ Build blocks (`npm run build`)
+5. ✅ Test in WordPress
+   - Insert mega menu block in navigation
+   - Select template parts
+   - Test with all 4 layout modes
+   - Test pattern insertion in Site Editor
+   - Verify editing workflow in Site Editor
+
+**Estimated time:** 1 hour
+
+---
+
+### Step 4: Update Documentation
+
+1. ✅ Update `HYBRID-REWRITE.md` - Document strategic pivot
+2. ✅ Update `PHASE-2D-PLAN.md` - Mark as deprecated, reference revised plan
+3. ✅ Update `CLAUDE.md` - Reflect new mega menu architecture
+4. ✅ Create `PHASE-2D-REVISED-PLAN.md` - This document
+
+**Estimated time:** 30 minutes
+
+---
+
+## Testing Checklist
+
+### Editor Testing
+- [ ] Template Part selector appears in Settings panel
+- [ ] No content source selector (removed)
+- [ ] No modal editing button (removed)
+- [ ] No content indicator (removed)
+- [ ] All layout mode controls work
+- [ ] All styling controls work
+- [ ] Icon picker works
+- [ ] Animation controls work
+
+### Site Editor Testing
+- [ ] All 6 patterns appear in Site Editor
+- [ ] Patterns insert correctly as Template Parts
+- [ ] Template Parts can be edited in Site Editor
+- [ ] Changes to Template Parts reflect in mega menu
+- [ ] All blocks available in Template Part editor
+
+### Frontend Testing
+- [ ] Template Parts render correctly in all 4 layout modes
+- [ ] Dropdown mode works with patterns
+- [ ] Overlay mode works with patterns
+- [ ] Sidebar mode works with patterns
+- [ ] Grid mode works with patterns
+- [ ] All interactivity works (open, close, animations)
+- [ ] Mobile responsive behavior works
+
+### Cross-Browser Testing
+- [ ] Chrome/Edge
+- [ ] Firefox
+- [ ] Safari (desktop)
+- [ ] Safari (iOS)
+- [ ] Chrome (Android)
+
+---
+
+## Success Criteria
+
+Phase 2D (Revised) is complete when:
+
+1. ✅ Hybrid content system removed (no InnerBlocks)
+2. ✅ Template Part selector restored and working
+3. ✅ 5-6 Template Part patterns created and registered
+4. ✅ All patterns work with all 4 layout modes
+5. ✅ Site Editor workflow is natural and intuitive
+6. ✅ All Phase 2C features still functional
+7. ✅ Build completes without errors
+8. ✅ All tests passing
+9. ✅ Documentation updated
+
+---
+
+## Files Modified Summary
+
+**Remove/Simplify:**
+- `blocks/mega-menu/src/block.json` (remove contentSource attribute)
+- `blocks/mega-menu/src/edit.js` (remove InnerBlocks, modal, content indicator)
+- `blocks/mega-menu/src/render.php` (remove contentSource conditional)
+- `blocks/mega-menu/src/save.js` (remove InnerBlocks.Content)
+
+**Add:**
+- `elayne-blocks.php` (~200 lines - 6 pattern registrations)
+- `docs/PHASE-2D-REVISED-PLAN.md` (this document)
+
+**Update:**
+- `docs/HYBRID-REWRITE.md` (document strategic pivot)
+- `CLAUDE.md` (update mega menu architecture)
+
+**Total changes:** ~250 lines modified/added, ~150 lines removed
+
+---
+
+## Estimated Time
+
+| Task | Time Estimate |
+|------|---------------|
+| Remove hybrid content system (Step 1) | 40 minutes |
+| Create 6 Template Part patterns (Step 2) | 1-2 hours |
+| Build and test (Step 3) | 1 hour |
+| Update documentation (Step 4) | 30 minutes |
+| **Total** | **3-4 hours** |
+
+---
+
+## Benefits of This Approach
+
+### For Users
+✅ **Natural WordPress workflow** - Edit in Site Editor like everything else
+✅ **No learning curve** - Uses familiar Template Parts system
+✅ **Full creative control** - All blocks available, not limited set
+✅ **Quick-start patterns** - 6 ready-to-use layouts
+✅ **Reusable content** - Template Parts work across multiple menus
+
+### For Developers
+✅ **Simpler codebase** - Less complexity, easier to maintain
+✅ **No InnerBlocks in navigation** - Avoids positioning issues
+✅ **Follows WordPress patterns** - Uses native systems
+✅ **Better performance** - No modal overhead
+
+### For the Project
+✅ **Faster implementation** - Remove complexity, add patterns
+✅ **Better UX** - Natural workflow beats modal editing
+✅ **All Phase 2C features preserved** - Layout modes still work
+✅ **Clear upgrade path** - No migration issues
+
+---
+
+## Next Phase
+
+After Phase 2D (Revised) completion:
+- **Phase 2E:** Advanced Styling Controls
+- **Phase 2F:** Mobile-First Enhancements
+
+---
+
+**Document Version:** 1.0
+**Created:** 2026-01-17
+**Status:** In Progress 🔄

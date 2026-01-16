@@ -80,6 +80,15 @@ blocks/[block-name]/
 
 **Mega Menu:**
 - Can only be placed inside `core/navigation` or `elayne/nav-builder` blocks
+- **Template Part-Based Content System:**
+  - Uses WordPress Template Parts for mega menu content (no InnerBlocks)
+  - Content edited naturally in Site Editor via template part selection
+  - Includes patterns library with 5-6 ready-to-use mega menu layouts
+- **Layout Modes:**
+  - **Dropdown:** Traditional dropdown menu beneath navigation item
+  - **Overlay:** Full-screen overlay covering the entire page
+  - **Sidebar:** Side panel sliding from left or right
+  - **Grid:** Grid layout for large navigation structures
 - Uses WordPress Interactivity API for frontend state management
 - Renders via PHP template (render.php) for dynamic content
 
@@ -96,7 +105,20 @@ if ( has_block( 'elayne/carousel' ) ) {
 
 The mega-menu block uses the Interactivity API for frontend reactivity. Implementation is based on [Human Made's HM Mega Menu Block](https://github.com/humanmade/hm-mega-menu-block).
 
-**Structure:**
+**Content System:**
+- Template Part-based architecture for mega menu content
+- Users select a template part in the block settings
+- Content is edited directly in the Site Editor's template part workflow
+- Patterns library provides 5-6 ready-to-use mega menu layouts for quick setup
+- No modal editing or InnerBlocks complexity
+
+**Layout Modes:**
+- **Dropdown:** Traditional dropdown positioned beneath navigation item
+- **Overlay:** Full-screen overlay covering entire viewport
+- **Sidebar:** Side panel sliding from left or right edge
+- **Grid:** Grid-based layout for large navigation structures
+
+**Interactivity Structure:**
 - `src/view.js` - Defines state, actions, and callbacks via `store()`
 - `src/render.php` - Server-side template with data attributes:
   - `data-wp-interactive` - Namespace
@@ -108,7 +130,7 @@ The mega-menu block uses the Interactivity API for frontend reactivity. Implemen
 - Click/keyboard navigation
 - Outside-click dismissal
 - Focus management
-- Template part integration
+- Seamless template part integration
 
 ## Block Registration Pattern
 

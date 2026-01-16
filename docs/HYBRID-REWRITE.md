@@ -5,10 +5,10 @@
 **Timeline:** 4-5 weeks (~30-35 hours total)
 **Strategy:** Hybrid approach - enhance carousel with unique features, rebuild mega menu with new architecture
 
-**Last Updated:** 2026-01-16
-**Recent Change:** Phase 2D complete with Hybrid Content System - Mega Menu supports both Template Parts AND Custom Content (InnerBlocks) with modal editing for clean navigation UX
+**Last Updated:** 2026-01-17
+**Recent Change:** Strategic pivot - Reverting to Template Parts only (removing hybrid InnerBlocks system) for better UX
 **Phase 1 Status:** ✅ 100% Complete - Shipped in production (v2.3.0/v2.3.1)
-**Phase 2 Status:** 🚧 In Progress - Phase 2D Complete ✅ (Hybrid Content System: Template Parts + Custom InnerBlocks), Phase 2E Ready 🎯 (Styling Controls)
+**Phase 2 Status:** 🚧 In Progress - Phase 2C Complete ✅ (Layout Modes), Phase 2D Revised 🔄 (Template Part Patterns Library)
 
 ---
 
@@ -373,8 +373,8 @@ Build an advanced mega menu block with modern architecture and comprehensive fea
 
 ### Phase 2 Status
 **Started:** 2026-01-16
-**Current State:** Phase 2D complete - Hybrid Content System implemented (Template Parts + Custom InnerBlocks with modal editing)
-**Next Step:** Phase 2E - Advanced Styling Controls
+**Current State:** Phase 2D revised - Strategic pivot to Template Part Patterns Library (removing hybrid InnerBlocks system)
+**Next Step:** Phase 2D - Template Part Patterns Library implementation
 **Target:** Transform basic dropdown into feature-rich mega menu system
 
 ### Phase 2 Sub-Phases
@@ -385,16 +385,13 @@ Build an advanced mega menu block with modern architecture and comprehensive fea
   - **Plan:** [PHASE-2C-PLAN.md](PHASE-2C-PLAN.md)
   - **Completed:** All 4 layout modes (Dropdown, Overlay, Sidebar, Grid) with ~725 lines of code
   - **Time:** Completed efficiently in one session
-- ✅ **Phase 2D:** Hybrid Content System (Complete - 2026-01-16)
-  - **Plan:** [PHASE-2D-PLAN.md](PHASE-2D-PLAN.md)
-  - **Completed:** 3 new blocks (Column, Section, Item) + Hybrid content source system (Template Parts OR Custom InnerBlocks)
-  - **Key Achievements:**
-    - Users can choose between Template Parts (backward compatible) or Custom Content blocks
-    - Modal editing for InnerBlocks provides clean navigation layout (no inline content disruption)
-    - Content indicator shows active content source below menu trigger
-    - Template part selector restored from main branch for familiar workflow
-  - **Time:** Completed efficiently in one session
-- 🎯 **Phase 2E:** Advanced Styling Controls (Ready to Begin)
+- 🔄 **Phase 2D:** Template Part Patterns Library (Revised - Strategic Pivot)
+  - **Original Plan:** [PHASE-2D-PLAN.md](PHASE-2D-PLAN.md) (Hybrid Content System - DEPRECATED)
+  - **Status:** Reverted to Template Parts only approach (removed hybrid InnerBlocks system)
+  - **New Plan:** Create curated library of mega menu template part patterns
+  - **Reason:** Simpler UX, better maintainability, clearer upgrade path
+  - **Next:** Build template part patterns for common mega menu use cases
+- ⏳ **Phase 2E:** Advanced Styling Controls (Pending Phase 2D)
 - ⏳ **Phase 2F:** Mobile-First Enhancements (Pending Phase 2E)
 
 ### Phase 2B: Icon Picker & Animation Controls ✅ COMPLETE (2026-01-16)
@@ -519,6 +516,50 @@ Build an advanced mega menu block with modern architecture and comprehensive fea
 
 ---
 
+### Phase 2D: Strategic Pivot - Template Parts Only
+
+**Decision Date:** 2026-01-17
+
+#### Problem
+After implementing the hybrid content system (Template Parts + Custom InnerBlocks), we identified several UX issues:
+
+1. **Complexity:** Modal editing for InnerBlocks added cognitive overhead
+2. **Navigation clutter:** Content indicators and dual-mode selection disrupted clean navigation layout
+3. **Maintenance burden:** Supporting two content systems increases long-term maintenance cost
+4. **User confusion:** Choice between Template Parts vs Custom Content created decision fatigue
+5. **Upgrade path:** Unclear migration strategy for existing mega menu users
+
+#### Solution
+Revert to Template Parts-only approach with enhanced pattern library:
+
+**What we're keeping:**
+- ✅ All Phase 2C work (4 layout modes, LayoutPicker, styling system)
+- ✅ Phase 2B components (IconPicker, AnimationControls)
+- ✅ Template part selector (restored from main branch)
+- ✅ Proven, familiar workflow for WordPress users
+
+**What we're removing:**
+- ❌ Custom content blocks (Column, Section, Item)
+- ❌ Hybrid content source selection
+- ❌ Modal editing for InnerBlocks
+- ❌ Content indicators and dual-mode UI
+
+**What we're adding:**
+- ➕ Curated library of mega menu template part patterns
+- ➕ Pattern categories (E-commerce, Blog, Portfolio, etc.)
+- ➕ Pre-built template part examples for each layout mode
+- ➕ Clear documentation for creating custom mega menu template parts
+
+#### Benefits
+1. **Simpler UX:** Single, familiar workflow (Template Parts)
+2. **Better maintainability:** One content system to support
+3. **Clearer upgrade path:** Existing users' workflow unchanged
+4. **Faster implementation:** Patterns easier to create than custom blocks
+5. **Better flexibility:** Users leverage full template part ecosystem
+
+#### Implementation Plan
+See [PHASE-2D-REVISED-PLAN.md](PHASE-2D-REVISED-PLAN.md) for detailed implementation plan.
+
 ---
 
 ### Vision
@@ -544,11 +585,11 @@ Build an advanced mega menu block with modern architecture and comprehensive fea
 | Aspect | Starting Point | Elayne Mega Menu (Target) |
 |--------|---------------|---------------------------|
 | **Layouts** | Dropdown only | Dropdown, Overlay, Sidebar, Grid |
-| **Content** | Template parts only | Template parts + custom blocks |
+| **Content** | Template parts only | Template parts + pattern library |
 | **Icons** | None | Dashicons/custom icon support |
 | **Mobile** | Basic responsive | Dedicated mobile-first behavior |
 | **Animation** | None | Slide/fade/scale transitions |
-| **State** | Simple open/close | Multi-panel, history, focus management |
+| **State** | Simple open/close | Multi-layout, focus management |
 | **Customization** | Minimal | Rich styling controls |
 
 ---
@@ -659,36 +700,47 @@ actions: {
 
 ---
 
-#### 4. Content Block Ecosystem ⭐ MEDIUM PRIORITY
+#### 4. Template Part Pattern Library ⭐ HIGH PRIORITY (REVISED)
 
-**Custom inner blocks for mega menu content:**
+**Curated template part patterns for common mega menu use cases:**
 
-##### `elayne/mega-menu-column`
-- Column container for grid layouts
-- Width control (1/2, 1/3, 1/4, etc.)
-- Vertical alignment
-- Background color/image
+**Pattern Categories:**
 
-##### `elayne/mega-menu-section`
-- Heading + content grouping
-- Icon support
-- Link wrapper option
-- Collapsible on mobile
+##### E-commerce Mega Menu
+- Multi-column product categories
+- Featured products with images
+- Promotional banners
+- Call-to-action buttons
 
-##### `elayne/mega-menu-item`
-- Individual menu item (alternative to template parts)
-- Icon + label + description
-- Badge support (e.g., "New", "Sale")
-- External link support
+##### Blog/News Mega Menu
+- Recent posts grid
+- Category listings
+- Featured articles
+- Newsletter signup
 
-**Block hierarchy:**
-```
-elayne/mega-menu
-└─ elayne/mega-menu-column (multiple)
-   └─ elayne/mega-menu-section (multiple)
-      └─ elayne/mega-menu-item (multiple)
-         OR core blocks (paragraph, image, etc.)
-         OR template parts
+##### Portfolio Mega Menu
+- Project galleries
+- Service offerings
+- Client testimonials
+- Contact forms
+
+##### Corporate Mega Menu
+- Multi-level navigation
+- Department/team listings
+- Resource centers
+- Quick links
+
+**Implementation:**
+```php
+// Register template part patterns in elayne-blocks.php
+register_block_pattern(
+    'elayne-blocks/mega-menu-ecommerce',
+    array(
+        'title' => __('E-commerce Mega Menu', 'elayne-blocks'),
+        'categories' => array('elayne-mega-menu'),
+        'content' => '<!-- wp:template-part {"slug":"mega-menu-shop"} /-->',
+    )
+);
 ```
 
 ---
@@ -1158,17 +1210,17 @@ export default function Edit({ attributes, setAttributes }) {
 ### Success Criteria (Phase 2 Targets)
 
 After Phase 2, the mega menu block should:
-- ⏳ Feature completely new architecture and codebase
-- ⏳ Implement **4 distinct layout modes** (Dropdown, Overlay, Sidebar, Grid)
-- ⏳ Include **icon support** with picker UI
-- ⏳ Feature **animation system** with multiple options
-- ⏳ Provide **mobile-first behavior** with swipe gestures
-- ⏳ Ship with **content block ecosystem** (column, section, item blocks)
-- ⏳ Include **advanced styling controls** for professional customization
-- ⏳ Meet **WCAG 2.1 AA accessibility standards**
+- ✅ Feature completely new architecture and codebase (Phase 2A-2C complete)
+- ✅ Implement **4 distinct layout modes** (Dropdown, Overlay, Sidebar, Grid) - COMPLETE
+- ✅ Include **icon support** with picker UI - COMPLETE (Phase 2B)
+- ✅ Feature **animation system** with multiple options - COMPLETE (Phase 2B)
+- ⏳ Provide **mobile-first behavior** with swipe gestures (Phase 2F pending)
+- 🔄 Ship with **template part pattern library** (Phase 2D revised - in progress)
+- ⏳ Include **advanced styling controls** for professional customization (Phase 2E pending)
+- ⏳ Meet **WCAG 2.1 AA accessibility standards** (ongoing)
 - ⏳ Deliver substantial unique value
 
-**Note:** These are target goals for Phase 2. None have been implemented yet.
+**Note:** Phase 2C complete. Phase 2D revised to focus on template part patterns instead of custom blocks.
 
 ---
 
@@ -1394,8 +1446,8 @@ Carousel block builds upon the foundation of Carousel Block by Virgiliu Diaconu,
 | Carousel features | 5 | 13+ (includes arrow customization) |
 | Arrow customization | None (default Slick theme) | 5 icon styles, 4 backgrounds, custom SVG |
 | Mega menu layouts | 1 (dropdown) | 4 (dropdown, overlay, sidebar, grid) |
-| Mega menu features | 3 | 15+ |
-| Content blocks | 0 | 3 (column, section, item) |
+| Mega menu features | 3 | 12+ |
+| Template patterns | 5 (carousel) | 5 (carousel) + 8+ (mega menu) |
 | Mobile features | Minimal | Comprehensive (swipe, breakpoints, responsive) |
 | Animations | None | Multiple (fade, slide, scale) |
 | Accessibility | Basic | WCAG 2.1 AA compliant |
@@ -1427,7 +1479,7 @@ Carousel block builds upon the foundation of Carousel Block by Virgiliu Diaconu,
 | ↳ _Phase 2A: Foundation_ | - | ✅ Complete | Base architecture, security, Interactivity API |
 | ↳ _Phase 2B: Icon & Animation_ | - | ✅ Complete (2026-01-16) | IconPicker, AnimationControls components |
 | ↳ _Phase 2C: Layout Modes_ | 1 session | ✅ Complete (2026-01-16) | 4 layout modes, LayoutPicker, styling system (~725 lines) |
-| ↳ _Phase 2D: Hybrid Content_ | 1 session | ✅ Complete (2026-01-16) | Template Parts + Custom Blocks with modal editing |
+| ↳ _Phase 2D: Pattern Library_ | TBD | 🔄 Revised (2026-01-17) | Template Part Patterns (removed hybrid InnerBlocks) |
 | ↳ _Phase 2E: Styling Controls_ | TBD | ⏳ Pending 2D | Advanced styling panel |
 | ↳ _Phase 2F: Mobile-First_ | TBD | ⏳ Pending 2E | Responsive enhancements |
 | **Phase 3: Polish** | 1 week | ⏳ Pending Phase 2 | Testing, documentation, screenshots |
@@ -1639,6 +1691,6 @@ Carousel block builds upon the foundation of Carousel Block by Virgiliu Diaconu,
 
 ---
 
-**Document Version:** 3.2
-**Last Updated:** 2026-01-16
-**Status:** Phase 1 Complete ✅ | Phase 2C Complete ✅ | Phase 2D Ready 🎯
+**Document Version:** 3.3
+**Last Updated:** 2026-01-17
+**Status:** Phase 1 Complete ✅ | Phase 2C Complete ✅ | Phase 2D Revised 🔄 (Template Part Patterns Library)

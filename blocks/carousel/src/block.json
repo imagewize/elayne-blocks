@@ -131,7 +131,7 @@
         },
         "arrowStyle": {
             "type": "string",
-            "default": "chevron"
+            "default": "arrow"
         },
         "arrowBackgroundStyle": {
             "type": "string",

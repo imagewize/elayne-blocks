@@ -301,14 +301,14 @@ const Edit = compose(
                             label={__('Arrow Icon', 'elayne-blocks')}
                             value={arrowStyle}
                             options={[
+                                { label: __('Arrow (Default)', 'elayne-blocks'), value: 'arrow' },
                                 { label: __('Chevron', 'elayne-blocks'), value: 'chevron' },
-                                { label: __('Angle', 'elayne-blocks'), value: 'angle' },
-                                { label: __('Caret', 'elayne-blocks'), value: 'caret' },
-                                { label: __('Arrow', 'elayne-blocks'), value: 'arrow' },
+                                { label: __('Angle (Larger)', 'elayne-blocks'), value: 'angle' },
+                                { label: __('Caret (Triangle)', 'elayne-blocks'), value: 'caret' },
                                 { label: __('Custom SVG', 'elayne-blocks'), value: 'custom' }
                             ]}
                             onChange={(value) => setAttributes({ arrowStyle: value })}
-                            help={__('Choose the arrow icon style', 'elayne-blocks')}
+                            help={__('Choose the arrow icon style - all icons are CSS-based for consistent rendering', 'elayne-blocks')}
                         />
                         {arrowStyle === 'custom' && (
                             <TextareaControl

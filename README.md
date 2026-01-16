@@ -130,7 +130,7 @@ GPL v3 or later - https://www.gnu.org/licenses/gpl-3.0.html
 - Based on blocks originally developed for the Elayne theme
 - Icon: [IconPark Block One](https://blade-ui-kit.com/blade-icons/iconpark-blockone-o) from [Blade UI Kit](https://blade-ui-kit.com/blade-icons)
 - Mega Menu block implementation based on [Human Made's HM Mega Menu Block](https://github.com/humanmade/hm-mega-menu-block)
-- Carousel block based on the original work from the [Carousel Block Plugin](https://wordpress.org/plugins/carousel-block/) by Virgiliu Diaconu, enhanced with additional features and improvements
+- Carousel block originally inspired by the [Carousel Block Plugin](https://wordpress.org/plugins/carousel-block/) by Virgiliu Diaconu and now substantially reworked with a different feature set, UI, and styling
 - Built with `@wordpress/scripts`
 - Uses [Slick Carousel](https://kenwheeler.github.io/slick/) library for carousel functionality
 

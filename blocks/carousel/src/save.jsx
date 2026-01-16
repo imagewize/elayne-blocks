@@ -21,11 +21,18 @@ export default function save({ attributes }) {
         arrowHoverColor,
         arrowHoverBackground,
         dotsBottomSpacing,
-        adaptiveHeight
+        adaptiveHeight,
+        enableThumbnails,
+        thumbnailsToShow,
+        thumbnailPosition,
+        centerMode,
+        centerPadding,
+        variableWidth,
+        lazyLoad
     } = attributes;
 
     const slickSettings = {
-        slidesToShow: parseInt(slidesToShow),
+        slidesToShow: centerMode ? 1 : parseInt(slidesToShow),
         slidesToScroll: parseInt(slidesToScroll),
         arrows,
         dots,
@@ -35,11 +42,17 @@ export default function save({ attributes }) {
         speed: parseInt(speed),
         rtl,
         adaptiveHeight,
+        centerMode,
+        centerPadding: centerMode ? centerPadding : '50px',
+        variableWidth,
+        lazyLoad: lazyLoad !== 'off' ? lazyLoad : undefined,
         responsive: [{
             breakpoint: parseInt(responsiveWidth) + 1,
             settings: {
                 slidesToShow: parseInt(responsiveSlides),
-                slidesToScroll: parseInt(responsiveSlidesToScroll)
+                slidesToScroll: parseInt(responsiveSlidesToScroll),
+                centerMode: false,
+                variableWidth: false
             }
         }]
     };
@@ -54,8 +67,11 @@ export default function save({ attributes }) {
     const blockProps = useBlockProps.save({
         className: classnames(
             'slick-slider',
-            { 'cb-single-slide': slidesToShow === 1 },
-            { 'cb-padding': slidePadding }
+            { 'cb-single-slide': slidesToShow === 1 || centerMode },
+            { 'cb-padding': slidePadding },
+            { 'cb-center-mode': centerMode },
+            { 'cb-variable-width': variableWidth },
+            { 'cb-thumbnails': enableThumbnails }
         ),
         'data-slick': JSON.stringify(slickSettings),
         'data-dots-bottom': dotsBottomSpacing,
@@ -63,6 +79,9 @@ export default function save({ attributes }) {
         'data-arrow-background': getColorValue(arrowBackground),
         'data-arrow-hover-color': getColorValue(arrowHoverColor),
         'data-arrow-hover-background': getColorValue(arrowHoverBackground),
+        'data-thumbnails': enableThumbnails ? 'true' : undefined,
+        'data-thumbnails-to-show': enableThumbnails ? thumbnailsToShow : undefined,
+        'data-thumbnail-position': enableThumbnails ? thumbnailPosition : undefined,
         dir: rtl ? 'rtl' : undefined
     });
 

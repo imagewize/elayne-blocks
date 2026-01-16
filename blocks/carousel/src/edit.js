@@ -2,11 +2,12 @@ import {
     useBlockProps,
     InnerBlocks,
     InspectorControls,
+    BlockControls,
     withColors,
     __experimentalColorGradientSettingsDropdown as ColorGradientSettingsDropdown,
     __experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients
 } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, ToggleControl } from '@wordpress/components';
+import { PanelBody, RangeControl, ToggleControl, SelectControl, ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
@@ -61,6 +62,13 @@ const Edit = compose(
         slides,
         slidePadding,
         adaptiveHeight,
+        enableThumbnails,
+        thumbnailsToShow,
+        thumbnailPosition,
+        centerMode,
+        centerPadding,
+        variableWidth,
+        lazyLoad,
         arrowColor: arrowColorAttr,
         arrowBackground: arrowBackgroundAttr,
         arrowHoverColor: arrowHoverColorAttr,
@@ -110,6 +118,28 @@ const Edit = compose(
 
     return (
         <Fragment>
+            <BlockControls>
+                <ToolbarGroup>
+                    <ToolbarButton
+                        icon="image-flip-horizontal"
+                        label={__('Center Mode', 'elayne-blocks')}
+                        isPressed={centerMode}
+                        onClick={() => setAttributes({ centerMode: !centerMode })}
+                    />
+                    <ToolbarButton
+                        icon="images-alt2"
+                        label={__('Thumbnail Navigation', 'elayne-blocks')}
+                        isPressed={enableThumbnails}
+                        onClick={() => setAttributes({ enableThumbnails: !enableThumbnails })}
+                    />
+                    <ToolbarButton
+                        icon="slides"
+                        label={__('Variable Width', 'elayne-blocks')}
+                        isPressed={variableWidth}
+                        onClick={() => setAttributes({ variableWidth: !variableWidth })}
+                    />
+                </ToolbarGroup>
+            </BlockControls>
             <InspectorControls group="color">
                 {arrows && (
                     <>
@@ -143,7 +173,7 @@ const Edit = compose(
                 )}
             </InspectorControls>
             <InspectorControls>
-                <PanelBody title={__('Carousel Settings', 'elayne-blocks')} initialOpen={true}>
+                <PanelBody title={__('Layout', 'elayne-blocks')} initialOpen={true}>
                     <RangeControl
                         label={__('Slides to Show', 'elayne-blocks')}
                         value={slidesToShow}
@@ -158,6 +188,61 @@ const Edit = compose(
                         min={1}
                         max={10}
                     />
+                    {centerMode && (
+                        <RangeControl
+                            label={__('Center Padding', 'elayne-blocks')}
+                            help={__('Amount of adjacent slides visible', 'elayne-blocks')}
+                            value={parseInt(centerPadding)}
+                            onChange={(value) => setAttributes({ centerPadding: `${value}px` })}
+                            min={0}
+                            max={200}
+                            step={10}
+                        />
+                    )}
+                    {enableThumbnails && (
+                        <>
+                            <RangeControl
+                                label={__('Thumbnails to Show', 'elayne-blocks')}
+                                value={thumbnailsToShow}
+                                onChange={(value) => setAttributes({ thumbnailsToShow: value })}
+                                min={2}
+                                max={10}
+                            />
+                            <SelectControl
+                                label={__('Thumbnail Position', 'elayne-blocks')}
+                                value={thumbnailPosition}
+                                options={[
+                                    { label: __('Below', 'elayne-blocks'), value: 'below' },
+                                    { label: __('Above', 'elayne-blocks'), value: 'above' },
+                                    { label: __('Left', 'elayne-blocks'), value: 'left' },
+                                    { label: __('Right', 'elayne-blocks'), value: 'right' }
+                                ]}
+                                onChange={(value) => setAttributes({ thumbnailPosition: value })}
+                            />
+                        </>
+                    )}
+                </PanelBody>
+                <PanelBody title={__('Behavior', 'elayne-blocks')} initialOpen={false}>
+                    <ToggleControl
+                        label={__('Autoplay', 'elayne-blocks')}
+                        checked={autoplay}
+                        onChange={(value) => setAttributes({ autoplay: value })}
+                    />
+                    {autoplay && (
+                        <RangeControl
+                            label={__('Autoplay Speed (ms)', 'elayne-blocks')}
+                            value={autoplaySpeed}
+                            onChange={(value) => setAttributes({ autoplaySpeed: value })}
+                            min={1000}
+                            max={10000}
+                            step={500}
+                        />
+                    )}
+                    <ToggleControl
+                        label={__('Infinite Loop', 'elayne-blocks')}
+                        checked={infinite}
+                        onChange={(value) => setAttributes({ infinite: value })}
+                    />
                     <RangeControl
                         label={__('Animation Speed (ms)', 'elayne-blocks')}
                         value={speed}
@@ -166,6 +251,25 @@ const Edit = compose(
                         max={3000}
                         step={100}
                     />
+                    <SelectControl
+                        label={__('Lazy Loading', 'elayne-blocks')}
+                        help={__('Improves performance for image-heavy carousels', 'elayne-blocks')}
+                        value={lazyLoad}
+                        options={[
+                            { label: __('Disabled', 'elayne-blocks'), value: 'off' },
+                            { label: __('On Demand', 'elayne-blocks'), value: 'ondemand' },
+                            { label: __('Progressive', 'elayne-blocks'), value: 'progressive' }
+                        ]}
+                        onChange={(value) => setAttributes({ lazyLoad: value })}
+                    />
+                    <ToggleControl
+                        label={__('Adaptive Height', 'elayne-blocks')}
+                        help={__('Auto-adjust height to match active slide', 'elayne-blocks')}
+                        checked={adaptiveHeight}
+                        onChange={(value) => setAttributes({ adaptiveHeight: value })}
+                    />
+                </PanelBody>
+                <PanelBody title={__('Navigation', 'elayne-blocks')} initialOpen={false}>
                     <ToggleControl
                         label={__('Show Arrows', 'elayne-blocks')}
                         checked={arrows}
@@ -186,53 +290,10 @@ const Edit = compose(
                             step={1}
                         />
                     )}
-                    <ToggleControl
-                        label={__('Infinite Loop', 'elayne-blocks')}
-                        checked={infinite}
-                        onChange={(value) => setAttributes({ infinite: value })}
-                    />
-                    <ToggleControl
-                        label={__('Autoplay', 'elayne-blocks')}
-                        checked={autoplay}
-                        onChange={(value) => setAttributes({ autoplay: value })}
-                    />
-                    {autoplay && (
-                        <RangeControl
-                            label={__('Autoplay Speed (ms)', 'elayne-blocks')}
-                            value={autoplaySpeed}
-                            onChange={(value) => setAttributes({ autoplaySpeed: value })}
-                            min={1000}
-                            max={10000}
-                            step={500}
-                        />
-                    )}
-                    <ToggleControl
-                        label={__('RTL Mode', 'elayne-blocks')}
-                        checked={rtl}
-                        onChange={(value) => setAttributes({ rtl: value })}
-                    />
-                    <RangeControl
-                        label={__('Total Slides', 'elayne-blocks')}
-                        value={slides}
-                        onChange={(value) => setAttributes({ slides: value })}
-                        min={1}
-                        max={20}
-                    />
-                    <ToggleControl
-                        label={__('Enable Slide Padding', 'elayne-blocks')}
-                        checked={slidePadding}
-                        onChange={(value) => setAttributes({ slidePadding: value })}
-                    />
-                    <ToggleControl
-                        label={__('Adaptive Height', 'elayne-blocks')}
-                        help={__('Adjust carousel height to match the current slide height', 'elayne-blocks')}
-                        checked={adaptiveHeight}
-                        onChange={(value) => setAttributes({ adaptiveHeight: value })}
-                    />
                 </PanelBody>
-                <PanelBody title={__('Responsive Settings', 'elayne-blocks')} initialOpen={false}>
+                <PanelBody title={__('Responsive', 'elayne-blocks')} initialOpen={false}>
                     <RangeControl
-                        label={__('Breakpoint Width (px)', 'elayne-blocks')}
+                        label={__('Mobile Breakpoint (px)', 'elayne-blocks')}
                         value={responsiveWidth}
                         onChange={(value) => setAttributes({ responsiveWidth: value })}
                         min={320}
@@ -240,18 +301,40 @@ const Edit = compose(
                         step={1}
                     />
                     <RangeControl
-                        label={__('Slides to Show (Mobile)', 'elayne-blocks')}
+                        label={__('Mobile: Slides to Show', 'elayne-blocks')}
                         value={responsiveSlides}
                         onChange={(value) => setAttributes({ responsiveSlides: value })}
                         min={1}
                         max={5}
                     />
                     <RangeControl
-                        label={__('Slides to Scroll (Mobile)', 'elayne-blocks')}
+                        label={__('Mobile: Slides to Scroll', 'elayne-blocks')}
                         value={responsiveSlidesToScroll}
                         onChange={(value) => setAttributes({ responsiveSlidesToScroll: value })}
                         min={1}
                         max={5}
+                    />
+                </PanelBody>
+                <PanelBody title={__('Advanced', 'elayne-blocks')} initialOpen={false}>
+                    <RangeControl
+                        label={__('Total Slides', 'elayne-blocks')}
+                        help={__('Number of slide blocks to generate', 'elayne-blocks')}
+                        value={slides}
+                        onChange={(value) => setAttributes({ slides: value })}
+                        min={1}
+                        max={20}
+                    />
+                    <ToggleControl
+                        label={__('Slide Padding', 'elayne-blocks')}
+                        help={__('Add padding around slides', 'elayne-blocks')}
+                        checked={slidePadding}
+                        onChange={(value) => setAttributes({ slidePadding: value })}
+                    />
+                    <ToggleControl
+                        label={__('RTL Mode', 'elayne-blocks')}
+                        help={__('Right-to-left language support', 'elayne-blocks')}
+                        checked={rtl}
+                        onChange={(value) => setAttributes({ rtl: value })}
                     />
                 </PanelBody>
             </InspectorControls>

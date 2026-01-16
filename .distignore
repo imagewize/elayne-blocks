@@ -20,6 +20,7 @@ yarn.lock
 pnpm-lock.yaml
 
 # Documentation and scripts
+docs/*
 CLAUDE.md
 AGENTS.md
 README.md

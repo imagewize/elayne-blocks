@@ -69,6 +69,15 @@ blocks/[block-name]/
 - Slide can only exist inside Carousel (enforced via `parent` constraint in block.json)
 - Slide uses InnerBlocks to accept any block content
 
+**Carousel Advanced Features:**
+- **Toolbar Controls:** Quick-access buttons for Center Mode, Thumbnail Navigation, and Variable Width
+- **Thumbnail Navigation:** Synced secondary carousel with image thumbnails (supports 4 positions: below/above/left/right)
+- **Center Mode:** Active slide centered with partial view of adjacent slides (peek effect)
+- **Variable Width:** Slides can have different widths based on content
+- **Lazy Loading:** On-demand or progressive image loading for performance
+- **Adaptive Height:** Auto-adjusts carousel height to match active slide
+- **Organized Sidebar:** Settings grouped into Layout, Behavior, Navigation, Responsive, Colors, and Advanced panels
+
 **Mega Menu:**
 - Can only be placed inside `core/navigation` or `elayne/nav-builder` blocks
 - Uses WordPress Interactivity API for frontend state management

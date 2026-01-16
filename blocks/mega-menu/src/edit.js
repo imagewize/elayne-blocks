@@ -5,6 +5,7 @@
  */
 import { __, sprintf } from '@wordpress/i18n';
 import {
+	BlockControls,
 	InspectorControls,
 	RichText,
 	useBlockProps,
@@ -17,6 +18,11 @@ import {
 	PanelBody,
 	TextControl,
 	ColorPalette,
+	SelectControl,
+	ToggleControl,
+	RangeControl,
+	ToolbarGroup,
+	ToolbarButton,
 	__experimentalHStack as HStack,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
@@ -28,6 +34,10 @@ import {
 	justifyRight,
 	stretchWide,
 	stretchFullWidth,
+	page,
+	overlayText,
+	menu,
+	grid,
 } from '@wordpress/icons';
 
 /**
@@ -47,8 +57,29 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { label, labelColor, description, menuSlug, justifyMenu, width } =
-		attributes;
+	const {
+		label,
+		labelColor,
+		description,
+		menuSlug,
+		justifyMenu,
+		width,
+		layoutMode,
+		enableAnimations,
+		animationType,
+		animationSpeed,
+		enableIcon,
+		iconName,
+		iconPosition,
+		enableMobileMode,
+		mobileBreakpoint,
+		sidebarDirection,
+		menuBackgroundColor,
+		menuTextColor,
+		menuBorderRadius,
+		menuBoxShadow,
+		backdropBlur,
+	} = attributes;
 
 	const layout = useSelect(
 		( select ) =>
@@ -134,7 +165,33 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	return (
 		<>
+			{ /* Toolbar Controls */ }
+			<BlockControls>
+				<ToolbarGroup>
+					<ToolbarButton
+						icon={ enableAnimations ? 'yes' : 'admin-appearance' }
+						label={ __( 'Enable Animations', 'elayne-blocks' ) }
+						isPressed={ enableAnimations }
+						onClick={ () =>
+							setAttributes( {
+								enableAnimations: ! enableAnimations,
+							} )
+						}
+					/>
+					<ToolbarButton
+						icon={ enableIcon ? 'yes' : 'star-empty' }
+						label={ __( 'Enable Icon', 'elayne-blocks' ) }
+						isPressed={ enableIcon }
+						onClick={ () =>
+							setAttributes( { enableIcon: ! enableIcon } )
+						}
+					/>
+				</ToolbarGroup>
+			</BlockControls>
+
+			{ /* Inspector Controls */ }
 			<InspectorControls group="settings">
+				{ /* Settings Panel */ }
 				<PanelBody
 					className="mega-menu__settings-panel"
 					title={ __( 'Settings', 'elayne-blocks' ) }
@@ -197,11 +254,45 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 				</PanelBody>
+
+				{ /* Layout Panel */ }
 				<PanelBody
 					className="mega-menu__layout-panel"
 					title={ __( 'Layout', 'elayne-blocks' ) }
-					initialOpen={ true }
+					initialOpen={ false }
 				>
+					<SelectControl
+						label={ __( 'Layout Mode', 'elayne-blocks' ) }
+						value={ layoutMode }
+						options={ [
+							{ label: __( 'Dropdown', 'elayne-blocks' ), value: 'dropdown' },
+							{ label: __( 'Overlay', 'elayne-blocks' ), value: 'overlay' },
+							{ label: __( 'Sidebar', 'elayne-blocks' ), value: 'sidebar' },
+							{ label: __( 'Grid', 'elayne-blocks' ), value: 'grid' },
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { layoutMode: value } )
+						}
+						help={ __(
+							'Choose how the mega menu appears',
+							'elayne-blocks'
+						) }
+					/>
+
+					{ layoutMode === 'sidebar' && (
+						<SelectControl
+							label={ __( 'Sidebar Direction', 'elayne-blocks' ) }
+							value={ sidebarDirection }
+							options={ [
+								{ label: __( 'Left', 'elayne-blocks' ), value: 'left' },
+								{ label: __( 'Right', 'elayne-blocks' ), value: 'right' },
+							] }
+							onChange={ ( value ) =>
+								setAttributes( { sidebarDirection: value } )
+							}
+						/>
+					) }
+
 					<HStack alignment="top" justify="space-between">
 						<ToggleGroupControl
 							className="block-editor-hooks__flex-layout-justification-controls"
@@ -253,7 +344,146 @@ export default function Edit( { attributes, setAttributes } ) {
 						</ToggleGroupControl>
 					</HStack>
 				</PanelBody>
+
+				{ /* Icon Panel - Conditional */ }
+				{ enableIcon && (
+					<PanelBody
+						title={ __( 'Icon', 'elayne-blocks' ) }
+						initialOpen={ false }
+					>
+						<TextControl
+							label={ __( 'Icon Name (Dashicon)', 'elayne-blocks' ) }
+							value={ iconName }
+							onChange={ ( value ) =>
+								setAttributes( { iconName: value } )
+							}
+							help={ __(
+								'Enter a Dashicon name (e.g., menu, admin-site)',
+								'elayne-blocks'
+							) }
+						/>
+						<SelectControl
+							label={ __( 'Icon Position', 'elayne-blocks' ) }
+							value={ iconPosition }
+							options={ [
+								{ label: __( 'Left of Label', 'elayne-blocks' ), value: 'left' },
+								{ label: __( 'Right of Label', 'elayne-blocks' ), value: 'right' },
+								{ label: __( 'Above Label', 'elayne-blocks' ), value: 'top' },
+							] }
+							onChange={ ( value ) =>
+								setAttributes( { iconPosition: value } )
+							}
+						/>
+					</PanelBody>
+				) }
+
+				{ /* Animation Panel - Conditional */ }
+				{ enableAnimations && (
+					<PanelBody
+						title={ __( 'Animation', 'elayne-blocks' ) }
+						initialOpen={ false }
+					>
+						<SelectControl
+							label={ __( 'Animation Type', 'elayne-blocks' ) }
+							value={ animationType }
+							options={ [
+								{ label: __( 'Fade', 'elayne-blocks' ), value: 'fade' },
+								{ label: __( 'Slide', 'elayne-blocks' ), value: 'slide' },
+								{ label: __( 'Scale', 'elayne-blocks' ), value: 'scale' },
+								{ label: __( 'Slide + Fade', 'elayne-blocks' ), value: 'slidefade' },
+							] }
+							onChange={ ( value ) =>
+								setAttributes( { animationType: value } )
+							}
+						/>
+						<RangeControl
+							label={ __( 'Animation Speed (ms)', 'elayne-blocks' ) }
+							value={ animationSpeed }
+							onChange={ ( value ) =>
+								setAttributes( { animationSpeed: value } )
+							}
+							min={ 100 }
+							max={ 1000 }
+							step={ 50 }
+						/>
+					</PanelBody>
+				) }
+
+				{ /* Mobile Panel */ }
+				<PanelBody
+					title={ __( 'Mobile Behavior', 'elayne-blocks' ) }
+					initialOpen={ false }
+				>
+					<ToggleControl
+						label={ __( 'Enable Mobile Mode', 'elayne-blocks' ) }
+						checked={ enableMobileMode }
+						onChange={ ( value ) =>
+							setAttributes( { enableMobileMode: value } )
+						}
+					/>
+					{ enableMobileMode && (
+						<RangeControl
+							label={ __( 'Mobile Breakpoint (px)', 'elayne-blocks' ) }
+							value={ mobileBreakpoint }
+							onChange={ ( value ) =>
+								setAttributes( { mobileBreakpoint: value } )
+							}
+							min={ 320 }
+							max={ 1024 }
+							step={ 1 }
+						/>
+					) }
+				</PanelBody>
+
+				{ /* Advanced Styling Panel */ }
+				<PanelBody
+					title={ __( 'Advanced Styling', 'elayne-blocks' ) }
+					initialOpen={ false }
+				>
+					<ColorPalette
+						label={ __( 'Menu Background Color', 'elayne-blocks' ) }
+						value={ menuBackgroundColor }
+						onChange={ ( value ) =>
+							setAttributes( { menuBackgroundColor: value } )
+						}
+						clearable={ true }
+					/>
+					<ColorPalette
+						label={ __( 'Menu Text Color', 'elayne-blocks' ) }
+						value={ menuTextColor }
+						onChange={ ( value ) =>
+							setAttributes( { menuTextColor: value } )
+						}
+						clearable={ true }
+					/>
+					<TextControl
+						label={ __( 'Border Radius', 'elayne-blocks' ) }
+						value={ menuBorderRadius }
+						onChange={ ( value ) =>
+							setAttributes( { menuBorderRadius: value } )
+						}
+						help={ __( 'e.g., 8px, 1rem, 0', 'elayne-blocks' ) }
+					/>
+					<ToggleControl
+						label={ __( 'Box Shadow', 'elayne-blocks' ) }
+						checked={ menuBoxShadow }
+						onChange={ ( value ) =>
+							setAttributes( { menuBoxShadow: value } )
+						}
+					/>
+					{ layoutMode === 'overlay' && (
+						<ToggleControl
+							label={ __( 'Backdrop Blur', 'elayne-blocks' ) }
+							checked={ backdropBlur }
+							onChange={ ( value ) =>
+								setAttributes( { backdropBlur: value } )
+							}
+						/>
+					) }
+				</PanelBody>
 			</InspectorControls>
+
+			{ /* Block Preview */ }
 			<div { ...blockProps }>
 				<button className="wp-block-navigation-item__content wp-block-elayne-mega-menu__toggle">
 					<RichText

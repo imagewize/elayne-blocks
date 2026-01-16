@@ -1,0 +1,103 @@
+/**
+ * Frontend styles for Mega Menu Item block
+ */
+
+.wp-block-elayne-mega-menu-item {
+	margin-bottom: 8px;
+
+	&__link {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		padding: 8px 12px;
+		text-decoration: none;
+		color: inherit;
+		border-radius: 4px;
+		transition: all 0.2s ease;
+
+		&:hover {
+			background: #f5f5f5;
+			color: #007cba;
+
+			.wp-block-elayne-mega-menu-item__description {
+				color: #666;
+			}
+		}
+
+		.dashicons,
+		.custom-icon {
+			width: 20px;
+			height: 20px;
+			flex-shrink: 0;
+			margin-top: 2px;
+
+			svg {
+				width: 100%;
+				height: 100%;
+				fill: currentColor;
+			}
+		}
+	}
+
+	&__content {
+		flex: 1;
+		min-width: 0; // Allow text truncation
+	}
+
+	&__header {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+
+	&__label {
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 1.4;
+	}
+
+	&__description {
+		display: block;
+		margin-top: 4px;
+		font-size: 12px;
+		line-height: 1.4;
+		color: #666;
+	}
+
+	&__badge {
+		display: inline-block;
+		padding: 2px 8px;
+		font-size: 10px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		border-radius: 10px;
+		line-height: 1.4;
+
+		&.badge-default {
+			background: #e0e0e0;
+			color: #333;
+		}
+
+		&.badge-success {
+			background: #d4edda;
+			color: #155724;
+		}
+
+		&.badge-warning {
+			background: #fff3cd;
+			color: #856404;
+		}
+
+		&.badge-danger {
+			background: #f8d7da;
+			color: #721c24;
+		}
+
+		&.badge-info {
+			background: #d1ecf1;
+			color: #0c5460;
+		}
+	}
+}

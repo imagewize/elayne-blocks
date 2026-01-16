@@ -1,0 +1,91 @@
+/**
+ * Frontend styles for Mega Menu Section block
+ */
+
+.wp-block-elayne-mega-menu-section {
+	margin-bottom: 24px;
+
+	&__header {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 12px;
+
+		.dashicons,
+		.custom-icon {
+			width: 20px;
+			height: 20px;
+			flex-shrink: 0;
+
+			svg {
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		a {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			text-decoration: none;
+			color: inherit;
+			transition: color 0.2s ease;
+
+			&:hover {
+				color: #007cba;
+			}
+		}
+	}
+
+	&__heading {
+		margin: 0;
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 1.4;
+		color: inherit;
+	}
+
+	&__content {
+		padding-left: 0;
+	}
+
+	// Collapsible mobile behavior
+	&.is-collapsible-mobile {
+		@media (max-width: 768px) {
+			.wp-block-elayne-mega-menu-section__header {
+				cursor: pointer;
+				position: relative;
+				padding-right: 30px;
+				user-select: none;
+
+				&::after {
+					content: '';
+					position: absolute;
+					right: 0;
+					top: 50%;
+					transform: translateY(-50%);
+					width: 0;
+					height: 0;
+					border-left: 5px solid transparent;
+					border-right: 5px solid transparent;
+					border-top: 6px solid currentColor;
+					transition: transform 0.2s ease;
+				}
+
+				&.is-expanded::after {
+					transform: translateY(-50%) rotate(180deg);
+				}
+			}
+
+			.wp-block-elayne-mega-menu-section__content {
+				max-height: 0;
+				overflow: hidden;
+				transition: max-height 0.3s ease;
+
+				&.is-expanded {
+					max-height: 1000px; // Large enough for content
+				}
+			}
+		}
+	}
+}

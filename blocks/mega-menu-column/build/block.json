@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "elayne/mega-menu-column",
+  "version": "1.0.0",
+  "title": "Mega Menu Column",
+  "category": "elayne-blocks",
+  "description": "Column container for organizing mega menu content in grid layouts",
+  "keywords": [
+    "mega menu",
+    "column",
+    "layout",
+    "grid"
+  ],
+  "parent": [
+    "elayne/mega-menu"
+  ],
+  "supports": {
+    "html": false,
+    "anchor": false
+  },
+  "attributes": {
+    "width": {
+      "type": "string",
+      "default": "auto"
+    },
+    "verticalAlignment": {
+      "type": "string",
+      "default": "top"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "elayne-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

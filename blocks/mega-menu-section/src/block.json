@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "elayne/mega-menu-section",
+  "version": "1.0.0",
+  "title": "Mega Menu Section",
+  "category": "elayne-blocks",
+  "description": "Section with heading for grouping and organizing mega menu content",
+  "keywords": ["mega menu", "section", "heading", "group"],
+  "parent": ["elayne/mega-menu", "elayne/mega-menu-column"],
+  "supports": {
+    "html": false,
+    "anchor": false
+  },
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Section Heading"
+    },
+    "iconName": {
+      "type": "string",
+      "default": ""
+    },
+    "customSVG": {
+      "type": "string",
+      "default": ""
+    },
+    "isLinkWrapper": {
+      "type": "boolean",
+      "default": false
+    },
+    "linkUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "collapsibleMobile": {
+      "type": "boolean",
+      "default": false
+    },
+    "headingLevel": {
+      "type": "string",
+      "default": "h3"
+    }
+  },
+  "textdomain": "elayne-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

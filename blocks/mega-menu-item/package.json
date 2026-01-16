@@ -1,0 +1,29 @@
+{
+  "name": "mega-menu-item",
+  "version": "1.0.0",
+  "description": "Individual menu item block with icon, description, and badge support",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "lint:js": "wp-scripts lint-js",
+    "lint:css": "wp-scripts lint-style",
+    "format": "wp-scripts format"
+  },
+  "keywords": [
+    "wordpress",
+    "gutenberg",
+    "block",
+    "mega-menu",
+    "item",
+    "link"
+  ],
+  "author": "Elayne Blocks",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@wordpress/scripts": "^26.0.0"
+  },
+  "dependencies": {
+    "classnames": "^2.5.1"
+  }
+}

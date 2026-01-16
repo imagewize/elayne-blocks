@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.3
-Stable tag: 2.2.3
+Stable tag: 2.3.0
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -125,6 +125,14 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 
 == Changelog ==
 
+= 2.3.0 =
+* Added advanced carousel features: thumbnail navigation, center mode with peek, variable width slides, lazy loading, and adaptive height controls
+* Added carousel arrow customization with multiple SVG styles, background shapes, sizes, and custom SVG support
+* Added five carousel block patterns (Hero, Testimonial, Product Gallery, Portfolio, Team Members)
+* Updated carousel styling for thumbnails, dots, RTL, and responsive behavior
+* Fixed active dot visibility and thumbnail behavior edge cases
+* Documentation: Updated README with carousel feature highlights (thumbnails, arrow customization, patterns)
+
 = 2.2.3 =
 * Documentation: Added proper attribution for Carousel Block plugin by Virgiliu Diaconu in Credits section
 * Documentation: Acknowledged original work from https://wordpress.org/plugins/carousel-block/ that the carousel block is based on
@@ -161,6 +169,9 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 * Full translation support
 
 == Upgrade Notice ==
+
+= 2.3.0 =
+Major carousel enhancements with new navigation modes, arrow customization, and block patterns. Testing complete.
 
 = 2.2.2 =
 Important WordPress.org compliance fixes including consistent text domains and security improvements. Recommended update for all users.

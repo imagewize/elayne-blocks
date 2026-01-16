@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2026-01-16
+
+### Added
+- Advanced carousel features: thumbnail navigation, center mode with peek, variable width slides, lazy loading, and expanded adaptive height controls
+- Carousel arrow customization with multiple SVG styles, background shapes, sizes, and custom SVG support
+- Five carousel block patterns (Hero, Testimonial, Product Gallery, Portfolio, Team Members)
+- Unique block icons for Carousel and Slide
+- Slick font assets for carousel UI compatibility
+
+### Changed
+- Carousel styling for thumbnails, dots, RTL layouts, and responsive behavior
+- Carousel editor controls reorganized with toolbar toggles and grouped panels
+
+### Fixed
+- Active dot visibility now remains filled when not hovered
+- Thumbnail navigation edge cases (enable checks, arrows off)
+
+### Documentation
+- Added Hybrid Enhancement Strategy documentation
+- Updated carousel enhancement progress and feature details
+- Updated README with carousel feature highlights (thumbnails, arrow customization, patterns)
+
 ## [2.2.3] - 2026-01-16
 
 ### Documentation

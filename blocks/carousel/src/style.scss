@@ -215,6 +215,11 @@
     margin-top: 20px;
 }
 
+.carousel-thumbnails-wrapper.is-thumbnails-above {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
 .carousel-thumbnails {
     position: relative;
     margin: 0 auto;
@@ -263,12 +268,12 @@
 
 /* Thumbnail position: above */
 .carousel-thumbnails-wrapper + .wp-block-elayne-carousel {
-    margin-top: 20px;
+    margin-top: 0;
 }
 
 /* Thumbnail position: below (default) */
 .wp-block-elayne-carousel + .carousel-thumbnails-wrapper {
-    margin-top: 20px;
+    margin-top: 0;
 }
 
 /* Thumbnail position: left/right (side-by-side layout) */

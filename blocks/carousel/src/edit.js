@@ -65,6 +65,7 @@ const Edit = compose(
         enableThumbnails,
         thumbnailsToShow,
         thumbnailPosition,
+        thumbnailSpacing,
         centerMode,
         centerPadding,
         variableWidth,
@@ -222,6 +223,14 @@ const Edit = compose(
                                     { label: __('Right', 'elayne-blocks'), value: 'right' }
                                 ]}
                                 onChange={(value) => setAttributes({ thumbnailPosition: value })}
+                            />
+                            <RangeControl
+                                label={__('Thumbnail Spacing', 'elayne-blocks')}
+                                value={parseInt(thumbnailSpacing)}
+                                onChange={(value) => setAttributes({ thumbnailSpacing: `${value}px` })}
+                                min={0}
+                                max={100}
+                                step={5}
                             />
                         </>
                     )}

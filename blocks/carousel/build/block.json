@@ -113,6 +113,10 @@
       "type": "string",
       "default": "below"
     },
+    "thumbnailSpacing": {
+      "type": "string",
+      "default": "20px"
+    },
     "centerMode": {
       "type": "boolean",
       "default": false

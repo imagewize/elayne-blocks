@@ -34,6 +34,10 @@
             if (hasThumbnails) {
                 const thumbnailsToShow = parseInt($slider.data('thumbnails-to-show')) || 4;
                 const thumbnailPosition = $slider.data('thumbnail-position') || 'below';
+                const thumbnailSpacing = $slider.data('thumbnail-spacing');
+                const spacingValue = thumbnailSpacing !== undefined && thumbnailSpacing !== ''
+                    ? `${thumbnailSpacing}`
+                    : null;
 
                 // Create thumbnail container
                 const $thumbnailWrapper = $('<div class="carousel-thumbnails-wrapper"></div>');
@@ -61,6 +65,7 @@
 
                 // Insert thumbnails based on position
                 if (thumbnailPosition === 'above') {
+                    $thumbnailWrapper.addClass('is-thumbnails-above');
                     $slider.before($thumbnailWrapper);
                 } else if (thumbnailPosition === 'left') {
                     const $container = $('<div class="carousel-with-thumbnails carousel-thumbnails-left"></div>');
@@ -73,6 +78,19 @@
                 } else {
                     // Default: below
                     $slider.after($thumbnailWrapper);
+                }
+
+                if (spacingValue) {
+                    if (thumbnailPosition === 'above') {
+                        $thumbnailWrapper.css({
+                            marginTop: 0,
+                            marginBottom: spacingValue
+                        });
+                    } else if (thumbnailPosition === 'left' || thumbnailPosition === 'right') {
+                        $slider.parent().css('gap', spacingValue);
+                    } else {
+                        $thumbnailWrapper.css('marginTop', spacingValue);
+                    }
                 }
 
                 // Initialize main carousel

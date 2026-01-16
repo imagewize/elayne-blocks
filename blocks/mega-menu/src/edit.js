@@ -13,7 +13,7 @@ import {
 } from '@wordpress/block-editor';
 import { useEntityRecords } from '@wordpress/core-data';
 import { useSelect } from '@wordpress/data';
-import { createInterpolateElement } from '@wordpress/element';
+import { createInterpolateElement, useState } from '@wordpress/element';
 import {
 	ComboboxControl,
 	PanelBody,
@@ -24,6 +24,8 @@ import {
 	RangeControl,
 	ToolbarGroup,
 	ToolbarButton,
+	Modal,
+	Button,
 	__experimentalHStack as HStack,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
@@ -66,6 +68,7 @@ import './editor.scss';
  */
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		contentSource,
 		label,
 		labelColor,
 		description,
@@ -93,6 +96,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		menuBoxShadow,
 		backdropBlur,
 	} = attributes;
+
+	// Modal state for InnerBlocks editing
+	const [ isModalOpen, setIsModalOpen ] = useState( false );
 
 	const layout = useSelect(
 		( select ) =>
@@ -240,6 +246,74 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 						clearable={ true }
 					/>
+
+					<SelectControl
+						label={ __( 'Content Source', 'elayne-blocks' ) }
+						value={ contentSource }
+						options={ [
+							{
+								label: __( 'Template Part', 'elayne-blocks' ),
+								value: 'template',
+							},
+							{
+								label: __( 'Custom Content', 'elayne-blocks' ),
+								value: 'custom',
+							},
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { contentSource: value } )
+						}
+						help={ __(
+							'Choose between template parts or custom block content',
+							'elayne-blocks'
+						) }
+					/>
+
+					{ contentSource === 'template' && (
+						<>
+							<ComboboxControl
+								label={ __( 'Select Menu Template', 'elayne-blocks' ) }
+								value={ menuSlug }
+								options={ menuOptions }
+								onChange={ ( value ) =>
+									setAttributes( { menuSlug: value } )
+								}
+								help={
+									hasMenus
+										? __(
+												'Select a template part to display in the mega menu',
+												'elayne-blocks'
+										  )
+										: createInterpolateElement(
+												__(
+													'No menu template parts found. <a>Create one in the Site Editor</a>',
+													'elayne-blocks'
+												),
+												{
+													a: (
+														// eslint-disable-next-line jsx-a11y/anchor-has-content
+														<a
+															href={ menuTemplateUrl }
+															target="_blank"
+															rel="noreferrer noopener"
+														/>
+													),
+												}
+										  )
+								}
+							/>
+						</>
+					) }
+
+					{ contentSource === 'custom' && (
+						<Button
+							variant="secondary"
+							onClick={ () => setIsModalOpen( true ) }
+							style={ { marginTop: '8px' } }
+						>
+							{ __( 'Edit Mega Menu Content', 'elayne-blocks' ) }
+						</Button>
+					) }
 				</PanelBody>
 
 				{ /* Layout Panel */ }
@@ -498,45 +572,81 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			{ /* Block Preview */ }
 			<div { ...blockProps }>
-				<div className="wp-block-elayne-mega-menu__editor-wrapper">
-					<button className="wp-block-navigation-item__content wp-block-elayne-mega-menu__toggle">
-						<RichText
-							identifier="label"
-							className="wp-block-navigation-item__label"
-							value={ label }
-							onChange={ ( labelValue ) => {
-								setAttributes( {
-									label: labelValue,
-								} );
-							} }
-							placeholder={ __( 'Add label...', 'elayne-blocks' ) }
-							allowedFormats={ [
-								'core/bold',
-								'core/italic',
-								'core/image',
-								'core/strikethrough',
-							] }
-						/>
-						<span>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="12"
-								height="12"
-								viewBox="0 0 12 12"
-								fill="currentColor"
-								aria-hidden="true"
-								focusable="false"
-							>
-								<path
-									d="M1.50002 4L6.00002 8L10.5 4"
-									strokeWidth="1.5"
-									stroke="currentColor"
-									fill="none"
-								></path>
-							</svg>
-						</span>
-					</button>
-					<div className="wp-block-elayne-mega-menu__content-editor">
+				<button className="wp-block-navigation-item__content wp-block-elayne-mega-menu__toggle">
+					<RichText
+						identifier="label"
+						className="wp-block-navigation-item__label"
+						value={ label }
+						onChange={ ( labelValue ) => {
+							setAttributes( {
+								label: labelValue,
+							} );
+						} }
+						placeholder={ __( 'Add label...', 'elayne-blocks' ) }
+						allowedFormats={ [
+							'core/bold',
+							'core/italic',
+							'core/image',
+							'core/strikethrough',
+						] }
+					/>
+					<span>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="12"
+							height="12"
+							viewBox="0 0 12 12"
+							fill="currentColor"
+							aria-hidden="true"
+							focusable="false"
+						>
+							<path
+								d="M1.50002 4L6.00002 8L10.5 4"
+								strokeWidth="1.5"
+								stroke="currentColor"
+								fill="none"
+							></path>
+						</svg>
+					</span>
+				</button>
+
+				{ /* Content Type Indicator */ }
+				{ contentSource === 'template' && menuSlug && (
+					<span className="wp-block-elayne-mega-menu__content-indicator">
+						{ sprintf(
+							// translators: %s: template part name
+							__( 'Template: %s', 'elayne-blocks' ),
+							menuOptions.find( ( opt ) => opt.value === menuSlug )
+								?.label || menuSlug
+						) }
+					</span>
+				) }
+				{ contentSource === 'custom' && (
+					<span className="wp-block-elayne-mega-menu__content-indicator">
+						{ __( 'Custom Content', 'elayne-blocks' ) }
+						<Button
+							variant="link"
+							onClick={ () => setIsModalOpen( true ) }
+							style={ { marginLeft: '8px' } }
+						>
+							{ __( 'Edit', 'elayne-blocks' ) }
+						</Button>
+					</span>
+				) }
+			</div>
+
+			{ /* Modal for Custom Content Editing */ }
+			{ contentSource === 'custom' && isModalOpen && (
+				<Modal
+					title={ __( 'Edit Mega Menu Content', 'elayne-blocks' ) }
+					onRequestClose={ () => setIsModalOpen( false ) }
+					className="wp-block-elayne-mega-menu__modal"
+					style={ {
+						maxWidth: '90vw',
+						width: '1200px',
+					} }
+				>
+					<div className="wp-block-elayne-mega-menu__modal-content">
 						<InnerBlocks
 							allowedBlocks={ [
 								'elayne/mega-menu-column',
@@ -577,8 +687,16 @@ export default function Edit( { attributes, setAttributes } ) {
 							templateLock={ false }
 						/>
 					</div>
-				</div>
-			</div>
+					<div className="wp-block-elayne-mega-menu__modal-footer">
+						<Button
+							variant="primary"
+							onClick={ () => setIsModalOpen( false ) }
+						>
+							{ __( 'Done', 'elayne-blocks' ) }
+						</Button>
+					</div>
+				</Modal>
+			) }
 		</>
 	);
 }

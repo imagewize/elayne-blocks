@@ -18,6 +18,14 @@
     "elayne/nav-builder"
   ],
   "attributes": {
+    "contentSource": {
+      "type": "string",
+      "default": "template",
+      "enum": [
+        "template",
+        "custom"
+      ]
+    },
     "label": {
       "type": "string",
       "default": ""

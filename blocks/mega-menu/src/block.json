@@ -10,6 +10,11 @@
 	"keywords": [ "menu", "navigation", "mega menu", "dropdown" ],
 	"parent": [ "core/navigation", "elayne/nav-builder" ],
 	"attributes": {
+		"contentSource": {
+			"type": "string",
+			"default": "template",
+			"enum": [ "template", "custom" ]
+		},
 		"label": {
 			"type": "string",
 			"default": ""

@@ -6,9 +6,9 @@
 **Strategy:** Hybrid approach - enhance carousel with unique features, rebuild mega menu with new architecture
 
 **Last Updated:** 2026-01-16
-**Recent Change:** Phase 2D complete with InnerBlocks integration - Mega Menu now supports direct content editing with Column, Section, and Item blocks
+**Recent Change:** Phase 2D complete with Hybrid Content System - Mega Menu supports both Template Parts AND Custom Content (InnerBlocks) with modal editing for clean navigation UX
 **Phase 1 Status:** ✅ 100% Complete - Shipped in production (v2.3.0/v2.3.1)
-**Phase 2 Status:** 🚧 In Progress - Phase 2D Complete ✅ (Content Blocks + InnerBlocks Integration), Phase 2E Ready 🎯 (Styling Controls)
+**Phase 2 Status:** 🚧 In Progress - Phase 2D Complete ✅ (Hybrid Content System: Template Parts + Custom InnerBlocks), Phase 2E Ready 🎯 (Styling Controls)
 
 ---
 
@@ -373,7 +373,7 @@ Build an advanced mega menu block with modern architecture and comprehensive fea
 
 ### Phase 2 Status
 **Started:** 2026-01-16
-**Current State:** Phase 2D complete - Content Block Ecosystem (Column, Section, Item blocks) implemented
+**Current State:** Phase 2D complete - Hybrid Content System implemented (Template Parts + Custom InnerBlocks with modal editing)
 **Next Step:** Phase 2E - Advanced Styling Controls
 **Target:** Transform basic dropdown into feature-rich mega menu system
 
@@ -385,10 +385,14 @@ Build an advanced mega menu block with modern architecture and comprehensive fea
   - **Plan:** [PHASE-2C-PLAN.md](PHASE-2C-PLAN.md)
   - **Completed:** All 4 layout modes (Dropdown, Overlay, Sidebar, Grid) with ~725 lines of code
   - **Time:** Completed efficiently in one session
-- ✅ **Phase 2D:** Content Block Ecosystem (Complete - 2026-01-16)
+- ✅ **Phase 2D:** Hybrid Content System (Complete - 2026-01-16)
   - **Plan:** [PHASE-2D-PLAN.md](PHASE-2D-PLAN.md)
-  - **Completed:** 3 new blocks (Column, Section, Item) + InnerBlocks integration in mega-menu
-  - **Key Achievement:** Users can now build mega menu content directly in the editor
+  - **Completed:** 3 new blocks (Column, Section, Item) + Hybrid content source system (Template Parts OR Custom InnerBlocks)
+  - **Key Achievements:**
+    - Users can choose between Template Parts (backward compatible) or Custom Content blocks
+    - Modal editing for InnerBlocks provides clean navigation layout (no inline content disruption)
+    - Content indicator shows active content source below menu trigger
+    - Template part selector restored from main branch for familiar workflow
   - **Time:** Completed efficiently in one session
 - 🎯 **Phase 2E:** Advanced Styling Controls (Ready to Begin)
 - ⏳ **Phase 2F:** Mobile-First Enhancements (Pending Phase 2E)
@@ -1423,7 +1427,7 @@ Carousel block builds upon the foundation of Carousel Block by Virgiliu Diaconu,
 | ↳ _Phase 2A: Foundation_ | - | ✅ Complete | Base architecture, security, Interactivity API |
 | ↳ _Phase 2B: Icon & Animation_ | - | ✅ Complete (2026-01-16) | IconPicker, AnimationControls components |
 | ↳ _Phase 2C: Layout Modes_ | 1 session | ✅ Complete (2026-01-16) | 4 layout modes, LayoutPicker, styling system (~725 lines) |
-| ↳ _Phase 2D: Content Blocks_ | TBD | 🎯 **Ready to Begin** | Column, Section, Item blocks |
+| ↳ _Phase 2D: Hybrid Content_ | 1 session | ✅ Complete (2026-01-16) | Template Parts + Custom Blocks with modal editing |
 | ↳ _Phase 2E: Styling Controls_ | TBD | ⏳ Pending 2D | Advanced styling panel |
 | ↳ _Phase 2F: Mobile-First_ | TBD | ⏳ Pending 2E | Responsive enhancements |
 | **Phase 3: Polish** | 1 week | ⏳ Pending Phase 2 | Testing, documentation, screenshots |

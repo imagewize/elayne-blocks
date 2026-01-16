@@ -303,12 +303,11 @@ const Edit = compose(
                             options={[
                                 { label: __('Arrow (Default)', 'elayne-blocks'), value: 'arrow' },
                                 { label: __('Chevron', 'elayne-blocks'), value: 'chevron' },
-                                { label: __('Angle (Larger)', 'elayne-blocks'), value: 'angle' },
                                 { label: __('Caret (Triangle)', 'elayne-blocks'), value: 'caret' },
                                 { label: __('Custom SVG', 'elayne-blocks'), value: 'custom' }
                             ]}
                             onChange={(value) => setAttributes({ arrowStyle: value })}
-                            help={__('Choose the arrow icon style - all icons are CSS-based for consistent rendering', 'elayne-blocks')}
+                            help={__('Choose the arrow icon style - all icons are SVG-based for sharp, scalable rendering', 'elayne-blocks')}
                         />
                         {arrowStyle === 'custom' && (
                             <TextareaControl

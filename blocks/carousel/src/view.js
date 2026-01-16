@@ -101,26 +101,45 @@
                 $slider.slick(slickSettings);
             }
 
-            // Apply custom SVG arrows if specified
+            // Load SVG arrows for all arrow styles
             const customArrowSvg = $slider.data('custom-arrow-svg');
             const arrowStyle = $slider.data('arrow-style');
-            if (arrowStyle === 'custom' && customArrowSvg) {
-                // Wait for Slick to create arrow buttons
-                setTimeout(function() {
-                    const $prevArrow = $slider.find('.slick-prev');
-                    const $nextArrow = $slider.find('.slick-next');
 
-                    if ($prevArrow.length && $nextArrow.length) {
-                        // Clear existing content
+            // Wait for Slick to create arrow buttons
+            setTimeout(function() {
+                const $prevArrow = $slider.find('.slick-prev');
+                const $nextArrow = $slider.find('.slick-next');
+
+                if ($prevArrow.length && $nextArrow.length) {
+                    // SVG arrow files mapping
+                    const arrowSvgs = {
+                        'chevron': elayneBlocksData.pluginUrl + 'blocks/carousel/src/arrows/chevron.svg',
+                        'caret': elayneBlocksData.pluginUrl + 'blocks/carousel/src/arrows/caret.svg',
+                        'arrow': elayneBlocksData.pluginUrl + 'blocks/carousel/src/arrows/arrow.svg'
+                    };
+
+                    if (arrowStyle === 'custom' && customArrowSvg) {
+                        // Use custom SVG code
                         $prevArrow.html(customArrowSvg);
                         $nextArrow.html(customArrowSvg);
+                        $prevArrow.find('svg').css('color', 'currentColor');
+                        $nextArrow.find('svg').css('color', 'currentColor');
+                    } else if (arrowSvgs[arrowStyle]) {
+                        // Load SVG file for built-in arrow styles
+                        $.get(arrowSvgs[arrowStyle], function(svgData) {
+                            const $svg = $(svgData).find('svg');
+                            $svg.attr('class', 'carousel-arrow-svg');
 
-                        // Set color on SVG
-                        $prevArrow.find('svg').css('fill', 'currentColor');
-                        $nextArrow.find('svg').css('fill', 'currentColor');
+                            // Clone for both arrows
+                            $prevArrow.html($svg.clone());
+                            $nextArrow.html($svg.clone());
+
+                            // Flip the next arrow horizontally while preserving centering
+                            $nextArrow.find('svg').css('transform', 'translate(-50%, -50%) scaleX(-1)');
+                        });
                     }
-                }, 100);
-            }
+                }
+            }, 100);
 
             // Apply arrow size after Slick initialization
             if (arrowSize) {

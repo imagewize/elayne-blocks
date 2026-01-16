@@ -127,7 +127,6 @@ if ( $elayne_blocks_label_color ) {
 		<span id="menu-description-<?php echo esc_attr( $elayne_blocks_menu_slug ); ?>" class="screen-reader-text"><?php echo esc_html( $elayne_blocks_description ); ?></span>
 	<?php endif; ?>
 
-	<?php if ( $elayne_blocks_menu_slug ) : ?>
 	<?php
 	// Build panel classes with layout-specific classes.
 	$elayne_blocks_panel_classes = $elayne_blocks_menu_classes . ' wp-block-elayne-mega-menu__panel';
@@ -148,16 +147,8 @@ if ( $elayne_blocks_label_color ) {
 		<?php endif; ?>
 
 		<?php
-		// Render the template part if menu slug is provided.
-		if ( function_exists( 'block_template_part' ) ) {
-			echo block_template_part( $elayne_blocks_menu_slug ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		} else {
-			// Fallback for older WordPress versions.
-			$elayne_blocks_template_part = get_block_template( 'elayne//' . $elayne_blocks_menu_slug, 'wp_template_part' );
-			if ( $elayne_blocks_template_part && $elayne_blocks_template_part->content ) {
-				echo do_blocks( $elayne_blocks_template_part->content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}
-		}
+		// Render InnerBlocks content.
+		echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		?>
 
 		<?php if ( 'grid' === $elayne_blocks_layout_mode ) : ?>
@@ -168,6 +159,5 @@ if ( $elayne_blocks_label_color ) {
 			<?php echo $elayne_blocks_close_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</button>
 	</div>
-	<?php endif; ?>
 
 </li>

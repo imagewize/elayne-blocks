@@ -7,6 +7,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import {
 	BlockControls,
 	InspectorControls,
+	InnerBlocks,
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
@@ -238,32 +239,6 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { labelColor: colorValue } )
 						}
 						clearable={ true }
-					/>
-					<ComboboxControl
-						label={ __( 'Menu Template', 'elayne-blocks' ) }
-						value={ menuSlug }
-						options={ menuOptions }
-						onChange={ ( value ) =>
-							setAttributes( { menuSlug: value } )
-						}
-						help={
-							hasMenus &&
-							createInterpolateElement(
-								__(
-									'Create and modify menu templates in the <a>Site Editor</a>.',
-									'elayne-blocks'
-								),
-								{
-									a: (
-										<a
-											href={ menuTemplateUrl }
-											target="_blank"
-											rel="noreferrer"
-										/>
-									),
-								}
-							)
-						}
 					/>
 				</PanelBody>
 
@@ -523,43 +498,86 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			{ /* Block Preview */ }
 			<div { ...blockProps }>
-				<button className="wp-block-navigation-item__content wp-block-elayne-mega-menu__toggle">
-					<RichText
-						identifier="label"
-						className="wp-block-navigation-item__label"
-						value={ label }
-						onChange={ ( labelValue ) => {
-							setAttributes( {
-								label: labelValue,
-							} );
-						} }
-						placeholder={ __( 'Add label...', 'elayne-blocks' ) }
-						allowedFormats={ [
-							'core/bold',
-							'core/italic',
-							'core/image',
-							'core/strikethrough',
-						] }
-					/>
-					<span>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="12"
-							height="12"
-							viewBox="0 0 12 12"
-							fill="currentColor"
-							aria-hidden="true"
-							focusable="false"
-						>
-							<path
-								d="M1.50002 4L6.00002 8L10.5 4"
-								strokeWidth="1.5"
-								stroke="currentColor"
-								fill="none"
-							></path>
-						</svg>
-					</span>
-				</button>
+				<div className="wp-block-elayne-mega-menu__editor-wrapper">
+					<button className="wp-block-navigation-item__content wp-block-elayne-mega-menu__toggle">
+						<RichText
+							identifier="label"
+							className="wp-block-navigation-item__label"
+							value={ label }
+							onChange={ ( labelValue ) => {
+								setAttributes( {
+									label: labelValue,
+								} );
+							} }
+							placeholder={ __( 'Add label...', 'elayne-blocks' ) }
+							allowedFormats={ [
+								'core/bold',
+								'core/italic',
+								'core/image',
+								'core/strikethrough',
+							] }
+						/>
+						<span>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="12"
+								height="12"
+								viewBox="0 0 12 12"
+								fill="currentColor"
+								aria-hidden="true"
+								focusable="false"
+							>
+								<path
+									d="M1.50002 4L6.00002 8L10.5 4"
+									strokeWidth="1.5"
+									stroke="currentColor"
+									fill="none"
+								></path>
+							</svg>
+						</span>
+					</button>
+					<div className="wp-block-elayne-mega-menu__content-editor">
+						<InnerBlocks
+							allowedBlocks={ [
+								'elayne/mega-menu-column',
+								'elayne/mega-menu-section',
+								'elayne/mega-menu-item',
+								'core/paragraph',
+								'core/heading',
+								'core/image',
+								'core/list',
+								'core/template-part',
+							] }
+							template={ [
+								[
+									'elayne/mega-menu-section',
+									{
+										heading: 'Products',
+									},
+									[
+										[
+											'elayne/mega-menu-item',
+											{
+												label: 'All Products',
+												linkUrl: '/products',
+											},
+										],
+										[
+											'elayne/mega-menu-item',
+											{
+												label: 'Featured',
+												linkUrl: '/featured',
+												badgeText: 'New',
+												badgeStyle: 'info',
+											},
+										],
+									],
+								],
+							] }
+							templateLock={ false }
+						/>
+					</div>
+				</div>
 			</div>
 		</>
 	);

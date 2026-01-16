@@ -116,6 +116,28 @@
         "right"
       ]
     },
+    "gridColumns": {
+      "type": "number",
+      "default": 3
+    },
+    "dropdownAlignment": {
+      "type": "string",
+      "default": "auto",
+      "enum": [
+        "auto",
+        "left",
+        "right",
+        "center"
+      ]
+    },
+    "overlayBackdropColor": {
+      "type": "string",
+      "default": "rgba(0, 0, 0, 0.5)"
+    },
+    "enableHoverActivation": {
+      "type": "boolean",
+      "default": false
+    },
     "menuBackgroundColor": {
       "type": "string"
     },

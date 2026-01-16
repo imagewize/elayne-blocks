@@ -45,6 +45,7 @@ import {
  */
 import IconPicker from './components/IconPicker';
 import AnimationControls from './components/AnimationControls';
+import LayoutPicker from './components/LayoutPicker';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -81,6 +82,10 @@ export default function Edit( { attributes, setAttributes } ) {
 		enableMobileMode,
 		mobileBreakpoint,
 		sidebarDirection,
+		gridColumns,
+		dropdownAlignment,
+		overlayBackdropColor,
+		enableHoverActivation,
 		menuBackgroundColor,
 		menuTextColor,
 		menuBorderRadius,
@@ -268,22 +273,11 @@ export default function Edit( { attributes, setAttributes } ) {
 					title={ __( 'Layout', 'elayne-blocks' ) }
 					initialOpen={ false }
 				>
-					<SelectControl
-						label={ __( 'Layout Mode', 'elayne-blocks' ) }
+					<LayoutPicker
 						value={ layoutMode }
-						options={ [
-							{ label: __( 'Dropdown', 'elayne-blocks' ), value: 'dropdown' },
-							{ label: __( 'Overlay', 'elayne-blocks' ), value: 'overlay' },
-							{ label: __( 'Sidebar', 'elayne-blocks' ), value: 'sidebar' },
-							{ label: __( 'Grid', 'elayne-blocks' ), value: 'grid' },
-						] }
 						onChange={ ( value ) =>
 							setAttributes( { layoutMode: value } )
 						}
-						help={ __(
-							'Choose how the mega menu appears',
-							'elayne-blocks'
-						) }
 					/>
 
 					{ layoutMode === 'sidebar' && (
@@ -296,6 +290,57 @@ export default function Edit( { attributes, setAttributes } ) {
 							] }
 							onChange={ ( value ) =>
 								setAttributes( { sidebarDirection: value } )
+							}
+						/>
+					) }
+
+					{ layoutMode === 'grid' && (
+						<RangeControl
+							label={ __( 'Grid Columns', 'elayne-blocks' ) }
+							value={ gridColumns }
+							onChange={ ( value ) =>
+								setAttributes( { gridColumns: value } )
+							}
+							min={ 2 }
+							max={ 6 }
+							step={ 1 }
+						/>
+					) }
+
+					{ layoutMode === 'dropdown' && (
+						<SelectControl
+							label={ __( 'Dropdown Alignment', 'elayne-blocks' ) }
+							value={ dropdownAlignment }
+							options={ [
+								{ label: __( 'Auto (Smart Positioning)', 'elayne-blocks' ), value: 'auto' },
+								{ label: __( 'Left', 'elayne-blocks' ), value: 'left' },
+								{ label: __( 'Right', 'elayne-blocks' ), value: 'right' },
+								{ label: __( 'Center', 'elayne-blocks' ), value: 'center' },
+							] }
+							onChange={ ( value ) =>
+								setAttributes( { dropdownAlignment: value } )
+							}
+						/>
+					) }
+
+					{ layoutMode === 'overlay' && (
+						<TextControl
+							label={ __( 'Backdrop Color', 'elayne-blocks' ) }
+							value={ overlayBackdropColor }
+							onChange={ ( value ) =>
+								setAttributes( { overlayBackdropColor: value } )
+							}
+							help={ __( 'e.g., rgba(0, 0, 0, 0.5)', 'elayne-blocks' ) }
+						/>
+					) }
+
+					{ ( layoutMode === 'dropdown' || layoutMode === 'grid' ) && (
+						<ToggleControl
+							label={ __( 'Activate on Hover', 'elayne-blocks' ) }
+							help={ __( 'Open menu on hover instead of click', 'elayne-blocks' ) }
+							checked={ enableHoverActivation }
+							onChange={ ( value ) =>
+								setAttributes( { enableHoverActivation: value } )
 							}
 						/>
 					) }

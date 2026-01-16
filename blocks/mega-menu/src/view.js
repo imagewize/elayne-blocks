@@ -1,31 +1,64 @@
 /**
  * WordPress Interactivity API for Mega Menu Block
- * Based on Human Made Mega Menu Block implementation
+ * Phase 2C: Enhanced with layout-specific logic and positioning
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/interactivity-api/
- * @see https://github.com/humanmade/hm-mega-menu-block
  */
 import { store, getContext, getElement } from '@wordpress/interactivity';
+
+/**
+ * Calculate dropdown position with collision detection
+ *
+ * @param {HTMLElement} trigger - Trigger button element
+ * @param {HTMLElement} panel - Menu panel element
+ * @param {string} alignment - Dropdown alignment setting
+ * @return {Object} Positioning data
+ */
+function calculateDropdownPosition( trigger, panel, alignment ) {
+	if ( alignment !== 'auto' ) {
+		return {};
+	}
+
+	const triggerRect = trigger.getBoundingClientRect();
+	const panelWidth = panel.offsetWidth;
+	const viewportWidth = window.innerWidth;
+
+	// Check if panel would overflow right edge
+	const wouldOverflowRight = triggerRect.left + panelWidth > viewportWidth;
+
+	return {
+		flipHorizontal: wouldOverflowRight,
+	};
+}
 
 const { state, actions } = store( 'elayne/mega-menu', {
 	state: {
 		get isMenuOpen() {
-			return Object.values( state.menuOpenedBy ).filter( Boolean ).length > 0;
+			const context = getContext();
+			return context.isOpen || false;
 		},
 
-		get menuOpenedBy() {
-			const context = getContext();
-			return context.menuOpenedBy || {};
+		get isMobile() {
+			return window.innerWidth < 768;
 		},
 	},
 
 	actions: {
+		toggleMenu() {
+			const context = getContext();
+			if ( context.isOpen ) {
+				actions.closeMenu();
+			} else {
+				actions.openMenu();
+			}
+		},
+
 		toggleMenuOnClick() {
 			const context = getContext();
 			const { ref } = getElement();
 
 			if ( context.menuOpenedBy.click || context.menuOpenedBy.focus ) {
-				actions.closeMenuOnClick();
+				actions.closeMenu();
 			} else {
 				context.previousFocus = ref;
 				actions.openMenu( 'click' );
@@ -39,8 +72,33 @@ const { state, actions } = store( 'elayne/mega-menu', {
 
 		handleMenuKeydown( event ) {
 			const context = getContext();
-			if ( context.menuOpenedBy.click ) {
-				// If Escape close the menu.
+
+			// ESC key closes menu
+			if ( event?.key === 'Escape' && context.isOpen ) {
+				actions.closeMenu();
+				event.preventDefault();
+			}
+
+			// Tab key focus trap (for overlay/sidebar modes)
+			if ( event?.key === 'Tab' && context.isOpen ) {
+				const { layoutMode } = context;
+
+				// Only trap focus in overlay and sidebar modes
+				if ( layoutMode === 'overlay' || layoutMode === 'sidebar' ) {
+					const { firstFocusable, lastFocusable } = context;
+
+					if ( event.shiftKey && document.activeElement === firstFocusable ) {
+						event.preventDefault();
+						lastFocusable?.focus();
+					} else if ( ! event.shiftKey && document.activeElement === lastFocusable ) {
+						event.preventDefault();
+						firstFocusable?.focus();
+					}
+				}
+			}
+
+			// Legacy support
+			if ( context.menuOpenedBy?.click ) {
 				if ( event?.key === 'Escape' ) {
 					actions.closeMenuOnClick();
 				}
@@ -49,56 +107,97 @@ const { state, actions } = store( 'elayne/mega-menu', {
 
 		handleOutsideClick( event ) {
 			const context = getContext();
-			const megaMenu = context?.megaMenu;
+			const { ref } = getElement();
 
-			if ( ! megaMenu || megaMenu.contains( event.target ) ) {
+			if ( ! context.isOpen ) {
 				return;
 			}
 
-			actions.closeMenuOnClick();
+			const isClickInside = ref.contains( event.target );
+			if ( ! isClickInside ) {
+				actions.closeMenu();
+			}
+
+			// Legacy support
+			const megaMenu = context?.megaMenu;
+			if ( megaMenu && ! megaMenu.contains( event.target ) ) {
+				actions.closeMenuOnClick();
+			}
 		},
 
 		openMenu( menuOpenedOn = 'click' ) {
 			const context = getContext();
-			const { layoutMode } = context;
+			const { ref } = getElement();
+			const { layoutMode, dropdownAlignment } = context;
+
+			// Set open state
+			context.isOpen = true;
 
 			// Layout-specific open logic
 			switch ( layoutMode ) {
+				case 'dropdown':
+					// Calculate positioning for dropdown
+					if ( dropdownAlignment === 'auto' ) {
+						const trigger = ref.querySelector( '.wp-block-elayne-mega-menu__trigger' );
+						const panel = ref.querySelector( '.wp-block-elayne-mega-menu__panel' );
+						if ( trigger && panel ) {
+							const { flipHorizontal } = calculateDropdownPosition(
+								trigger,
+								panel,
+								dropdownAlignment
+							);
+
+							if ( flipHorizontal ) {
+								panel.classList.add( 'flip-horizontal' );
+							}
+						}
+					}
+					break;
+
 				case 'overlay':
-					actions.openOverlay();
+					// Lock body scroll
+					document.body.classList.add( 'mega-menu-overlay-open' );
 					break;
+
 				case 'sidebar':
-					actions.openSidebar();
+					// Lock body scroll
+					document.body.classList.add( 'mega-menu-sidebar-open' );
+					// Initialize swipe handler for mobile
+					if ( state.isMobile ) {
+						actions.initSwipeHandler();
+					}
 					break;
+
 				case 'grid':
-					actions.openGrid();
+					// No special logic needed for grid
 					break;
-				default:
-					actions.openDropdown();
 			}
 
-			context.menuOpenedBy[ menuOpenedOn ] = true;
+			// Track how menu was opened (for legacy support)
+			if ( menuOpenedOn && context.menuOpenedBy ) {
+				context.menuOpenedBy[ menuOpenedOn ] = true;
+			}
 
 			// Apply animation speed CSS variable
 			if ( context.animationSpeed ) {
-				const { ref } = getElement();
 				ref.style.setProperty( '--mm-animation-speed', `${ context.animationSpeed }ms` );
 			}
+
+			// Set focus trap
+			actions.setFocusTrap();
 		},
 
 		openOverlay() {
 			// Add body class to prevent scrolling
-			document.body.classList.add( 'mm-overlay-open' );
-			document.body.style.overflow = 'hidden';
+			document.body.classList.add( 'mega-menu-overlay-open' );
 		},
 
 		openSidebar() {
 			// Add body class for sidebar mode
-			document.body.classList.add( 'mm-sidebar-open' );
+			document.body.classList.add( 'mega-menu-sidebar-open' );
 
 			// Initialize swipe handler for mobile
-			const context = getContext();
-			if ( context.isMobile ) {
+			if ( state.isMobile ) {
 				actions.initSwipeHandler();
 			}
 		},
@@ -113,20 +212,63 @@ const { state, actions } = store( 'elayne/mega-menu', {
 
 		closeMenu( menuClosedOn = 'click' ) {
 			const context = getContext();
-			context.menuOpenedBy[ menuClosedOn ] = false;
+			const { ref } = getElement();
+			const { layoutMode } = context;
 
-			// Cleanup layout-specific states
-			if ( ! state.isMenuOpen ) {
-				document.body.classList.remove( 'mm-overlay-open', 'mm-sidebar-open' );
-				document.body.style.overflow = '';
+			// Set closed state
+			context.isOpen = false;
 
-				// Reset the menu reference and button focus when closed
-				if ( context.megaMenu?.contains( window.document.activeElement ) ) {
-					context.previousFocus?.focus();
-				}
-				context.previousFocus = null;
-				context.megaMenu = null;
+			// Track close event (for legacy support)
+			if ( menuClosedOn && context.menuOpenedBy ) {
+				context.menuOpenedBy[ menuClosedOn ] = false;
 			}
+
+			// Layout-specific close logic
+			switch ( layoutMode ) {
+				case 'dropdown':
+					const panel = ref.querySelector( '.wp-block-elayne-mega-menu__panel' );
+					panel?.classList.remove( 'flip-horizontal' );
+					break;
+
+				case 'overlay':
+					document.body.classList.remove( 'mega-menu-overlay-open' );
+					break;
+
+				case 'sidebar':
+					document.body.classList.remove( 'mega-menu-sidebar-open' );
+					break;
+			}
+
+			// Return focus to trigger
+			actions.returnFocus();
+		},
+
+		setFocusTrap() {
+			const context = getContext();
+			const { ref } = getElement();
+			const panel = ref.querySelector( '.wp-block-elayne-mega-menu__panel' );
+
+			if ( ! panel ) {
+				return;
+			}
+
+			const focusableElements = panel.querySelectorAll(
+				'a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+			);
+
+			context.firstFocusable = focusableElements[ 0 ];
+			context.lastFocusable = focusableElements[ focusableElements.length - 1 ];
+
+			// Focus first element after a short delay
+			setTimeout( () => {
+				context.firstFocusable?.focus();
+			}, 100 );
+		},
+
+		returnFocus() {
+			const { ref } = getElement();
+			const trigger = ref.querySelector( '.wp-block-elayne-mega-menu__trigger' );
+			trigger?.focus();
 		},
 
 		initSwipeHandler() {

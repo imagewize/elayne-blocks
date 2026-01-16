@@ -87,6 +87,15 @@ add_action(
 				'1.8.1',
 				true
 			);
+
+			// Localize script to provide plugin URL for arrow SVGs.
+			wp_localize_script(
+				'slick-carousel',
+				'elayneBlocksData',
+				array(
+					'pluginUrl' => ELAYNE_BLOCKS_PLUGIN_URL,
+				)
+			);
 		}
 	}
 );

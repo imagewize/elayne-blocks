@@ -8,7 +8,7 @@
     "elayne/carousel"
   ],
   "category": "design",
-  "icon": "slides",
+  "icon": "media",
   "description": "A single slide container that can hold any content within the carousel.",
   "supports": {
     "html": false

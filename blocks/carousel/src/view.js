@@ -85,7 +85,7 @@
                     slidesToScroll: 1,
                     asNavFor: $slider,
                     dots: false,
-                    arrows: true,
+                    arrows: false,
                     centerMode: false,
                     focusOnSelect: true,
                     vertical: isVertical,

@@ -95,7 +95,7 @@
         },
         "dotsBottomSpacing": {
             "type": "string",
-            "default": "-35px"
+            "default": "0px"
         },
         "adaptiveHeight": {
             "type": "boolean",
@@ -115,7 +115,7 @@
         },
         "thumbnailSpacing": {
             "type": "string",
-            "default": "20px"
+            "default": "30px"
         },
         "centerMode": {
             "type": "boolean",

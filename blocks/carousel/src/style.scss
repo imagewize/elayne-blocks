@@ -14,8 +14,9 @@
 }
 
 .wp-block-elayne-carousel .slick-dots {
-    position: absolute !important;
-    bottom: var(--dots-bottom) !important;
+    position: relative !important;
+    bottom: auto !important;
+    margin-top: var(--dots-top, 0) !important;
     width: 100%;
 }
 
@@ -212,12 +213,12 @@
  * Thumbnail Navigation Styles
  */
 .carousel-thumbnails-wrapper {
-    margin-top: 20px;
+    margin-top: 0;
 }
 
 .carousel-thumbnails-wrapper.is-thumbnails-above {
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 0;
 }
 
 .carousel-thumbnails {

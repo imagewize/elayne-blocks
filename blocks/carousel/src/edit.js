@@ -295,10 +295,10 @@ const Edit = compose(
                     />
                     {dots && (
                         <RangeControl
-                            label={__('Dots Bottom Spacing', 'elayne-blocks')}
+                            label={__('Dots Top Spacing', 'elayne-blocks')}
                             value={parseInt(attributes.dotsBottomSpacing)}
                             onChange={(value) => setAttributes({ dotsBottomSpacing: `${value}px` })}
-                            min={-100}
+                            min={0}
                             max={100}
                             step={1}
                         />

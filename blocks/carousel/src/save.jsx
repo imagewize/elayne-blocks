@@ -81,6 +81,7 @@ export default function save({ attributes }) {
             `cb-arrow-bg-${arrowBackgroundStyle}`
         ),
         'data-slick': JSON.stringify(slickSettings),
+        'data-dots-top': dotsBottomSpacing,
         'data-dots-bottom': dotsBottomSpacing,
         'data-arrow-color': getColorValue(arrowColor),
         'data-arrow-background': getColorValue(arrowBackground),

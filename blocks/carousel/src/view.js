@@ -10,12 +10,13 @@
                 || $slider.data('thumbnails') === 'true';
 
             // Apply CSS variables for arrow and dot colors
+            const dotsTopSpacing = $slider.data('dots-top') ?? $slider.data('dots-bottom');
             $slider.css({
                 '--arrow-color': $slider.data('arrow-color'),
                 '--arrow-background': $slider.data('arrow-background'),
                 '--arrow-hover-color': $slider.data('arrow-hover-color'),
                 '--arrow-hover-background': $slider.data('arrow-hover-background'),
-                '--dots-bottom': $slider.data('dots-bottom')
+                '--dots-top': dotsTopSpacing
             });
 
             // Apply arrow size if specified

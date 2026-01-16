@@ -6,7 +6,8 @@
     $(document).ready(function() {
         $('.wp-block-elayne-carousel').each(function() {
             const $slider = $(this);
-            const hasThumbnails = $slider.data('thumbnails') === 'true';
+            const hasThumbnails = $slider.data('thumbnails') === true
+                || $slider.data('thumbnails') === 'true';
 
             // Apply CSS variables for arrow and dot colors
             $slider.css({

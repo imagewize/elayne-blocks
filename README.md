@@ -33,21 +33,9 @@ This plugin was created to align with WordPress.org Theme Review requirements, w
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. The blocks will be available in the block editor
 
-## Development
+## Contributing
 
-Each block is built using the `@wordpress/scripts` package and follows WordPress block development best practices.
-
-### Building Blocks
-
-Navigate to each block directory and run:
-
-```bash
-cd blocks/mega-menu
-npm install
-npm run build
-```
-
-Repeat for `carousel`, `slide`, `faq-tabs`, and `search-overlay-trigger` blocks.
+See `CONTRIBUTING.md` for development workflow and build instructions.
 
 ## Block Details
 
@@ -110,16 +98,6 @@ A clickable search icon that opens a full-screen search overlay with smooth anim
 - Responsive design optimized for mobile
 - Vanilla JavaScript (no dependencies)
 - ARIA labels and keyboard accessibility
-
-## Changelog
-
-### 1.0.0 - 2025-11-14
-
-**Initial Release**
-- Migrated blocks from Elayne theme to standalone plugin
-- Mega Menu block with Interactivity API
-- Carousel block with Slick integration
-- Slide block for carousel content
 
 ## License
 

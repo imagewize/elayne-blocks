@@ -28,7 +28,11 @@ export default function save({ attributes }) {
         centerMode,
         centerPadding,
         variableWidth,
-        lazyLoad
+        lazyLoad,
+        arrowStyle,
+        arrowBackgroundStyle,
+        arrowSize,
+        customArrowSvg
     } = attributes;
 
     const slickSettings = {
@@ -71,7 +75,9 @@ export default function save({ attributes }) {
             { 'cb-padding': slidePadding },
             { 'cb-center-mode': centerMode },
             { 'cb-variable-width': variableWidth },
-            { 'cb-thumbnails': enableThumbnails }
+            { 'cb-thumbnails': enableThumbnails },
+            `cb-arrow-style-${arrowStyle}`,
+            `cb-arrow-bg-${arrowBackgroundStyle}`
         ),
         'data-slick': JSON.stringify(slickSettings),
         'data-dots-bottom': dotsBottomSpacing,
@@ -82,6 +88,10 @@ export default function save({ attributes }) {
         'data-thumbnails': enableThumbnails ? 'true' : undefined,
         'data-thumbnails-to-show': enableThumbnails ? thumbnailsToShow : undefined,
         'data-thumbnail-position': enableThumbnails ? thumbnailPosition : undefined,
+        'data-arrow-style': arrowStyle,
+        'data-arrow-background-style': arrowBackgroundStyle,
+        'data-arrow-size': arrowSize,
+        'data-custom-arrow-svg': customArrowSvg || undefined,
         dir: rtl ? 'rtl' : undefined
     });
 

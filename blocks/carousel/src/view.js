@@ -17,6 +17,15 @@
                 '--dots-bottom': $slider.data('dots-bottom')
             });
 
+            // Apply arrow size if specified
+            const arrowSize = $slider.data('arrow-size');
+            if (arrowSize) {
+                $slider.find('.slick-prev, .slick-next').css({
+                    width: arrowSize + 'px',
+                    height: arrowSize + 'px'
+                });
+            }
+
             // Get Slick settings
             const slickSettings = JSON.parse($slider.attr('data-slick'));
 
@@ -90,6 +99,37 @@
             } else {
                 // Initialize carousel without thumbnails
                 $slider.slick(slickSettings);
+            }
+
+            // Apply custom SVG arrows if specified
+            const customArrowSvg = $slider.data('custom-arrow-svg');
+            const arrowStyle = $slider.data('arrow-style');
+            if (arrowStyle === 'custom' && customArrowSvg) {
+                // Wait for Slick to create arrow buttons
+                setTimeout(function() {
+                    const $prevArrow = $slider.find('.slick-prev');
+                    const $nextArrow = $slider.find('.slick-next');
+
+                    if ($prevArrow.length && $nextArrow.length) {
+                        // Clear existing content
+                        $prevArrow.html(customArrowSvg);
+                        $nextArrow.html(customArrowSvg);
+
+                        // Set color on SVG
+                        $prevArrow.find('svg').css('fill', 'currentColor');
+                        $nextArrow.find('svg').css('fill', 'currentColor');
+                    }
+                }, 100);
+            }
+
+            // Apply arrow size after Slick initialization
+            if (arrowSize) {
+                setTimeout(function() {
+                    $slider.find('.slick-prev, .slick-next').css({
+                        width: arrowSize + 'px',
+                        height: arrowSize + 'px'
+                    });
+                }, 100);
             }
         });
     });

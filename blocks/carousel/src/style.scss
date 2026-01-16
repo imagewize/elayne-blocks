@@ -110,6 +110,114 @@
     right: 25px;
 }
 
+/**
+ * Arrow Background Styles
+ */
+/* Circle (default) */
+.wp-block-elayne-carousel.cb-arrow-bg-circle .slick-next,
+.wp-block-elayne-carousel.cb-arrow-bg-circle .slick-prev {
+    border-radius: 50%;
+}
+
+/* Rounded Square */
+.wp-block-elayne-carousel.cb-arrow-bg-rounded .slick-next,
+.wp-block-elayne-carousel.cb-arrow-bg-rounded .slick-prev {
+    border-radius: 8px;
+}
+
+/* Square */
+.wp-block-elayne-carousel.cb-arrow-bg-square .slick-next,
+.wp-block-elayne-carousel.cb-arrow-bg-square .slick-prev {
+    border-radius: 0;
+}
+
+/* No Background */
+.wp-block-elayne-carousel.cb-arrow-bg-none .slick-next,
+.wp-block-elayne-carousel.cb-arrow-bg-none .slick-prev {
+    background: transparent !important;
+}
+
+.wp-block-elayne-carousel.cb-arrow-bg-none .slick-next:hover,
+.wp-block-elayne-carousel.cb-arrow-bg-none .slick-prev:hover {
+    background: transparent !important;
+}
+
+/**
+ * Arrow Icon Styles - Chevron (default, uses Slick's default)
+ */
+.wp-block-elayne-carousel.cb-arrow-style-chevron .slick-prev::before {
+    content: '←';
+}
+
+.wp-block-elayne-carousel.cb-arrow-style-chevron .slick-next::before {
+    content: '→';
+}
+
+/**
+ * Arrow Icon Styles - Angle
+ */
+.wp-block-elayne-carousel.cb-arrow-style-angle .slick-prev::before {
+    content: '‹';
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.wp-block-elayne-carousel.cb-arrow-style-angle .slick-next::before {
+    content: '›';
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/**
+ * Arrow Icon Styles - Caret
+ */
+.wp-block-elayne-carousel.cb-arrow-style-caret .slick-prev::before {
+    content: '◄';
+    font-size: 16px;
+}
+
+.wp-block-elayne-carousel.cb-arrow-style-caret .slick-next::before {
+    content: '►';
+    font-size: 16px;
+}
+
+/**
+ * Arrow Icon Styles - Arrow
+ */
+.wp-block-elayne-carousel.cb-arrow-style-arrow .slick-prev::before {
+    content: '⬅';
+    font-size: 18px;
+}
+
+.wp-block-elayne-carousel.cb-arrow-style-arrow .slick-next::before {
+    content: '➡';
+    font-size: 18px;
+}
+
+/**
+ * Arrow Icon Styles - Custom SVG
+ * Custom SVG arrows are handled via JavaScript in view.js
+ */
+.wp-block-elayne-carousel.cb-arrow-style-custom .slick-prev::before,
+.wp-block-elayne-carousel.cb-arrow-style-custom .slick-next::before {
+    content: '';
+}
+
+.wp-block-elayne-carousel.cb-arrow-style-custom .slick-prev svg,
+.wp-block-elayne-carousel.cb-arrow-style-custom .slick-next svg {
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: currentColor;
+}
+
+.wp-block-elayne-carousel.cb-arrow-style-custom .slick-next svg {
+    transform: translate(-50%, -50%) rotate(180deg);
+}
+
 .wp-block-elayne-carousel .wp-block-cover,
 .wp-block-elayne-carousel .wp-block-image {
     margin-bottom: 0;

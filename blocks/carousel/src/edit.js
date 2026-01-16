@@ -7,7 +7,7 @@ import {
     __experimentalColorGradientSettingsDropdown as ColorGradientSettingsDropdown,
     __experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients
 } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, ToggleControl, SelectControl, ToolbarGroup, ToolbarButton } from '@wordpress/components';
+import { PanelBody, RangeControl, ToggleControl, SelectControl, ToolbarGroup, ToolbarButton, TextareaControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
@@ -73,6 +73,10 @@ const Edit = compose(
         arrowBackground: arrowBackgroundAttr,
         arrowHoverColor: arrowHoverColorAttr,
         arrowHoverBackground: arrowHoverBackgroundAttr,
+        arrowStyle,
+        arrowBackgroundStyle,
+        arrowSize,
+        customArrowSvg,
     } = attributes;
 
     const slideCount = useSelect(
@@ -291,6 +295,52 @@ const Edit = compose(
                         />
                     )}
                 </PanelBody>
+                {arrows && (
+                    <PanelBody title={__('Arrow Style', 'elayne-blocks')} initialOpen={false}>
+                        <SelectControl
+                            label={__('Arrow Icon', 'elayne-blocks')}
+                            value={arrowStyle}
+                            options={[
+                                { label: __('Chevron', 'elayne-blocks'), value: 'chevron' },
+                                { label: __('Angle', 'elayne-blocks'), value: 'angle' },
+                                { label: __('Caret', 'elayne-blocks'), value: 'caret' },
+                                { label: __('Arrow', 'elayne-blocks'), value: 'arrow' },
+                                { label: __('Custom SVG', 'elayne-blocks'), value: 'custom' }
+                            ]}
+                            onChange={(value) => setAttributes({ arrowStyle: value })}
+                            help={__('Choose the arrow icon style', 'elayne-blocks')}
+                        />
+                        {arrowStyle === 'custom' && (
+                            <TextareaControl
+                                label={__('Custom SVG Code', 'elayne-blocks')}
+                                value={customArrowSvg}
+                                onChange={(value) => setAttributes({ customArrowSvg: value })}
+                                help={__('Paste SVG code for custom arrow icon', 'elayne-blocks')}
+                                rows={4}
+                            />
+                        )}
+                        <SelectControl
+                            label={__('Arrow Background Shape', 'elayne-blocks')}
+                            value={arrowBackgroundStyle}
+                            options={[
+                                { label: __('Circle', 'elayne-blocks'), value: 'circle' },
+                                { label: __('Rounded Square', 'elayne-blocks'), value: 'rounded' },
+                                { label: __('Square', 'elayne-blocks'), value: 'square' },
+                                { label: __('None', 'elayne-blocks'), value: 'none' }
+                            ]}
+                            onChange={(value) => setAttributes({ arrowBackgroundStyle: value })}
+                            help={__('Choose the arrow background shape', 'elayne-blocks')}
+                        />
+                        <RangeControl
+                            label={__('Arrow Size (px)', 'elayne-blocks')}
+                            value={arrowSize}
+                            onChange={(value) => setAttributes({ arrowSize: value })}
+                            min={20}
+                            max={80}
+                            step={2}
+                        />
+                    </PanelBody>
+                )}
                 <PanelBody title={__('Responsive', 'elayne-blocks')} initialOpen={false}>
                     <RangeControl
                         label={__('Mobile Breakpoint (px)', 'elayne-blocks')}

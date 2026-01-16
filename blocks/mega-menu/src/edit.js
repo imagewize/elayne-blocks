@@ -41,6 +41,12 @@ import {
 } from '@wordpress/icons';
 
 /**
+ * Internal dependencies
+ */
+import IconPicker from './components/IconPicker';
+import AnimationControls from './components/AnimationControls';
+
+/**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
  *
@@ -71,6 +77,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		enableIcon,
 		iconName,
 		iconPosition,
+		customSVG,
 		enableMobileMode,
 		mobileBreakpoint,
 		sidebarDirection,
@@ -351,16 +358,15 @@ export default function Edit( { attributes, setAttributes } ) {
 						title={ __( 'Icon', 'elayne-blocks' ) }
 						initialOpen={ false }
 					>
-						<TextControl
-							label={ __( 'Icon Name (Dashicon)', 'elayne-blocks' ) }
+						<IconPicker
 							value={ iconName }
 							onChange={ ( value ) =>
 								setAttributes( { iconName: value } )
 							}
-							help={ __(
-								'Enter a Dashicon name (e.g., menu, admin-site)',
-								'elayne-blocks'
-							) }
+							customSVG={ customSVG }
+							onCustomSVGChange={ ( value ) =>
+								setAttributes( { customSVG: value } )
+							}
 						/>
 						<SelectControl
 							label={ __( 'Icon Position', 'elayne-blocks' ) }
@@ -383,28 +389,15 @@ export default function Edit( { attributes, setAttributes } ) {
 						title={ __( 'Animation', 'elayne-blocks' ) }
 						initialOpen={ false }
 					>
-						<SelectControl
-							label={ __( 'Animation Type', 'elayne-blocks' ) }
-							value={ animationType }
-							options={ [
-								{ label: __( 'Fade', 'elayne-blocks' ), value: 'fade' },
-								{ label: __( 'Slide', 'elayne-blocks' ), value: 'slide' },
-								{ label: __( 'Scale', 'elayne-blocks' ), value: 'scale' },
-								{ label: __( 'Slide + Fade', 'elayne-blocks' ), value: 'slidefade' },
-							] }
-							onChange={ ( value ) =>
+						<AnimationControls
+							animationType={ animationType }
+							animationSpeed={ animationSpeed }
+							onTypeChange={ ( value ) =>
 								setAttributes( { animationType: value } )
 							}
-						/>
-						<RangeControl
-							label={ __( 'Animation Speed (ms)', 'elayne-blocks' ) }
-							value={ animationSpeed }
-							onChange={ ( value ) =>
+							onSpeedChange={ ( value ) =>
 								setAttributes( { animationSpeed: value } )
 							}
-							min={ 100 }
-							max={ 1000 }
-							step={ 50 }
 						/>
 					</PanelBody>
 				) }

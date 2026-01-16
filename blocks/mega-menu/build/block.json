@@ -96,6 +96,10 @@
         "top"
       ]
     },
+    "customSVG": {
+      "type": "string",
+      "default": ""
+    },
     "enableMobileMode": {
       "type": "boolean",
       "default": true

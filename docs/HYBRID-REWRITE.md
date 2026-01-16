@@ -197,6 +197,60 @@ register_block_pattern(
 
 ---
 
+#### 8. Arrow Customization ⭐ HIGH PRIORITY
+**What:** Complete control over carousel navigation arrows
+**Why powerful:** Enables brand-consistent designs and removes default Slick styling limitations
+**Use cases:** Matching site branding, minimal designs, custom icon systems
+
+**Implementation:**
+```javascript
+// Arrow styles applied via CSS classes
+className: classnames(
+    `cb-arrow-style-${arrowStyle}`,      // chevron, angle, caret, arrow, custom
+    `cb-arrow-bg-${arrowBackgroundStyle}` // circle, rounded, square, none
+)
+```
+
+**Editor controls needed:**
+- Select: Arrow icon style (Chevron/Angle/Caret/Arrow/Custom SVG)
+- Textarea: Custom SVG code (when custom selected)
+- Select: Arrow background shape (Circle/Rounded/Square/None)
+- Range: Arrow size (20-80px)
+- Color pickers: Arrow color, background, hover states (existing)
+
+**Features:**
+1. **Arrow Icon Styles:**
+   - Chevron (← →) - Clean, simple arrows
+   - Angle (‹ ›) - Larger angle brackets
+   - Caret (◄ ►) - Filled triangle shapes
+   - Arrow (⬅ ➡) - Filled arrow shapes
+   - Custom SVG - Paste any SVG code for complete control
+
+2. **Arrow Background Shapes:**
+   - Circle - Classic circular background
+   - Rounded Square - Modern rounded corners (8px)
+   - Square - Sharp, minimal style
+   - None - No background, icon only (default)
+
+3. **Default Settings:**
+   - Arrow Color: Black (#000000)
+   - Arrow Background: Transparent (no background)
+   - Arrow Background Style: None (clean, minimal)
+   - Size: 40px (adjustable 20-80px)
+
+**CSS Implementation (~115 lines added to style.scss):**
+- Background shape variants (circle, rounded, square, none)
+- Icon style variants (chevron, angle, caret, arrow, custom)
+- Custom SVG positioning and rotation
+- Responsive arrow sizing
+
+**JavaScript Implementation (view.js):**
+- Dynamic arrow size application
+- Custom SVG injection and color management
+- Color inheritance for SVG fills
+
+---
+
 ### Technical Implementation Plan
 
 #### Files to Modify
@@ -232,12 +286,13 @@ register_block_pattern(
 ### Success Criteria
 
 After Phase 1, the carousel block should:
-- ✅ **COMPLETED:** Implement 5+ advanced Slick-powered features
+- ✅ **COMPLETED:** Implement 6+ advanced features
   - ✅ Thumbnail Navigation (4 positions: below/above/left/right)
   - ✅ Center Mode with configurable peek (0-200px)
   - ✅ Variable Width Slides
   - ✅ Lazy Loading (off/on-demand/progressive)
   - ✅ Adaptive Height (documented and enhanced)
+  - ✅ Arrow Customization (5 icon styles, 4 background shapes, custom SVG)
 - ✅ **COMPLETED:** Leverage Slick's full capabilities
 - ✅ **COMPLETED:** Provide professional-grade carousel functionality
 - ✅ **COMPLETED:** Include intuitive editor controls

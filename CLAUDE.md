@@ -160,15 +160,23 @@ Metadata from block.json is the single source of truth, with Edit/Save implement
 
 **IMPORTANT:** Never mention AI tools (Claude, ChatGPT, etc.) in commit messages. Commit messages should be professional and focus on the changes made, not the tools used to make them.
 
+**Keep commit messages concise:**
+- Use short, descriptive titles (50 characters or less when possible)
+- Add details in the body only when necessary
+- Avoid overly verbose explanations
+
 **Good commit messages:**
 - "Fix carousel block initialization on frontend"
 - "Add ABSPATH security check to mega-menu render.php"
 - "Update text domain consistency across all blocks"
+- "Add carousel block patterns"
+- "Update carousel CSS for new features"
 
 **Bad commit messages:**
 - "Fix authentication bug (with help from Claude)" ❌
 - "Claude helped me refactor the carousel code" ❌
 - "Co-Authored-By: Claude Sonnet 4.5" ❌
+- Overly long messages with unnecessary details ❌
 
 ## Version Management
 

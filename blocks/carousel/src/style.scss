@@ -37,7 +37,7 @@
     display: none;
 }
 
-.wp-block-elayne-carousel .slick-dots li button:not(:hover):not(:active) {
+.wp-block-elayne-carousel .slick-dots li:not(.slick-active) button:not(:hover):not(:active) {
     background-color: transparent;
 }
 
@@ -47,6 +47,8 @@
 
 .wp-block-elayne-carousel .slick-dots li.slick-active button {
     background: rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
 }
 
 .wp-block-elayne-carousel .slick-next,

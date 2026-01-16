@@ -16,7 +16,7 @@ This plugin was created to align with WordPress.org Theme Review requirements, w
 ## Included Blocks
 
 - **Mega Menu Block** (`elayne/mega-menu`) - Advanced navigation menu with mega menu functionality (works best with FSE/block themes)
-- **Carousel Block** (`elayne/carousel`) - Responsive image/content carousel with Slick Carousel integration
+- **Carousel Block** (`elayne/carousel`) - Responsive image/content carousel with Slick Carousel integration, thumbnails, and arrow customization
 - **Slide Block** (`elayne/slide`) - Individual carousel slides with InnerBlocks support
 - **FAQ Tabs Block** (`elayne/faq-tabs`) - Interactive FAQ with vertical tab navigation and dynamic content display
 - **Search Overlay Trigger Block** (`elayne/search-overlay-trigger`) - Search icon that opens a full-screen search overlay
@@ -67,7 +67,13 @@ Create responsive image/content carousels using Slick Carousel.
 
 **Features:**
 - Slick Carousel integration
-- Customizable settings
+- Thumbnail navigation (above/below/left/right)
+- Center mode with configurable peek
+- Variable width slides
+- Lazy loading options
+- Adaptive height support
+- Arrow customization (SVG styles, backgrounds, sizes, custom SVG)
+- Block patterns for common use cases
 - Responsive breakpoints
 - Touch/swipe support
 
@@ -124,7 +130,7 @@ GPL v3 or later - https://www.gnu.org/licenses/gpl-3.0.html
 - Based on blocks originally developed for the Elayne theme
 - Icon: [IconPark Block One](https://blade-ui-kit.com/blade-icons/iconpark-blockone-o) from [Blade UI Kit](https://blade-ui-kit.com/blade-icons)
 - Mega Menu block implementation based on [Human Made's HM Mega Menu Block](https://github.com/humanmade/hm-mega-menu-block)
-- Carousel block based on the original work from the [Carousel Block Plugin](https://wordpress.org/plugins/carousel-block/) by Virgiliu Diaconu, enhanced with additional features and improvements
+- Carousel block originally inspired by the [Carousel Block Plugin](https://wordpress.org/plugins/carousel-block/) by Virgiliu Diaconu and now substantially reworked with a different feature set, UI, and styling
 - Built with `@wordpress/scripts`
 - Uses [Slick Carousel](https://kenwheeler.github.io/slick/) library for carousel functionality
 

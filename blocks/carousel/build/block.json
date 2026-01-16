@@ -83,7 +83,7 @@
     },
     "arrowBackground": {
       "type": "string",
-      "default": "#ffffff"
+      "default": "transparent"
     },
     "arrowHoverColor": {
       "type": "string",
@@ -91,15 +91,63 @@
     },
     "arrowHoverBackground": {
       "type": "string",
-      "default": "#ffffff"
+      "default": "transparent"
     },
     "dotsBottomSpacing": {
       "type": "string",
-      "default": "-35px"
+      "default": "0px"
     },
     "adaptiveHeight": {
       "type": "boolean",
       "default": false
+    },
+    "enableThumbnails": {
+      "type": "boolean",
+      "default": false
+    },
+    "thumbnailsToShow": {
+      "type": "number",
+      "default": 4
+    },
+    "thumbnailPosition": {
+      "type": "string",
+      "default": "below"
+    },
+    "thumbnailSpacing": {
+      "type": "string",
+      "default": "30px"
+    },
+    "centerMode": {
+      "type": "boolean",
+      "default": false
+    },
+    "centerPadding": {
+      "type": "string",
+      "default": "60px"
+    },
+    "variableWidth": {
+      "type": "boolean",
+      "default": false
+    },
+    "lazyLoad": {
+      "type": "string",
+      "default": "ondemand"
+    },
+    "arrowStyle": {
+      "type": "string",
+      "default": "arrow"
+    },
+    "arrowBackgroundStyle": {
+      "type": "string",
+      "default": "none"
+    },
+    "arrowSize": {
+      "type": "number",
+      "default": 40
+    },
+    "customArrowSvg": {
+      "type": "string",
+      "default": ""
     }
   }
 }

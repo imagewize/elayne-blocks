@@ -309,6 +309,12 @@ const { state, actions } = store( 'elayne/mega-menu', {
 				handleSwipe();
 			}, { passive: true } );
 		},
+
+		updateMobileState() {
+			const context = getContext();
+			const breakpoint = context.mobileBreakpoint || 768;
+			context.isMobile = window.innerWidth < breakpoint;
+		},
 	},
 
 	callbacks: {
@@ -329,12 +335,6 @@ const { state, actions } = store( 'elayne/mega-menu', {
 				window.addEventListener( 'resize', actions.updateMobileState );
 				context.resizeListenerAdded = true;
 			}
-		},
-
-		updateMobileState() {
-			const context = getContext();
-			const breakpoint = context.mobileBreakpoint || 768;
-			context.isMobile = window.innerWidth < breakpoint;
 		},
 	},
 } );

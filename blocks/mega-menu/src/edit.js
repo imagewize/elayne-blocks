@@ -102,7 +102,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	const siteUrl = useSelect( ( select ) => select( 'core' ).getSite()?.url );
 	const menuTemplateUrl =
 		( siteUrl || window.location.origin ) +
-		'/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=menu';
+		'/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=elayne-mega-menu';
 
 	const { hasResolved, records } = useEntityRecords(
 		'postType',
@@ -116,7 +116,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	if ( hasResolved ) {
 		menuOptions = records
-			.filter( ( item ) => item.area === 'menu' )
+			.filter( ( item ) => item.area === 'menu' || item.area === 'elayne-mega-menu' )
 			.map( ( item ) => ( {
 				label: item.title.rendered,
 				value: item.slug,

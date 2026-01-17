@@ -102,7 +102,28 @@ add_action(
 
 
 /**
- * Register block patterns
+ * Register custom template part area for mega menu
+ */
+add_action(
+	'init',
+	function () {
+		if ( function_exists( 'register_block_template_part_area' ) ) {
+			register_block_template_part_area(
+				'elayne-mega-menu',
+				array(
+					'label'       => __( 'Mega Menu', 'elayne-blocks' ),
+					'description' => __( 'Template parts for mega menu content', 'elayne-blocks' ),
+					'icon'        => 'menu',
+					'area_tag'    => 'div',
+				)
+			);
+		}
+	},
+	10
+);
+
+/**
+ * Register block patterns category and load pattern files
  */
 add_action(
 	'init',
@@ -113,9 +134,22 @@ add_action(
 				'elayne-blocks',
 				array(
 					'label'       => __( 'Elayne Blocks', 'elayne-blocks' ),
-					'description' => __( 'Pre-configured patterns for Elayne Blocks carousel and other blocks.', 'elayne-blocks' ),
+					'description' => __( 'Pre-configured patterns for Elayne Blocks carousel and mega menu.', 'elayne-blocks' ),
 				)
 			);
+		}
+
+		// Register patterns from patterns directory
+		if ( function_exists( 'register_block_pattern' ) ) {
+			$patterns_dir = ELAYNE_BLOCKS_PLUGIN_DIR . 'patterns';
+
+			if ( is_dir( $patterns_dir ) ) {
+				$pattern_files = glob( $patterns_dir . '/*.php' );
+
+				foreach ( $pattern_files as $pattern_file ) {
+					require_once $pattern_file;
+				}
+			}
 		}
 
 		// Pattern 1: Hero Carousel
@@ -357,103 +391,6 @@ add_action(
 <!-- /wp:group --></div>
 <!-- /wp:elayne/slide --></div>
 <!-- /wp:elayne/carousel -->',
-				)
-			);
-			// Pattern 6: Mega Menu - Three Column Layout
-			register_block_pattern(
-				'elayne-blocks/mega-menu-three-column',
-				array(
-					'title'       => __( 'Mega Menu - Three Column Layout', 'elayne-blocks' ),
-					'description' => __( 'Three column mega menu with sections and items, perfect for organized navigation.', 'elayne-blocks' ),
-					'categories'  => array( 'elayne-blocks' ),
-					'content'     => '<!-- wp:elayne/mega-menu-column {"width":"1/3"} -->
-<div class="wp-block-elayne-mega-menu-column width-1-3 align-top"><!-- wp:elayne/mega-menu-section {"heading":"Products","iconName":"cart"} -->
-<div class="wp-block-elayne-mega-menu-section"><div class="wp-block-elayne-mega-menu-section__header"><span class="dashicons dashicons-cart"></span><h3 class="wp-block-elayne-mega-menu-section__heading">Products</h3></div><div class="wp-block-elayne-mega-menu-section__content"><!-- wp:elayne/mega-menu-item {"label":"All Products","linkUrl":"/products"} -->
-<div class="wp-block-elayne-mega-menu-item"><a class="wp-block-elayne-mega-menu-item__link" href="/products" target="_self"><div class="wp-block-elayne-mega-menu-item__content"><div class="wp-block-elayne-mega-menu-item__header"><span class="wp-block-elayne-mega-menu-item__label">All Products</span></div></div></a></div>
-<!-- /wp:elayne/mega-menu-item -->
-
-<!-- wp:elayne/mega-menu-item {"label":"New Arrivals","linkUrl":"/new","badgeText":"New","badgeStyle":"info"} -->
-<div class="wp-block-elayne-mega-menu-item"><a class="wp-block-elayne-mega-menu-item__link" href="/new" target="_self"><div class="wp-block-elayne-mega-menu-item__content"><div class="wp-block-elayne-mega-menu-item__header"><span class="wp-block-elayne-mega-menu-item__label">New Arrivals</span><span class="wp-block-elayne-mega-menu-item__badge badge-info">New</span></div></div></a></div>
-<!-- /wp:elayne/mega-menu-item -->
-
-<!-- wp:elayne/mega-menu-item {"label":"Best Sellers","linkUrl":"/bestsellers","iconName":"star-filled"} -->
-<div class="wp-block-elayne-mega-menu-item"><a class="wp-block-elayne-mega-menu-item__link" href="/bestsellers" target="_self"><span class="dashicons dashicons-star-filled"></span><div class="wp-block-elayne-mega-menu-item__content"><div class="wp-block-elayne-mega-menu-item__header"><span class="wp-block-elayne-mega-menu-item__label">Best Sellers</span></div></div></a></div>
-<!-- /wp:elayne/mega-menu-item --></div></div>
-<!-- /wp:elayne/mega-menu-section --></div>
-<!-- /wp:elayne/mega-menu-column -->
-
-<!-- wp:elayne/mega-menu-column {"width":"1/3"} -->
-<div class="wp-block-elayne-mega-menu-column width-1-3 align-top"><!-- wp:elayne/mega-menu-section {"heading":"Categories","iconName":"category"} -->
-<div class="wp-block-elayne-mega-menu-section"><div class="wp-block-elayne-mega-menu-section__header"><span class="dashicons dashicons-category"></span><h3 class="wp-block-elayne-mega-menu-section__heading">Categories</h3></div><div class="wp-block-elayne-mega-menu-section__content"><!-- wp:elayne/mega-menu-item {"label":"Electronics","linkUrl":"/electronics"} -->
-<div class="wp-block-elayne-mega-menu-item"><a class="wp-block-elayne-mega-menu-item__link" href="/electronics" target="_self"><div class="wp-block-elayne-mega-menu-item__content"><div class="wp-block-elayne-mega-menu-item__header"><span class="wp-block-elayne-mega-menu-item__label">Electronics</span></div></div></a></div>
-<!-- /wp:elayne/mega-menu-item -->
-
-<!-- wp:elayne/mega-menu-item {"label":"Clothing","linkUrl":"/clothing"} -->
-<div class="wp-block-elayne-mega-menu-item"><a class="wp-block-elayne-mega-menu-item__link" href="/clothing" target="_self"><div class="wp-block-elayne-mega-menu-item__content"><div class="wp-block-elayne-mega-menu-item__header"><span class="wp-block-elayne-mega-menu-item__label">Clothing</span></div></div></a></div>
-<!-- /wp:elayne/mega-menu-item -->
-
-<!-- wp:elayne/mega-menu-item {"label":"Home & Garden","linkUrl":"/home"} -->
-<div class="wp-block-elayne-mega-menu-item"><a class="wp-block-elayne-mega-menu-item__link" href="/home" target="_self"><div class="wp-block-elayne-mega-menu-item__content"><div class="wp-block-elayne-mega-menu-item__header"><span class="wp-block-elayne-mega-menu-item__label">Home &amp; Garden</span></div></div></a></div>
-<!-- /wp:elayne/mega-menu-item --></div></div>
-<!-- /wp:elayne/mega-menu-section --></div>
-<!-- /wp:elayne/mega-menu-column -->
-
-<!-- wp:elayne/mega-menu-column {"width":"1/3"} -->
-<div class="wp-block-elayne-mega-menu-column width-1-3 align-top"><!-- wp:elayne/mega-menu-section {"heading":"Support","iconName":"sos"} -->
-<div class="wp-block-elayne-mega-menu-section"><div class="wp-block-elayne-mega-menu-section__header"><span class="dashicons dashicons-sos"></span><h3 class="wp-block-elayne-mega-menu-section__heading">Support</h3></div><div class="wp-block-elayne-mega-menu-section__content"><!-- wp:elayne/mega-menu-item {"label":"Help Center","linkUrl":"/help"} -->
-<div class="wp-block-elayne-mega-menu-item"><a class="wp-block-elayne-mega-menu-item__link" href="/help" target="_self"><div class="wp-block-elayne-mega-menu-item__content"><div class="wp-block-elayne-mega-menu-item__header"><span class="wp-block-elayne-mega-menu-item__label">Help Center</span></div></div></a></div>
-<!-- /wp:elayne/mega-menu-item -->
-
-<!-- wp:elayne/mega-menu-item {"label":"Contact Us","linkUrl":"/contact"} -->
-<div class="wp-block-elayne-mega-menu-item"><a class="wp-block-elayne-mega-menu-item__link" href="/contact" target="_self"><div class="wp-block-elayne-mega-menu-item__content"><div class="wp-block-elayne-mega-menu-item__header"><span class="wp-block-elayne-mega-menu-item__label">Contact Us</span></div></div></a></div>
-<!-- /wp:elayne/mega-menu-item -->
-
-<!-- wp:elayne/mega-menu-item {"label":"FAQ","linkUrl":"/faq"} -->
-<div class="wp-block-elayne-mega-menu-item"><a class="wp-block-elayne-mega-menu-item__link" href="/faq" target="_self"><div class="wp-block-elayne-mega-menu-item__content"><div class="wp-block-elayne-mega-menu-item__header"><span class="wp-block-elayne-mega-menu-item__label">FAQ</span></div></div></a></div>
-<!-- /wp:elayne/mega-menu-item --></div></div>
-<!-- /wp:elayne/mega-menu-section --></div>
-<!-- /wp:elayne/mega-menu-column -->',
-				)
-			);
-
-			// Pattern 7: Mega Menu - Featured Product Layout
-			register_block_pattern(
-				'elayne-blocks/mega-menu-featured',
-				array(
-					'title'       => __( 'Mega Menu - Featured Product', 'elayne-blocks' ),
-					'description' => __( 'Two column layout with product links and featured content area.', 'elayne-blocks' ),
-					'categories'  => array( 'elayne-blocks' ),
-					'content'     => '<!-- wp:elayne/mega-menu-column {"width":"2/3"} -->
-<div class="wp-block-elayne-mega-menu-column width-2-3 align-top"><!-- wp:elayne/mega-menu-section {"heading":"Shop by Category"} -->
-<div class="wp-block-elayne-mega-menu-section"><div class="wp-block-elayne-mega-menu-section__header"><h3 class="wp-block-elayne-mega-menu-section__heading">Shop by Category</h3></div><div class="wp-block-elayne-mega-menu-section__content"><!-- wp:elayne/mega-menu-item {"label":"Women\'s Fashion","iconName":"admin-users","linkUrl":"/womens"} -->
-<div class="wp-block-elayne-mega-menu-item"><a class="wp-block-elayne-mega-menu-item__link" href="/womens" target="_self"><span class="dashicons dashicons-admin-users"></span><div class="wp-block-elayne-mega-menu-item__content"><div class="wp-block-elayne-mega-menu-item__header"><span class="wp-block-elayne-mega-menu-item__label">Women\'s Fashion</span></div></div></a></div>
-<!-- /wp:elayne/mega-menu-item -->
-
-<!-- wp:elayne/mega-menu-item {"label":"Men\'s Fashion","iconName":"admin-users","linkUrl":"/mens"} -->
-<div class="wp-block-elayne-mega-menu-item"><a class="wp-block-elayne-mega-menu-item__link" href="/mens" target="_self"><span class="dashicons dashicons-admin-users"></span><div class="wp-block-elayne-mega-menu-item__content"><div class="wp-block-elayne-mega-menu-item__header"><span class="wp-block-elayne-mega-menu-item__label">Men\'s Fashion</span></div></div></a></div>
-<!-- /wp:elayne/mega-menu-item -->
-
-<!-- wp:elayne/mega-menu-item {"label":"Accessories","iconName":"star-filled","linkUrl":"/accessories","badgeText":"Sale","badgeStyle":"danger"} -->
-<div class="wp-block-elayne-mega-menu-item"><a class="wp-block-elayne-mega-menu-item__link" href="/accessories" target="_self"><span class="dashicons dashicons-star-filled"></span><div class="wp-block-elayne-mega-menu-item__content"><div class="wp-block-elayne-mega-menu-item__header"><span class="wp-block-elayne-mega-menu-item__label">Accessories</span><span class="wp-block-elayne-mega-menu-item__badge badge-danger">Sale</span></div></div></a></div>
-<!-- /wp:elayne/mega-menu-item --></div></div>
-<!-- /wp:elayne/mega-menu-section --></div>
-<!-- /wp:elayne/mega-menu-column -->
-
-<!-- wp:elayne/mega-menu-column {"width":"1/3","backgroundColor":"#f5f5f5"} -->
-<div class="wp-block-elayne-mega-menu-column width-1-3 align-top" style="background-color:#f5f5f5;color:"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Featured This Week</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Check out our latest collection with exclusive items.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/featured">Shop Now</a></div>
-<!-- /wp:button --></div>
-<!-- /wp:buttons --></div>
-<!-- /wp:elayne/mega-menu-column -->',
 				)
 			);
 		}

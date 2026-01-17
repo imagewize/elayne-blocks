@@ -107,16 +107,58 @@ add_action(
 add_action(
 	'init',
 	function () {
+		// Register "Menus" template part area
 		if ( function_exists( 'register_block_template_part_area' ) ) {
 			register_block_template_part_area(
-				'elayne-mega-menu',
+				'menu',
 				array(
-					'label'       => __( 'Mega Menu', 'elayne-blocks' ),
-					'description' => __( 'Template parts for mega menu content', 'elayne-blocks' ),
+					'label'       => __( 'Menus', 'elayne-blocks' ),
+					'description' => __( 'Template parts for navigation and mega menu content', 'elayne-blocks' ),
 					'icon'        => 'menu',
-					'area_tag'    => 'div',
+					'area_tag'    => 'nav',
 				)
 			);
+		}
+
+		// Register mega menu template parts
+		if ( function_exists( 'register_block_pattern' ) ) {
+			$template_parts_dir = ELAYNE_BLOCKS_PLUGIN_DIR . 'patterns';
+
+			if ( is_dir( $template_parts_dir ) ) {
+				$template_part_files = glob( $template_parts_dir . '/mega-menu-*.php' );
+
+				foreach ( $template_part_files as $template_file ) {
+					$headers = get_file_data(
+						$template_file,
+						array(
+							'title'       => 'Title',
+							'slug'        => 'Slug',
+							'description' => 'Description',
+						)
+					);
+
+					// Get the content
+					ob_start();
+					include $template_file;
+					$content = ob_get_clean();
+
+					$slug = ! empty( $headers['slug'] )
+						? $headers['slug']
+						: 'elayne-blocks/' . basename( $template_file, '.php' );
+
+					// Register as block pattern with templateTypes
+					register_block_pattern(
+						$slug,
+						array(
+							'title'         => $headers['title'] ?: basename( $template_file, '.php' ),
+							'description'   => $headers['description'] ?: '',
+							'content'       => $content,
+							'templateTypes' => array( 'template-part-menu' ),
+							'blockTypes'    => array( 'core/template-part/menu' ),
+						)
+					);
+				}
+			}
 		}
 	},
 	10
@@ -139,64 +181,8 @@ add_action(
 			);
 		}
 
-		// Register patterns from patterns directory
-		if ( function_exists( 'register_block_pattern' ) ) {
-			$patterns_dir = ELAYNE_BLOCKS_PLUGIN_DIR . 'patterns';
-
-			if ( is_dir( $patterns_dir ) ) {
-				$pattern_files = glob( $patterns_dir . '/*.php' );
-
-				foreach ( $pattern_files as $pattern_file ) {
-					$headers = get_file_data(
-						$pattern_file,
-						array(
-							'title'       => 'Title',
-							'slug'        => 'Slug',
-							'description' => 'Description',
-							'categories'  => 'Categories',
-							'keywords'    => 'Keywords',
-							'blockTypes'  => 'Block Types',
-							'postTypes'   => 'Post Types',
-							'inserter'    => 'Inserter',
-							'viewport'    => 'Viewport Width',
-						)
-					);
-
-					ob_start();
-					include $pattern_file;
-					$content = ob_get_clean();
-
-					$slug = ! empty( $headers['slug'] )
-						? $headers['slug']
-						: 'elayne-blocks/' . basename( $pattern_file, '.php' );
-
-					$categories = array_filter( array_map( 'trim', explode( ',', (string) $headers['categories'] ) ) );
-					if ( empty( $categories ) ) {
-						$categories = array( 'elayne-blocks' );
-					}
-
-					$keywords = array_filter( array_map( 'trim', explode( ',', (string) $headers['keywords'] ) ) );
-
-					$inserter = true;
-					if ( $headers['inserter'] !== '' ) {
-						$inserter = filter_var( $headers['inserter'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE );
-						$inserter = ( $inserter === null ) ? true : $inserter;
-					}
-
-					register_block_pattern(
-						$slug,
-						array(
-							'title'       => $headers['title'] ?: basename( $pattern_file, '.php' ),
-							'description' => $headers['description'] ?: '',
-							'categories'  => $categories,
-							'keywords'    => $keywords,
-							'content'     => $content,
-							'inserter'    => $inserter,
-						)
-					);
-				}
-			}
-		}
+		// Note: Mega menu patterns (mega-menu-*.php) are registered separately as template parts
+		// This section is reserved for future non-template-part patterns
 
 		// Pattern 1: Hero Carousel
 		if ( function_exists( 'register_block_pattern' ) ) {

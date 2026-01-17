@@ -104,23 +104,27 @@ add_action(
 /**
  * Register custom template part area for mega menu
  */
+add_filter(
+	'default_wp_template_part_areas',
+	function ( $areas ) {
+		$areas[] = array(
+			'area'        => 'menu',
+			'label'       => __( 'Menus', 'elayne-blocks' ),
+			'description' => __( 'Template parts for navigation and mega menu content', 'elayne-blocks' ),
+			'icon'        => 'menu',
+			'area_tag'    => 'nav',
+		);
+		return $areas;
+	}
+);
+
+/**
+ * Register mega menu patterns
+ */
 add_action(
 	'init',
 	function () {
-		// Register "Menus" template part area
-		if ( function_exists( 'register_block_template_part_area' ) ) {
-			register_block_template_part_area(
-				'menu',
-				array(
-					'label'       => __( 'Menus', 'elayne-blocks' ),
-					'description' => __( 'Template parts for navigation and mega menu content', 'elayne-blocks' ),
-					'icon'        => 'menu',
-					'area_tag'    => 'nav',
-				)
-			);
-		}
-
-		// Register mega menu template parts
+		// Register mega menu template parts as patterns
 		if ( function_exists( 'register_block_pattern' ) ) {
 			$template_parts_dir = ELAYNE_BLOCKS_PLUGIN_DIR . 'patterns';
 

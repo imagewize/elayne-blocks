@@ -133,13 +133,14 @@ add_action(
 						? $headers['slug']
 						: 'elayne-blocks/' . basename( $template_file, '.php' );
 
-					// Register as block pattern with templateTypes
+					// Register as block pattern with templateTypes and menus category
 					register_block_pattern(
 						$slug,
 						array(
 							'title'         => $headers['title'] ?: basename( $template_file, '.php' ),
 							'description'   => $headers['description'] ?: '',
 							'content'       => $content,
+							'categories'    => array( 'menus' ),
 							'templateTypes' => array( 'template-part-menu' ),
 							'blockTypes'    => array( 'core/template-part/menu' ),
 						)
@@ -157,18 +158,28 @@ add_action(
 add_action(
 	'init',
 	function () {
-		// Register pattern category for Elayne Blocks
+		// Register pattern categories
 		if ( function_exists( 'register_block_pattern_category' ) ) {
+			// Elayne Blocks category for carousel patterns
 			register_block_pattern_category(
 				'elayne-blocks',
 				array(
 					'label'       => __( 'Elayne Blocks', 'elayne-blocks' ),
-					'description' => __( 'Pre-configured patterns for Elayne Blocks carousel and mega menu.', 'elayne-blocks' ),
+					'description' => __( 'Pre-configured patterns for Elayne Blocks carousel.', 'elayne-blocks' ),
+				)
+			);
+
+			// Menus category for mega menu patterns
+			register_block_pattern_category(
+				'menus',
+				array(
+					'label'       => __( 'Menus', 'elayne-blocks' ),
+					'description' => __( 'Mega menu patterns for navigation template parts.', 'elayne-blocks' ),
 				)
 			);
 		}
 
-		// Note: Mega menu patterns (mega-menu-*.php) are registered separately as template parts
+		// Note: Mega menu patterns (mega-menu-*.php) are registered separately with 'menus' category
 		// This section is reserved for future non-template-part patterns
 
 		// Pattern 1: Hero Carousel

@@ -46,6 +46,7 @@ import {
 import IconPicker from './components/IconPicker';
 import AnimationControls from './components/AnimationControls';
 import LayoutPicker from './components/LayoutPicker';
+import StylePanel from './components/StylePanel';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -524,6 +525,45 @@ export default function Edit( { attributes, setAttributes } ) {
 							}
 						/>
 					) }
+				</PanelBody>
+
+				{ /* Panel Dimensions */ }
+				<PanelBody
+					title={ __( 'Panel Dimensions', 'elayne-blocks' ) }
+					initialOpen={ false }
+				>
+					<StylePanel
+						section="dimensions"
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+						layoutMode={ layoutMode }
+					/>
+				</PanelBody>
+
+				{ /* Panel Colors */ }
+				<PanelBody
+					title={ __( 'Panel Colors', 'elayne-blocks' ) }
+					initialOpen={ false }
+				>
+					<StylePanel
+						section="colors"
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+						layoutMode={ layoutMode }
+					/>
+				</PanelBody>
+
+				{ /* Panel Effects */ }
+				<PanelBody
+					title={ __( 'Panel Effects', 'elayne-blocks' ) }
+					initialOpen={ false }
+				>
+					<StylePanel
+						section="effects"
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+						layoutMode={ layoutMode }
+					/>
 				</PanelBody>
 			</InspectorControls>
 

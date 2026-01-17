@@ -29,6 +29,18 @@ $elayne_blocks_overlay_backdrop    = esc_attr( $attributes['overlayBackdropColor
 $elayne_blocks_enable_hover        = $attributes['enableHoverActivation'] ?? false;
 $elayne_blocks_backdrop_blur       = $attributes['backdropBlur'] ?? true;
 
+// Panel styling attributes.
+$elayne_blocks_panel_width          = esc_attr( $attributes['panelWidth'] ?? 'content' );
+$elayne_blocks_panel_max_width      = absint( $attributes['panelMaxWidth'] ?? 800 );
+$elayne_blocks_panel_min_height     = absint( $attributes['panelMinHeight'] ?? 0 );
+$elayne_blocks_panel_padding        = $attributes['panelPadding'] ?? array();
+$elayne_blocks_panel_bg_color       = esc_attr( $attributes['panelBackgroundColor'] ?? '' );
+$elayne_blocks_panel_box_shadow     = esc_attr( $attributes['panelBoxShadow'] ?? 'default' );
+$elayne_blocks_panel_border_radius  = absint( $attributes['panelBorderRadius'] ?? 4 );
+$elayne_blocks_panel_border_width   = absint( $attributes['panelBorderWidth'] ?? 0 );
+$elayne_blocks_panel_border_color   = esc_attr( $attributes['panelBorderColor'] ?? '' );
+$elayne_blocks_panel_backdrop_blur  = $attributes['panelBackdropBlur'] ?? false;
+
 // Build menu container classes.
 $elayne_blocks_menu_classes  = 'elayne-mega-menu wp-block-elayne-mega-menu__menu-container';
 $elayne_blocks_menu_classes .= ' menu-width-' . $elayne_blocks_menu_width;
@@ -136,10 +148,62 @@ if ( $elayne_blocks_label_color ) {
 		$elayne_blocks_panel_classes .= ' direction-' . $elayne_blocks_sidebar_direction;
 	}
 
-	$elayne_blocks_panel_style = '';
-	if ( 'grid' === $elayne_blocks_layout_mode ) {
-		$elayne_blocks_panel_style = 'style="--grid-columns: ' . esc_attr( $elayne_blocks_grid_columns ) . ';"';
+	// Add panel width class.
+	$elayne_blocks_panel_classes .= ' mm-panel-width-' . $elayne_blocks_panel_width;
+
+	// Add box shadow class.
+	$elayne_blocks_panel_classes .= ' mm-shadow-' . $elayne_blocks_panel_box_shadow;
+
+	// Add backdrop blur class if enabled.
+	if ( $elayne_blocks_panel_backdrop_blur ) {
+		$elayne_blocks_panel_classes .= ' mm-backdrop-blur-enabled';
 	}
+
+	// Build panel inline styles.
+	$elayne_blocks_panel_styles = array();
+
+	// Grid columns (if grid mode).
+	if ( 'grid' === $elayne_blocks_layout_mode ) {
+		$elayne_blocks_panel_styles[] = '--grid-columns: ' . esc_attr( $elayne_blocks_grid_columns );
+	}
+
+	// Dimensions.
+	if ( 'custom' === $elayne_blocks_panel_width && $elayne_blocks_panel_max_width > 0 ) {
+		$elayne_blocks_panel_styles[] = 'max-width: ' . $elayne_blocks_panel_max_width . 'px';
+	}
+	if ( $elayne_blocks_panel_min_height > 0 ) {
+		$elayne_blocks_panel_styles[] = 'min-height: ' . $elayne_blocks_panel_min_height . 'px';
+	}
+	if ( ! empty( $elayne_blocks_panel_padding ) && is_array( $elayne_blocks_panel_padding ) ) {
+		$elayne_blocks_panel_styles[] = sprintf(
+			'padding: %s %s %s %s',
+			esc_attr( $elayne_blocks_panel_padding['top'] ?? '20px' ),
+			esc_attr( $elayne_blocks_panel_padding['right'] ?? '20px' ),
+			esc_attr( $elayne_blocks_panel_padding['bottom'] ?? '20px' ),
+			esc_attr( $elayne_blocks_panel_padding['left'] ?? '20px' )
+		);
+	}
+
+	// Panel background color.
+	if ( ! empty( $elayne_blocks_panel_bg_color ) ) {
+		$elayne_blocks_panel_styles[] = 'background-color: ' . $elayne_blocks_panel_bg_color;
+	}
+
+	// Border radius.
+	if ( $elayne_blocks_panel_border_radius > 0 ) {
+		$elayne_blocks_panel_styles[] = 'border-radius: ' . $elayne_blocks_panel_border_radius . 'px';
+	}
+
+	// Border.
+	if ( $elayne_blocks_panel_border_width > 0 ) {
+		$elayne_blocks_border_color = ! empty( $elayne_blocks_panel_border_color ) ? $elayne_blocks_panel_border_color : '#ddd';
+		$elayne_blocks_panel_styles[] = 'border: ' . $elayne_blocks_panel_border_width . 'px solid ' . $elayne_blocks_border_color;
+	}
+
+	// Build style attribute.
+	$elayne_blocks_panel_style = ! empty( $elayne_blocks_panel_styles )
+		? 'style="' . esc_attr( implode( '; ', $elayne_blocks_panel_styles ) ) . '"'
+		: '';
 	?>
 	<div class="<?php echo esc_attr( $elayne_blocks_panel_classes ); ?>" data-wp-class--is-open="context.isOpen" <?php echo $elayne_blocks_panel_style; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 		<?php if ( 'grid' === $elayne_blocks_layout_mode ) : ?>

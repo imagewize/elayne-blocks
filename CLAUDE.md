@@ -82,8 +82,10 @@ blocks/[block-name]/
 - Can only be placed inside `core/navigation` or `elayne/nav-builder` blocks
 - **Template Part-Based Content System:**
   - Uses WordPress Template Parts for mega menu content (no InnerBlocks)
+  - Template parts stored in `/parts` directory and registered via `get_block_templates` filter
   - Content edited naturally in Site Editor via template part selection
-  - Includes patterns library with 5-6 ready-to-use mega menu layouts
+  - Includes 6 ready-to-use template parts (simple-list, three-column, icon-grid, featured-content, image-links, footer-style)
+  - **Requires theme integration:** The Elayne theme must register the 'menu' template part area via `default_wp_template_part_areas` filter for sidebar navigation to appear
 - **Layout Modes:**
   - **Dropdown:** Traditional dropdown menu beneath navigation item
   - **Overlay:** Full-screen overlay covering the entire page
@@ -161,9 +163,32 @@ Metadata from block.json is the single source of truth, with Edit/Save implement
 6. Run `npm install && npm run build`
 7. Plugin auto-discovers block on next page load
 
+## Theme Integration Requirements
+
+### Mega Menu Template Parts
+
+The mega menu block requires the Elayne theme to register the 'menu' template part area for proper Site Editor integration.
+
+**Required in theme's `functions.php`:**
+```php
+add_filter( 'default_wp_template_part_areas', function( $areas ) {
+    $areas[] = array(
+        'area'        => 'menu',
+        'area_tag'    => 'div',
+        'label'       => __( 'Menu', 'elayne' ),
+        'description' => __( 'Template part area for mega menus', 'elayne' ),
+        'icon'        => 'navigation',
+    );
+    return $areas;
+});
+```
+
+Without theme registration, template parts will still function but won't appear in the Site Editor's sidebar navigation.
+
 ## Key Files
 
 - `elayne-blocks.php` - Main plugin file with block discovery logic
+- `parts/` - Mega menu template part HTML files
 - `blocks/*/src/block.json` - Block metadata and configuration
 - `blocks/*/src/edit.js` - Block editor interface
 - `blocks/*/src/save.jsx` - Block frontend output

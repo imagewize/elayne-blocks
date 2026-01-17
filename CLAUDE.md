@@ -113,6 +113,7 @@ The mega-menu block uses the Interactivity API for frontend reactivity. Implemen
 - Content is edited directly in the Site Editor's template part workflow
 - Patterns library provides 5-6 ready-to-use mega menu layouts for quick setup
 - No modal editing or InnerBlocks complexity
+- **Template Part Format:** Template parts MUST contain only block markup comments (e.g., `<!-- wp:columns -->`) without rendered HTML tags. WordPress automatically renders the HTML from the block comments. Never mix block comments with HTML wrapper tags like `<div class="wp-block-columns">` - only include the minimal HTML content within blocks (e.g., `<li>`, `<p>`, `<h3>`).
 
 **Layout Modes:**
 - **Dropdown:** Traditional dropdown positioned beneath navigation item

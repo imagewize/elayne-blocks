@@ -107,13 +107,36 @@ if ( has_block( 'elayne/carousel' ) ) {
 
 The mega-menu block uses the Interactivity API for frontend reactivity. Implementation is based on [Human Made's HM Mega Menu Block](https://github.com/humanmade/hm-mega-menu-block).
 
-**Content System:**
-- Template Part-based architecture for mega menu content
-- Users select a template part in the block settings
-- Content is edited directly in the Site Editor's template part workflow
-- Patterns library provides 5-6 ready-to-use mega menu layouts for quick setup
-- No modal editing or InnerBlocks complexity
-- **Template Part Format:** Template parts MUST contain only block markup comments (e.g., `<!-- wp:columns -->`) without rendered HTML tags. WordPress automatically renders the HTML from the block comments. Never mix block comments with HTML wrapper tags like `<div class="wp-block-columns">` - only include the minimal HTML content within blocks (e.g., `<li>`, `<p>`, `<h3>`).
+**Content System (Theme-Based Template Parts):**
+- **Theme-scoped template parts** - Users create template parts in the Site Editor (Appearance → Editor → Patterns → Template Parts)
+- Template parts are stored in the database under the active theme's namespace
+- The plugin provides **patterns** (not file-based template parts) that users can insert into new template parts
+- Users select template parts by slug in the mega menu block settings
+- Content is fully editable in the Site Editor's standard template part workflow
+- **No plugin-provided template part files** - all content lives in the database
+
+**Required Theme Integration:**
+The active theme MUST register the 'menu' template part area via the `default_wp_template_part_areas` filter. The Elayne theme includes this by default. Other themes need to add:
+
+```php
+add_filter( 'default_wp_template_part_areas', function( $areas ) {
+    $areas[] = array(
+        'area'        => 'menu',
+        'label'       => __( 'Menus', 'your-theme' ),
+        'description' => __( 'Template parts for navigation and mega menu content', 'your-theme' ),
+        'icon'        => 'menu',
+        'area_tag'    => 'nav',
+    );
+    return $areas;
+} );
+```
+
+**Workflow:**
+1. User creates a new template part in Site Editor with area "Menus"
+2. User inserts a mega menu pattern (from `patterns/mega-menu-*.php`) or builds custom content
+3. User saves the template part (e.g., slug: `mega-menu-shop`)
+4. User adds Mega Menu block to navigation and selects the template part slug
+5. Template part is rendered via `block_template_part( $menuSlug )` with theme scope
 
 **Layout Modes:**
 - **Dropdown:** Traditional dropdown positioned beneath navigation item
@@ -168,32 +191,37 @@ Metadata from block.json is the single source of truth, with Edit/Save implement
 
 ### Mega Menu Template Parts
 
-The mega menu block requires the Elayne theme to register the 'menu' template part area for proper Site Editor integration.
+**CRITICAL:** The mega menu block requires the active theme to register the 'menu' template part area. The Elayne theme includes this by default. Other themes must add it via `functions.php`:
 
-**Required in theme's `functions.php`:**
 ```php
 add_filter( 'default_wp_template_part_areas', function( $areas ) {
     $areas[] = array(
         'area'        => 'menu',
         'area_tag'    => 'div',
-        'label'       => __( 'Menu', 'elayne' ),
-        'description' => __( 'Template part area for mega menus', 'elayne' ),
+        'label'       => __( 'Menu', 'your-theme' ),
+        'description' => __( 'Template part area for mega menus', 'your-theme' ),
         'icon'        => 'navigation',
     );
     return $areas;
 });
 ```
 
-Without theme registration, template parts will still function but won't appear in the Site Editor's sidebar navigation.
+**Without theme registration:**
+- Template parts won't appear in the Site Editor's Patterns → Template Parts section
+- Users cannot create or edit mega menu template parts
+- The mega menu block will have no template parts to select
+
+**The Elayne theme implementation:** See `~/code/imagewize.com/demo/web/app/themes/elayne` - includes menu and sidebar template part areas.
 
 ## Key Files
 
 - `elayne-blocks.php` - Main plugin file with block discovery logic
-- `parts/` - Mega menu template part HTML files
+- `patterns/` - Mega menu block patterns (used to create template parts)
 - `blocks/*/src/block.json` - Block metadata and configuration
 - `blocks/*/src/edit.js` - Block editor interface
 - `blocks/*/src/save.jsx` - Block frontend output
 - `blocks/carousel/slick/` - Third-party Slick Carousel library (vendored)
+- `blocks/mega-menu/README.md` - Mega menu usage and integration guide
 
 ## Development Notes
 

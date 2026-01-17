@@ -263,10 +263,10 @@ register_block_pattern(
     'description' => __( 'Three column layout with product categories and links', 'elayne-blocks' ),
     'categories'  => array( 'elayne-blocks' ),
     'blockTypes'  => array( 'core/template-part/menu' ),
-    'content'     => '<!-- wp:columns {"align":"wide"} -->
-<div class="wp-block-columns alignwide">
-  <!-- wp:column -->
-  <div class="wp-block-column">
+    'content'     => '<!-- wp:group {"align":"wide","layout":{"type":"grid","minimumColumnWidth":"18rem"}} -->
+<div class="wp-block-group alignwide">
+  <!-- wp:group -->
+  <div class="wp-block-group">
     <!-- wp:heading {"level":3} -->
     <h3>Products</h3>
     <!-- /wp:heading -->
@@ -275,10 +275,10 @@ register_block_pattern(
     <ul><li><a href="#">All Products</a></li><li><a href="#">New Arrivals</a></li><li><a href="#">Best Sellers</a></li><li><a href="#">Sale Items</a></li></ul>
     <!-- /wp:list -->
   </div>
-  <!-- /wp:column -->
+  <!-- /wp:group -->
 
-  <!-- wp:column -->
-  <div class="wp-block-column">
+  <!-- wp:group -->
+  <div class="wp-block-group">
     <!-- wp:heading {"level":3} -->
     <h3>Categories</h3>
     <!-- /wp:heading -->
@@ -287,10 +287,10 @@ register_block_pattern(
     <ul><li><a href="#">Electronics</a></li><li><a href="#">Clothing</a></li><li><a href="#">Home & Garden</a></li><li><a href="#">Sports</a></li></ul>
     <!-- /wp:list -->
   </div>
-  <!-- /wp:column -->
+  <!-- /wp:group -->
 
-  <!-- wp:column -->
-  <div class="wp-block-column">
+  <!-- wp:group -->
+  <div class="wp-block-group">
     <!-- wp:heading {"level":3} -->
     <h3>Support</h3>
     <!-- /wp:heading -->
@@ -299,9 +299,9 @@ register_block_pattern(
     <ul><li><a href="#">Help Center</a></li><li><a href="#">Contact Us</a></li><li><a href="#">FAQ</a></li><li><a href="#">Returns</a></li></ul>
     <!-- /wp:list -->
   </div>
-  <!-- /wp:column -->
+  <!-- /wp:group -->
 </div>
-<!-- /wp:columns -->',
+<!-- /wp:group -->',
   )
 );
 ```
@@ -387,73 +387,73 @@ register_block_pattern(
     'description' => __( 'Grid layout with icons and service links', 'elayne-blocks' ),
     'categories'  => array( 'elayne-blocks' ),
     'blockTypes'  => array( 'core/template-part/menu' ),
-    'content'     => '<!-- wp:columns {"align":"wide"} -->
-<div class="wp-block-columns alignwide">
-  <!-- wp:column -->
-  <div class="wp-block-column" style="text-align:center">
-    <!-- wp:paragraph {"fontSize":"large"} -->
-    <p class="has-large-font-size">📦</p>
+    'content'     => '<!-- wp:group {"align":"wide","layout":{"type":"grid","minimumColumnWidth":"18rem"}} -->
+<div class="wp-block-group alignwide">
+  <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+  <div class="wp-block-group">
+    <!-- wp:paragraph {"align":"center","fontSize":"large"} -->
+    <p class="has-text-align-center has-large-font-size">📦</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:heading {"level":4} -->
-    <h4><a href="#">Free Shipping</a></h4>
+    <!-- wp:heading {"textAlign":"center","level":4} -->
+    <h4 class="has-text-align-center"><a href="#">Free Shipping</a></h4>
     <!-- /wp:heading -->
 
-    <!-- wp:paragraph {"fontSize":"small"} -->
-    <p class="has-small-font-size">On orders over $50</p>
+    <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
+    <p class="has-text-align-center has-small-font-size">On orders over $50</p>
     <!-- /wp:paragraph -->
   </div>
-  <!-- /wp:column -->
+  <!-- /wp:group -->
 
-  <!-- wp:column -->
-  <div class="wp-block-column" style="text-align:center">
-    <!-- wp:paragraph {"fontSize":"large"} -->
-    <p class="has-large-font-size">💳</p>
+  <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+  <div class="wp-block-group">
+    <!-- wp:paragraph {"align":"center","fontSize":"large"} -->
+    <p class="has-text-align-center has-large-font-size">💳</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:heading {"level":4} -->
-    <h4><a href="#">Secure Payment</a></h4>
+    <!-- wp:heading {"textAlign":"center","level":4} -->
+    <h4 class="has-text-align-center"><a href="#">Secure Payment</a></h4>
     <!-- /wp:heading -->
 
-    <!-- wp:paragraph {"fontSize":"small"} -->
-    <p class="has-small-font-size">100% secure checkout</p>
+    <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
+    <p class="has-text-align-center has-small-font-size">100% secure checkout</p>
     <!-- /wp:paragraph -->
   </div>
-  <!-- /wp:column -->
+  <!-- /wp:group -->
 
-  <!-- wp:column -->
-  <div class="wp-block-column" style="text-align:center">
-    <!-- wp:paragraph {"fontSize":"large"} -->
-    <p class="has-large-font-size">🔄</p>
+  <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+  <div class="wp-block-group">
+    <!-- wp:paragraph {"align":"center","fontSize":"large"} -->
+    <p class="has-text-align-center has-large-font-size">🔄</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:heading {"level":4} -->
-    <h4><a href="#">Easy Returns</a></h4>
+    <!-- wp:heading {"textAlign":"center","level":4} -->
+    <h4 class="has-text-align-center"><a href="#">Easy Returns</a></h4>
     <!-- /wp:heading -->
 
-    <!-- wp:paragraph {"fontSize":"small"} -->
-    <p class="has-small-font-size">30-day return policy</p>
+    <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
+    <p class="has-text-align-center has-small-font-size">30-day return policy</p>
     <!-- /wp:paragraph -->
   </div>
-  <!-- /wp:column -->
+  <!-- /wp:group -->
 
-  <!-- wp:column -->
-  <div class="wp-block-column" style="text-align:center">
-    <!-- wp:paragraph {"fontSize":"large"} -->
-    <p class="has-large-font-size">💬</p>
+  <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+  <div class="wp-block-group">
+    <!-- wp:paragraph {"align":"center","fontSize":"large"} -->
+    <p class="has-text-align-center has-large-font-size">💬</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:heading {"level":4} -->
-    <h4><a href="#">24/7 Support</a></h4>
+    <!-- wp:heading {"textAlign":"center","level":4} -->
+    <h4 class="has-text-align-center"><a href="#">24/7 Support</a></h4>
     <!-- /wp:heading -->
 
-    <!-- wp:paragraph {"fontSize":"small"} -->
-    <p class="has-small-font-size">Always here to help</p>
+    <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
+    <p class="has-text-align-center has-small-font-size">Always here to help</p>
     <!-- /wp:paragraph -->
   </div>
-  <!-- /wp:column -->
+  <!-- /wp:group -->
 </div>
-<!-- /wp:columns -->',
+<!-- /wp:group -->',
   )
 );
 ```
@@ -507,10 +507,10 @@ register_block_pattern(
     'description' => __( 'Full-width multi-column footer-style layout', 'elayne-blocks' ),
     'categories'  => array( 'elayne-blocks' ),
     'blockTypes'  => array( 'core/template-part/menu' ),
-    'content'     => '<!-- wp:columns {"align":"full"} -->
-<div class="wp-block-columns alignfull">
-  <!-- wp:column -->
-  <div class="wp-block-column">
+    'content'     => '<!-- wp:group {"align":"wide","layout":{"type":"grid","minimumColumnWidth":"18rem"}} -->
+<div class="wp-block-group alignwide">
+  <!-- wp:group -->
+  <div class="wp-block-group">
     <!-- wp:heading {"level":4} -->
     <h4>Company</h4>
     <!-- /wp:heading -->
@@ -519,10 +519,10 @@ register_block_pattern(
     <ul><li><a href="#">About</a></li><li><a href="#">Team</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
     <!-- /wp:list -->
   </div>
-  <!-- /wp:column -->
+  <!-- /wp:group -->
 
-  <!-- wp:column -->
-  <div class="wp-block-column">
+  <!-- wp:group -->
+  <div class="wp-block-group">
     <!-- wp:heading {"level":4} -->
     <h4>Products</h4>
     <!-- /wp:heading -->
@@ -531,10 +531,10 @@ register_block_pattern(
     <ul><li><a href="#">Features</a></li><li><a href="#">Pricing</a></li><li><a href="#">Security</a></li><li><a href="#">Updates</a></li></ul>
     <!-- /wp:list -->
   </div>
-  <!-- /wp:column -->
+  <!-- /wp:group -->
 
-  <!-- wp:column -->
-  <div class="wp-block-column">
+  <!-- wp:group -->
+  <div class="wp-block-group">
     <!-- wp:heading {"level":4} -->
     <h4>Resources</h4>
     <!-- /wp:heading -->
@@ -543,10 +543,10 @@ register_block_pattern(
     <ul><li><a href="#">Documentation</a></li><li><a href="#">Tutorials</a></li><li><a href="#">Blog</a></li><li><a href="#">Community</a></li></ul>
     <!-- /wp:list -->
   </div>
-  <!-- /wp:column -->
+  <!-- /wp:group -->
 
-  <!-- wp:column -->
-  <div class="wp-block-column">
+  <!-- wp:group -->
+  <div class="wp-block-group">
     <!-- wp:heading {"level":4} -->
     <h4>Support</h4>
     <!-- /wp:heading -->
@@ -555,10 +555,10 @@ register_block_pattern(
     <ul><li><a href="#">Help Center</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li><li><a href="#">Status</a></li></ul>
     <!-- /wp:list -->
   </div>
-  <!-- /wp:column -->
+  <!-- /wp:group -->
 
-  <!-- wp:column -->
-  <div class="wp-block-column">
+  <!-- wp:group -->
+  <div class="wp-block-group">
     <!-- wp:heading {"level":4} -->
     <h4>Legal</h4>
     <!-- /wp:heading -->
@@ -567,9 +567,9 @@ register_block_pattern(
     <ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">License</a></li><li><a href="#">Cookies</a></li></ul>
     <!-- /wp:list -->
   </div>
-  <!-- /wp:column -->
+  <!-- /wp:group -->
 </div>
-<!-- /wp:columns -->',
+<!-- /wp:group -->',
   )
 );
 ```
@@ -615,10 +615,10 @@ register_block_pattern(
 
   <!-- wp:column {"width":"60%"} -->
   <div class="wp-block-column" style="flex-basis:60%">
-    <!-- wp:columns -->
-    <div class="wp-block-columns">
-      <!-- wp:column -->
-      <div class="wp-block-column">
+    <!-- wp:group {"layout":{"type":"grid","minimumColumnWidth":"18rem"}} -->
+    <div class="wp-block-group">
+      <!-- wp:group -->
+      <div class="wp-block-group">
         <!-- wp:heading {"level":4} -->
         <h4>Shop</h4>
         <!-- /wp:heading -->
@@ -627,10 +627,10 @@ register_block_pattern(
         <ul><li><a href="#">New Arrivals</a></li><li><a href="#">Best Sellers</a></li><li><a href="#">Sale</a></li><li><a href="#">Gift Cards</a></li></ul>
         <!-- /wp:list -->
       </div>
-      <!-- /wp:column -->
+      <!-- /wp:group -->
 
-      <!-- wp:column -->
-      <div class="wp-block-column">
+      <!-- wp:group -->
+      <div class="wp-block-group">
         <!-- wp:heading {"level":4} -->
         <h4>Collections</h4>
         <!-- /wp:heading -->
@@ -639,9 +639,9 @@ register_block_pattern(
         <ul><li><a href="#">Summer 2026</a></li><li><a href="#">Essentials</a></li><li><a href="#">Premium</a></li><li><a href="#">Limited Edition</a></li></ul>
         <!-- /wp:list -->
       </div>
-      <!-- /wp:column -->
+      <!-- /wp:group -->
     </div>
-    <!-- /wp:columns -->
+    <!-- /wp:group -->
   </div>
   <!-- /wp:column -->
 </div>

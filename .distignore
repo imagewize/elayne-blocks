@@ -27,6 +27,9 @@ README.md
 *.sh
 create-pr.sh
 
+# Patterns (excluded from plugin check)
+patterns/*
+
 # Source files (keep only build/)
 blocks/*/src/*
 blocks/*/node_modules/*

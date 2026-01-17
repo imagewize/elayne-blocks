@@ -1,7 +1,8 @@
 # Phase 2D (REVISED): Template Part Patterns Library
 
-**Status:** In Progress 🔄
+**Status:** Step 1 Complete ✅ - Step 2 Pending ⏳
 **Started:** 2026-01-17
+**Step 1 Completed:** 2026-01-17 (Hybrid system removed)
 **Dependencies:** Phase 2C Complete ✅ (Layout Modes & Styling System)
 
 ---
@@ -59,38 +60,38 @@ The Phase 2D plan originally called for custom content blocks (Column, Section, 
 
 ## Implementation Plan
 
-### Step 1: Remove Hybrid Content System
+### Step 1: Remove Hybrid Content System ✅ COMPLETE (2026-01-17)
 
-**Files to modify:**
+**Files modified:**
 
-#### 1. Update `block.json` attributes
+#### 1. ✅ Update `block.json` attributes
 **File:** `blocks/mega-menu/src/block.json`
 
-Remove the `contentSource` attribute:
+Removed the `contentSource` attribute:
 
 ```json
 {
   "attributes": {
-    // Remove this:
+    // Removed:
     "contentSource": {
       "type": "string",
       "default": "template",
       "enum": ["template", "custom"]
     },
 
-    // Keep everything else (menuSlug, layoutMode, etc.)
+    // Kept everything else (menuSlug, layoutMode, etc.)
   }
 }
 ```
 
-**Estimated time:** 5 minutes
+**Actual time:** 2 minutes
 
 ---
 
-#### 2. Simplify `edit.js`
+#### 2. ✅ Simplify `edit.js`
 **File:** `blocks/mega-menu/src/edit.js`
 
-**Remove:**
+**Removed:**
 - `contentSource` from attributes destructuring
 - Modal state (`useState` for `isModalOpen`)
 - `SelectControl` for content source
@@ -98,15 +99,17 @@ Remove the `contentSource` attribute:
 - Content type indicator
 - Modal component with InnerBlocks
 - All InnerBlocks imports and usage
+- `Modal` and `Button` imports from @wordpress/components
+- `useState` import from @wordpress/element
 
-**Keep:**
-- Template Part selector (ComboboxControl)
+**Kept:**
+- Template Part selector (ComboboxControl) - now always visible
 - All layout controls (LayoutPicker, etc.)
 - All styling controls
 - Icon picker
 - Animation controls
 
-**Changes:**
+**Changes made:**
 
 ```jsx
 // BEFORE (remove these)
@@ -166,22 +169,22 @@ const [ isModalOpen, setIsModalOpen ] = useState( false );
 </PanelBody>
 ```
 
-**Estimated time:** 20 minutes
+**Actual time:** 10 minutes
 
 ---
 
-#### 3. Update `render.php`
+#### 3. ✅ Update `render.php`
 **File:** `blocks/mega-menu/src/render.php`
 
-**Remove:**
+**Removed:**
 - `$elayne_blocks_content_source` variable
 - Conditional logic checking `contentSource`
 - InnerBlocks content rendering (`$content`)
 
-**Keep:**
+**Kept:**
 - Template Part rendering only
 
-**Changes:**
+**Changes made:**
 
 ```php
 // BEFORE (remove this)
@@ -212,21 +215,21 @@ if ( ! empty( $elayne_blocks_menu_slug ) ) {
 }
 ```
 
-**Estimated time:** 10 minutes
+**Actual time:** 5 minutes
 
 ---
 
-#### 4. Update `save.js`
+#### 4. ✅ Update `save.js`
 **File:** `blocks/mega-menu/src/save.js`
 
-**Remove:**
+**Removed:**
 - InnerBlocks import
 - InnerBlocks.Content usage
 
-**Keep:**
-- Simple return statement (server-side rendering handles everything)
+**Changed to:**
+- Simple return null (server-side rendering handles everything)
 
-**Changes:**
+**Changes made:**
 
 ```jsx
 // BEFORE (remove InnerBlocks)
@@ -244,11 +247,15 @@ export default function Save() {
 }
 ```
 
-**Estimated time:** 5 minutes
+**Actual time:** 3 minutes
+
+**Build Status:** ✅ Successful (webpack compiled without errors)
+- Main bundle: 63.7 KiB
+- View module: 3.68 KiB
 
 ---
 
-### Step 2: Create Template Part Patterns
+### Step 2: Create Template Part Patterns ⏳ PENDING
 
 **Create 5-6 ready-to-use mega menu Template Part patterns.**
 

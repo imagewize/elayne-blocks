@@ -6,9 +6,9 @@
 **Strategy:** Hybrid approach - enhance carousel with unique features, rebuild mega menu with new architecture
 
 **Last Updated:** 2026-01-17
-**Recent Change:** Strategic pivot - Reverting to Template Parts only (removing hybrid InnerBlocks system) for better UX
+**Recent Change:** Phase 2D Step 1 Complete - Hybrid InnerBlocks system removed, Template Part-only approach restored
 **Phase 1 Status:** ✅ 100% Complete - Shipped in production (v2.3.0/v2.3.1)
-**Phase 2 Status:** 🚧 In Progress - Phase 2C Complete ✅ (Layout Modes), Phase 2D Revised 🔄 (Template Part Patterns Library)
+**Phase 2 Status:** 🚧 In Progress - Phase 2C Complete ✅ (Layout Modes), Phase 2D Step 1 Complete ✅ (Hybrid Removal), Phase 2D Step 2 Pending ⏳ (Pattern Library)
 
 ---
 
@@ -373,8 +373,8 @@ Build an advanced mega menu block with modern architecture and comprehensive fea
 
 ### Phase 2 Status
 **Started:** 2026-01-16
-**Current State:** Phase 2D revised - Strategic pivot to Template Part Patterns Library (removing hybrid InnerBlocks system)
-**Next Step:** Phase 2D - Template Part Patterns Library implementation
+**Current State:** Phase 2D Step 1 Complete ✅ - Hybrid InnerBlocks system removed, Template Part-only restored
+**Next Step:** Phase 2D Step 2 - Create Template Part Patterns Library (5-6 patterns)
 **Target:** Transform basic dropdown into feature-rich mega menu system
 
 ### Phase 2 Sub-Phases
@@ -387,10 +387,15 @@ Build an advanced mega menu block with modern architecture and comprehensive fea
   - **Time:** Completed efficiently in one session
 - 🔄 **Phase 2D:** Template Part Patterns Library (Revised - Strategic Pivot)
   - **Original Plan:** [PHASE-2D-PLAN.md](PHASE-2D-PLAN.md) (Hybrid Content System - DEPRECATED)
-  - **Status:** Reverted to Template Parts only approach (removed hybrid InnerBlocks system)
-  - **New Plan:** Create curated library of mega menu template part patterns
-  - **Reason:** Simpler UX, better maintainability, clearer upgrade path
-  - **Next:** Build template part patterns for common mega menu use cases
+  - **Revised Plan:** [PHASE-2D-REVISED-PLAN.md](PHASE-2D-REVISED-PLAN.md) (Template Part Patterns Library)
+  - **Status:** Step 1 Complete ✅ (2026-01-17) - Hybrid system removed, Template Parts restored
+  - **Progress:**
+    - ✅ Removed `contentSource` attribute from block.json
+    - ✅ Simplified edit.js (removed InnerBlocks, modal, content selector)
+    - ✅ Updated render.php to Template Part-only rendering
+    - ✅ Simplified save.js (return null for server-side rendering)
+    - ✅ Build successful (63.7 KiB main, 3.68 KiB view)
+  - **Next:** Step 2 - Create 5-6 template part patterns for common mega menu layouts
 - ⏳ **Phase 2E:** Advanced Styling Controls (Pending Phase 2D)
 - ⏳ **Phase 2F:** Mobile-First Enhancements (Pending Phase 2E)
 

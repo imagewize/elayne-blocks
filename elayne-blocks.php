@@ -147,7 +147,53 @@ add_action(
 				$pattern_files = glob( $patterns_dir . '/*.php' );
 
 				foreach ( $pattern_files as $pattern_file ) {
-					require_once $pattern_file;
+					$headers = get_file_data(
+						$pattern_file,
+						array(
+							'title'       => 'Title',
+							'slug'        => 'Slug',
+							'description' => 'Description',
+							'categories'  => 'Categories',
+							'keywords'    => 'Keywords',
+							'blockTypes'  => 'Block Types',
+							'postTypes'   => 'Post Types',
+							'inserter'    => 'Inserter',
+							'viewport'    => 'Viewport Width',
+						)
+					);
+
+					ob_start();
+					include $pattern_file;
+					$content = ob_get_clean();
+
+					$slug = ! empty( $headers['slug'] )
+						? $headers['slug']
+						: 'elayne-blocks/' . basename( $pattern_file, '.php' );
+
+					$categories = array_filter( array_map( 'trim', explode( ',', (string) $headers['categories'] ) ) );
+					if ( empty( $categories ) ) {
+						$categories = array( 'elayne-blocks' );
+					}
+
+					$keywords = array_filter( array_map( 'trim', explode( ',', (string) $headers['keywords'] ) ) );
+
+					$inserter = true;
+					if ( $headers['inserter'] !== '' ) {
+						$inserter = filter_var( $headers['inserter'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE );
+						$inserter = ( $inserter === null ) ? true : $inserter;
+					}
+
+					register_block_pattern(
+						$slug,
+						array(
+							'title'       => $headers['title'] ?: basename( $pattern_file, '.php' ),
+							'description' => $headers['description'] ?: '',
+							'categories'  => $categories,
+							'keywords'    => $keywords,
+							'content'     => $content,
+							'inserter'    => $inserter,
+						)
+					);
 				}
 			}
 		}

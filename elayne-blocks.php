@@ -165,6 +165,99 @@ add_action(
 );
 
 /**
+ * Register template parts from plugin using get_block_templates filter
+ */
+add_filter(
+	'get_block_templates',
+	function ( $query_result, $query, $template_type ) {
+		// Only process template parts.
+		if ( 'wp_template_part' !== $template_type ) {
+			return $query_result;
+		}
+
+		// Only add our template parts if querying for 'menu' area or no specific area.
+		if ( isset( $query['area'] ) && 'menu' !== $query['area'] ) {
+			return $query_result;
+		}
+
+		$template_parts_dir = ELAYNE_BLOCKS_PLUGIN_DIR . 'parts';
+
+		if ( ! is_dir( $template_parts_dir ) ) {
+			return $query_result;
+		}
+
+		// Get all HTML files from parts directory.
+		$template_files = glob( $template_parts_dir . '/mega-menu-*.html' );
+
+		foreach ( $template_files as $template_file ) {
+			$slug = basename( $template_file, '.html' );
+
+			// Skip if specific slugs requested and this isn't one of them.
+			if ( isset( $query['slug__in'] ) && ! in_array( $slug, $query['slug__in'], true ) ) {
+				continue;
+			}
+
+			// Check if this template part already exists (from theme or database).
+			$template_exists = false;
+			foreach ( $query_result as $existing_template ) {
+				if ( $existing_template->slug === $slug ) {
+					$template_exists = true;
+					break;
+				}
+			}
+
+			// Don't override existing template parts.
+			if ( $template_exists ) {
+				continue;
+			}
+
+			// Read the HTML content.
+			$content = file_get_contents( $template_file );
+
+			// Remove template-part self-reference comment if present.
+			$content = preg_replace( '/<!--\s*wp:template-part\s+.*?\/-->/', '', $content );
+
+			// Create template part object.
+			$template                 = new WP_Block_Template();
+			$template->slug           = $slug;
+			$template->id             = 'elayne-blocks//' . $slug;
+			$template->theme          = 'elayne-blocks';
+			$template->source         = 'plugin';
+			$template->type           = 'wp_template_part';
+			$template->area           = 'menu';
+			$template->status         = 'publish';
+			$template->has_theme_file = true;
+			$template->is_custom      = false;
+			$template->plugin         = 'elayne-blocks';
+			$template->content        = $content;
+
+			// Parse title from filename (e.g., "mega-menu-three-column" → "Three Column").
+			$title           = str_replace( 'mega-menu-', '', $slug );
+			$title           = ucwords( str_replace( '-', ' ', $title ) );
+			$template->title = $title;
+
+			// Optional: Read metadata from HTML comments.
+			preg_match( '/<!--\s*Title:\s*(.+?)\s*-->/i', $content, $title_match );
+			if ( ! empty( $title_match[1] ) ) {
+				$template->title = trim( $title_match[1] );
+			}
+
+			preg_match( '/<!--\s*Description:\s*(.+?)\s*-->/i', $content, $desc_match );
+			if ( ! empty( $desc_match[1] ) ) {
+				$template->description = trim( $desc_match[1] );
+			}
+
+			// Add to results.
+			$query_result[] = $template;
+		}
+
+		return $query_result;
+	},
+	10,
+	3
+);
+
+/**
  * Register block patterns category and load pattern files
  */
 add_action(

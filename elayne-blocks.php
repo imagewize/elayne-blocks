@@ -218,7 +218,7 @@ add_filter(
 			$content = preg_replace( '/<!--\s*wp:template-part\s+.*?\/-->/', '', $content );
 
 			// Create template part object.
-			$template                 = new WP_Block_Template();
+			$template                 = new \WP_Block_Template();
 			$template->slug           = $slug;
 			$template->id             = 'elayne-blocks//' . $slug;
 			$template->theme          = 'elayne-blocks';

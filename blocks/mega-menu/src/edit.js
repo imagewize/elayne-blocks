@@ -7,13 +7,12 @@ import { __, sprintf } from '@wordpress/i18n';
 import {
 	BlockControls,
 	InspectorControls,
-	InnerBlocks,
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
 import { useEntityRecords } from '@wordpress/core-data';
 import { useSelect } from '@wordpress/data';
-import { createInterpolateElement, useState } from '@wordpress/element';
+import { createInterpolateElement } from '@wordpress/element';
 import {
 	ComboboxControl,
 	PanelBody,
@@ -24,8 +23,6 @@ import {
 	RangeControl,
 	ToolbarGroup,
 	ToolbarButton,
-	Modal,
-	Button,
 	__experimentalHStack as HStack,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
@@ -68,7 +65,6 @@ import './editor.scss';
  */
 export default function Edit( { attributes, setAttributes } ) {
 	const {
-		contentSource,
 		label,
 		labelColor,
 		description,
@@ -96,9 +92,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		menuBoxShadow,
 		backdropBlur,
 	} = attributes;
-
-	// Modal state for InnerBlocks editing
-	const [ isModalOpen, setIsModalOpen ] = useState( false );
 
 	const layout = useSelect(
 		( select ) =>
@@ -247,73 +240,37 @@ export default function Edit( { attributes, setAttributes } ) {
 						clearable={ true }
 					/>
 
-					<SelectControl
-						label={ __( 'Content Source', 'elayne-blocks' ) }
-						value={ contentSource }
-						options={ [
-							{
-								label: __( 'Template Part', 'elayne-blocks' ),
-								value: 'template',
-							},
-							{
-								label: __( 'Custom Content', 'elayne-blocks' ),
-								value: 'custom',
-							},
-						] }
+					<ComboboxControl
+						label={ __( 'Select Menu Template', 'elayne-blocks' ) }
+						value={ menuSlug }
+						options={ menuOptions }
 						onChange={ ( value ) =>
-							setAttributes( { contentSource: value } )
+							setAttributes( { menuSlug: value } )
 						}
-						help={ __(
-							'Choose between template parts or custom block content',
-							'elayne-blocks'
-						) }
+						help={
+							hasMenus
+								? __(
+										'Select a template part to display in the mega menu',
+										'elayne-blocks'
+								  )
+								: createInterpolateElement(
+										__(
+											'No menu template parts found. <a>Create one in the Site Editor</a>',
+											'elayne-blocks'
+										),
+										{
+											a: (
+												// eslint-disable-next-line jsx-a11y/anchor-has-content
+												<a
+													href={ menuTemplateUrl }
+													target="_blank"
+													rel="noreferrer noopener"
+												/>
+											),
+										}
+								  )
+						}
 					/>
-
-					{ contentSource === 'template' && (
-						<>
-							<ComboboxControl
-								label={ __( 'Select Menu Template', 'elayne-blocks' ) }
-								value={ menuSlug }
-								options={ menuOptions }
-								onChange={ ( value ) =>
-									setAttributes( { menuSlug: value } )
-								}
-								help={
-									hasMenus
-										? __(
-												'Select a template part to display in the mega menu',
-												'elayne-blocks'
-										  )
-										: createInterpolateElement(
-												__(
-													'No menu template parts found. <a>Create one in the Site Editor</a>',
-													'elayne-blocks'
-												),
-												{
-													a: (
-														// eslint-disable-next-line jsx-a11y/anchor-has-content
-														<a
-															href={ menuTemplateUrl }
-															target="_blank"
-															rel="noreferrer noopener"
-														/>
-													),
-												}
-										  )
-								}
-							/>
-						</>
-					) }
-
-					{ contentSource === 'custom' && (
-						<Button
-							variant="secondary"
-							onClick={ () => setIsModalOpen( true ) }
-							style={ { marginTop: '8px' } }
-						>
-							{ __( 'Edit Mega Menu Content', 'elayne-blocks' ) }
-						</Button>
-					) }
 				</PanelBody>
 
 				{ /* Layout Panel */ }
@@ -609,94 +566,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						</svg>
 					</span>
 				</button>
-
-				{ /* Content Type Indicator */ }
-				{ contentSource === 'template' && menuSlug && (
-					<span className="wp-block-elayne-mega-menu__content-indicator">
-						{ sprintf(
-							// translators: %s: template part name
-							__( 'Template: %s', 'elayne-blocks' ),
-							menuOptions.find( ( opt ) => opt.value === menuSlug )
-								?.label || menuSlug
-						) }
-					</span>
-				) }
-				{ contentSource === 'custom' && (
-					<span className="wp-block-elayne-mega-menu__content-indicator">
-						{ __( 'Custom Content', 'elayne-blocks' ) }
-						<Button
-							variant="link"
-							onClick={ () => setIsModalOpen( true ) }
-							style={ { marginLeft: '8px' } }
-						>
-							{ __( 'Edit', 'elayne-blocks' ) }
-						</Button>
-					</span>
-				) }
 			</div>
-
-			{ /* Modal for Custom Content Editing */ }
-			{ contentSource === 'custom' && isModalOpen && (
-				<Modal
-					title={ __( 'Edit Mega Menu Content', 'elayne-blocks' ) }
-					onRequestClose={ () => setIsModalOpen( false ) }
-					className="wp-block-elayne-mega-menu__modal"
-					style={ {
-						maxWidth: '90vw',
-						width: '1200px',
-					} }
-				>
-					<div className="wp-block-elayne-mega-menu__modal-content">
-						<InnerBlocks
-							allowedBlocks={ [
-								'elayne/mega-menu-column',
-								'elayne/mega-menu-section',
-								'elayne/mega-menu-item',
-								'core/paragraph',
-								'core/heading',
-								'core/image',
-								'core/list',
-								'core/template-part',
-							] }
-							template={ [
-								[
-									'elayne/mega-menu-section',
-									{
-										heading: 'Products',
-									},
-									[
-										[
-											'elayne/mega-menu-item',
-											{
-												label: 'All Products',
-												linkUrl: '/products',
-											},
-										],
-										[
-											'elayne/mega-menu-item',
-											{
-												label: 'Featured',
-												linkUrl: '/featured',
-												badgeText: 'New',
-												badgeStyle: 'info',
-											},
-										],
-									],
-								],
-							] }
-							templateLock={ false }
-						/>
-					</div>
-					<div className="wp-block-elayne-mega-menu__modal-footer">
-						<Button
-							variant="primary"
-							onClick={ () => setIsModalOpen( false ) }
-						>
-							{ __( 'Done', 'elayne-blocks' ) }
-						</Button>
-					</div>
-				</Modal>
-			) }
 		</>
 	);
 }

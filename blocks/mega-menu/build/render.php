@@ -9,7 +9,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-$elayne_blocks_content_source    = esc_attr( $attributes['contentSource'] ?? 'template' );
 $elayne_blocks_label             = esc_html( $attributes['label'] ?? '' );
 $elayne_blocks_label_color       = esc_attr( $attributes['labelColor'] ?? '' );
 $elayne_blocks_description       = esc_html( $attributes['description'] ?? '' );
@@ -148,9 +147,8 @@ if ( $elayne_blocks_label_color ) {
 		<?php endif; ?>
 
 		<?php
-		// Render content based on contentSource.
-		if ( 'template' === $elayne_blocks_content_source && ! empty( $elayne_blocks_menu_slug ) ) {
-			// Render template part.
+		// Render template part if menuSlug is set.
+		if ( ! empty( $elayne_blocks_menu_slug ) ) {
 			if ( function_exists( 'block_template_part' ) ) {
 				echo block_template_part( $elayne_blocks_menu_slug ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} else {
@@ -160,9 +158,6 @@ if ( $elayne_blocks_label_color ) {
 					echo do_blocks( $elayne_blocks_template_part->content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 			}
-		} elseif ( 'custom' === $elayne_blocks_content_source ) {
-			// Render InnerBlocks content.
-			echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		?>
 

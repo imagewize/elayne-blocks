@@ -1,0 +1,6 @@
+# Ignore all files in .vscode by default
+*
+
+# But allow project settings to be committed
+!.gitignore
+!settings.json

@@ -1,0 +1,5 @@
+{
+  "phpcs.enable": true,
+  "phpcs.standard": "${workspaceFolder}/phpcs.xml.dist",
+  "phpcs.executablePath": "${workspaceFolder}/vendor/bin/phpcs"
+}

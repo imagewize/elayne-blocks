@@ -577,7 +577,11 @@ body.mega-menu-overlay-open {
 		max-width: min(var(--wp--style--global--wide-size, 1600px), 95vw) !important;
 	}
 
-	&.mm-panel-width-full {
+	// Full width overrides alignment - needs higher specificity
+	&.mm-panel-width-full,
+	&.mm-panel-width-full.align-left,
+	&.mm-panel-width-full.align-right,
+	&.mm-panel-width-full.align-center {
 		width: 100%;
 		max-width: 95vw !important;
 		left: 50% !important;

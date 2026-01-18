@@ -951,38 +951,52 @@ register_block_pattern(
 
 #### 6. Mobile-First Behavior ⭐ HIGH PRIORITY
 
-**Status:** ✅ PARTIAL COMPLETE (CSS-only solution implemented in Phase 2E)
+**Status:** ✅ COMPLETE (CSS-only solution implemented and fixed in Phase 2E - 2026-01-18)
 
 **Problem Solved (2026-01-18):**
-- Dropdown menus were 60% offscreen on mobile devices
+- Dropdown menus were 60% offscreen on mobile devices (positioned at `left: -55px`)
 - Complex JavaScript positioning caused viewport overflow
 - No mobile-specific behavior for small screens
+- WordPress responsive navigation container styles conflicted with mega menu positioning
 
 **Solution Implemented:**
 - **CSS-only full-screen takeover** on mobile (`@media max-width: 768px`)
 - Dropdown mode becomes fixed position with 100vw/100vh coverage
 - Added padding for close button space (60px top)
 - Removed complex JavaScript positioning in favor of CSS transforms
+- **Added `!important` declarations** to override WordPress navigation container positioning
+- **Target responsive container selectors** for proper specificity
 
-**CSS Implementation ([style.scss:517-540](../blocks/mega-menu/src/style.scss#L517-L540)):**
+**CSS Implementation ([style.scss:517-545](../blocks/mega-menu/src/style.scss#L517-L545)):**
 ```scss
 @media (max-width: 768px) {
-    .wp-block-elayne-mega-menu--layout-dropdown {
+    // Needs !important to override WordPress responsive navigation container positioning
+    .wp-block-elayne-mega-menu--layout-dropdown,
+    .wp-block-navigation__responsive-container .wp-block-elayne-mega-menu--layout-dropdown,
+    .wp-block-navigation__responsive-container-content .wp-block-elayne-mega-menu--layout-dropdown {
         .wp-block-elayne-mega-menu__panel {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            max-width: none;
-            border-radius: 0;
-            padding: 60px 20px 20px;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: auto !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            max-width: none !important;
+            border-radius: 0 !important;
+            padding: 60px 20px 20px !important;
+            transform: none !important;
         }
     }
 }
 ```
 
-**Remaining Mobile Features (Phase 2F - Pending):**
+**Result:**
+- ✅ Mega menu displays full-screen on mobile devices
+- ✅ Positioned correctly at `left: 0px, top: 0px` (fixed from `left: -55px`)
+- ✅ Works inside WordPress responsive navigation containers
+- ✅ No JavaScript positioning complexity
+
+**Optional Future Enhancements (Phase 2F - Nice to Have):**
 - ⏳ Touch optimization: Larger tap targets
 - ⏳ Swipe gestures: Swipe-to-close for overlay mode
 - ⏳ Focus management improvements for mobile

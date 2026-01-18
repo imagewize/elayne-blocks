@@ -70,6 +70,8 @@ tests/*
 phpunit.xml
 phpunit.xml.dist
 .phpunit.result.cache
+*.test.js
+*.spec.js
 
 # Environment
 .env

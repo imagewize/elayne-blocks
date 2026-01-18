@@ -116,7 +116,7 @@ if ( $elayne_blocks_label_color ) {
 }
 ?>
 
-<li <?php echo $elayne_blocks_wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> data-wp-interactive='{"namespace": "elayne/mega-menu"}' data-wp-context='<?php echo esc_attr( wp_json_encode( $elayne_blocks_context ) ); ?>' data-wp-on-document--keydown="actions.handleMenuKeydown" data-wp-on-document--click="actions.handleOutsideClick" data-wp-watch="callbacks.initMenu">
+<li <?php echo $elayne_blocks_wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> data-wp-interactive="elayne/mega-menu" data-wp-context='<?php echo esc_attr( wp_json_encode( $elayne_blocks_context ) ); ?>' data-wp-on-document--keydown="actions.handleMenuKeydown" data-wp-on-document--click="actions.handleOutsideClick" data-wp-watch="callbacks.initMenu">
 
 	<?php if ( 'overlay' === $elayne_blocks_layout_mode || 'sidebar' === $elayne_blocks_layout_mode ) : ?>
 		<div class="wp-block-elayne-mega-menu__backdrop mm-overlay-backdrop <?php echo $elayne_blocks_backdrop_blur ? 'mm-backdrop-blur' : ''; ?>" data-wp-class--is-visible="context.isOpen" data-wp-on--click="actions.closeMenu" <?php if ( 'overlay' === $elayne_blocks_layout_mode ) : ?>style="background: <?php echo esc_attr( $elayne_blocks_overlay_backdrop ); ?>"<?php endif; ?>></div>

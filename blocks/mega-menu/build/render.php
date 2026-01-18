@@ -157,7 +157,8 @@ if ( $elayne_blocks_label_color ) {
 
 	// Dimensions.
 	if ( 'custom' === $elayne_blocks_panel_width && $elayne_blocks_panel_max_width > 0 ) {
-		$elayne_blocks_panel_styles[] = 'max-width: ' . $elayne_blocks_panel_max_width . 'px';
+		$elayne_blocks_panel_styles[] = 'min-width: max(400px, 30vw)';
+		$elayne_blocks_panel_styles[] = 'max-width: min(' . $elayne_blocks_panel_max_width . 'px, 95vw)';
 	}
 	if ( $elayne_blocks_panel_min_height > 0 ) {
 		$elayne_blocks_panel_styles[] = 'min-height: ' . $elayne_blocks_panel_min_height . 'px';

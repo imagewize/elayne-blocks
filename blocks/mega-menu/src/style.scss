@@ -563,24 +563,28 @@ body.mega-menu-overlay-open {
 }
 
 // Panel Width Presets (for panel container styling)
+// Uses max-content width with min/max constraints for responsive behavior
 .wp-block-elayne-mega-menu__panel {
 	&.mm-panel-width-content {
-		width: var(--wp--style--global--content-size, 800px);
-		max-width: var(--wp--style--global--content-size, 800px) !important;
+		width: max-content;
+		min-width: max(400px, 30vw);
+		max-width: min(var(--wp--style--global--content-size, 1200px), 95vw) !important;
 	}
 
 	&.mm-panel-width-wide {
-		width: var(--wp--style--global--wide-size, 1200px);
-		max-width: var(--wp--style--global--wide-size, 1200px) !important;
+		width: max-content;
+		min-width: max(500px, 40vw);
+		max-width: min(var(--wp--style--global--wide-size, 1600px), 95vw) !important;
 	}
 
 	&.mm-panel-width-full {
 		width: 100%;
-		max-width: 100% !important;
+		max-width: 95vw !important;
 	}
 
 	&.mm-panel-width-custom {
-		// Custom width applied via inline styles
+		width: max-content;
+		// Custom min-width and max-width applied via inline styles
 	}
 }
 

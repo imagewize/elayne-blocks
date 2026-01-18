@@ -145,38 +145,46 @@ const { state, actions } = store( 'elayne/mega-menu', {
 			const { ref } = getElement();
 			const { layoutMode, dropdownAlignment } = context;
 
-			// Set open state
-			context.isOpen = true;
-
-			// Layout-specific open logic
+			// Layout-specific open logic (BEFORE setting isOpen)
 			switch ( layoutMode ) {
 				case 'dropdown':
-					// Calculate positioning for dropdown
+					// Calculate positioning for dropdown BEFORE making visible
 					if ( dropdownAlignment === 'auto' ) {
-						const trigger = ref.querySelector( '.wp-block-elayne-mega-menu__trigger' );
 						const panel = ref.querySelector( '.wp-block-elayne-mega-menu__panel' );
-						if ( trigger && panel ) {
-							// Wait for panel to be visible before calculating position
-							requestAnimationFrame( () => {
-								const { flipHorizontal, nudgeLeft } = calculateDropdownPosition(
-									panel,
-									dropdownAlignment
-								);
+						if ( panel ) {
+							// Temporarily make visible for measurement (without opacity)
+							panel.style.visibility = 'hidden';
+							panel.style.opacity = '0';
+							panel.classList.add( 'is-open' );
 
-								if ( flipHorizontal ) {
-									// Significant overflow: flip to right alignment
-									panel.classList.add( 'flip-horizontal' );
-									panel.style.left = '';
-								} else if ( nudgeLeft > 0 ) {
-									// Minor overflow: nudge left with buffer
-									panel.classList.remove( 'flip-horizontal' );
-									panel.style.left = `-${ nudgeLeft }px`;
-								} else {
-									// No overflow: reset to default
-									panel.classList.remove( 'flip-horizontal' );
-									panel.style.left = '';
-								}
-							} );
+							// Get measurements with panel rendered but invisible
+							const { flipHorizontal, nudgeLeft } = calculateDropdownPosition(
+								panel,
+								dropdownAlignment
+							);
+
+							// Apply positioning
+							if ( flipHorizontal ) {
+								// Significant overflow: flip to right alignment
+								panel.classList.add( 'flip-horizontal' );
+								panel.style.left = '';
+								panel.style.right = '0';
+							} else if ( nudgeLeft > 0 ) {
+								// Minor overflow: nudge left with buffer
+								panel.classList.remove( 'flip-horizontal' );
+								panel.style.left = `-${ nudgeLeft }px`;
+								panel.style.right = '';
+							} else {
+								// No overflow: reset to default
+								panel.classList.remove( 'flip-horizontal' );
+								panel.style.left = '';
+								panel.style.right = '';
+							}
+
+							// Remove temporary visibility styles
+							panel.style.visibility = '';
+							panel.style.opacity = '';
+							panel.classList.remove( 'is-open' );
 						}
 					}
 					break;
@@ -199,6 +207,9 @@ const { state, actions } = store( 'elayne/mega-menu', {
 					// No special logic needed for grid
 					break;
 			}
+
+			// Set open state AFTER positioning is calculated
+			context.isOpen = true;
 
 			// Track how menu was opened (for legacy support)
 			if ( menuOpenedOn && context.menuOpenedBy ) {
@@ -257,6 +268,7 @@ const { state, actions } = store( 'elayne/mega-menu', {
 					if ( panel ) {
 						panel.classList.remove( 'flip-horizontal' );
 						panel.style.left = ''; // Reset inline styles
+						panel.style.right = ''; // Reset inline styles
 					}
 					break;
 

@@ -607,14 +607,24 @@ $z-index-close-button: 100;
 	// Layout Mode: Overlay (Full viewport coverage)
 	&--layout-overlay {
 		.wp-block-elayne-mega-menu__panel {
-			position: fixed;
-			top: 0;
-			left: 0;
+			position: fixed !important;
+			top: 0 !important;
+			left: 0 !important;
+			right: auto !important;
 			width: 100vw;
 			height: 100vh;
 			background: #fff;
 			overflow-y: auto;
 			padding: 60px 40px 40px;
+			transform: none !important;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.3s ease, visibility 0.3s ease;
+
+			&.is-open {
+				opacity: 1;
+				visibility: visible;
+			}
 
 			// Close button using ::before pseudo-element
 			&::before {
@@ -635,7 +645,7 @@ $z-index-close-button: 100;
 		}
 
 		// Backdrop
-		&__backdrop {
+		.wp-block-elayne-mega-menu__backdrop {
 			position: fixed;
 			top: 0;
 			left: 0;
@@ -656,8 +666,8 @@ $z-index-close-button: 100;
 	// Layout Mode: Sidebar (Drawer from left/right)
 	&--layout-sidebar {
 		.wp-block-elayne-mega-menu__panel {
-			position: fixed;
-			top: 0;
+			position: fixed !important;
+			top: 0 !important;
 			width: 400px;
 			max-width: 85vw;
 			height: 100vh;
@@ -665,23 +675,31 @@ $z-index-close-button: 100;
 			box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
 			overflow-y: auto;
 			padding: 60px 30px 30px;
-			transition: transform 0.3s ease;
+			transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+			opacity: 0;
+			visibility: hidden;
 
 			&.direction-left {
-				left: 0;
-				transform: translateX(-100%);
+				left: 0 !important;
+				right: auto !important;
+				transform: translateX(-100%) !important;
 
 				&.is-open {
-					transform: translateX(0);
+					transform: translateX(0) !important;
+					opacity: 1;
+					visibility: visible;
 				}
 			}
 
 			&.direction-right {
-				right: 0;
-				transform: translateX(100%);
+				right: 0 !important;
+				left: auto !important;
+				transform: translateX(100%) !important;
 
 				&.is-open {
-					transform: translateX(0);
+					transform: translateX(0) !important;
+					opacity: 1;
+					visibility: visible;
 				}
 			}
 
@@ -699,7 +717,7 @@ $z-index-close-button: 100;
 		}
 
 		// Backdrop (shared with overlay)
-		&__backdrop {
+		.wp-block-elayne-mega-menu__backdrop {
 			position: fixed;
 			top: 0;
 			left: 0;
@@ -721,21 +739,42 @@ $z-index-close-button: 100;
 	// Layout Mode: Grid (Full-width multi-column)
 	&--layout-grid {
 		.wp-block-elayne-mega-menu__panel {
-			position: absolute;
-			top: 100%;
-			left: 0;
+			position: absolute !important;
+			top: 100% !important;
+			left: 0 !important;
+			right: auto !important;
 			width: 100%;
+			max-width: 100%;
 			background: #fff;
 			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 			padding: 40px;
+			transform: none !important;
 
 			// Grid container for content
-			&__content {
+			.wp-block-elayne-mega-menu__panel__content {
 				display: grid;
 				grid-template-columns: repeat(var(--grid-columns, 3), 1fr);
 				gap: 30px;
 				max-width: 1200px;
 				margin: 0 auto;
+
+				// Ensure template part content fills the grid
+				.wp-block-template-part {
+					grid-column: 1 / -1;
+					width: 100%;
+				}
+			}
+
+			// If no content wrapper, apply grid directly to template part children
+			&:not(:has(.wp-block-elayne-mega-menu__panel__content)) {
+				.wp-block-template-part {
+					display: grid;
+					grid-template-columns: repeat(var(--grid-columns, 3), 1fr);
+					gap: 30px;
+					max-width: 1200px;
+					margin: 0 auto;
+					width: 100%;
+				}
 			}
 		}
 	}

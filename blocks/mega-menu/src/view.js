@@ -8,26 +8,41 @@ import { store, getContext, getElement } from '@wordpress/interactivity';
 
 /**
  * Calculate dropdown position with collision detection
+ * Hybrid approach: flip for large overflows, nudge for small ones
  *
- * @param {HTMLElement} trigger - Trigger button element
  * @param {HTMLElement} panel - Menu panel element
  * @param {string} alignment - Dropdown alignment setting
  * @return {Object} Positioning data
  */
-function calculateDropdownPosition( trigger, panel, alignment ) {
+function calculateDropdownPosition( panel, alignment ) {
 	if ( alignment !== 'auto' ) {
 		return {};
 	}
 
-	const triggerRect = trigger.getBoundingClientRect();
-	const panelWidth = panel.offsetWidth;
+	const panelRect = panel.getBoundingClientRect();
 	const viewportWidth = window.innerWidth;
+	const overflowRight = panelRect.right - viewportWidth;
 
-	// Check if panel would overflow right edge
-	const wouldOverflowRight = triggerRect.left + panelWidth > viewportWidth;
+	// If overflow is significant (>100px), flip to right alignment
+	if ( overflowRight > 100 ) {
+		return {
+			flipHorizontal: true,
+			nudgeLeft: 0,
+		};
+	}
 
+	// If minor overflow, nudge left slightly with 20px buffer
+	if ( overflowRight > 0 ) {
+		return {
+			flipHorizontal: false,
+			nudgeLeft: overflowRight + 20,
+		};
+	}
+
+	// No overflow, keep default position
 	return {
-		flipHorizontal: wouldOverflowRight,
+		flipHorizontal: false,
+		nudgeLeft: 0,
 	};
 }
 
@@ -143,14 +158,23 @@ const { state, actions } = store( 'elayne/mega-menu', {
 						if ( trigger && panel ) {
 							// Wait for panel to be visible before calculating position
 							requestAnimationFrame( () => {
-								const { flipHorizontal } = calculateDropdownPosition(
-									trigger,
+								const { flipHorizontal, nudgeLeft } = calculateDropdownPosition(
 									panel,
 									dropdownAlignment
 								);
 
 								if ( flipHorizontal ) {
+									// Significant overflow: flip to right alignment
 									panel.classList.add( 'flip-horizontal' );
+									panel.style.left = '';
+								} else if ( nudgeLeft > 0 ) {
+									// Minor overflow: nudge left with buffer
+									panel.classList.remove( 'flip-horizontal' );
+									panel.style.left = `-${ nudgeLeft }px`;
+								} else {
+									// No overflow: reset to default
+									panel.classList.remove( 'flip-horizontal' );
+									panel.style.left = '';
 								}
 							} );
 						}
@@ -230,7 +254,10 @@ const { state, actions } = store( 'elayne/mega-menu', {
 			switch ( layoutMode ) {
 				case 'dropdown':
 					const panel = ref.querySelector( '.wp-block-elayne-mega-menu__panel' );
-					panel?.classList.remove( 'flip-horizontal' );
+					if ( panel ) {
+						panel.classList.remove( 'flip-horizontal' );
+						panel.style.left = ''; // Reset inline styles
+					}
 					break;
 
 				case 'overlay':

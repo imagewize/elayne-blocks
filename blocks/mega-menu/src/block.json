@@ -89,8 +89,8 @@
 		},
 		"dropdownAlignment": {
 			"type": "string",
-			"default": "auto",
-			"enum": [ "auto", "left", "right", "center" ]
+			"default": "left",
+			"enum": [ "left", "right", "center" ]
 		},
 		"overlayBackdropColor": {
 			"type": "string",

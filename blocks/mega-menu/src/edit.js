@@ -319,7 +319,6 @@ export default function Edit( { attributes, setAttributes } ) {
 							label={ __( 'Dropdown Alignment', 'elayne-blocks' ) }
 							value={ dropdownAlignment }
 							options={ [
-								{ label: __( 'Auto (Smart Positioning)', 'elayne-blocks' ), value: 'auto' },
 								{ label: __( 'Left', 'elayne-blocks' ), value: 'left' },
 								{ label: __( 'Right', 'elayne-blocks' ), value: 'right' },
 								{ label: __( 'Center', 'elayne-blocks' ), value: 'center' },
@@ -327,6 +326,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( value ) =>
 								setAttributes( { dropdownAlignment: value } )
 							}
+							help={ __( 'Choose how the dropdown panel aligns relative to the menu toggle button.', 'elayne-blocks' ) }
 						/>
 					) }
 

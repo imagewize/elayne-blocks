@@ -1,50 +1,10 @@
 /**
  * WordPress Interactivity API for Mega Menu Block
- * Phase 2C: Enhanced with layout-specific logic and positioning
+ * Phase 2C: Enhanced with layout-specific logic
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/interactivity-api/
  */
 import { store, getContext, getElement } from '@wordpress/interactivity';
-
-/**
- * Calculate dropdown position with collision detection
- * Hybrid approach: flip for large overflows, nudge for small ones
- *
- * @param {HTMLElement} panel - Menu panel element
- * @param {string} alignment - Dropdown alignment setting
- * @return {Object} Positioning data
- */
-function calculateDropdownPosition( panel, alignment ) {
-	if ( alignment !== 'auto' ) {
-		return {};
-	}
-
-	const panelRect = panel.getBoundingClientRect();
-	const viewportWidth = window.innerWidth;
-	const overflowRight = panelRect.right - viewportWidth;
-
-	// If overflow is significant (>100px), flip to right alignment
-	if ( overflowRight > 100 ) {
-		return {
-			flipHorizontal: true,
-			nudgeLeft: 0,
-		};
-	}
-
-	// If minor overflow, nudge left slightly with 20px buffer
-	if ( overflowRight > 0 ) {
-		return {
-			flipHorizontal: false,
-			nudgeLeft: overflowRight + 20,
-		};
-	}
-
-	// No overflow, keep default position
-	return {
-		flipHorizontal: false,
-		nudgeLeft: 0,
-	};
-}
 
 const { state, actions } = store( 'elayne/mega-menu', {
 	state: {
@@ -143,52 +103,10 @@ const { state, actions } = store( 'elayne/mega-menu', {
 		openMenu( menuOpenedOn = 'click' ) {
 			const context = getContext();
 			const { ref } = getElement();
-			const { layoutMode, dropdownAlignment } = context;
+			const { layoutMode } = context;
 
-			// Layout-specific open logic (BEFORE setting isOpen)
+			// Layout-specific open logic
 			switch ( layoutMode ) {
-				case 'dropdown':
-					// Calculate positioning for dropdown BEFORE making visible
-					if ( dropdownAlignment === 'auto' ) {
-						const panel = ref.querySelector( '.wp-block-elayne-mega-menu__panel' );
-						if ( panel ) {
-							// Temporarily make visible for measurement (without opacity)
-							panel.style.visibility = 'hidden';
-							panel.style.opacity = '0';
-							panel.classList.add( 'is-open' );
-
-							// Get measurements with panel rendered but invisible
-							const { flipHorizontal, nudgeLeft } = calculateDropdownPosition(
-								panel,
-								dropdownAlignment
-							);
-
-							// Apply positioning
-							if ( flipHorizontal ) {
-								// Significant overflow: flip to right alignment
-								panel.classList.add( 'flip-horizontal' );
-								panel.style.left = '';
-								panel.style.right = '0';
-							} else if ( nudgeLeft > 0 ) {
-								// Minor overflow: nudge left with buffer
-								panel.classList.remove( 'flip-horizontal' );
-								panel.style.left = `-${ nudgeLeft }px`;
-								panel.style.right = '';
-							} else {
-								// No overflow: reset to default
-								panel.classList.remove( 'flip-horizontal' );
-								panel.style.left = '';
-								panel.style.right = '';
-							}
-
-							// Remove temporary visibility styles
-							panel.style.visibility = '';
-							panel.style.opacity = '';
-							panel.classList.remove( 'is-open' );
-						}
-					}
-					break;
-
 				case 'overlay':
 					// Lock body scroll
 					document.body.classList.add( 'mega-menu-overlay-open' );
@@ -203,12 +121,14 @@ const { state, actions } = store( 'elayne/mega-menu', {
 					}
 					break;
 
+				case 'dropdown':
 				case 'grid':
-					// No special logic needed for grid
+					// No special logic needed for dropdown/grid
+					// Positioning is handled purely by CSS
 					break;
 			}
 
-			// Set open state AFTER positioning is calculated
+			// Set open state
 			context.isOpen = true;
 
 			// Track how menu was opened (for legacy support)
@@ -250,7 +170,6 @@ const { state, actions } = store( 'elayne/mega-menu', {
 
 		closeMenu( menuClosedOn = 'click' ) {
 			const context = getContext();
-			const { ref } = getElement();
 			const { layoutMode } = context;
 
 			// Set closed state
@@ -263,21 +182,17 @@ const { state, actions } = store( 'elayne/mega-menu', {
 
 			// Layout-specific close logic
 			switch ( layoutMode ) {
-				case 'dropdown':
-					const panel = ref.querySelector( '.wp-block-elayne-mega-menu__panel' );
-					if ( panel ) {
-						panel.classList.remove( 'flip-horizontal' );
-						panel.style.left = ''; // Reset inline styles
-						panel.style.right = ''; // Reset inline styles
-					}
-					break;
-
 				case 'overlay':
 					document.body.classList.remove( 'mega-menu-overlay-open' );
 					break;
 
 				case 'sidebar':
 					document.body.classList.remove( 'mega-menu-sidebar-open' );
+					break;
+
+				case 'dropdown':
+				case 'grid':
+					// No special cleanup needed
 					break;
 			}
 

@@ -122,9 +122,8 @@
     },
     "dropdownAlignment": {
       "type": "string",
-      "default": "auto",
+      "default": "left",
       "enum": [
-        "auto",
         "left",
         "right",
         "center"

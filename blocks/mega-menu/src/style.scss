@@ -180,6 +180,8 @@ $z-index-close-button: 100;
     }
 
     // Menu positioning - mobile-first responsiveness
+    // NOTE: These legacy classes (menu-justified-*) apply to the OLD panel class (.elayne-mega-menu)
+    // The new panel class (.wp-block-elayne-mega-menu__panel) uses .align-* classes instead
     &.menu-justified-left {
         left: -1px;
         right: auto;
@@ -206,6 +208,21 @@ $z-index-close-button: 100;
         @media (max-width: 768px) {
             @include mobile-menu-full-width;
             transform: none;
+        }
+    }
+
+    // IMPORTANT: For new panel system, prevent legacy classes from interfering
+    // The .align-* classes on .wp-block-elayne-mega-menu__panel should take precedence
+    &.wp-block-elayne-mega-menu__panel {
+        // Override legacy positioning when using new alignment system
+        &.align-left,
+        &.align-right,
+        &.align-center,
+        &.align-auto {
+            // Clear any conflicting legacy positioning
+            &.menu-justified-center {
+                // The .align-* class will set its own transform
+            }
         }
     }
 }
@@ -560,34 +577,29 @@ $z-index-close-button: 100;
 			position: absolute;
 			top: 100%;
 			min-width: 300px;
-			max-width: 800px;
+			max-width: min(800px, calc(100vw - 40px)); // Prevent viewport overflow
 			background: #fff;
 			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 			border-radius: 4px;
 			padding: 20px;
 
-			// Alignment variants
+			// Alignment variants - CSS-only, no JavaScript needed
 			&.align-left {
 				left: 0;
+				right: auto;
+				transform: none !important; // Override any legacy transforms
 			}
 
 			&.align-right {
+				left: auto;
 				right: 0;
+				transform: none !important; // Override any legacy transforms
 			}
 
 			&.align-center {
 				left: 50%;
-				transform: translateX(-50%);
-			}
-
-			// Auto-positioning (handled by JS, but base styles here)
-			&.align-auto {
-				left: 0;
-
-				&.flip-horizontal {
-					left: auto;
-					right: 0;
-				}
+				right: auto;
+				transform: translateX(-50%) !important; // Center with transform
 			}
 		}
 	}

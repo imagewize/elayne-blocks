@@ -578,11 +578,12 @@ body.mega-menu-overlay-open {
 	}
 
 	// Full width overrides alignment - needs higher specificity
+	// Uses viewport width instead of percentage for true full-width
 	&.mm-panel-width-full,
 	&.mm-panel-width-full.align-left,
 	&.mm-panel-width-full.align-right,
 	&.mm-panel-width-full.align-center {
-		width: 100%;
+		width: 95vw;
 		max-width: 95vw !important;
 		left: 50% !important;
 		right: auto !important;

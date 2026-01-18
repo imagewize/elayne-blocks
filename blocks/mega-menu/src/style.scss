@@ -410,11 +410,15 @@ $z-index-close-button: 100;
 			position: absolute;
 			top: 100%;
 			min-width: 300px;
-			max-width: min(800px, calc(100vw - 40px)); // Prevent viewport overflow
 			background: #fff;
 			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 			border-radius: 4px;
 			padding: 20px;
+
+			// Default max-width (will be overridden by panel width classes)
+			&:not([class*="mm-panel-width-"]) {
+				max-width: min(800px, calc(100vw - 40px));
+			}
 
 			// Alignment variants - CSS-only, no JavaScript needed
 			&.align-left {
@@ -561,15 +565,15 @@ body.mega-menu-overlay-open {
 // Panel Width Presets (for panel container styling)
 .wp-block-elayne-mega-menu__panel {
 	&.mm-panel-width-content {
-		max-width: var(--wp--style--global--content-size, 800px);
+		max-width: var(--wp--style--global--content-size, 800px) !important;
 	}
 
 	&.mm-panel-width-wide {
-		max-width: var(--wp--style--global--wide-size, 1200px);
+		max-width: var(--wp--style--global--wide-size, 1200px) !important;
 	}
 
 	&.mm-panel-width-full {
-		max-width: 100%;
+		max-width: 100% !important;
 		width: 100%;
 	}
 

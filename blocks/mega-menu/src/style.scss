@@ -516,16 +516,21 @@ body.mega-menu-overlay-open {
 
 @media (max-width: 768px) {
 	// Dropdown becomes full-screen on mobile
-	.wp-block-elayne-mega-menu--layout-dropdown {
+	// Needs !important to override WordPress responsive navigation container positioning
+	.wp-block-elayne-mega-menu--layout-dropdown,
+	.wp-block-navigation__responsive-container .wp-block-elayne-mega-menu--layout-dropdown,
+	.wp-block-navigation__responsive-container-content .wp-block-elayne-mega-menu--layout-dropdown {
 		.wp-block-elayne-mega-menu__panel {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100vw;
-			height: 100vh;
-			max-width: none;
-			border-radius: 0;
-			padding: 60px 20px 20px;
+			position: fixed !important;
+			top: 0 !important;
+			left: 0 !important;
+			right: auto !important;
+			width: 100vw !important;
+			height: 100vh !important;
+			max-width: none !important;
+			border-radius: 0 !important;
+			padding: 60px 20px 20px !important;
+			transform: none !important;
 		}
 	}
 

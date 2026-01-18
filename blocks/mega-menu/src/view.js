@@ -141,15 +141,18 @@ const { state, actions } = store( 'elayne/mega-menu', {
 						const trigger = ref.querySelector( '.wp-block-elayne-mega-menu__trigger' );
 						const panel = ref.querySelector( '.wp-block-elayne-mega-menu__panel' );
 						if ( trigger && panel ) {
-							const { flipHorizontal } = calculateDropdownPosition(
-								trigger,
-								panel,
-								dropdownAlignment
-							);
+							// Wait for panel to be visible before calculating position
+							requestAnimationFrame( () => {
+								const { flipHorizontal } = calculateDropdownPosition(
+									trigger,
+									panel,
+									dropdownAlignment
+								);
 
-							if ( flipHorizontal ) {
-								panel.classList.add( 'flip-horizontal' );
-							}
+								if ( flipHorizontal ) {
+									panel.classList.add( 'flip-horizontal' );
+								}
+							} );
 						}
 					}
 					break;

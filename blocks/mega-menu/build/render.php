@@ -30,7 +30,6 @@ $elayne_blocks_enable_hover       = $attributes['enableHoverActivation'] ?? fals
 $elayne_blocks_backdrop_blur      = $attributes['backdropBlur'] ?? true;
 
 // Panel styling attributes.
-$elayne_blocks_panel_bg_color      = esc_attr( $attributes['panelBackgroundColor'] ?? '' );
 $elayne_blocks_panel_box_shadow    = esc_attr( $attributes['panelBoxShadow'] ?? 'default' );
 $elayne_blocks_panel_border_radius = absint( $attributes['panelBorderRadius'] ?? 4 );
 $elayne_blocks_panel_border_width  = absint( $attributes['panelBorderWidth'] ?? 0 );
@@ -147,11 +146,6 @@ if ( $elayne_blocks_label_color ) {
 
 	// Build panel inline styles.
 	$elayne_blocks_panel_styles = array();
-
-	// Panel background color.
-	if ( ! empty( $elayne_blocks_panel_bg_color ) ) {
-		$elayne_blocks_panel_styles[] = 'background-color: ' . $elayne_blocks_panel_bg_color;
-	}
 
 	// Border radius.
 	if ( $elayne_blocks_panel_border_radius > 0 ) {

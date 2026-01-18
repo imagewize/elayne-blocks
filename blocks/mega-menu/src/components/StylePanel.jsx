@@ -6,7 +6,6 @@ import {
 	RangeControl,
 	ToggleControl,
 } from '@wordpress/components';
-import { ColorPalette } from '@wordpress/block-editor';
 
 /**
  * StylePanel Component
@@ -22,7 +21,6 @@ import { ColorPalette } from '@wordpress/block-editor';
  */
 export default function StylePanel({ section, attributes, setAttributes, layoutMode }) {
 	const {
-		panelBackgroundColor,
 		panelBoxShadow,
 		panelBorderRadius,
 		panelBorderWidth,
@@ -33,17 +31,9 @@ export default function StylePanel({ section, attributes, setAttributes, layoutM
 	// Colors Section
 	if (section === 'colors') {
 		return (
-			<>
-				<BaseControl
-					label={__('Panel Background Color', 'elayne')}
-					help={__('Background color for the panel container. Content colors are controlled by theme and template part.', 'elayne')}
-				>
-					<ColorPalette
-						value={panelBackgroundColor}
-						onChange={(value) => setAttributes({ panelBackgroundColor: value })}
-					/>
-				</BaseControl>
-			</>
+			<p className="components-base-control__help">
+				{__('Background colors and content styling are controlled within the template part. Use the Site Editor to customize your mega menu content appearance.', 'elayne-blocks')}
+			</p>
 		);
 	}
 

@@ -580,6 +580,8 @@ body.mega-menu-overlay-open {
 	&.mm-panel-width-full {
 		width: 100%;
 		max-width: 95vw !important;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 
 	&.mm-panel-width-custom {

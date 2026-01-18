@@ -409,16 +409,12 @@ $z-index-close-button: 100;
 		.wp-block-elayne-mega-menu__panel {
 			position: absolute;
 			top: 100%;
-			min-width: 300px;
+			width: max-content;
+			max-width: calc(100vw - 40px);
 			background: #fff;
 			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 			border-radius: 4px;
 			padding: 20px;
-
-			// Default max-width (will be overridden by panel width classes)
-			&:not([class*="mm-panel-width-"]) {
-				max-width: min(800px, calc(100vw - 40px));
-			}
 
 			// Alignment variants - CSS-only, no JavaScript needed
 			&.align-left {

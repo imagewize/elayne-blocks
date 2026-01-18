@@ -43,8 +43,8 @@
         }
     },
     "scripts": {
-        "phpcs": "phpcs --standard=WordPress .",
-        "phpcbf": "phpcbf --standard=WordPress .",
+        "phpcs": "phpcs -d memory_limit=512M",
+        "phpcbf": "phpcbf -d memory_limit=512M",
         "test": "phpunit"
     }
 }

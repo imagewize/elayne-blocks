@@ -107,7 +107,7 @@ add_action(
 add_action(
 	'init',
 	function () {
-		// Register mega menu template parts as patterns
+		// Register mega menu template parts as patterns.
 		if ( function_exists( 'register_block_pattern' ) ) {
 			$template_parts_dir = ELAYNE_BLOCKS_PLUGIN_DIR . 'patterns';
 
@@ -124,7 +124,7 @@ add_action(
 						)
 					);
 
-					// Get the content
+					// Get the content.
 					ob_start();
 					include $template_file;
 					$content = ob_get_clean();
@@ -133,12 +133,12 @@ add_action(
 						? $headers['slug']
 						: 'elayne-blocks/' . basename( $template_file, '.php' );
 
-					// Register as block pattern with templateTypes and menus category
+					// Register as block pattern with templateTypes and menus category.
 					register_block_pattern(
 						$slug,
 						array(
-							'title'         => $headers['title'] ?: basename( $template_file, '.php' ),
-							'description'   => $headers['description'] ?: '',
+							'title'         => ! empty( $headers['title'] ) ? $headers['title'] : basename( $template_file, '.php' ),
+							'description'   => ! empty( $headers['description'] ) ? $headers['description'] : '',
 							'content'       => $content,
 							'categories'    => array( 'menus' ),
 							'templateTypes' => array( 'template-part-menu' ),
@@ -158,9 +158,9 @@ add_action(
 add_action(
 	'init',
 	function () {
-		// Register pattern categories
+		// Register pattern categories.
 		if ( function_exists( 'register_block_pattern_category' ) ) {
-			// Elayne Blocks category for carousel patterns
+			// Elayne Blocks category for carousel patterns.
 			register_block_pattern_category(
 				'elayne-blocks',
 				array(
@@ -169,7 +169,7 @@ add_action(
 				)
 			);
 
-			// Menus category for mega menu patterns
+			// Menus category for mega menu patterns.
 			register_block_pattern_category(
 				'menus',
 				array(
@@ -179,10 +179,10 @@ add_action(
 			);
 		}
 
-		// Note: Mega menu patterns (mega-menu-*.php) are registered separately with 'menus' category
-		// This section is reserved for future non-template-part patterns
+		// Note: Mega menu patterns (mega-menu-*.php) are registered separately with 'menus' category.
+		// This section is reserved for future non-template-part patterns.
 
-		// Pattern 1: Hero Carousel
+		// Pattern 1: Hero Carousel.
 		if ( function_exists( 'register_block_pattern' ) ) {
 			register_block_pattern(
 				'elayne-blocks/hero-carousel',
@@ -230,7 +230,7 @@ add_action(
 				)
 			);
 
-			// Pattern 2: Testimonial Carousel
+			// Pattern 2: Testimonial Carousel.
 			register_block_pattern(
 				'elayne-blocks/testimonial-carousel',
 				array(
@@ -277,7 +277,7 @@ add_action(
 				)
 			);
 
-			// Pattern 3: Product Gallery with Thumbnails
+			// Pattern 3: Product Gallery with Thumbnails.
 			register_block_pattern(
 				'elayne-blocks/product-gallery',
 				array(
@@ -312,7 +312,7 @@ add_action(
 				)
 			);
 
-			// Pattern 4: Portfolio Showcase
+			// Pattern 4: Portfolio Showcase.
 			register_block_pattern(
 				'elayne-blocks/portfolio-showcase',
 				array(
@@ -353,7 +353,7 @@ add_action(
 				)
 			);
 
-			// Pattern 5: Team Members
+			// Pattern 5: Team Members.
 			register_block_pattern(
 				'elayne-blocks/team-members',
 				array(

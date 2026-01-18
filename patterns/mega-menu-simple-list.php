@@ -1,0 +1,22 @@
+<?php
+/**
+ * Title: Mega Menu - Simple List
+ * Slug: elayne-blocks/mega-menu-simple-list
+ * Categories: elayne-blocks
+ * Block Types: core/template-part
+ * Description: Clean two column list of links
+ */
+?>
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:list -->
+<ul><li><a href="#">About Us</a></li><li><a href="#">Our Team</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Blog</a></li></ul>
+<!-- /wp:list --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:list -->
+<ul><li><a href="#">Contact</a></li><li><a href="#">Support</a></li><li><a href="#">FAQ</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul>
+<!-- /wp:list --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->

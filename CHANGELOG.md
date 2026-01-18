@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-01-18
+
+### Added
+- Mega menu block now supports multiple layout modes: dropdown, overlay, sidebar, and grid
+- Mega menu template part integration using WordPress template parts for content management
+- Six pre-built mega menu patterns (simple list, three column, icon grid, featured content, image links, multi-column)
+- Mega menu animation controls with fade, slide, scale, and slide-fade effects
+- Mega menu icon support with Dashicons picker and custom SVG options
+- Mega menu hover activation option for dropdown and grid modes
+- Mega menu styling controls including box shadow, border radius, border width/color, and backdrop blur
+- Mega menu responsive controls with customizable mobile breakpoint and mobile mode toggle
+- Mega menu dropdown alignment options (left, right, center)
+- Mega menu README documentation for usage and theme integration
+
+### Changed
+- Mega menu block completely rewritten with hybrid content system using template parts instead of InnerBlocks
+- Mega menu editor interface reorganized with improved layout picker and animation controls
+- Mega menu now requires theme integration with 'menu' template part area registration
+- Mega menu positioning system improved with better dropdown, overlay, sidebar, and grid calculations
+- Mega menu mobile behavior enhanced with responsive breakpoint support
+
+### Fixed
+- Mega menu mobile positioning now correctly handles viewport constraints
+- Mega menu template part selection properly scoped to theme namespace
+- Mega menu Interactivity API initialization improved for reliable state management
+
+### Documentation
+- Added comprehensive mega menu README with usage guide and theme integration requirements
+- Updated CLAUDE.md with detailed mega menu architecture and template part workflow
+- Added multiple planning documents for mega menu enhancement phases
+
 ## [2.3.1] - 2026-01-16
 
 ### Documentation

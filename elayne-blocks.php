@@ -3,7 +3,7 @@
  * Plugin Name: Elayne Blocks
  * Plugin URI: https://github.com/imagewize/elayne-blocks
  * Description: Custom blocks for the Elayne WordPress theme including Mega Menu, Carousel, and Slide blocks
- * Version: 2.3.1
+ * Version: 2.4.0
  * Requires at least: 6.7
  * Requires PHP: 7.3
  * Author: Jasper Frumau
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'ELAYNE_BLOCKS_VERSION', '2.3.1' );
+define( 'ELAYNE_BLOCKS_VERSION', '2.4.0' );
 define( 'ELAYNE_BLOCKS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELAYNE_BLOCKS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
@@ -102,23 +102,87 @@ add_action(
 
 
 /**
- * Register block patterns
+ * Register mega menu patterns
  */
 add_action(
 	'init',
 	function () {
-		// Register pattern category for Elayne Blocks
+		// Register mega menu template parts as patterns.
+		if ( function_exists( 'register_block_pattern' ) ) {
+			$template_parts_dir = ELAYNE_BLOCKS_PLUGIN_DIR . 'patterns';
+
+			if ( is_dir( $template_parts_dir ) ) {
+				$template_part_files = glob( $template_parts_dir . '/mega-menu-*.php' );
+
+				foreach ( $template_part_files as $template_file ) {
+					$headers = get_file_data(
+						$template_file,
+						array(
+							'title'       => 'Title',
+							'slug'        => 'Slug',
+							'description' => 'Description',
+						)
+					);
+
+					// Get the content.
+					ob_start();
+					include $template_file;
+					$content = ob_get_clean();
+
+					$slug = ! empty( $headers['slug'] )
+						? $headers['slug']
+						: 'elayne-blocks/' . basename( $template_file, '.php' );
+
+					// Register as block pattern with templateTypes and menus category.
+					register_block_pattern(
+						$slug,
+						array(
+							'title'         => ! empty( $headers['title'] ) ? $headers['title'] : basename( $template_file, '.php' ),
+							'description'   => ! empty( $headers['description'] ) ? $headers['description'] : '',
+							'content'       => $content,
+							'categories'    => array( 'menus' ),
+							'templateTypes' => array( 'template-part-menu' ),
+							'blockTypes'    => array( 'core/template-part/menu' ),
+						)
+					);
+				}
+			}
+		}
+	},
+	10
+);
+
+/**
+ * Register block patterns category and load pattern files
+ */
+add_action(
+	'init',
+	function () {
+		// Register pattern categories.
 		if ( function_exists( 'register_block_pattern_category' ) ) {
+			// Elayne Blocks category for carousel patterns.
 			register_block_pattern_category(
 				'elayne-blocks',
 				array(
 					'label'       => __( 'Elayne Blocks', 'elayne-blocks' ),
-					'description' => __( 'Pre-configured patterns for Elayne Blocks carousel and other blocks.', 'elayne-blocks' ),
+					'description' => __( 'Pre-configured patterns for Elayne Blocks carousel.', 'elayne-blocks' ),
+				)
+			);
+
+			// Menus category for mega menu patterns.
+			register_block_pattern_category(
+				'menus',
+				array(
+					'label'       => __( 'Menus', 'elayne-blocks' ),
+					'description' => __( 'Mega menu patterns for navigation template parts.', 'elayne-blocks' ),
 				)
 			);
 		}
 
-		// Pattern 1: Hero Carousel
+		// Note: Mega menu patterns (mega-menu-*.php) are registered separately with 'menus' category.
+		// This section is reserved for future non-template-part patterns.
+
+		// Pattern 1: Hero Carousel.
 		if ( function_exists( 'register_block_pattern' ) ) {
 			register_block_pattern(
 				'elayne-blocks/hero-carousel',
@@ -166,7 +230,7 @@ add_action(
 				)
 			);
 
-			// Pattern 2: Testimonial Carousel
+			// Pattern 2: Testimonial Carousel.
 			register_block_pattern(
 				'elayne-blocks/testimonial-carousel',
 				array(
@@ -213,7 +277,7 @@ add_action(
 				)
 			);
 
-			// Pattern 3: Product Gallery with Thumbnails
+			// Pattern 3: Product Gallery with Thumbnails.
 			register_block_pattern(
 				'elayne-blocks/product-gallery',
 				array(
@@ -248,7 +312,7 @@ add_action(
 				)
 			);
 
-			// Pattern 4: Portfolio Showcase
+			// Pattern 4: Portfolio Showcase.
 			register_block_pattern(
 				'elayne-blocks/portfolio-showcase',
 				array(
@@ -289,7 +353,7 @@ add_action(
 				)
 			);
 
-			// Pattern 5: Team Members
+			// Pattern 5: Team Members.
 			register_block_pattern(
 				'elayne-blocks/team-members',
 				array(

@@ -52,14 +52,14 @@ $z-index-close-button: 100;
                 margin-top: 0.075em;
                 width: inherit;
                 transition: all $transition-speed linear;
-                transform: rotate(-90deg);
+                transform: rotate(0deg);
             }
         }
 
         // Expanded state
         &[aria-expanded="true"] {
             .wp-block-elayne-mega-menu__toggle-icon svg {
-                transform: rotate(0deg);
+                transform: rotate(180deg);
             }
 
             & ~ .elayne-mega-menu,
@@ -88,38 +88,6 @@ $z-index-close-button: 100;
     z-index: $z-index-menu;
     background: var(--wp--preset--color--base, #ffffff);
     border-radius: $border-radius;
-
-    // Width variants
-    &.menu-width-content {
-        max-width: min(var(--wp--style--global--content-size, 1200px), 95vw);
-        width: max-content;
-        min-width: max(400px, 30vw);
-    }
-
-    &.menu-width-wide {
-        max-width: min(var(--wp--style--global--wide-size, 1600px), 95vw);
-        width: max-content;
-        min-width: max(500px, 40vw);
-    }
-
-    &.menu-width-full {
-        max-width: 95vw;
-        width: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    &.menu-width-auto {
-        width: max-content;
-        max-width: min(90vw, 800px);
-        min-width: 320px;
-    }
-
-    &.menu-width-flexible {
-        width: max-content;
-        max-width: 85vw;
-        min-width: max(350px, 25vw);
-    }
 
     // Close button
     .menu-container__close-button {
@@ -179,35 +147,6 @@ $z-index-close-button: 100;
         }
     }
 
-    // Menu positioning - mobile-first responsiveness
-    &.menu-justified-left {
-        left: -1px;
-        right: auto;
-
-        @media (max-width: 768px) {
-            @include mobile-menu-full-width;
-        }
-    }
-
-    &.menu-justified-right {
-        left: auto;
-        right: -1px;
-
-        @media (max-width: 768px) {
-            @include mobile-menu-full-width;
-        }
-    }
-
-    &.menu-justified-center {
-        left: 50%;
-        transform: translateX(-50%);
-        right: auto;
-
-        @media (max-width: 768px) {
-            @include mobile-menu-full-width;
-            transform: none;
-        }
-    }
 }
 
 // Mobile navigation container overrides
@@ -242,4 +181,433 @@ $z-index-close-button: 100;
     height: 1px;
     width: 1px;
     overflow: hidden;
+}
+
+// ============================================================
+// PHASE 2: LAYOUT MODES & ADVANCED FEATURES
+// ============================================================
+
+// Icon positioning in toggle button
+.mm-icon-position-left {
+    .mm-menu-icon {
+        margin-right: 0.5em;
+    }
+}
+
+.mm-icon-position-right {
+    .mm-menu-icon {
+        margin-left: 0.5em;
+    }
+}
+
+.mm-icon-position-top {
+    .mm-icon-above {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25em;
+    }
+}
+
+// Layout Mode: Dropdown (Enhanced - default behavior)
+.wp-block-elayne-mega-menu.mm-layout-dropdown {
+    // Uses existing dropdown styles as base
+    // No additional overrides needed for default dropdown
+}
+
+// Layout Mode: Overlay (Legacy - only applies when NOT using new panel system)
+.wp-block-elayne-mega-menu.mm-layout-overlay {
+    .mm-overlay-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+
+        &.mm-backdrop-blur {
+            backdrop-filter: blur(4px);
+        }
+    }
+
+    .elayne-mega-menu:not(.wp-block-elayne-mega-menu__panel),
+    .wp-block-elayne-mega-menu__menu-container:not(.wp-block-elayne-mega-menu__panel) {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+        max-width: 90vw;
+        max-height: 90vh;
+        overflow-y: auto;
+        z-index: 1000;
+        width: auto;
+    }
+
+    &.wp-block-navigation-item[aria-expanded="true"] {
+        .mm-overlay-backdrop {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    // Close button more prominent in overlay
+    .menu-container__close-button {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    }
+}
+
+
+// ============================================================
+// ANIMATION SYSTEM
+// ============================================================
+
+.mm-animations-enabled {
+    // Animation: Fade
+    &.mm-animation-fade {
+        .elayne-mega-menu,
+        .wp-block-elayne-mega-menu__menu-container {
+            transition: opacity var(--mm-animation-speed, 300ms) ease,
+                        visibility var(--mm-animation-speed, 300ms) ease;
+        }
+    }
+
+    // Animation: Slide
+    &.mm-animation-slide {
+        .elayne-mega-menu,
+        .wp-block-elayne-mega-menu__menu-container {
+            transition: transform var(--mm-animation-speed, 300ms) ease,
+                        opacity var(--mm-animation-speed, 300ms) ease,
+                        visibility var(--mm-animation-speed, 300ms) ease;
+            transform: translateY(-10px);
+        }
+
+        &.wp-block-navigation-item[aria-expanded="true"] {
+            .elayne-mega-menu,
+            .wp-block-elayne-mega-menu__menu-container {
+                transform: translateY(0);
+            }
+        }
+
+        // Override for overlay mode
+        &.mm-layout-overlay {
+            .elayne-mega-menu,
+            .wp-block-elayne-mega-menu__menu-container {
+                transform: translate(-50%, -55%) !important;
+            }
+
+            &.wp-block-navigation-item[aria-expanded="true"] {
+                .elayne-mega-menu,
+                .wp-block-elayne-mega-menu__menu-container {
+                    transform: translate(-50%, -50%) !important;
+                }
+            }
+        }
+    }
+
+    // Animation: Scale
+    &.mm-animation-scale {
+        .elayne-mega-menu,
+        .wp-block-elayne-mega-menu__menu-container {
+            transition: transform var(--mm-animation-speed, 300ms) ease,
+                        opacity var(--mm-animation-speed, 300ms) ease,
+                        visibility var(--mm-animation-speed, 300ms) ease;
+            transform-origin: top center;
+            transform: scale(0.95);
+        }
+
+        &.wp-block-navigation-item[aria-expanded="true"] {
+            .elayne-mega-menu,
+            .wp-block-elayne-mega-menu__menu-container {
+                transform: scale(1);
+            }
+        }
+
+        // Override for overlay mode
+        &.mm-layout-overlay {
+            .elayne-mega-menu,
+            .wp-block-elayne-mega-menu__menu-container {
+                transform: translate(-50%, -50%) scale(0.95) !important;
+                transform-origin: center;
+            }
+
+            &.wp-block-navigation-item[aria-expanded="true"] {
+                .elayne-mega-menu,
+                .wp-block-elayne-mega-menu__menu-container {
+                    transform: translate(-50%, -50%) scale(1) !important;
+                }
+            }
+        }
+    }
+
+    // Animation: Slide + Fade
+    &.mm-animation-slidefade {
+        .elayne-mega-menu,
+        .wp-block-elayne-mega-menu__menu-container {
+            transition: transform var(--mm-animation-speed, 300ms) ease,
+                        opacity var(--mm-animation-speed, 300ms) ease,
+                        visibility var(--mm-animation-speed, 300ms) ease;
+            transform: translateY(-10px);
+            opacity: 0;
+        }
+
+        &.wp-block-navigation-item[aria-expanded="true"] {
+            .elayne-mega-menu,
+            .wp-block-elayne-mega-menu__menu-container {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        // Override for overlay mode
+        &.mm-layout-overlay {
+            .elayne-mega-menu,
+            .wp-block-elayne-mega-menu__menu-container {
+                transform: translate(-50%, -55%) !important;
+            }
+
+            &.wp-block-navigation-item[aria-expanded="true"] {
+                .elayne-mega-menu,
+                .wp-block-elayne-mega-menu__menu-container {
+                    transform: translate(-50%, -50%) !important;
+                }
+            }
+        }
+    }
+}
+
+// ============================================================
+// PHASE 2C: ENHANCED LAYOUT SYSTEM
+// ============================================================
+
+.wp-block-elayne-mega-menu {
+	// Base panel styles (shared across all layouts)
+	&__panel {
+		position: absolute;
+		z-index: 1000;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.3s ease, visibility 0.3s ease;
+
+		&.is-open {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	// Layout Mode: Dropdown (Enhanced)
+	&--layout-dropdown {
+		.wp-block-elayne-mega-menu__panel {
+			position: absolute;
+			top: 100%;
+			width: max-content;
+			max-width: calc(100vw - 40px);
+			background: #fff;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+			border-radius: 4px;
+			padding: 20px;
+
+			// Alignment variants - CSS-only, no JavaScript needed
+			&.align-left {
+				left: 0;
+				right: auto;
+				transform: none !important; // Override any legacy transforms
+			}
+
+			&.align-right {
+				left: auto;
+				right: 0;
+				transform: none !important; // Override any legacy transforms
+			}
+
+			&.align-center {
+				left: 50%;
+				right: auto;
+				transform: translateX(-50%) !important; // Center with transform
+			}
+		}
+	}
+
+	// Layout Mode: Overlay (Full viewport coverage)
+	&--layout-overlay {
+		.wp-block-elayne-mega-menu__panel {
+			position: fixed !important;
+			top: 0 !important;
+			left: 0 !important;
+			right: auto !important;
+			width: 100vw;
+			height: 100vh;
+			background: #fff;
+			overflow-y: auto;
+			padding: 60px 40px 40px;
+			transform: none !important;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.3s ease, visibility 0.3s ease;
+
+			&.is-open {
+				opacity: 1;
+				visibility: visible;
+			}
+
+			// Close button using ::before pseudo-element
+			&::before {
+				content: '×';
+				position: absolute;
+				top: 20px;
+				right: 20px;
+				font-size: 40px;
+				line-height: 1;
+				cursor: pointer;
+				color: #333;
+				transition: color 0.2s ease;
+
+				&:hover {
+					color: #000;
+				}
+			}
+		}
+
+		// Backdrop
+		.wp-block-elayne-mega-menu__backdrop {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			z-index: 999;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.3s ease, visibility 0.3s ease;
+
+			&.is-visible {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+
+	// Hover activation state
+	&.has-hover-activation {
+		.wp-block-elayne-mega-menu__trigger:hover ~ .wp-block-elayne-mega-menu__panel {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+}
+
+// Body scroll lock (when overlay open)
+body.mega-menu-overlay-open {
+	overflow: hidden;
+}
+
+// ============================================================
+// RESPONSIVE BEHAVIOR
+// ============================================================
+
+@media (max-width: 768px) {
+	// Dropdown becomes full-screen on mobile
+	// Needs !important to override WordPress responsive navigation container positioning
+	.wp-block-elayne-mega-menu--layout-dropdown,
+	.wp-block-navigation__responsive-container .wp-block-elayne-mega-menu--layout-dropdown,
+	.wp-block-navigation__responsive-container-content .wp-block-elayne-mega-menu--layout-dropdown {
+		.wp-block-elayne-mega-menu__panel {
+			position: fixed !important;
+			top: 0 !important;
+			left: 0 !important;
+			right: auto !important;
+			width: 100vw !important;
+			height: 100vh !important;
+			max-width: none !important;
+			border-radius: 0 !important;
+			padding: 60px 20px 20px !important;
+			transform: none !important;
+		}
+	}
+
+	// Overlay takes full width on mobile
+	.wp-block-elayne-mega-menu.mm-layout-overlay {
+		.elayne-mega-menu,
+		.wp-block-elayne-mega-menu__menu-container {
+			max-width: 100vw;
+			width: 100vw;
+		}
+	}
+}
+
+// ============================================================
+// ACCESSIBILITY ENHANCEMENTS
+// ============================================================
+
+// Focus trap styling
+.wp-block-elayne-mega-menu__panel {
+	&:focus {
+		outline: 2px solid #007cba;
+		outline-offset: 2px;
+	}
+
+	// Focus visible for keyboard navigation
+	a:focus-visible,
+	button:focus-visible {
+		outline: 2px solid #007cba;
+		outline-offset: 2px;
+	}
+}
+
+
+// Box Shadow Presets (for panel container)
+.wp-block-elayne-mega-menu__panel {
+	&.mm-shadow-none {
+		box-shadow: none !important;
+	}
+
+	&.mm-shadow-small {
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+	}
+
+	&.mm-shadow-medium {
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+	}
+
+	&.mm-shadow-large {
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+	}
+
+	&.mm-shadow-default {
+		// Uses existing box-shadow from base styles
+	}
+}
+
+// Backdrop Blur Support (overlay only)
+.wp-block-elayne-mega-menu__panel.mm-backdrop-blur-enabled {
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+// RTL Support
+[dir="rtl"] {
+	.wp-block-elayne-mega-menu {
+		&--layout-dropdown {
+			.wp-block-elayne-mega-menu__panel {
+				&.align-left {
+					left: auto;
+					right: 0;
+				}
+
+				&.align-right {
+					right: auto;
+					left: 0;
+				}
+			}
+		}
+	}
 }

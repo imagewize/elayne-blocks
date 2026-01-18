@@ -37,7 +37,7 @@ jobs:
           ls -la dist/elayne-blocks/
 
       - name: Run WordPress Plugin Check
-        uses: wordpress/plugin-check-action@v1
+        uses: wordpress/plugin-check-action@v1.1.5
         with:
           build-dir: './dist/elayne-blocks'
           categories: 'plugin_repo'

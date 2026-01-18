@@ -63,3 +63,4 @@ tests/screenshots/
 ehthumbs.db
 Thumbs.db
 create-pr.sh
+.playwright-mcp/

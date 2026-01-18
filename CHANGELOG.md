@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Mega menu README documentation for usage and theme integration
 
 ### Changed
-- Mega menu block completely rewritten with hybrid content system using template parts instead of InnerBlocks
+- Mega menu block enhanced with additional layout modes, patterns, and improved editor controls
 - Mega menu editor interface reorganized with improved layout picker and animation controls
 - Mega menu now requires theme integration with 'menu' template part area registration
 - Mega menu positioning system improved with better dropdown, overlay, sidebar, and grid calculations

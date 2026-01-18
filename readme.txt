@@ -134,7 +134,7 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 * Added hover activation option for dropdown and grid modes
 * Added styling controls including box shadow, border radius, border width/color, and backdrop blur
 * Added responsive controls with customizable mobile breakpoint
-* Mega menu block completely rewritten with hybrid content system using template parts
+* Mega menu block enhanced with additional layout modes, patterns, and improved editor controls
 * Improved mega menu positioning system for all layout modes
 * Fixed mega menu mobile positioning and viewport constraints
 * Documentation: Added comprehensive mega menu README with usage guide and theme integration requirements

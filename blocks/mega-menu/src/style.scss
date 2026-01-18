@@ -89,38 +89,6 @@ $z-index-close-button: 100;
     background: var(--wp--preset--color--base, #ffffff);
     border-radius: $border-radius;
 
-    // Width variants
-    &.menu-width-content {
-        max-width: min(var(--wp--style--global--content-size, 1200px), 95vw);
-        width: max-content;
-        min-width: max(400px, 30vw);
-    }
-
-    &.menu-width-wide {
-        max-width: min(var(--wp--style--global--wide-size, 1600px), 95vw);
-        width: max-content;
-        min-width: max(500px, 40vw);
-    }
-
-    &.menu-width-full {
-        max-width: 95vw;
-        width: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    &.menu-width-auto {
-        width: max-content;
-        max-width: min(90vw, 800px);
-        min-width: 320px;
-    }
-
-    &.menu-width-flexible {
-        width: max-content;
-        max-width: 85vw;
-        min-width: max(350px, 25vw);
-    }
-
     // Close button
     .menu-container__close-button {
         align-items: center;
@@ -179,52 +147,6 @@ $z-index-close-button: 100;
         }
     }
 
-    // Menu positioning - mobile-first responsiveness
-    // NOTE: These legacy classes (menu-justified-*) apply to the OLD panel class (.elayne-mega-menu)
-    // The new panel class (.wp-block-elayne-mega-menu__panel) uses .align-* classes instead
-    &.menu-justified-left {
-        left: -1px;
-        right: auto;
-
-        @media (max-width: 768px) {
-            @include mobile-menu-full-width;
-        }
-    }
-
-    &.menu-justified-right {
-        left: auto;
-        right: -1px;
-
-        @media (max-width: 768px) {
-            @include mobile-menu-full-width;
-        }
-    }
-
-    &.menu-justified-center {
-        left: 50%;
-        transform: translateX(-50%);
-        right: auto;
-
-        @media (max-width: 768px) {
-            @include mobile-menu-full-width;
-            transform: none;
-        }
-    }
-
-    // IMPORTANT: For new panel system, prevent legacy classes from interfering
-    // The .align-* classes on .wp-block-elayne-mega-menu__panel should take precedence
-    &.wp-block-elayne-mega-menu__panel {
-        // Override legacy positioning when using new alignment system
-        &.align-left,
-        &.align-right,
-        &.align-center,
-        &.align-auto {
-            // Clear any conflicting legacy positioning
-            &.menu-justified-center {
-                // The .align-* class will set its own transform
-            }
-        }
-    }
 }
 
 // Mobile navigation container overrides
@@ -323,14 +245,6 @@ $z-index-close-button: 100;
         overflow-y: auto;
         z-index: 1000;
         width: auto;
-
-        // Override width classes for overlay
-        &.menu-width-content,
-        &.menu-width-wide,
-        &.menu-width-full {
-            width: max-content;
-            max-width: min(90vw, 1200px);
-        }
     }
 
     &.wp-block-navigation-item[aria-expanded="true"] {

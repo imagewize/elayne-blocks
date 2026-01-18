@@ -23,21 +23,7 @@ import {
 	RangeControl,
 	ToolbarGroup,
 	ToolbarButton,
-	__experimentalHStack as HStack,
-	__experimentalToggleGroupControl as ToggleGroupControl,
-	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
 } from '@wordpress/components';
-import {
-	alignNone,
-	justifyLeft,
-	justifyCenter,
-	justifyRight,
-	stretchWide,
-	stretchFullWidth,
-	page,
-	overlayText,
-	menu,
-} from '@wordpress/icons';
 
 /**
  * Internal dependencies
@@ -69,8 +55,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		labelColor,
 		description,
 		menuSlug,
-		justifyMenu,
-		width,
 		layoutMode,
 		enableAnimations,
 		animationType,
@@ -90,12 +74,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		menuBoxShadow,
 		backdropBlur,
 	} = attributes;
-
-	const layout = useSelect(
-		( select ) =>
-			select( 'core/editor' ).getEditorSettings()?.__experimentalFeatures
-				?.layout
-	);
 
 	const siteUrl = useSelect( ( select ) => select( 'core' ).getSite()?.url );
 	const menuTemplateUrl =
@@ -128,50 +106,6 @@ export default function Edit( { attributes, setAttributes } ) {
 			'wp-block-navigation-item wp-block-elayne-mega-menu__toggle',
 		style: { color: labelColor || 'inherit' },
 	} );
-
-	const justificationOptions = [
-		{
-			value: 'left',
-			icon: justifyLeft,
-			label: __( 'Justify menu left', 'elayne-blocks' ),
-		},
-		{
-			value: 'center',
-			icon: justifyCenter,
-			label: __( 'Justify menu center', 'elayne-blocks' ),
-		},
-		{
-			value: 'right',
-			icon: justifyRight,
-			label: __( 'Justify menu right', 'elayne-blocks' ),
-		},
-	];
-
-	const widthOptions = [
-		{
-			value: 'content',
-			icon: alignNone,
-			label: sprintf(
-				// translators: %s: container size (i.e. 600px etc)
-				__( 'Content width (%s wide)', 'elayne-blocks' ),
-				layout?.contentSize || '1200px'
-			),
-		},
-		{
-			value: 'wide',
-			icon: stretchWide,
-			label: sprintf(
-				// translators: %s: container size (i.e. 600px etc)
-				__( 'Wide width (%s wide)', 'elayne-blocks' ),
-				layout?.wideSize || '1600px'
-			),
-		},
-		{
-			value: 'full',
-			icon: stretchFullWidth,
-			label: __( 'Full width', 'elayne-blocks' ),
-		},
-	];
 
 	return (
 		<>
@@ -321,57 +255,6 @@ export default function Edit( { attributes, setAttributes } ) {
 							}
 						/>
 					) }
-
-					<HStack alignment="top" justify="space-between">
-						<ToggleGroupControl
-							className="block-editor-hooks__flex-layout-justification-controls"
-							label={ __( 'Justification', 'elayne-blocks' ) }
-							value={ justifyMenu }
-							onChange={ ( justificationValue ) => {
-								setAttributes( {
-									justifyMenu: justificationValue,
-								} );
-							} }
-							isDeselectable={ true }
-						>
-							{ justificationOptions.map(
-								( { value, icon, label: iconLabel } ) => {
-									return (
-										<ToggleGroupControlOptionIcon
-											key={ value }
-											value={ value }
-											icon={ icon }
-											label={ iconLabel }
-										/>
-									);
-								}
-							) }
-						</ToggleGroupControl>
-						<ToggleGroupControl
-							className="block-editor-hooks__flex-layout-justification-controls"
-							label={ __( 'Width', 'elayne-blocks' ) }
-							value={ width || 'content' }
-							onChange={ ( widthValue ) => {
-								setAttributes( {
-									width: widthValue,
-								} );
-							} }
-							__nextHasNoMarginBottom
-						>
-							{ widthOptions.map(
-								( { value, icon, label: iconLabel } ) => {
-									return (
-										<ToggleGroupControlOptionIcon
-											key={ value }
-											value={ value }
-											icon={ icon }
-											label={ iconLabel }
-										/>
-									);
-								}
-							) }
-						</ToggleGroupControl>
-					</HStack>
 				</PanelBody>
 
 				{ /* Icon Panel - Conditional */ }

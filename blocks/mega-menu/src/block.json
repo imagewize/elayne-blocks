@@ -25,16 +25,6 @@
 			"type": "string",
 			"default": ""
 		},
-		"justifyMenu": {
-			"type": "string",
-			"default": "left",
-			"enum": [ "left", "center", "right" ]
-		},
-		"width": {
-			"type": "string",
-			"default": "content",
-			"enum": [ "content", "wide", "full" ]
-		},
 		"layoutMode": {
 			"type": "string",
 			"default": "dropdown",
@@ -158,9 +148,7 @@
 	"example": {
 		"attributes": {
 			"label": "Features",
-			"description": "Explore our powerful features",
-			"justifyMenu": "center",
-			"width": "wide"
+			"description": "Explore our powerful features"
 		}
 	},
 	"supports": {

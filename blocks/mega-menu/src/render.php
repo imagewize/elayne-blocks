@@ -13,8 +13,6 @@ $elayne_blocks_label              = esc_html( $attributes['label'] ?? '' );
 $elayne_blocks_label_color        = esc_attr( $attributes['labelColor'] ?? '' );
 $elayne_blocks_description        = esc_html( $attributes['description'] ?? '' );
 $elayne_blocks_menu_slug          = esc_attr( $attributes['menuSlug'] ?? '' );
-$elayne_blocks_justify_menu       = esc_attr( $attributes['justifyMenu'] ?? 'left' );
-$elayne_blocks_menu_width         = esc_attr( $attributes['width'] ?? 'content' );
 $elayne_blocks_layout_mode        = esc_attr( $attributes['layoutMode'] ?? 'dropdown' );
 $elayne_blocks_enable_animations  = $attributes['enableAnimations'] ?? false;
 $elayne_blocks_animation_type     = esc_attr( $attributes['animationType'] ?? 'fade' );
@@ -42,11 +40,6 @@ $elayne_blocks_panel_border_radius = absint( $attributes['panelBorderRadius'] ??
 $elayne_blocks_panel_border_width  = absint( $attributes['panelBorderWidth'] ?? 0 );
 $elayne_blocks_panel_border_color  = esc_attr( $attributes['panelBorderColor'] ?? '' );
 $elayne_blocks_panel_backdrop_blur = $attributes['panelBackdropBlur'] ?? false;
-
-// Build menu container classes.
-$elayne_blocks_menu_classes  = 'elayne-mega-menu wp-block-elayne-mega-menu__menu-container';
-$elayne_blocks_menu_classes .= ' menu-width-' . $elayne_blocks_menu_width;
-$elayne_blocks_menu_classes .= $elayne_blocks_justify_menu ? ' menu-justified-' . $elayne_blocks_justify_menu : '';
 
 // Build wrapper classes with layout mode.
 $elayne_blocks_wrapper_classes   = array( 'wp-block-navigation-item' );
@@ -145,7 +138,7 @@ if ( $elayne_blocks_label_color ) {
 
 	<?php
 	// Build panel classes with layout-specific classes.
-	$elayne_blocks_panel_classes  = $elayne_blocks_menu_classes . ' wp-block-elayne-mega-menu__panel';
+	$elayne_blocks_panel_classes  = 'wp-block-elayne-mega-menu__panel';
 	$elayne_blocks_panel_classes .= ' align-' . $elayne_blocks_dropdown_alignment;
 
 	// Add panel width class.

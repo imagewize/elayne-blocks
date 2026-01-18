@@ -293,7 +293,7 @@ $z-index-close-button: 100;
     // No additional overrides needed for default dropdown
 }
 
-// Layout Mode: Overlay
+// Layout Mode: Overlay (Legacy - only applies when NOT using new panel system)
 .wp-block-elayne-mega-menu.mm-layout-overlay {
     .mm-overlay-backdrop {
         position: fixed;
@@ -312,8 +312,8 @@ $z-index-close-button: 100;
         }
     }
 
-    .elayne-mega-menu,
-    .wp-block-elayne-mega-menu__menu-container {
+    .elayne-mega-menu:not(.wp-block-elayne-mega-menu__panel),
+    .wp-block-elayne-mega-menu__menu-container:not(.wp-block-elayne-mega-menu__panel) {
         position: fixed;
         top: 50%;
         left: 50%;
@@ -352,87 +352,6 @@ $z-index-close-button: 100;
     }
 }
 
-// Layout Mode: Sidebar
-.wp-block-elayne-mega-menu.mm-layout-sidebar {
-    .elayne-mega-menu,
-    .wp-block-elayne-mega-menu__menu-container {
-        position: fixed;
-        top: 0;
-        height: 100vh;
-        width: 320px;
-        max-width: 80vw;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease, opacity 0.2s ease, visibility 0.3s ease;
-        z-index: 1000;
-        left: 0;
-        opacity: 1;
-        visibility: hidden;
-        overflow-y: auto;
-        border-radius: 0;
-    }
-
-    // Right sidebar
-    &.mm-sidebar-right {
-        .elayne-mega-menu,
-        .wp-block-elayne-mega-menu__menu-container {
-            right: 0;
-            left: auto;
-            transform: translateX(100%);
-        }
-    }
-
-    &.wp-block-navigation-item[aria-expanded="true"] {
-        .elayne-mega-menu,
-        .wp-block-elayne-mega-menu__menu-container {
-            transform: translateX(0);
-            visibility: visible;
-        }
-    }
-
-    // Overlay backdrop for sidebar (subtle)
-    .mm-overlay-backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 999;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    &.wp-block-navigation-item[aria-expanded="true"] {
-        .mm-overlay-backdrop {
-            opacity: 1;
-            visibility: visible;
-        }
-    }
-}
-
-// Layout Mode: Grid
-.wp-block-elayne-mega-menu.mm-layout-grid {
-    .elayne-mega-menu,
-    .wp-block-elayne-mega-menu__menu-container {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        padding: 1rem;
-
-        // Override width classes for grid
-        &.menu-width-content,
-        &.menu-width-wide,
-        &.menu-width-full {
-            display: grid;
-        }
-    }
-}
 
 // ============================================================
 // ANIMATION SYSTEM
@@ -663,122 +582,6 @@ $z-index-close-button: 100;
 		}
 	}
 
-	// Layout Mode: Sidebar (Drawer from left/right)
-	&--layout-sidebar {
-		.wp-block-elayne-mega-menu__panel {
-			position: fixed !important;
-			top: 0 !important;
-			width: 400px;
-			max-width: 85vw;
-			height: 100vh;
-			background: #fff;
-			box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-			overflow-y: auto;
-			padding: 60px 30px 30px;
-			transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-			opacity: 0;
-			visibility: hidden;
-
-			&.direction-left {
-				left: 0 !important;
-				right: auto !important;
-				transform: translateX(-100%) !important;
-
-				&.is-open {
-					transform: translateX(0) !important;
-					opacity: 1;
-					visibility: visible;
-				}
-			}
-
-			&.direction-right {
-				right: 0 !important;
-				left: auto !important;
-				transform: translateX(100%) !important;
-
-				&.is-open {
-					transform: translateX(0) !important;
-					opacity: 1;
-					visibility: visible;
-				}
-			}
-
-			// Close button
-			&::before {
-				content: '×';
-				position: absolute;
-				top: 20px;
-				right: 20px;
-				font-size: 40px;
-				line-height: 1;
-				cursor: pointer;
-				color: #333;
-			}
-		}
-
-		// Backdrop (shared with overlay)
-		.wp-block-elayne-mega-menu__backdrop {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100vw;
-			height: 100vh;
-			background: rgba(0, 0, 0, 0.5);
-			opacity: 0;
-			visibility: hidden;
-			transition: opacity 0.3s ease, visibility 0.3s ease;
-			z-index: 999;
-
-			&.is-visible {
-				opacity: 1;
-				visibility: visible;
-			}
-		}
-	}
-
-	// Layout Mode: Grid (Full-width multi-column)
-	&--layout-grid {
-		.wp-block-elayne-mega-menu__panel {
-			position: absolute !important;
-			top: 100% !important;
-			left: 0 !important;
-			right: auto !important;
-			width: 100%;
-			max-width: 100%;
-			background: #fff;
-			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-			padding: 40px;
-			transform: none !important;
-
-			// Grid container for content
-			.wp-block-elayne-mega-menu__panel__content {
-				display: grid;
-				grid-template-columns: repeat(var(--grid-columns, 3), 1fr);
-				gap: 30px;
-				max-width: 1200px;
-				margin: 0 auto;
-
-				// Ensure template part content fills the grid
-				.wp-block-template-part {
-					grid-column: 1 / -1;
-					width: 100%;
-				}
-			}
-
-			// If no content wrapper, apply grid directly to template part children
-			&:not(:has(.wp-block-elayne-mega-menu__panel__content)) {
-				.wp-block-template-part {
-					display: grid;
-					grid-template-columns: repeat(var(--grid-columns, 3), 1fr);
-					gap: 30px;
-					max-width: 1200px;
-					margin: 0 auto;
-					width: 100%;
-				}
-			}
-		}
-	}
-
 	// Hover activation state
 	&.has-hover-activation {
 		.wp-block-elayne-mega-menu__trigger:hover ~ .wp-block-elayne-mega-menu__panel {
@@ -788,9 +591,8 @@ $z-index-close-button: 100;
 	}
 }
 
-// Body scroll lock (when overlay/sidebar open)
-body.mega-menu-overlay-open,
-body.mega-menu-sidebar-open {
+// Body scroll lock (when overlay open)
+body.mega-menu-overlay-open {
 	overflow: hidden;
 }
 
@@ -813,28 +615,12 @@ body.mega-menu-sidebar-open {
 		}
 	}
 
-	// Grid stacks vertically
-	.wp-block-elayne-mega-menu--layout-grid {
-		.wp-block-elayne-mega-menu__panel__content {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	// Overlay and sidebar take full width on mobile
-	.wp-block-elayne-mega-menu.mm-layout-overlay,
-	.wp-block-elayne-mega-menu.mm-layout-sidebar {
+	// Overlay takes full width on mobile
+	.wp-block-elayne-mega-menu.mm-layout-overlay {
 		.elayne-mega-menu,
 		.wp-block-elayne-mega-menu__menu-container {
 			max-width: 100vw;
 			width: 100vw;
-		}
-	}
-
-	// Grid collapses to single column on mobile
-	.wp-block-elayne-mega-menu.mm-layout-grid {
-		.elayne-mega-menu,
-		.wp-block-elayne-mega-menu__menu-container {
-			grid-template-columns: 1fr;
 		}
 	}
 }
@@ -901,7 +687,7 @@ body.mega-menu-sidebar-open {
 	}
 }
 
-// Backdrop Blur Support (overlay/sidebar only)
+// Backdrop Blur Support (overlay only)
 .wp-block-elayne-mega-menu__panel.mm-backdrop-blur-enabled {
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
@@ -920,30 +706,6 @@ body.mega-menu-sidebar-open {
 				&.align-right {
 					right: auto;
 					left: 0;
-				}
-			}
-		}
-
-		&--layout-sidebar {
-			.wp-block-elayne-mega-menu__panel {
-				&.direction-left {
-					left: auto;
-					right: 0;
-					transform: translateX(100%);
-
-					&.is-open {
-						transform: translateX(0);
-					}
-				}
-
-				&.direction-right {
-					right: auto;
-					left: 0;
-					transform: translateX(-100%);
-
-					&.is-open {
-						transform: translateX(0);
-					}
 				}
 			}
 		}

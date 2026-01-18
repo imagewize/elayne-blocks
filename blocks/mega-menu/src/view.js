@@ -54,12 +54,12 @@ const { state, actions } = store( 'elayne/mega-menu', {
 				event.preventDefault();
 			}
 
-			// Tab key focus trap (for overlay/sidebar modes)
+			// Tab key focus trap (for overlay mode)
 			if ( event?.key === 'Tab' && context.isOpen ) {
 				const { layoutMode } = context;
 
-				// Only trap focus in overlay and sidebar modes
-				if ( layoutMode === 'overlay' || layoutMode === 'sidebar' ) {
+				// Only trap focus in overlay mode
+				if ( layoutMode === 'overlay' ) {
 					const { firstFocusable, lastFocusable } = context;
 
 					if ( event.shiftKey && document.activeElement === firstFocusable ) {
@@ -106,26 +106,9 @@ const { state, actions } = store( 'elayne/mega-menu', {
 			const { layoutMode } = context;
 
 			// Layout-specific open logic
-			switch ( layoutMode ) {
-				case 'overlay':
-					// Lock body scroll
-					document.body.classList.add( 'mega-menu-overlay-open' );
-					break;
-
-				case 'sidebar':
-					// Lock body scroll
-					document.body.classList.add( 'mega-menu-sidebar-open' );
-					// Initialize swipe handler for mobile
-					if ( state.isMobile ) {
-						actions.initSwipeHandler();
-					}
-					break;
-
-				case 'dropdown':
-				case 'grid':
-					// No special logic needed for dropdown/grid
-					// Positioning is handled purely by CSS
-					break;
+			if ( layoutMode === 'overlay' ) {
+				// Lock body scroll
+				document.body.classList.add( 'mega-menu-overlay-open' );
 			}
 
 			// Set open state
@@ -145,29 +128,6 @@ const { state, actions } = store( 'elayne/mega-menu', {
 			actions.setFocusTrap();
 		},
 
-		openOverlay() {
-			// Add body class to prevent scrolling
-			document.body.classList.add( 'mega-menu-overlay-open' );
-		},
-
-		openSidebar() {
-			// Add body class for sidebar mode
-			document.body.classList.add( 'mega-menu-sidebar-open' );
-
-			// Initialize swipe handler for mobile
-			if ( state.isMobile ) {
-				actions.initSwipeHandler();
-			}
-		},
-
-		openDropdown() {
-			// Default dropdown behavior (no special logic needed)
-		},
-
-		openGrid() {
-			// Grid layout behavior (no special logic needed)
-		},
-
 		closeMenu( menuClosedOn = 'click' ) {
 			const context = getContext();
 			const { layoutMode } = context;
@@ -181,19 +141,8 @@ const { state, actions } = store( 'elayne/mega-menu', {
 			}
 
 			// Layout-specific close logic
-			switch ( layoutMode ) {
-				case 'overlay':
-					document.body.classList.remove( 'mega-menu-overlay-open' );
-					break;
-
-				case 'sidebar':
-					document.body.classList.remove( 'mega-menu-sidebar-open' );
-					break;
-
-				case 'dropdown':
-				case 'grid':
-					// No special cleanup needed
-					break;
+			if ( layoutMode === 'overlay' ) {
+				document.body.classList.remove( 'mega-menu-overlay-open' );
 			}
 
 			// Return focus to trigger
@@ -226,45 +175,6 @@ const { state, actions } = store( 'elayne/mega-menu', {
 			const { ref } = getElement();
 			const trigger = ref.querySelector( '.wp-block-elayne-mega-menu__trigger' );
 			trigger?.focus();
-		},
-
-		initSwipeHandler() {
-			const context = getContext();
-			const { ref } = getElement();
-
-			let touchStartX = 0;
-			let touchEndX = 0;
-
-			const handleSwipe = () => {
-				const swipeDistance = touchEndX - touchStartX;
-
-				// Threshold: 50px swipe required
-				if ( Math.abs( swipeDistance ) > 50 ) {
-					const { sidebarDirection } = context;
-
-					// Close on swipe in correct direction
-					if (
-						( sidebarDirection === 'left' && swipeDistance < 0 ) ||
-						( sidebarDirection === 'right' && swipeDistance > 0 )
-					) {
-						actions.closeMenuOnClick();
-					}
-				}
-			};
-
-			const menuContainer = ref.querySelector( '.elayne-mega-menu, .wp-block-elayne-mega-menu__menu-container' );
-			if ( ! menuContainer ) {
-				return;
-			}
-
-			menuContainer.addEventListener( 'touchstart', ( e ) => {
-				touchStartX = e.touches[ 0 ].clientX;
-			}, { passive: true } );
-
-			menuContainer.addEventListener( 'touchend', ( e ) => {
-				touchEndX = e.changedTouches[ 0 ].clientX;
-				handleSwipe();
-			}, { passive: true } );
 		},
 
 		updateMobileState() {

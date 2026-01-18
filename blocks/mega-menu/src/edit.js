@@ -37,7 +37,6 @@ import {
 	page,
 	overlayText,
 	menu,
-	grid,
 } from '@wordpress/icons';
 
 /**
@@ -82,8 +81,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		customSVG,
 		enableMobileMode,
 		mobileBreakpoint,
-		sidebarDirection,
-		gridColumns,
 		dropdownAlignment,
 		overlayBackdropColor,
 		enableHoverActivation,
@@ -287,33 +284,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 
-					{ layoutMode === 'sidebar' && (
-						<SelectControl
-							label={ __( 'Sidebar Direction', 'elayne-blocks' ) }
-							value={ sidebarDirection }
-							options={ [
-								{ label: __( 'Left', 'elayne-blocks' ), value: 'left' },
-								{ label: __( 'Right', 'elayne-blocks' ), value: 'right' },
-							] }
-							onChange={ ( value ) =>
-								setAttributes( { sidebarDirection: value } )
-							}
-						/>
-					) }
-
-					{ layoutMode === 'grid' && (
-						<RangeControl
-							label={ __( 'Grid Columns', 'elayne-blocks' ) }
-							value={ gridColumns }
-							onChange={ ( value ) =>
-								setAttributes( { gridColumns: value } )
-							}
-							min={ 2 }
-							max={ 6 }
-							step={ 1 }
-						/>
-					) }
-
 					{ layoutMode === 'dropdown' && (
 						<SelectControl
 							label={ __( 'Dropdown Alignment', 'elayne-blocks' ) }
@@ -341,7 +311,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						/>
 					) }
 
-					{ ( layoutMode === 'dropdown' || layoutMode === 'grid' ) && (
+					{ layoutMode === 'dropdown' && (
 						<ToggleControl
 							label={ __( 'Activate on Hover', 'elayne-blocks' ) }
 							help={ __( 'Open menu on hover instead of click', 'elayne-blocks' ) }

@@ -22,8 +22,6 @@ $elayne_blocks_animation_speed    = absint( $attributes['animationSpeed'] ?? 300
 $elayne_blocks_enable_icon        = $attributes['enableIcon'] ?? false;
 $elayne_blocks_icon_name          = esc_attr( $attributes['iconName'] ?? '' );
 $elayne_blocks_icon_position      = esc_attr( $attributes['iconPosition'] ?? 'left' );
-$elayne_blocks_sidebar_direction  = esc_attr( $attributes['sidebarDirection'] ?? 'left' );
-$elayne_blocks_grid_columns       = absint( $attributes['gridColumns'] ?? 3 );
 // Handle migration: old blocks may have 'auto', convert to 'left'
 $elayne_blocks_dropdown_alignment = esc_attr( $attributes['dropdownAlignment'] ?? 'left' );
 if ( 'auto' === $elayne_blocks_dropdown_alignment ) {
@@ -60,11 +58,7 @@ if ( $elayne_blocks_enable_animations ) {
 	$elayne_blocks_wrapper_classes[] = 'mm-animation-' . $elayne_blocks_animation_type;
 }
 
-if ( 'sidebar' === $elayne_blocks_layout_mode ) {
-	$elayne_blocks_wrapper_classes[] = 'mm-sidebar-' . $elayne_blocks_sidebar_direction;
-}
-
-if ( $elayne_blocks_enable_hover && ( 'dropdown' === $elayne_blocks_layout_mode || 'grid' === $elayne_blocks_layout_mode ) ) {
+if ( $elayne_blocks_enable_hover && 'dropdown' === $elayne_blocks_layout_mode ) {
 	$elayne_blocks_wrapper_classes[] = 'has-hover-activation';
 }
 
@@ -79,8 +73,6 @@ $elayne_blocks_context = array(
 	'isOpen'                => false,
 	'menuOpenedBy'          => array(),
 	'layoutMode'            => $elayne_blocks_layout_mode,
-	'sidebarDirection'      => $elayne_blocks_sidebar_direction,
-	'gridColumns'           => $elayne_blocks_grid_columns,
 	'dropdownAlignment'     => $elayne_blocks_dropdown_alignment,
 	'enableHoverActivation' => $elayne_blocks_enable_hover,
 	'animationSpeed'        => $elayne_blocks_animation_speed,
@@ -122,7 +114,7 @@ if ( $elayne_blocks_label_color ) {
 
 <li <?php echo $elayne_blocks_wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> data-wp-interactive="elayne/mega-menu" data-wp-context='<?php echo esc_attr( wp_json_encode( $elayne_blocks_context ) ); ?>' data-wp-on-document--keydown="actions.handleMenuKeydown" data-wp-on-document--click="actions.handleOutsideClick" data-wp-watch="callbacks.initMenu">
 
-	<?php if ( 'overlay' === $elayne_blocks_layout_mode || 'sidebar' === $elayne_blocks_layout_mode ) : ?>
+	<?php if ( 'overlay' === $elayne_blocks_layout_mode ) : ?>
 		<div class="wp-block-elayne-mega-menu__backdrop mm-overlay-backdrop <?php echo $elayne_blocks_backdrop_blur ? 'mm-backdrop-blur' : ''; ?>" data-wp-class--is-visible="context.isOpen" data-wp-on--click="actions.closeMenu" 
 		<?php
 		if ( 'overlay' === $elayne_blocks_layout_mode ) :
@@ -156,10 +148,6 @@ if ( $elayne_blocks_label_color ) {
 	$elayne_blocks_panel_classes  = $elayne_blocks_menu_classes . ' wp-block-elayne-mega-menu__panel';
 	$elayne_blocks_panel_classes .= ' align-' . $elayne_blocks_dropdown_alignment;
 
-	if ( 'sidebar' === $elayne_blocks_layout_mode ) {
-		$elayne_blocks_panel_classes .= ' direction-' . $elayne_blocks_sidebar_direction;
-	}
-
 	// Add panel width class.
 	$elayne_blocks_panel_classes .= ' mm-panel-width-' . $elayne_blocks_panel_width;
 
@@ -173,11 +161,6 @@ if ( $elayne_blocks_label_color ) {
 
 	// Build panel inline styles.
 	$elayne_blocks_panel_styles = array();
-
-	// Grid columns (if grid mode).
-	if ( 'grid' === $elayne_blocks_layout_mode ) {
-		$elayne_blocks_panel_styles[] = '--grid-columns: ' . esc_attr( $elayne_blocks_grid_columns );
-	}
 
 	// Dimensions.
 	if ( 'custom' === $elayne_blocks_panel_width && $elayne_blocks_panel_max_width > 0 ) {
@@ -218,10 +201,6 @@ if ( $elayne_blocks_label_color ) {
 		: '';
 	?>
 	<div class="<?php echo esc_attr( $elayne_blocks_panel_classes ); ?>" data-wp-class--is-open="context.isOpen" <?php echo $elayne_blocks_panel_style; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-		<?php if ( 'grid' === $elayne_blocks_layout_mode ) : ?>
-		<div class="wp-block-elayne-mega-menu__panel__content">
-		<?php endif; ?>
-
 		<?php
 		// Render template part if menuSlug is set.
 		if ( ! empty( $elayne_blocks_menu_slug ) ) {
@@ -236,10 +215,6 @@ if ( $elayne_blocks_label_color ) {
 			}
 		}
 		?>
-
-		<?php if ( 'grid' === $elayne_blocks_layout_mode ) : ?>
-		</div>
-		<?php endif; ?>
 
 		<button aria-label="<?php echo esc_attr( __( 'Close menu', 'elayne-blocks' ) ); ?>" class="menu-container__close-button" data-wp-on--click="actions.closeMenu" type="button">
 			<?php echo $elayne_blocks_close_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

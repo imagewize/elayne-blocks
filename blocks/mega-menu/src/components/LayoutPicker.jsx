@@ -2,16 +2,14 @@
  * LayoutPicker Component
  *
  * Visual layout mode selector for the Mega Menu block.
- * Allows users to choose between 4 distinct layout engines:
+ * Allows users to choose between 2 distinct layout modes:
  * - Dropdown: Classic mega menu below trigger
  * - Overlay: Full-screen overlay with backdrop
- * - Sidebar: Drawer from left/right
- * - Grid: Full-width multi-column layout
  */
 
 import { Button, ButtonGroup, Tooltip } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Icon, arrowDown, cover, menu, grid } from '@wordpress/icons';
+import { Icon, arrowDown, cover } from '@wordpress/icons';
 
 /**
  * LayoutPicker component
@@ -33,18 +31,6 @@ export default function LayoutPicker({ value, onChange }) {
 			label: __('Overlay', 'elayne'),
 			icon: cover,
 			description: __('Full-screen overlay', 'elayne'),
-		},
-		{
-			value: 'sidebar',
-			label: __('Sidebar', 'elayne'),
-			icon: menu,
-			description: __('Drawer from left/right', 'elayne'),
-		},
-		{
-			value: 'grid',
-			label: __('Mega Grid', 'elayne'),
-			icon: grid,
-			description: __('Full-width grid layout', 'elayne'),
 		},
 	];
 

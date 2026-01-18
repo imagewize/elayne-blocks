@@ -38,7 +38,7 @@
 		"layoutMode": {
 			"type": "string",
 			"default": "dropdown",
-			"enum": [ "dropdown", "overlay", "sidebar", "grid" ]
+			"enum": [ "dropdown", "overlay" ]
 		},
 		"enableAnimations": {
 			"type": "boolean",
@@ -77,15 +77,6 @@
 		"mobileBreakpoint": {
 			"type": "number",
 			"default": 768
-		},
-		"sidebarDirection": {
-			"type": "string",
-			"default": "left",
-			"enum": [ "left", "right" ]
-		},
-		"gridColumns": {
-			"type": "number",
-			"default": 3
 		},
 		"dropdownAlignment": {
 			"type": "string",

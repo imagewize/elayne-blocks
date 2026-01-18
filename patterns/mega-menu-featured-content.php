@@ -7,29 +7,23 @@
  * Description: Two column layout with featured image and links
  */
 ?>
-<!-- wp:columns {"align":"wide"} -->
-<div class="wp-block-columns alignwide"><!-- wp:column {"width":"66.66%"} -->
-<div class="wp-block-column" style="flex-basis:66.66%"><!-- wp:heading {"level":3} -->
+<!-- wp:group {"align":"wide","layout":{"type":"grid","columnCount":null,"minimumColumnWidth":"18rem"}} -->
+<div class="wp-block-group alignwide"><!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Shop by Category</h3>
 <!-- /wp:heading -->
 
-<!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:list -->
+<!-- wp:list -->
 <ul><li><a href="#">Women's Fashion</a></li><li><a href="#">Men's Fashion</a></li><li><a href="#">Accessories</a></li></ul>
-<!-- /wp:list --></div>
-<!-- /wp:column -->
+<!-- /wp:list -->
 
-<!-- wp:column -->
-<div class="wp-block-column"><!-- wp:list -->
+<!-- wp:list -->
 <ul><li><a href="#">New Arrivals</a></li><li><a href="#">Sale</a></li><li><a href="#">Collections</a></li></ul>
 <!-- /wp:list --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns --></div>
-<!-- /wp:column -->
+<!-- /wp:group -->
 
-<!-- wp:column {"width":"33.33%"} -->
-<div class="wp-block-column" style="flex-basis:33.33%"><!-- wp:heading {"level":4} -->
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":4} -->
 <h4 class="wp-block-heading">Featured This Week</h4>
 <!-- /wp:heading -->
 
@@ -42,5 +36,5 @@
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Shop Now</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
+<!-- /wp:group --></div>
+<!-- /wp:group -->

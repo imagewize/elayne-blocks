@@ -1,10 +1,10 @@
 <?php
 /**
- * Title: Mega Menu - Footer Style
- * Slug: elayne-blocks/mega-menu-footer-style
+ * Title: Mega Menu - Multi Column Links
+ * Slug: elayne-blocks/mega-menu-multi-column
  * Categories: elayne-blocks
  * Block Types: core/template-part
- * Description: Full-width multi-column footer-style layout
+ * Description: Full-width multi-column organized link layout
  */
 ?>
 <!-- wp:group {"align":"wide","layout":{"type":"grid","minimumColumnWidth":"18rem"}} -->

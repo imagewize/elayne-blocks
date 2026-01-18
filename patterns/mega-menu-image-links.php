@@ -7,9 +7,9 @@
  * Description: Promotional content with featured image and links
  */
 ?>
-<!-- wp:columns {"align":"wide"} -->
-<div class="wp-block-columns alignwide"><!-- wp:column {"width":"40%"} -->
-<div class="wp-block-column" style="flex-basis:40%"><!-- wp:image {"sizeSlug":"large"} -->
+<!-- wp:group {"align":"wide","layout":{"type":"grid","columnCount":null,"minimumColumnWidth":"18rem"}} -->
+<div class="wp-block-group alignwide"><!-- wp:group -->
+<div class="wp-block-group"><!-- wp:image {"sizeSlug":"large"} -->
 <figure class="wp-block-image size-large"><img src="https://placehold.co/400x300" alt="Promotional banner"/></figure>
 <!-- /wp:image -->
 
@@ -26,11 +26,9 @@
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Shop Sale</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
-<!-- /wp:column -->
+<!-- /wp:group -->
 
-<!-- wp:column {"width":"60%"} -->
-<div class="wp-block-column" style="flex-basis:60%"><!-- wp:group {"layout":{"type":"grid","minimumColumnWidth":"18rem"}} -->
-<div class="wp-block-group"><!-- wp:group -->
+<!-- wp:group -->
 <div class="wp-block-group"><!-- wp:heading {"level":4} -->
 <h4 class="wp-block-heading">Shop</h4>
 <!-- /wp:heading -->
@@ -49,6 +47,4 @@
 <ul><li><a href="#">Summer 2026</a></li><li><a href="#">Essentials</a></li><li><a href="#">Premium</a></li><li><a href="#">Limited Edition</a></li></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group --></div>
-<!-- /wp:group --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
+<!-- /wp:group -->

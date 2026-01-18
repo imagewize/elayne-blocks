@@ -81,27 +81,6 @@
 			"type": "boolean",
 			"default": false
 		},
-		"panelWidth": {
-			"type": "string",
-			"default": "content"
-		},
-		"panelMaxWidth": {
-			"type": "number",
-			"default": 800
-		},
-		"panelMinHeight": {
-			"type": "number",
-			"default": 0
-		},
-		"panelPadding": {
-			"type": "object",
-			"default": {
-				"top": "20px",
-				"right": "20px",
-				"bottom": "20px",
-				"left": "20px"
-			}
-		},
 		"panelBackgroundColor": {
 			"type": "string",
 			"default": ""

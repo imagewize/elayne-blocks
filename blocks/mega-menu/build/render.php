@@ -30,10 +30,6 @@ $elayne_blocks_enable_hover       = $attributes['enableHoverActivation'] ?? fals
 $elayne_blocks_backdrop_blur      = $attributes['backdropBlur'] ?? true;
 
 // Panel styling attributes.
-$elayne_blocks_panel_width         = esc_attr( $attributes['panelWidth'] ?? 'content' );
-$elayne_blocks_panel_max_width     = absint( $attributes['panelMaxWidth'] ?? 800 );
-$elayne_blocks_panel_min_height    = absint( $attributes['panelMinHeight'] ?? 0 );
-$elayne_blocks_panel_padding       = $attributes['panelPadding'] ?? array();
 $elayne_blocks_panel_bg_color      = esc_attr( $attributes['panelBackgroundColor'] ?? '' );
 $elayne_blocks_panel_box_shadow    = esc_attr( $attributes['panelBoxShadow'] ?? 'default' );
 $elayne_blocks_panel_border_radius = absint( $attributes['panelBorderRadius'] ?? 4 );
@@ -141,9 +137,6 @@ if ( $elayne_blocks_label_color ) {
 	$elayne_blocks_panel_classes  = 'wp-block-elayne-mega-menu__panel';
 	$elayne_blocks_panel_classes .= ' align-' . $elayne_blocks_dropdown_alignment;
 
-	// Add panel width class.
-	$elayne_blocks_panel_classes .= ' mm-panel-width-' . $elayne_blocks_panel_width;
-
 	// Add box shadow class.
 	$elayne_blocks_panel_classes .= ' mm-shadow-' . $elayne_blocks_panel_box_shadow;
 
@@ -154,24 +147,6 @@ if ( $elayne_blocks_label_color ) {
 
 	// Build panel inline styles.
 	$elayne_blocks_panel_styles = array();
-
-	// Dimensions.
-	if ( 'custom' === $elayne_blocks_panel_width && $elayne_blocks_panel_max_width > 0 ) {
-		$elayne_blocks_panel_styles[] = 'min-width: max(400px, 30vw)';
-		$elayne_blocks_panel_styles[] = 'max-width: min(' . $elayne_blocks_panel_max_width . 'px, 95vw)';
-	}
-	if ( $elayne_blocks_panel_min_height > 0 ) {
-		$elayne_blocks_panel_styles[] = 'min-height: ' . $elayne_blocks_panel_min_height . 'px';
-	}
-	if ( ! empty( $elayne_blocks_panel_padding ) && is_array( $elayne_blocks_panel_padding ) ) {
-		$elayne_blocks_panel_styles[] = sprintf(
-			'padding: %s %s %s %s',
-			esc_attr( $elayne_blocks_panel_padding['top'] ?? '20px' ),
-			esc_attr( $elayne_blocks_panel_padding['right'] ?? '20px' ),
-			esc_attr( $elayne_blocks_panel_padding['bottom'] ?? '20px' ),
-			esc_attr( $elayne_blocks_panel_padding['left'] ?? '20px' )
-		);
-	}
 
 	// Panel background color.
 	if ( ! empty( $elayne_blocks_panel_bg_color ) ) {

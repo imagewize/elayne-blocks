@@ -5,7 +5,6 @@ import {
 	ButtonGroup,
 	RangeControl,
 	ToggleControl,
-	__experimentalBoxControl as BoxControl,
 } from '@wordpress/components';
 import { ColorPalette } from '@wordpress/block-editor';
 
@@ -13,20 +12,16 @@ import { ColorPalette } from '@wordpress/block-editor';
  * StylePanel Component
  *
  * Provides styling controls for the mega menu panel container.
- * Organized into sections: dimensions, colors, and effects.
+ * Organized into sections: colors and effects.
  *
  * @param {Object} props Component props
- * @param {string} props.section Which section to render (dimensions, colors, effects)
+ * @param {string} props.section Which section to render (colors, effects)
  * @param {Object} props.attributes Block attributes
  * @param {Function} props.setAttributes Attribute setter function
  * @param {string} props.layoutMode Current layout mode (dropdown, overlay, sidebar, grid)
  */
 export default function StylePanel({ section, attributes, setAttributes, layoutMode }) {
 	const {
-		panelWidth,
-		panelMaxWidth,
-		panelMinHeight,
-		panelPadding,
 		panelBackgroundColor,
 		panelBoxShadow,
 		panelBorderRadius,
@@ -34,73 +29,6 @@ export default function StylePanel({ section, attributes, setAttributes, layoutM
 		panelBorderColor,
 		panelBackdropBlur,
 	} = attributes;
-
-	// Dimensions Section
-	if (section === 'dimensions') {
-		return (
-			<>
-				<BaseControl
-					label={__('Panel Width', 'elayne')}
-					help={__('Control the width of the panel container', 'elayne')}
-				>
-					<ButtonGroup>
-						<Button
-							variant={panelWidth === 'content' ? 'primary' : 'secondary'}
-							onClick={() => setAttributes({ panelWidth: 'content' })}
-						>
-							{__('Content', 'elayne')}
-						</Button>
-						<Button
-							variant={panelWidth === 'wide' ? 'primary' : 'secondary'}
-							onClick={() => setAttributes({ panelWidth: 'wide' })}
-						>
-							{__('Wide', 'elayne')}
-						</Button>
-						<Button
-							variant={panelWidth === 'full' ? 'primary' : 'secondary'}
-							onClick={() => setAttributes({ panelWidth: 'full' })}
-						>
-							{__('Full', 'elayne')}
-						</Button>
-						<Button
-							variant={panelWidth === 'custom' ? 'primary' : 'secondary'}
-							onClick={() => setAttributes({ panelWidth: 'custom' })}
-						>
-							{__('Custom', 'elayne')}
-						</Button>
-					</ButtonGroup>
-				</BaseControl>
-
-				{panelWidth === 'custom' && (
-					<RangeControl
-						label={__('Max Width (px)', 'elayne')}
-						value={panelMaxWidth}
-						onChange={(value) => setAttributes({ panelMaxWidth: value })}
-						min={300}
-						max={2000}
-						step={10}
-						help={__('Prevents content from overflowing viewport', 'elayne')}
-					/>
-				)}
-
-				<RangeControl
-					label={__('Min Height (px)', 'elayne')}
-					value={panelMinHeight}
-					onChange={(value) => setAttributes({ panelMinHeight: value })}
-					min={0}
-					max={800}
-					step={10}
-				/>
-
-				<BoxControl
-					label={__('Padding', 'elayne')}
-					values={panelPadding}
-					onChange={(value) => setAttributes({ panelPadding: value })}
-					help={__('Spacing inside the panel container', 'elayne')}
-				/>
-			</>
-		);
-	}
 
 	// Colors Section
 	if (section === 'colors') {

@@ -328,19 +328,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					) }
 				</PanelBody>
 
-				{ /* Panel Dimensions */ }
-				<PanelBody
-					title={ __( 'Panel Dimensions', 'elayne-blocks' ) }
-					initialOpen={ false }
-				>
-					<StylePanel
-						section="dimensions"
-						attributes={ attributes }
-						setAttributes={ setAttributes }
-						layoutMode={ layoutMode }
-					/>
-				</PanelBody>
-
 				{ /* Panel Colors */ }
 				<PanelBody
 					title={ __( 'Panel Colors', 'elayne-blocks' ) }

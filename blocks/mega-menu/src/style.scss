@@ -562,39 +562,6 @@ body.mega-menu-overlay-open {
 	}
 }
 
-// Panel Width Presets (for panel container styling)
-// Uses max-content width with min/max constraints for responsive behavior
-.wp-block-elayne-mega-menu__panel {
-	&.mm-panel-width-content {
-		width: max-content;
-		min-width: max(400px, 30vw);
-		max-width: min(var(--wp--style--global--content-size, 1200px), 95vw) !important;
-	}
-
-	&.mm-panel-width-wide {
-		width: max-content;
-		min-width: max(500px, 40vw);
-		max-width: min(var(--wp--style--global--wide-size, 1600px), 95vw) !important;
-	}
-
-	// Full width overrides alignment - needs higher specificity
-	// Uses viewport width instead of percentage for true full-width
-	&.mm-panel-width-full,
-	&.mm-panel-width-full.align-left,
-	&.mm-panel-width-full.align-right,
-	&.mm-panel-width-full.align-center {
-		width: 95vw;
-		max-width: 95vw !important;
-		left: 50% !important;
-		right: auto !important;
-		transform: translateX(-50%) !important;
-	}
-
-	&.mm-panel-width-custom {
-		width: max-content;
-		// Custom min-width and max-width applied via inline styles
-	}
-}
 
 // Box Shadow Presets (for panel container)
 .wp-block-elayne-mega-menu__panel {

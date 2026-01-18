@@ -81,24 +81,6 @@
 			"type": "boolean",
 			"default": false
 		},
-		"menuBackgroundColor": {
-			"type": "string"
-		},
-		"menuTextColor": {
-			"type": "string"
-		},
-		"menuBorderRadius": {
-			"type": "string",
-			"default": "8px"
-		},
-		"menuBoxShadow": {
-			"type": "boolean",
-			"default": true
-		},
-		"backdropBlur": {
-			"type": "boolean",
-			"default": true
-		},
 		"panelWidth": {
 			"type": "string",
 			"default": "content"

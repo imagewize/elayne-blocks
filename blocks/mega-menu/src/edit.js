@@ -68,11 +68,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		dropdownAlignment,
 		overlayBackdropColor,
 		enableHoverActivation,
-		menuBackgroundColor,
-		menuTextColor,
-		menuBorderRadius,
-		menuBoxShadow,
-		backdropBlur,
 	} = attributes;
 
 	const siteUrl = useSelect( ( select ) => select( 'core' ).getSite()?.url );
@@ -329,53 +324,6 @@ export default function Edit( { attributes, setAttributes } ) {
 							min={ 320 }
 							max={ 1024 }
 							step={ 1 }
-						/>
-					) }
-				</PanelBody>
-
-				{ /* Advanced Styling Panel */ }
-				<PanelBody
-					title={ __( 'Advanced Styling', 'elayne-blocks' ) }
-					initialOpen={ false }
-				>
-					<ColorPalette
-						label={ __( 'Menu Background Color', 'elayne-blocks' ) }
-						value={ menuBackgroundColor }
-						onChange={ ( value ) =>
-							setAttributes( { menuBackgroundColor: value } )
-						}
-						clearable={ true }
-					/>
-					<ColorPalette
-						label={ __( 'Menu Text Color', 'elayne-blocks' ) }
-						value={ menuTextColor }
-						onChange={ ( value ) =>
-							setAttributes( { menuTextColor: value } )
-						}
-						clearable={ true }
-					/>
-					<TextControl
-						label={ __( 'Border Radius', 'elayne-blocks' ) }
-						value={ menuBorderRadius }
-						onChange={ ( value ) =>
-							setAttributes( { menuBorderRadius: value } )
-						}
-						help={ __( 'e.g., 8px, 1rem, 0', 'elayne-blocks' ) }
-					/>
-					<ToggleControl
-						label={ __( 'Box Shadow', 'elayne-blocks' ) }
-						checked={ menuBoxShadow }
-						onChange={ ( value ) =>
-							setAttributes( { menuBoxShadow: value } )
-						}
-					/>
-					{ layoutMode === 'overlay' && (
-						<ToggleControl
-							label={ __( 'Backdrop Blur', 'elayne-blocks' ) }
-							checked={ backdropBlur }
-							onChange={ ( value ) =>
-								setAttributes( { backdropBlur: value } )
-							}
 						/>
 					) }
 				</PanelBody>

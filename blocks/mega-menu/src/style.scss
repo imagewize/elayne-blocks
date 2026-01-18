@@ -52,14 +52,14 @@ $z-index-close-button: 100;
                 margin-top: 0.075em;
                 width: inherit;
                 transition: all $transition-speed linear;
-                transform: rotate(-90deg);
+                transform: rotate(0deg);
             }
         }
 
         // Expanded state
         &[aria-expanded="true"] {
             .wp-block-elayne-mega-menu__toggle-icon svg {
-                transform: rotate(0deg);
+                transform: rotate(180deg);
             }
 
             & ~ .elayne-mega-menu,

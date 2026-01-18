@@ -3,6 +3,7 @@ import {
 	BaseControl,
 	Button,
 	ButtonGroup,
+	ColorPalette,
 	RangeControl,
 	ToggleControl,
 } from '@wordpress/components';
@@ -10,16 +11,14 @@ import {
 /**
  * StylePanel Component
  *
- * Provides styling controls for the mega menu panel container.
- * Organized into sections: colors and effects.
+ * Provides styling controls for the mega menu panel container effects.
  *
  * @param {Object} props Component props
- * @param {string} props.section Which section to render (colors, effects)
  * @param {Object} props.attributes Block attributes
  * @param {Function} props.setAttributes Attribute setter function
  * @param {string} props.layoutMode Current layout mode (dropdown, overlay, sidebar, grid)
  */
-export default function StylePanel({ section, attributes, setAttributes, layoutMode }) {
+export default function StylePanel({ attributes, setAttributes, layoutMode }) {
 	const {
 		panelBoxShadow,
 		panelBorderRadius,
@@ -28,19 +27,8 @@ export default function StylePanel({ section, attributes, setAttributes, layoutM
 		panelBackdropBlur,
 	} = attributes;
 
-	// Colors Section
-	if (section === 'colors') {
-		return (
-			<p className="components-base-control__help">
-				{__('Background colors and content styling are controlled within the template part. Use the Site Editor to customize your mega menu content appearance.', 'elayne-blocks')}
-			</p>
-		);
-	}
-
-	// Effects Section
-	if (section === 'effects') {
-		return (
-			<>
+	return (
+		<>
 				<BaseControl
 					label={__('Box Shadow', 'elayne')}
 					help={__('Add depth to the panel container', 'elayne')}
@@ -108,9 +96,6 @@ export default function StylePanel({ section, attributes, setAttributes, layoutM
 						onChange={(value) => setAttributes({ panelBackdropBlur: value })}
 					/>
 				)}
-			</>
-		);
-	}
-
-	return null;
+		</>
+	);
 }

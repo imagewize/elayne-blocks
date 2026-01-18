@@ -24,7 +24,11 @@ $elayne_blocks_icon_name          = esc_attr( $attributes['iconName'] ?? '' );
 $elayne_blocks_icon_position      = esc_attr( $attributes['iconPosition'] ?? 'left' );
 $elayne_blocks_sidebar_direction  = esc_attr( $attributes['sidebarDirection'] ?? 'left' );
 $elayne_blocks_grid_columns       = absint( $attributes['gridColumns'] ?? 3 );
-$elayne_blocks_dropdown_alignment = esc_attr( $attributes['dropdownAlignment'] ?? 'auto' );
+// Handle migration: old blocks may have 'auto', convert to 'left'
+$elayne_blocks_dropdown_alignment = esc_attr( $attributes['dropdownAlignment'] ?? 'left' );
+if ( 'auto' === $elayne_blocks_dropdown_alignment ) {
+	$elayne_blocks_dropdown_alignment = 'left';
+}
 $elayne_blocks_overlay_backdrop   = esc_attr( $attributes['overlayBackdropColor'] ?? 'rgba(0, 0, 0, 0.5)' );
 $elayne_blocks_enable_hover       = $attributes['enableHoverActivation'] ?? false;
 $elayne_blocks_backdrop_blur      = $attributes['backdropBlur'] ?? true;

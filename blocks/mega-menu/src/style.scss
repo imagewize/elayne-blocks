@@ -439,12 +439,12 @@ $z-index-close-button: 100;
 			// Full Width Mode - Aligns with theme's wide content width
 			// Uses manual offset control for flexibility across different header layouts
 			&.mm-full-width {
-				left: 0 !important;
+				left: 50% !important;
 				right: auto !important;
 				width: var(--wp--style--global--wide-size, 1280px) !important;
 				max-width: calc(100vw - 40px) !important;
 				min-width: auto !important;
-				transform: translateX(var(--mm-full-width-offset, 0px)) !important;
+				transform: translateX(calc(-50% + var(--mm-full-width-offset, 0px))) !important;
 			}
 		}
 	}

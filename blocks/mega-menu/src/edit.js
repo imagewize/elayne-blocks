@@ -68,6 +68,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		dropdownAlignment,
 		dropdownSpacing,
 		dropdownMaxWidth,
+		useFullWidth,
 		overlayBackdropColor,
 		enableHoverActivation,
 	} = attributes;
@@ -255,6 +256,15 @@ export default function Edit( { attributes, setAttributes } ) {
 								max={ 1600 }
 								step={ 50 }
 								help={ __( 'Maximum width of the dropdown on desktop (in pixels). Mobile always uses full width.', 'elayne-blocks' ) }
+								disabled={ useFullWidth }
+							/>
+							<ToggleControl
+								label={ __( 'Use Full Width', 'elayne-blocks' ) }
+								help={ __( 'Align dropdown with theme\'s wide content width (from logo to social media). Overrides the width slider.', 'elayne-blocks' ) }
+								checked={ useFullWidth }
+								onChange={ ( value ) =>
+									setAttributes( { useFullWidth: value } )
+								}
 							/>
 						</>
 					) }

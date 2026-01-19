@@ -435,6 +435,16 @@ $z-index-close-button: 100;
 				right: auto;
 				transform: translateX(-50%) !important; // Center with transform
 			}
+
+			// Full Width Mode - Aligns with theme's wide content width
+			&.mm-full-width {
+				left: 50% !important;
+				right: auto !important;
+				width: var(--wp--style--global--wide-size, 1280px) !important;
+				max-width: calc(100vw - 40px) !important;
+				min-width: auto !important;
+				transform: translateX(-50%) !important;
+			}
 		}
 	}
 

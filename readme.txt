@@ -128,8 +128,10 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 = 2.5.0 =
 * Added: Mega menu dropdown spacing control with configurable range (0-48px, default 16px)
 * Added: Mega menu dropdown maximum width control with slider (300-1600px range, default 600px)
+* Added: Mega menu "Use Full Width" option to align dropdown with theme's wide content width (from logo to social media)
 * Changed: Mega menu default dropdown spacing increased from 8px to 16px for better visual separation
 * Changed: Mega menu dropdown width now uses CSS variables for flexible, theme-agnostic control (desktop only, mobile remains full-width)
+* Changed: Mega menu full-width mode uses theme's --wp--style--global--wide-size CSS variable for consistent alignment
 
 = 2.4.1 =
 * Changed: Mega menu now only supports dropdown and overlay layout modes (removed sidebar and grid modes)

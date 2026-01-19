@@ -81,6 +81,10 @@
 			"type": "number",
 			"default": 600
 		},
+		"useFullWidth": {
+			"type": "boolean",
+			"default": false
+		},
 		"overlayBackdropColor": {
 			"type": "string",
 			"default": "rgba(0, 0, 0, 0.5)"

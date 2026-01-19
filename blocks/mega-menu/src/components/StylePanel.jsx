@@ -16,7 +16,7 @@ import {
  * @param {Object} props Component props
  * @param {Object} props.attributes Block attributes
  * @param {Function} props.setAttributes Attribute setter function
- * @param {string} props.layoutMode Current layout mode (dropdown, overlay, sidebar, grid)
+ * @param {string} props.layoutMode Current layout mode (dropdown, overlay)
  */
 export default function StylePanel({ attributes, setAttributes, layoutMode }) {
 	const {
@@ -88,7 +88,7 @@ export default function StylePanel({ attributes, setAttributes, layoutMode }) {
 					</BaseControl>
 				)}
 
-				{(layoutMode === 'overlay' || layoutMode === 'sidebar') && (
+				{layoutMode === 'overlay' && (
 					<ToggleControl
 						label={__('Backdrop Blur', 'elayne')}
 						help={__('Add a blur effect to the panel background', 'elayne')}

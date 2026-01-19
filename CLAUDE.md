@@ -89,8 +89,6 @@ blocks/[block-name]/
 - **Layout Modes:**
   - **Dropdown:** Traditional dropdown menu beneath navigation item
   - **Overlay:** Full-screen overlay covering the entire page
-  - **Sidebar:** Side panel sliding from left or right
-  - **Grid:** Grid layout for large navigation structures
 - Uses WordPress Interactivity API for frontend state management
 - Renders via PHP template (render.php) for dynamic content
 
@@ -141,8 +139,6 @@ add_filter( 'default_wp_template_part_areas', function( $areas ) {
 **Layout Modes:**
 - **Dropdown:** Traditional dropdown positioned beneath navigation item
 - **Overlay:** Full-screen overlay covering entire viewport
-- **Sidebar:** Side panel sliding from left or right edge
-- **Grid:** Grid-based layout for large navigation structures
 
 **Interactivity Structure:**
 - `src/view.js` - Defines state, actions, and callbacks via `store()`

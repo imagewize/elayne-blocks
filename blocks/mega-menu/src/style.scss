@@ -439,7 +439,7 @@ $z-index-close-button: 100;
 			// Full Width Mode - Uses JavaScript to calculate position
 			// Positions dropdown to align with page content container
 			&.mm-full-width {
-				// JS will set inline styles for positioning
+				// JS will set inline styles for positioning (top, left, width)
 				// Default fallback: centered on viewport
 				position: fixed !important;
 				left: 50% !important;

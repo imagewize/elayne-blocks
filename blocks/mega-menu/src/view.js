@@ -199,12 +199,17 @@ const { state, actions } = store( 'elayne/mega-menu', {
 
 			const navRect = nav.getBoundingClientRect();
 
-			// Calculate offset to align panel with navigation container
-			// This makes the full-width panel align with the nav's left edge
-			const offset = navRect.left;
+			// Get dropdown spacing from CSS variable
+			const computedStyle = getComputedStyle( ref );
+			const dropdownSpacing = parseInt( computedStyle.getPropertyValue( '--mm-dropdown-spacing' ) ) || 16;
+
+			// Calculate position to align panel with navigation container
+			const topPosition = navRect.bottom + dropdownSpacing; // Position below nav with spacing
+			const leftPosition = navRect.left;
 
 			// Apply positioning
-			panel.style.left = `${ offset }px`;
+			panel.style.top = `${ topPosition }px`;
+			panel.style.left = `${ leftPosition }px`;
 			panel.style.transform = 'none';
 			panel.style.width = `${ navRect.width }px`;
 		},

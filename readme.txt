@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.3
-Stable tag: 2.5.0
+Stable tag: 2.5.1
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -124,6 +124,11 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 5. Mega menu dropdown with rich content
 
 == Changelog ==
+
+= 2.5.1 =
+* Documentation: Updated credits to accurately reflect substantial enhancements to Mega Menu and Carousel blocks
+* Documentation: Clarified Mega Menu is approximately 181% larger than original with extensive additional features
+* Documentation: Clarified Carousel is completely reimplemented using Slick Carousel vs original Swiper.js
 
 = 2.5.0 =
 * Added: Mega menu dropdown spacing control with configurable range (0-48px, default 16px)
@@ -248,16 +253,16 @@ The plugin icon is based on IconPark Block One from Blade UI Kit.
 * License: MIT License
 
 = Mega Menu Implementation =
-The mega menu block implementation is inspired by and based on the HM Mega Menu Block by Human Made.
-* Source: https://github.com/humanmade/hm-mega-menu-block
+The mega menu block was originally inspired by the HM Mega Menu Block by Human Made and substantially enhanced.
+* Original Source: https://github.com/humanmade/hm-mega-menu-block
 * License: GPL v2 or later
-* Modifications: Adapted for Elayne theme integration and WordPress Interactivity API
+* Enhancements: Added multiple layout modes (dropdown/overlay), advanced JavaScript-based positioning for full-width panels, mobile responsive state management, comprehensive focus trap and keyboard navigation, body scroll lock, animation controls, and extensive accessibility improvements. The implementation is approximately 181% larger with substantially different functionality.
 
 = Carousel Block Implementation =
-The carousel block is based on the original work from the Carousel Block Plugin by Virgiliu Diaconu, enhanced with additional features and improvements.
-* Source: https://wordpress.org/plugins/carousel-block/
+The carousel block was originally inspired by the Carousel Block Plugin by Virgiliu Diaconu but completely reimplemented.
+* Original Source: https://wordpress.org/plugins/carousel-block/
 * License: GPL v2 or later
-* Modifications: Enhanced with Slick Carousel integration and additional customization options
+* Reimplementation: Completely rebuilt using Slick Carousel library (vs original Swiper.js), with distinct features including thumbnail navigation, center mode with peek, variable width slides, lazy loading, adaptive height, advanced arrow customization with multiple SVG styles, custom SVG support, 5 block patterns, and extensive styling controls. Different codebase and functionality from the original.
 
 == Developer Information ==
 

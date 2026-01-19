@@ -111,6 +111,9 @@ const { state, actions } = store( 'elayne/mega-menu', {
 				document.body.classList.add( 'mega-menu-overlay-open' );
 			}
 
+			// Position full-width panels before opening
+			actions.positionFullWidthPanel();
+
 			// Set open state
 			context.isOpen = true;
 

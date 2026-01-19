@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Mega menu default dropdown spacing increased from 8px to 16px for better visual separation
 - Mega menu dropdown width now uses CSS variables for flexible, theme-agnostic control (desktop only, mobile remains full-width)
-- Mega menu full-width mode uses theme's `--wp--style--global--wide-size` CSS variable for consistent alignment
+- Mega menu full-width mode uses smart CSS positioning to automatically align with theme's content-constrained area (no manual adjustments needed)
 
 ## [2.4.1] - 2026-01-19
 

@@ -437,13 +437,14 @@ $z-index-close-button: 100;
 			}
 
 			// Full Width Mode - Aligns with theme's wide content width
+			// Calculates left edge of constrained content area and aligns there
 			&.mm-full-width {
-				left: 50% !important;
+				left: max(calc((100vw - var(--wp--style--global--wide-size, 1280px)) / 2), 20px) !important;
 				right: auto !important;
 				width: var(--wp--style--global--wide-size, 1280px) !important;
 				max-width: calc(100vw - 40px) !important;
 				min-width: auto !important;
-				transform: translateX(-50%) !important;
+				transform: none !important;
 			}
 		}
 	}

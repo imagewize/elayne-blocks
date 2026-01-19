@@ -1,6 +1,7 @@
 # Directories (need /* suffix for zip -x@ to exclude recursively)
 .git/*
 .github/*
+.claude/*
 node_modules/*
 
 # Development files

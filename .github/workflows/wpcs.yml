@@ -11,5 +11,4 @@ jobs:
         - name: WPCS check
           uses: 10up/wpcs-action@stable
           with:
-            standard: 'WordPress'
-            excludes: 'patterns/'
+            standard: 'phpcs.xml.dist'

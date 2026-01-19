@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Coding Standards for Elayne Blocks">
+	<description>WordPress Coding Standards configuration for Elayne Blocks plugin</description>
+
+	<!-- What to scan -->
+	<file>.</file>
+
+	<!-- Exclude patterns -->
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/build/*</exclude-pattern>
+	<exclude-pattern>*/tests/*</exclude-pattern>
+	<exclude-pattern>*/docs/*</exclude-pattern>
+	<exclude-pattern>*/.git/*</exclude-pattern>
+	<exclude-pattern>*/.github/*</exclude-pattern>
+	<exclude-pattern>*/languages/*</exclude-pattern>
+	<exclude-pattern>*/patterns/*</exclude-pattern>
+	<exclude-pattern>*/blocks/*/slick/*</exclude-pattern>
+
+	<!-- How to scan -->
+	<arg value="sp"/> <!-- Show sniff and progress -->
+	<arg name="basepath" value="."/><!-- Strip the file paths down to the relevant bit -->
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="8"/><!-- Enables parallel processing when available for faster results -->
+
+	<!-- Rules: WordPress Coding Standards -->
+	<rule ref="WordPress">
+		<!-- Allow short array syntax -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+
+		<!-- Exclude filename rules for blocks -->
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+	</rule>
+
+	<!-- Enforce WordPress naming conventions for hooks -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="elayne"/>
+				<element value="ELAYNE"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Increase memory limit -->
+	<ini name="memory_limit" value="512M"/>
+</ruleset>

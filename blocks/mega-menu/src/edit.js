@@ -5,6 +5,7 @@
  */
 import { __, sprintf } from '@wordpress/i18n';
 import {
+	BlockControls,
 	InspectorControls,
 	RichText,
 	useBlockProps,
@@ -17,18 +18,20 @@ import {
 	PanelBody,
 	TextControl,
 	ColorPalette,
-	__experimentalHStack as HStack,
-	__experimentalToggleGroupControl as ToggleGroupControl,
-	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
+	SelectControl,
+	ToggleControl,
+	RangeControl,
+	ToolbarGroup,
+	ToolbarButton,
 } from '@wordpress/components';
-import {
-	alignNone,
-	justifyLeft,
-	justifyCenter,
-	justifyRight,
-	stretchWide,
-	stretchFullWidth,
-} from '@wordpress/icons';
+
+/**
+ * Internal dependencies
+ */
+import IconPicker from './components/IconPicker';
+import AnimationControls from './components/AnimationControls';
+import LayoutPicker from './components/LayoutPicker';
+import StylePanel from './components/StylePanel';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -47,19 +50,30 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { label, labelColor, description, menuSlug, justifyMenu, width } =
-		attributes;
-
-	const layout = useSelect(
-		( select ) =>
-			select( 'core/editor' ).getEditorSettings()?.__experimentalFeatures
-				?.layout
-	);
+	const {
+		label,
+		labelColor,
+		description,
+		menuSlug,
+		layoutMode,
+		enableAnimations,
+		animationType,
+		animationSpeed,
+		enableIcon,
+		iconName,
+		iconPosition,
+		customSVG,
+		enableMobileMode,
+		mobileBreakpoint,
+		dropdownAlignment,
+		overlayBackdropColor,
+		enableHoverActivation,
+	} = attributes;
 
 	const siteUrl = useSelect( ( select ) => select( 'core' ).getSite()?.url );
 	const menuTemplateUrl =
 		( siteUrl || window.location.origin ) +
-		'/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=menu';
+		'/wp-admin/site-editor.php?p=%2Fpattern&postType=wp_template_part&categoryId=elayne-mega-menu';
 
 	const { hasResolved, records } = useEntityRecords(
 		'postType',
@@ -73,7 +87,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	if ( hasResolved ) {
 		menuOptions = records
-			.filter( ( item ) => item.area === 'menu' )
+			.filter( ( item ) => item.area === 'menu' || item.area === 'elayne-mega-menu' )
 			.map( ( item ) => ( {
 				label: item.title.rendered,
 				value: item.slug,
@@ -88,53 +102,35 @@ export default function Edit( { attributes, setAttributes } ) {
 		style: { color: labelColor || 'inherit' },
 	} );
 
-	const justificationOptions = [
-		{
-			value: 'left',
-			icon: justifyLeft,
-			label: __( 'Justify menu left', 'elayne-blocks' ),
-		},
-		{
-			value: 'center',
-			icon: justifyCenter,
-			label: __( 'Justify menu center', 'elayne-blocks' ),
-		},
-		{
-			value: 'right',
-			icon: justifyRight,
-			label: __( 'Justify menu right', 'elayne-blocks' ),
-		},
-	];
-
-	const widthOptions = [
-		{
-			value: 'content',
-			icon: alignNone,
-			label: sprintf(
-				// translators: %s: container size (i.e. 600px etc)
-				__( 'Content width (%s wide)', 'elayne-blocks' ),
-				layout?.contentSize || '1200px'
-			),
-		},
-		{
-			value: 'wide',
-			icon: stretchWide,
-			label: sprintf(
-				// translators: %s: container size (i.e. 600px etc)
-				__( 'Wide width (%s wide)', 'elayne-blocks' ),
-				layout?.wideSize || '1600px'
-			),
-		},
-		{
-			value: 'full',
-			icon: stretchFullWidth,
-			label: __( 'Full width', 'elayne-blocks' ),
-		},
-	];
-
 	return (
 		<>
+			{ /* Toolbar Controls */ }
+			<BlockControls>
+				<ToolbarGroup>
+					<ToolbarButton
+						icon={ enableAnimations ? 'yes' : 'admin-appearance' }
+						label={ __( 'Enable Animations', 'elayne-blocks' ) }
+						isPressed={ enableAnimations }
+						onClick={ () =>
+							setAttributes( {
+								enableAnimations: ! enableAnimations,
+							} )
+						}
+					/>
+					<ToolbarButton
+						icon={ enableIcon ? 'yes' : 'star-empty' }
+						label={ __( 'Enable Icon', 'elayne-blocks' ) }
+						isPressed={ enableIcon }
+						onClick={ () =>
+							setAttributes( { enableIcon: ! enableIcon } )
+						}
+					/>
+				</ToolbarGroup>
+			</BlockControls>
+
+			{ /* Inspector Controls */ }
 			<InspectorControls group="settings">
+				{ /* Settings Panel */ }
 				<PanelBody
 					className="mega-menu__settings-panel"
 					title={ __( 'Settings', 'elayne-blocks' ) }
@@ -170,90 +166,182 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 						clearable={ true }
 					/>
+
 					<ComboboxControl
-						label={ __( 'Menu Template', 'elayne-blocks' ) }
+						label={ __( 'Select Menu Template', 'elayne-blocks' ) }
 						value={ menuSlug }
 						options={ menuOptions }
 						onChange={ ( value ) =>
 							setAttributes( { menuSlug: value } )
 						}
 						help={
-							hasMenus &&
-							createInterpolateElement(
-								__(
-									'Create and modify menu templates in the <a>Site Editor</a>.',
-									'elayne-blocks'
-								),
-								{
-									a: (
-										<a
-											href={ menuTemplateUrl }
-											target="_blank"
-											rel="noreferrer"
-										/>
-									),
-								}
-							)
+							hasMenus
+								? __(
+										'Select a template part to display in the mega menu',
+										'elayne-blocks'
+								  )
+								: createInterpolateElement(
+										__(
+											'No menu template parts found. <a>Create one in the Site Editor</a>',
+											'elayne-blocks'
+										),
+										{
+											a: (
+												// eslint-disable-next-line jsx-a11y/anchor-has-content
+												<a
+													href={ menuTemplateUrl }
+													target="_blank"
+													rel="noreferrer noopener"
+												/>
+											),
+										}
+								  )
 						}
 					/>
 				</PanelBody>
+
+				{ /* Layout Panel */ }
 				<PanelBody
 					className="mega-menu__layout-panel"
 					title={ __( 'Layout', 'elayne-blocks' ) }
-					initialOpen={ true }
+					initialOpen={ false }
 				>
-					<HStack alignment="top" justify="space-between">
-						<ToggleGroupControl
-							className="block-editor-hooks__flex-layout-justification-controls"
-							label={ __( 'Justification', 'elayne-blocks' ) }
-							value={ justifyMenu }
-							onChange={ ( justificationValue ) => {
-								setAttributes( {
-									justifyMenu: justificationValue,
-								} );
-							} }
-							isDeselectable={ true }
-						>
-							{ justificationOptions.map(
-								( { value, icon, label: iconLabel } ) => {
-									return (
-										<ToggleGroupControlOptionIcon
-											key={ value }
-											value={ value }
-											icon={ icon }
-											label={ iconLabel }
-										/>
-									);
-								}
-							) }
-						</ToggleGroupControl>
-						<ToggleGroupControl
-							className="block-editor-hooks__flex-layout-justification-controls"
-							label={ __( 'Width', 'elayne-blocks' ) }
-							value={ width || 'content' }
-							onChange={ ( widthValue ) => {
-								setAttributes( {
-									width: widthValue,
-								} );
-							} }
-							__nextHasNoMarginBottom
-						>
-							{ widthOptions.map(
-								( { value, icon, label: iconLabel } ) => {
-									return (
-										<ToggleGroupControlOptionIcon
-											key={ value }
-											value={ value }
-											icon={ icon }
-											label={ iconLabel }
-										/>
-									);
-								}
-							) }
-						</ToggleGroupControl>
-					</HStack>
+					<LayoutPicker
+						value={ layoutMode }
+						onChange={ ( value ) =>
+							setAttributes( { layoutMode: value } )
+						}
+					/>
+
+					{ layoutMode === 'dropdown' && (
+						<SelectControl
+							label={ __( 'Dropdown Alignment', 'elayne-blocks' ) }
+							value={ dropdownAlignment }
+							options={ [
+								{ label: __( 'Left', 'elayne-blocks' ), value: 'left' },
+								{ label: __( 'Right', 'elayne-blocks' ), value: 'right' },
+								{ label: __( 'Center', 'elayne-blocks' ), value: 'center' },
+							] }
+							onChange={ ( value ) =>
+								setAttributes( { dropdownAlignment: value } )
+							}
+							help={ __( 'Choose how the dropdown panel aligns relative to the menu toggle button.', 'elayne-blocks' ) }
+						/>
+					) }
+
+					{ layoutMode === 'overlay' && (
+						<TextControl
+							label={ __( 'Backdrop Color', 'elayne-blocks' ) }
+							value={ overlayBackdropColor }
+							onChange={ ( value ) =>
+								setAttributes( { overlayBackdropColor: value } )
+							}
+							help={ __( 'e.g., rgba(0, 0, 0, 0.5)', 'elayne-blocks' ) }
+						/>
+					) }
+
+					{ layoutMode === 'dropdown' && (
+						<ToggleControl
+							label={ __( 'Activate on Hover', 'elayne-blocks' ) }
+							help={ __( 'Open menu on hover instead of click', 'elayne-blocks' ) }
+							checked={ enableHoverActivation }
+							onChange={ ( value ) =>
+								setAttributes( { enableHoverActivation: value } )
+							}
+						/>
+					) }
+				</PanelBody>
+
+				{ /* Icon Panel - Conditional */ }
+				{ enableIcon && (
+					<PanelBody
+						title={ __( 'Icon', 'elayne-blocks' ) }
+						initialOpen={ false }
+					>
+						<IconPicker
+							value={ iconName }
+							onChange={ ( value ) =>
+								setAttributes( { iconName: value } )
+							}
+							customSVG={ customSVG }
+							onCustomSVGChange={ ( value ) =>
+								setAttributes( { customSVG: value } )
+							}
+						/>
+						<SelectControl
+							label={ __( 'Icon Position', 'elayne-blocks' ) }
+							value={ iconPosition }
+							options={ [
+								{ label: __( 'Left of Label', 'elayne-blocks' ), value: 'left' },
+								{ label: __( 'Right of Label', 'elayne-blocks' ), value: 'right' },
+								{ label: __( 'Above Label', 'elayne-blocks' ), value: 'top' },
+							] }
+							onChange={ ( value ) =>
+								setAttributes( { iconPosition: value } )
+							}
+						/>
+					</PanelBody>
+				) }
+
+				{ /* Animation Panel - Conditional */ }
+				{ enableAnimations && (
+					<PanelBody
+						title={ __( 'Animation', 'elayne-blocks' ) }
+						initialOpen={ false }
+					>
+						<AnimationControls
+							animationType={ animationType }
+							animationSpeed={ animationSpeed }
+							onTypeChange={ ( value ) =>
+								setAttributes( { animationType: value } )
+							}
+							onSpeedChange={ ( value ) =>
+								setAttributes( { animationSpeed: value } )
+							}
+						/>
+					</PanelBody>
+				) }
+
+				{ /* Mobile Panel */ }
+				<PanelBody
+					title={ __( 'Mobile Behavior', 'elayne-blocks' ) }
+					initialOpen={ false }
+				>
+					<ToggleControl
+						label={ __( 'Enable Mobile Mode', 'elayne-blocks' ) }
+						checked={ enableMobileMode }
+						onChange={ ( value ) =>
+							setAttributes( { enableMobileMode: value } )
+						}
+					/>
+					{ enableMobileMode && (
+						<RangeControl
+							label={ __( 'Mobile Breakpoint (px)', 'elayne-blocks' ) }
+							value={ mobileBreakpoint }
+							onChange={ ( value ) =>
+								setAttributes( { mobileBreakpoint: value } )
+							}
+							min={ 320 }
+							max={ 1024 }
+							step={ 1 }
+						/>
+					) }
+				</PanelBody>
+
+				{ /* Panel Effects */ }
+				<PanelBody
+					title={ __( 'Panel Effects', 'elayne-blocks' ) }
+					initialOpen={ false }
+				>
+					<StylePanel
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+						layoutMode={ layoutMode }
+					/>
 				</PanelBody>
 			</InspectorControls>
+
+			{ /* Block Preview */ }
 			<div { ...blockProps }>
 				<button className="wp-block-navigation-item__content wp-block-elayne-mega-menu__toggle">
 					<RichText

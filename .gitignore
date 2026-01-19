@@ -23,7 +23,6 @@ wp-content/plugins/hello.php
 
 # Editor directories and files
 .idea
-.vscode
 *.suo
 *.ntvs*
 *.njsproj
@@ -52,6 +51,9 @@ pnpm-lock.yaml
 *.swp
 *~
 
+# Test artifacts
+tests/screenshots/
+
 # OS files
 .DS_Store
 .DS_Store?
@@ -61,3 +63,4 @@ pnpm-lock.yaml
 ehthumbs.db
 Thumbs.db
 create-pr.sh
+.playwright-mcp/

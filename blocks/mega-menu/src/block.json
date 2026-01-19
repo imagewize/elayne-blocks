@@ -25,23 +25,87 @@
 			"type": "string",
 			"default": ""
 		},
-		"justifyMenu": {
+		"layoutMode": {
+			"type": "string",
+			"default": "dropdown",
+			"enum": [ "dropdown", "overlay" ]
+		},
+		"enableAnimations": {
+			"type": "boolean",
+			"default": false
+		},
+		"animationType": {
+			"type": "string",
+			"default": "fade",
+			"enum": [ "fade", "slide", "scale", "slidefade" ]
+		},
+		"animationSpeed": {
+			"type": "number",
+			"default": 300
+		},
+		"enableIcon": {
+			"type": "boolean",
+			"default": false
+		},
+		"iconName": {
+			"type": "string",
+			"default": ""
+		},
+		"iconPosition": {
 			"type": "string",
 			"default": "left",
-			"enum": [ "left", "center", "right" ]
+			"enum": [ "left", "right", "top" ]
 		},
-		"width": {
+		"customSVG": {
 			"type": "string",
-			"default": "content",
-			"enum": [ "content", "wide", "full" ]
+			"default": ""
+		},
+		"enableMobileMode": {
+			"type": "boolean",
+			"default": true
+		},
+		"mobileBreakpoint": {
+			"type": "number",
+			"default": 768
+		},
+		"dropdownAlignment": {
+			"type": "string",
+			"default": "left",
+			"enum": [ "left", "right", "center" ]
+		},
+		"overlayBackdropColor": {
+			"type": "string",
+			"default": "rgba(0, 0, 0, 0.5)"
+		},
+		"enableHoverActivation": {
+			"type": "boolean",
+			"default": false
+		},
+		"panelBoxShadow": {
+			"type": "string",
+			"default": "default"
+		},
+		"panelBorderRadius": {
+			"type": "number",
+			"default": 4
+		},
+		"panelBorderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"panelBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"panelBackdropBlur": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"example": {
 		"attributes": {
 			"label": "Features",
-			"description": "Explore our powerful features",
-			"justifyMenu": "center",
-			"width": "wide"
+			"description": "Explore our powerful features"
 		}
 	},
 	"supports": {

@@ -1,0 +1,40 @@
+<?php
+/**
+ * Title: Mega Menu - Three Column Products
+ * Slug: elayne-blocks/mega-menu-three-column
+ * Categories: elayne-blocks
+ * Block Types: core/template-part
+ * Description: Three column layout with product categories and links
+ */
+?>
+<!-- wp:group {"align":"wide","layout":{"type":"grid","minimumColumnWidth":"18rem"}} -->
+<div class="wp-block-group alignwide"><!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Products</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul><li><a href="#">All Products</a></li><li><a href="#">New Arrivals</a></li><li><a href="#">Best Sellers</a></li><li><a href="#">Sale Items</a></li></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Categories</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul><li><a href="#">Electronics</a></li><li><a href="#">Clothing</a></li><li><a href="#">Home &amp; Garden</a></li><li><a href="#">Sports</a></li></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Support</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul><li><a href="#">Help Center</a></li><li><a href="#">Contact Us</a></li><li><a href="#">FAQ</a></li><li><a href="#">Returns</a></li></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->

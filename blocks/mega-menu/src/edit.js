@@ -69,6 +69,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		dropdownSpacing,
 		dropdownMaxWidth,
 		useFullWidth,
+		fullWidthOffset,
 		overlayBackdropColor,
 		enableHoverActivation,
 	} = attributes;
@@ -260,12 +261,25 @@ export default function Edit( { attributes, setAttributes } ) {
 							/>
 							<ToggleControl
 								label={ __( 'Use Full Width', 'elayne-blocks' ) }
-								help={ __( 'Align dropdown with theme\'s wide content width (from logo to social media). Overrides the width slider.', 'elayne-blocks' ) }
+								help={ __( 'Align dropdown with theme\'s wide content width. Enable this and adjust the offset below to match your header layout.', 'elayne-blocks' ) }
 								checked={ useFullWidth }
 								onChange={ ( value ) =>
 									setAttributes( { useFullWidth: value } )
 								}
 							/>
+							{ useFullWidth && (
+								<RangeControl
+									label={ __( 'Full Width Offset', 'elayne-blocks' ) }
+									value={ fullWidthOffset }
+									onChange={ ( value ) =>
+										setAttributes( { fullWidthOffset: value } )
+									}
+									min={ -500 }
+									max={ 500 }
+									step={ 10 }
+									help={ __( 'Horizontal offset in pixels. Negative values move left, positive values move right.', 'elayne-blocks' ) }
+								/>
+							) }
 						</>
 					) }
 

@@ -437,14 +437,14 @@ $z-index-close-button: 100;
 			}
 
 			// Full Width Mode - Aligns with theme's wide content width
-			// Calculates left edge of constrained content area and aligns there
+			// Uses manual offset control for flexibility across different header layouts
 			&.mm-full-width {
-				left: max(calc((100vw - var(--wp--style--global--wide-size, 1280px)) / 2), 20px) !important;
+				left: 0 !important;
 				right: auto !important;
 				width: var(--wp--style--global--wide-size, 1280px) !important;
 				max-width: calc(100vw - 40px) !important;
 				min-width: auto !important;
-				transform: none !important;
+				transform: translateX(var(--mm-full-width-offset, 0px)) !important;
 			}
 		}
 	}

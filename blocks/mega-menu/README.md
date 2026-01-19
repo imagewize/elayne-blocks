@@ -4,10 +4,10 @@ A flexible mega menu block for WordPress with multiple layout modes and template
 
 ## Features
 
-- **Multiple Layout Modes**: Dropdown, Overlay, Sidebar, Grid
+- **Multiple Layout Modes**: Dropdown, Overlay
 - **Template Part Integration**: Use WordPress template parts for mega menu content
 - **Animations**: Optional entrance animations (fade, slide, scale)
-- **Hover Activation**: Optional hover-to-open for dropdown and grid modes
+- **Hover Activation**: Optional hover-to-open for dropdown mode
 - **Responsive**: Mobile-friendly with customizable breakpoint
 - **Interactivity API**: Uses WordPress Interactivity API for frontend state
 
@@ -62,7 +62,7 @@ The **Elayne theme** includes this by default.
 3. Configure the block settings:
    - **Label**: Button text (e.g., "Shop", "Services")
    - **Menu Slug**: Select the template part slug
-   - **Layout Mode**: Choose dropdown, overlay, sidebar, or grid
+   - **Layout Mode**: Choose dropdown or overlay
    - **Width**: Full width or content width
    - **Alignment**: For dropdown mode positioning
 
@@ -77,15 +77,13 @@ Use the block settings panel to configure:
 - Optional icon (Dashicons)
 
 **Layout**
-- Layout mode (dropdown/overlay/sidebar/grid)
+- Layout mode (dropdown/overlay)
 - Width and alignment
-- Grid columns (grid mode only)
-- Sidebar direction (sidebar mode only)
 
 **Behavior**
 - Animations (fade, slide, scale)
 - Animation speed
-- Hover activation (dropdown/grid modes)
+- Hover activation (dropdown mode)
 - Mobile breakpoint
 
 **Colors**
@@ -105,18 +103,6 @@ Full-screen overlay covering the entire viewport. Best for:
 - Immersive mega menus
 - Large navigation structures
 - Mobile-first designs
-
-### Sidebar
-Side panel sliding from left or right. Best for:
-- Secondary navigation
-- Filters and options
-- Mobile navigation
-
-### Grid
-Grid-based layout with customizable columns. Best for:
-- Large product catalogs
-- Multi-section navigation
-- Dashboard-style menus
 
 ## Template Part Scoping
 

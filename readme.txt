@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.3
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -125,6 +125,14 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 
 == Changelog ==
 
+= 2.4.1 =
+* Changed: Mega menu now only supports dropdown and overlay layout modes (removed sidebar and grid modes)
+* Changed: Mega menu dropdown positioning improved with minimum width of 600px
+* Changed: Backdrop blur effect now only available for overlay mode
+* Fixed: Mega menu dropdown width calculation for consistent sizing
+* Fixed: Mega menu mobile positioning improvements
+* Documentation: Updated mega menu README and added pattern improvements proposal
+
 = 2.4.0 =
 * Added multiple layout modes for mega menu: dropdown, overlay, sidebar, and grid
 * Added template part integration for mega menu content management
@@ -187,6 +195,9 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 * Full translation support
 
 == Upgrade Notice ==
+
+= 2.4.1 =
+Simplified mega menu layout modes to dropdown and overlay only. Improved dropdown width handling and mobile positioning. Breaking change: sidebar and grid modes removed.
 
 = 2.4.0 =
 Major mega menu enhancements with multiple layout modes, template part integration, animations, and improved positioning. Breaking change: mega menu now requires theme integration for template part area registration. See documentation.

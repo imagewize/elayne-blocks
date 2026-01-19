@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.3
-Stable tag: 2.5.0
+Stable tag: 2.5.1
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -124,6 +124,11 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 5. Mega menu dropdown with rich content
 
 == Changelog ==
+
+= 2.5.1 =
+* Documentation: Updated credits to accurately reflect substantial enhancements to Mega Menu and Carousel blocks
+* Documentation: Clarified Mega Menu is approximately 181% larger than original with extensive additional features
+* Documentation: Clarified Carousel is completely reimplemented using Slick Carousel vs original Swiper.js
 
 = 2.5.0 =
 * Added: Mega menu dropdown spacing control with configurable range (0-48px, default 16px)

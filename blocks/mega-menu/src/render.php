@@ -25,7 +25,8 @@ $elayne_blocks_dropdown_alignment = esc_attr( $attributes['dropdownAlignment'] ?
 if ( 'auto' === $elayne_blocks_dropdown_alignment ) {
 	$elayne_blocks_dropdown_alignment = 'left';
 }
-$elayne_blocks_dropdown_spacing = absint( $attributes['dropdownSpacing'] ?? 16 );
+$elayne_blocks_dropdown_spacing   = absint( $attributes['dropdownSpacing'] ?? 16 );
+$elayne_blocks_dropdown_max_width = absint( $attributes['dropdownMaxWidth'] ?? 600 );
 $elayne_blocks_overlay_backdrop   = esc_attr( $attributes['overlayBackdropColor'] ?? 'rgba(0, 0, 0, 0.5)' );
 $elayne_blocks_enable_hover       = $attributes['enableHoverActivation'] ?? false;
 $elayne_blocks_backdrop_blur      = $attributes['backdropBlur'] ?? true;
@@ -54,7 +55,7 @@ if ( $elayne_blocks_enable_hover && 'dropdown' === $elayne_blocks_layout_mode ) 
 $elayne_blocks_wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'class' => implode( ' ', $elayne_blocks_wrapper_classes ),
-		'style' => '--mm-dropdown-spacing: ' . $elayne_blocks_dropdown_spacing . 'px',
+		'style' => '--mm-dropdown-spacing: ' . $elayne_blocks_dropdown_spacing . 'px; --mm-dropdown-max-width: ' . $elayne_blocks_dropdown_max_width . 'px',
 	)
 );
 

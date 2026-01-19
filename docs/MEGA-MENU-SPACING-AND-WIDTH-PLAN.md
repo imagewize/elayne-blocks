@@ -67,238 +67,142 @@ Add a configurable `dropdownSpacing` attribute that controls the vertical gap be
 
 ### Current Behavior
 - Dropdown uses `min-width: min(600px, calc(100vw - 40px))`
-- Width is approximately the navigation bar width (constrained content area)
-- Cannot match full header width (`.alignwide` constraint to `--wp--style--global--wide-size`)
+- Fixed minimum width of 600px
+- Auto-grows with content up to viewport constraints
+- No user control over maximum width
 
 ### User Need
-The user wants dropdown to optionally span the **full header width** (from logo to social icons), not just the navigation bar width.
+Users need flexible control over dropdown width to accommodate different content types and design requirements, from narrow utility menus to wide feature showcases.
 
-#### Challenge: Understanding Width Constraints
-The dropdown width is currently limited by:
-1. **Navigation container width** - The immediate parent container
-2. **Header layout constraints** - `.alignwide` applies `max-width: var(--wp--style--global--wide-size)`
-3. **Viewport constraints** - `calc(100vw - 40px)` prevents overflow
+### Proposed Solution: Maximum Width Slider
 
-To span "logo to social icons" width, the dropdown needs to break out of the navigation container and align to the header's `.alignwide` container.
+Add a simple `dropdownMaxWidth` numeric attribute that gives users precise control over dropdown width.
 
-### Proposed Solution
-Add a `dropdownWidth` attribute with three options:
-1. **Auto** (default) - Current behavior (min-width: 600px, constrained to viewport)
-2. **Navigation Width** - Match the navigation bar container width
-3. **Header Width** - Match the header's `.alignwide` container (typically wider)
+#### Why This Approach?
+- ✅ **CSS-only implementation** - No JavaScript calculations or layout thrashing
+- ✅ **Theme-agnostic** - Works with any WordPress theme or header structure
+- ✅ **Flexible** - Users can set any width that suits their content
+- ✅ **Simple to implement** - Single attribute, minimal code changes
+- ✅ **Responsive-ready** - Desktop only, mobile automatically goes full-screen
+- ❌ **Avoided complexity** - No fragile JS width detection or theme dependencies
 
 #### Implementation Details
 
 **1. Add attribute to block.json**
 ```json
-"dropdownWidth": {
-  "type": "string",
-  "default": "auto",
-  "enum": ["auto", "navigation", "header"]
+"dropdownMaxWidth": {
+  "type": "number",
+  "default": 600
 }
 ```
 
 **2. Update style.scss**
-Add three width modes:
+Replace fixed `min-width` with CSS variable:
 
 ```scss
 .wp-block-elayne-mega-menu--layout-dropdown {
   .wp-block-elayne-mega-menu__panel {
-    // Mode 1: Auto (default - current behavior)
-    &.mm-width-auto {
-      width: auto;
-      min-width: min(600px, calc(100vw - 40px));
-      max-width: calc(100vw - 40px);
-    }
+    width: auto;
+    min-width: min(var(--mm-dropdown-max-width, 600px), calc(100vw - 40px));
+    max-width: calc(100vw - 40px);
 
-    // Mode 2: Navigation Width
-    &.mm-width-navigation {
-      // Get the width of the parent navigation container
-      // This is the navigation bar width
-      width: 100%;
-      max-width: 100vw;
-      left: 0;
-      right: auto;
-    }
-
-    // Mode 3: Header Width (alignwide container)
-    &.mm-width-header {
-      // Break out of navigation and align to nearest .alignwide ancestor
-      // Requires calculating offset from navigation to header container
-
-      // Strategy: Use CSS container queries or JavaScript positioning
-      // For CSS-only approach:
-      width: var(--wp--style--global--wide-size, 1280px);
-      max-width: calc(100vw - 40px);
-
-      // Position relative to navigation item but sized to header
-      left: 50%;
-      transform: translateX(-50%);
+    // Mobile override - always full screen
+    @media (max-width: 768px) {
+      min-width: auto;
+      width: 100vw;
+      max-width: none;
     }
   }
 }
 ```
 
 **3. Update edit.js**
-- Add `SelectControl` to Layout panel
-- Label: "Dropdown Width"
-- Options:
-  - `{ label: 'Auto (600px minimum)', value: 'auto' }`
-  - `{ label: 'Navigation Width', value: 'navigation' }`
-  - `{ label: 'Header Width (alignwide)', value: 'header' }`
-- Help text: "Controls the maximum width of the dropdown panel"
+- Add `RangeControl` to Layout panel
+- Label: "Maximum Dropdown Width"
+- Min: 300, Max: 1600, Step: 50
+- Help text: "Maximum width of the dropdown on desktop (in pixels). Mobile always uses full width."
 - Only visible when `layoutMode === 'dropdown'`
-- Apply class to panel element: `mm-width-${dropdownWidth}`
-
-**4. Update render.php**
-- Add class to panel element:
-  ```php
-  $panel_classes[] = 'mm-width-' . $attributes['dropdownWidth'];
+- Apply CSS variable to wrapper div:
+  ```jsx
+  style={{
+    '--mm-dropdown-max-width': `${dropdownMaxWidth}px`
+  }}
   ```
 
-#### Technical Challenge: Header Width Detection
-
-The "Header Width" option is complex because:
-
-1. **No direct parent relationship** - The mega menu is inside navigation, which is inside header
-2. **Variable header structure** - Headers can have different layouts (`.alignwide`, `.alignfull`, custom)
-3. **Dynamic positioning** - Need to calculate offset from menu item to header container edge
-
-**Proposed JavaScript Enhancement (Optional):**
-
-Add JavaScript to `view.js` to dynamically calculate header width:
-
-```javascript
-// When dropdown opens, calculate header width and position
-actions.openMenu() {
-  const menuItem = context.menuRef;
-  const header = menuItem.closest('.wp-block-group.alignwide, header.alignwide');
-
-  if (header && context.dropdownWidth === 'header') {
-    const panel = menuItem.querySelector('.wp-block-elayne-mega-menu__panel');
-    const headerRect = header.getBoundingClientRect();
-    const menuRect = menuItem.getBoundingClientRect();
-
-    // Calculate offset from menu item to header left edge
-    const leftOffset = menuRect.left - headerRect.left;
-
-    panel.style.width = `${headerRect.width}px`;
-    panel.style.left = `-${leftOffset}px`;
-  }
-}
-```
-
-This approach:
-- Finds the nearest `.alignwide` header container
-- Calculates the width of the header
-- Positions the dropdown to align with header edges
-- Only runs when `dropdownWidth === 'header'`
-
-### Alternative: CSS-Only Approach
-
-If JavaScript is undesirable, use CSS custom properties set on the header:
-
-**In theme (required for Header Width mode):**
-```css
-.wp-block-group.alignwide,
-header.alignwide {
-  --header-width: var(--wp--style--global--wide-size);
-}
-```
-
-**In mega-menu style.scss:**
-```scss
-&.mm-width-header {
-  width: var(--header-width, var(--wp--style--global--wide-size, 1280px));
-  max-width: calc(100vw - 40px);
-  left: 50%;
-  transform: translateX(-50%);
-}
-```
-
-**Trade-off:**
-- ✅ No JavaScript required
-- ✅ Uses standard CSS variables
-- ❌ Requires theme cooperation (Elayne theme would need to define `--header-width`)
-- ❌ Centering may not align perfectly with header edges
+**4. Update render.php**
+- Add CSS variable to wrapper element:
+  ```php
+  'style' => sprintf('--mm-dropdown-max-width: %dpx', $dropdown_max_width)
+  ```
 
 ### Benefits
-- **Auto mode** - Current behavior, works everywhere
-- **Navigation mode** - Simple, matches nav container width
-- **Header mode** - Achieves user's goal of "logo to social icons" width
-- Progressive enhancement - Basic modes work without JavaScript
+- **Precise control** - Users choose exact width in pixels
+- **No theme dependencies** - Works with any header/navigation structure
+- **Performance** - Pure CSS, no JavaScript overhead
+- **Responsive** - Desktop control, mobile always optimized
+- **Simple UX** - Single slider control instead of complex mode selection
+- **Future-proof** - Not tied to specific theme implementations
+
+### Recommended Width Ranges
+- **Narrow menus (300-500px)** - Simple link lists, utility navigation
+- **Standard menus (600-900px)** - Default range, works for most content
+- **Wide menus (1000-1400px)** - Feature showcases, multi-column layouts
+- **Extra wide (1400-1600px)** - Full-featured mega menus with rich content
 
 ---
 
 ## Implementation Phases
 
-### Phase 1: Dropdown Spacing (Quick Win)
-1. Add `dropdownSpacing` attribute to block.json
-2. Update style.scss with CSS variable
-3. Add RangeControl to edit.js Layout panel
+### Phase 1: Dropdown Spacing ✅ COMPLETED
+1. ✅ Add `dropdownSpacing` attribute to block.json
+2. ✅ Update style.scss with CSS variable
+3. ✅ Add RangeControl to edit.js Layout panel
+4. ✅ Update render.php to output CSS variable
+5. ✅ Test on demo site
+6. ✅ Update CHANGELOG.md
+
+**Status:** Implemented in version 2.5.0
+
+### Phase 2: Dropdown Maximum Width (Simple Approach)
+1. Add `dropdownMaxWidth` attribute to block.json
+2. Update style.scss to use CSS variable for min-width
+3. Add RangeControl to edit.js Layout panel (300-1600px range)
 4. Update render.php to output CSS variable
-5. Test on demo site
-6. Update CHANGELOG.md
+5. Ensure mobile override works (full-width on mobile)
+6. Test various width values on demo site
 
-**Estimated complexity:** Low (30 minutes)
+**Complexity:** Low - Pure CSS implementation, no JavaScript needed
 
-### Phase 2: Dropdown Width - Auto & Navigation Modes
-1. Add `dropdownWidth` attribute to block.json
-2. Add SelectControl to edit.js Layout panel
-3. Implement `mm-width-auto` and `mm-width-navigation` CSS classes
-4. Update render.php to add classes
-5. Test both modes on demo site
-
-**Estimated complexity:** Medium (1 hour)
-
-### Phase 3: Dropdown Width - Header Mode (Advanced)
-1. Implement JavaScript positioning in view.js
-2. Add header width calculation logic
-3. Test with various header layouts (alignwide, alignfull, custom)
-4. Add fallback behavior for when header isn't found
-5. Document theme requirements in README.md
-
-**Estimated complexity:** High (2-3 hours)
-
-### Phase 4: Documentation & Polish
-1. Update mega-menu README.md with new options
-2. Add screenshots showing spacing and width differences
-3. Update CHANGELOG.md with detailed feature list
-4. Test on mobile (ensure responsive behavior)
-5. Test with all layout modes (dropdown, overlay)
-
-**Estimated complexity:** Medium (1 hour)
+### Phase 3: Documentation & Polish
+1. Update mega-menu README.md with new width control option
+2. Add usage examples for different width ranges
+3. Update CHANGELOG.md with feature details
+4. Test responsive behavior (desktop slider, mobile full-width)
+5. Test with all layout modes (ensure overlay not affected)
 
 ---
 
 ## Testing Checklist
 
-### Dropdown Spacing
-- [ ] Default 16px spacing renders correctly
-- [ ] Spacing adjusts in editor preview
-- [ ] Spacing persists on frontend
-- [ ] Min/max values (0-48px) work as expected
-- [ ] Spacing doesn't affect overlay mode
-- [ ] Mobile responsive behavior maintains spacing
+### Dropdown Spacing ✅
+- [x] Default 16px spacing renders correctly
+- [x] Spacing adjusts in editor preview
+- [x] Spacing persists on frontend
+- [x] Min/max values (0-48px) work as expected
+- [x] Spacing doesn't affect overlay mode
+- [x] Mobile responsive behavior maintains spacing
 
-### Dropdown Width - Auto Mode
-- [ ] Current behavior unchanged (600px min-width)
-- [ ] Respects viewport constraints (no overflow)
+### Dropdown Maximum Width
+- [ ] Default 600px width works as before
+- [ ] Width slider adjusts dropdown in editor preview
+- [ ] Width persists on frontend
+- [ ] Min value (300px) works correctly
+- [ ] Max value (1600px) works correctly
+- [ ] Viewport constraints prevent overflow (respects calc(100vw - 40px))
 - [ ] Works with all dropdown alignments (left, right, center)
-
-### Dropdown Width - Navigation Mode
-- [ ] Dropdown spans full navigation container width
-- [ ] Aligns properly with navigation edges
-- [ ] Responsive on mobile (doesn't break layout)
-- [ ] Works with all dropdown alignments
-
-### Dropdown Width - Header Mode
-- [ ] JavaScript calculates header width correctly
-- [ ] Dropdown aligns to header left/right edges
-- [ ] Fallback to navigation mode if header not found
-- [ ] Repositions on window resize
-- [ ] Works with various header structures
-- [ ] Mobile responsive (falls back to full-width)
+- [ ] Mobile always uses full-width (desktop control doesn't apply)
+- [ ] Only affects dropdown mode (overlay mode unaffected)
+- [ ] CSS variable properly applied in both editor and frontend
 
 ---
 

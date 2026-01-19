@@ -67,6 +67,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		mobileBreakpoint,
 		dropdownAlignment,
 		dropdownSpacing,
+		dropdownMaxWidth,
 		overlayBackdropColor,
 		enableHoverActivation,
 	} = attributes;
@@ -103,6 +104,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		style: {
 			color: labelColor || 'inherit',
 			'--mm-dropdown-spacing': `${dropdownSpacing || 16}px`,
+			'--mm-dropdown-max-width': `${dropdownMaxWidth || 600}px`,
 		},
 	} );
 
@@ -242,6 +244,17 @@ export default function Edit( { attributes, setAttributes } ) {
 								max={ 48 }
 								step={ 2 }
 								help={ __( 'Vertical space between menu item and dropdown (in pixels)', 'elayne-blocks' ) }
+							/>
+							<RangeControl
+								label={ __( 'Maximum Dropdown Width', 'elayne-blocks' ) }
+								value={ dropdownMaxWidth }
+								onChange={ ( value ) =>
+									setAttributes( { dropdownMaxWidth: value } )
+								}
+								min={ 300 }
+								max={ 1600 }
+								step={ 50 }
+								help={ __( 'Maximum width of the dropdown on desktop (in pixels). Mobile always uses full width.', 'elayne-blocks' ) }
 							/>
 						</>
 					) }

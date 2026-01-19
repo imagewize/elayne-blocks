@@ -101,6 +101,10 @@
       "type": "number",
       "default": 16
     },
+    "dropdownMaxWidth": {
+      "type": "number",
+      "default": 600
+    },
     "overlayBackdropColor": {
       "type": "string",
       "default": "rgba(0, 0, 0, 0.5)"

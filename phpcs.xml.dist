@@ -1,49 +1,34 @@
 <?xml version="1.0"?>
-<ruleset name="WordPress Coding Standards for Elayne Blocks">
-	<description>WordPress Coding Standards configuration for Elayne Blocks plugin</description>
+<ruleset name="Elayne Blocks Plugin">
+    <description>Coding standards for Elayne Blocks Plugin</description>
 
-	<!-- What to scan -->
-	<file>.</file>
+    <!-- Use WordPress standards -->
+    <rule ref="WordPress" />
 
-	<!-- Exclude patterns -->
-	<exclude-pattern>*/node_modules/*</exclude-pattern>
-	<exclude-pattern>*/vendor/*</exclude-pattern>
-	<exclude-pattern>*/build/*</exclude-pattern>
-	<exclude-pattern>*/tests/*</exclude-pattern>
-	<exclude-pattern>*/docs/*</exclude-pattern>
-	<exclude-pattern>*/.git/*</exclude-pattern>
-	<exclude-pattern>*/.github/*</exclude-pattern>
-	<exclude-pattern>*/languages/*</exclude-pattern>
-	<exclude-pattern>*/patterns/*</exclude-pattern>
-	<exclude-pattern>*/blocks/*/slick/*</exclude-pattern>
+    <!-- Check PHP files only -->
+    <arg name="extensions" value="php"/>
 
-	<!-- How to scan -->
-	<arg value="sp"/> <!-- Show sniff and progress -->
-	<arg name="basepath" value="."/><!-- Strip the file paths down to the relevant bit -->
-	<arg name="colors"/>
-	<arg name="extensions" value="php"/>
-	<arg name="parallel" value="8"/><!-- Enables parallel processing when available for faster results -->
+    <!-- Show progress and use colors -->
+    <arg value="ps"/>
+    <arg name="colors"/>
 
-	<!-- Rules: WordPress Coding Standards -->
-	<rule ref="WordPress">
-		<!-- Allow short array syntax -->
-		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+    <!-- Exclusions -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/blocks/*/build/*</exclude-pattern>
+    <exclude-pattern>*/blocks/carousel/slick/*</exclude-pattern>
+    <exclude-pattern>*/patterns/*</exclude-pattern>
 
-		<!-- Exclude filename rules for blocks -->
-		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
-		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
-	</rule>
+    <!-- Minimum PHP version -->
+    <config name="minimum_supported_wp_version" value="6.7"/>
+    <config name="testVersion" value="7.3-"/>
 
-	<!-- Enforce WordPress naming conventions for hooks -->
-	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
-		<properties>
-			<property name="prefixes" type="array">
-				<element value="elayne"/>
-				<element value="ELAYNE"/>
-			</property>
-		</properties>
-	</rule>
-
-	<!-- Increase memory limit -->
-	<ini name="memory_limit" value="512M"/>
+    <!-- Text domain check -->
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="elayne-blocks"/>
+            </property>
+        </properties>
+    </rule>
 </ruleset>

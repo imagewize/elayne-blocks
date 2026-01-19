@@ -20,7 +20,7 @@ $elayne_blocks_animation_speed    = absint( $attributes['animationSpeed'] ?? 300
 $elayne_blocks_enable_icon        = $attributes['enableIcon'] ?? false;
 $elayne_blocks_icon_name          = esc_attr( $attributes['iconName'] ?? '' );
 $elayne_blocks_icon_position      = esc_attr( $attributes['iconPosition'] ?? 'left' );
-// Handle migration: old blocks may have 'auto', convert to 'left'
+// Handle migration: old blocks may have 'auto', convert to 'left'.
 $elayne_blocks_dropdown_alignment = esc_attr( $attributes['dropdownAlignment'] ?? 'left' );
 if ( 'auto' === $elayne_blocks_dropdown_alignment ) {
 	$elayne_blocks_dropdown_alignment = 'left';

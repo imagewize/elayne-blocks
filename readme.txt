@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.3
-Stable tag: 2.4.1
+Stable tag: 2.5.0
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -124,6 +124,17 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 5. Mega menu dropdown with rich content
 
 == Changelog ==
+
+= 2.5.0 =
+* Added: Mega menu dropdown spacing control with configurable range (0-48px, default 16px)
+* Added: Mega menu dropdown maximum width control with slider (300-1600px range, default 600px)
+* Added: Mega menu "Use Full Width" option to align dropdown with navigation container width
+* Added: Mega menu JavaScript-based automatic positioning for full-width dropdowns
+* Changed: Mega menu default dropdown spacing increased from 8px to 16px for better visual separation
+* Changed: Mega menu dropdown width now uses CSS variables for flexible, theme-agnostic control (desktop only, mobile remains full-width)
+* Changed: Mega menu full-width mode uses JavaScript to automatically calculate position based on navigation container
+* Fixed: Mega menu full-width dropdown positioning now automatically aligns with navigation container
+* Fixed: Mega menu full-width dropdowns properly position on window resize and when menu opens
 
 = 2.4.1 =
 * Changed: Mega menu now only supports dropdown and overlay layout modes (removed sidebar and grid modes)

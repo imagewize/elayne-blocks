@@ -82,7 +82,7 @@ $z-index-close-button: 100;
     opacity: 0;
     overflow: hidden;
     position: absolute;
-    top: calc(100% + 0.5rem);
+    top: calc(100% + var(--mm-dropdown-spacing, 16px));
     transition: opacity $transition-speed linear;
     visibility: hidden;
     z-index: $z-index-menu;
@@ -408,9 +408,9 @@ $z-index-close-button: 100;
 	&--layout-dropdown {
 		.wp-block-elayne-mega-menu__panel {
 			position: absolute;
-			top: 100%;
+			top: calc(100% + var(--mm-dropdown-spacing, 16px));
 			width: auto;
-			min-width: min(600px, calc(100vw - 40px));
+			min-width: min(var(--mm-dropdown-max-width, 600px), calc(100vw - 40px));
 			max-width: calc(100vw - 40px);
 			background: #fff;
 			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -434,6 +434,20 @@ $z-index-close-button: 100;
 				left: 50%;
 				right: auto;
 				transform: translateX(-50%) !important; // Center with transform
+			}
+
+			// Full Width Mode - Uses JavaScript to calculate position
+			// Positions dropdown to align with page content container
+			&.mm-full-width {
+				// JS will set inline styles for positioning (top, left, width)
+				// Default fallback: centered on viewport
+				position: fixed !important;
+				left: 50% !important;
+				right: auto !important;
+				width: var(--wp--style--global--wide-size, 1280px) !important;
+				max-width: calc(100vw - 40px) !important;
+				min-width: auto !important;
+				transform: translateX(-50%) !important;
 			}
 		}
 	}

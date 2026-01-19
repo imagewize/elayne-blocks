@@ -66,6 +66,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		enableMobileMode,
 		mobileBreakpoint,
 		dropdownAlignment,
+		dropdownSpacing,
+		dropdownMaxWidth,
+		useFullWidth,
 		overlayBackdropColor,
 		enableHoverActivation,
 	} = attributes;
@@ -99,7 +102,11 @@ export default function Edit( { attributes, setAttributes } ) {
 	const blockProps = useBlockProps( {
 		className:
 			'wp-block-navigation-item wp-block-elayne-mega-menu__toggle',
-		style: { color: labelColor || 'inherit' },
+		style: {
+			color: labelColor || 'inherit',
+			'--mm-dropdown-spacing': `${dropdownSpacing || 16}px`,
+			'--mm-dropdown-max-width': `${dropdownMaxWidth || 600}px`,
+		},
 	} );
 
 	return (
@@ -214,19 +221,52 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 
 					{ layoutMode === 'dropdown' && (
-						<SelectControl
-							label={ __( 'Dropdown Alignment', 'elayne-blocks' ) }
-							value={ dropdownAlignment }
-							options={ [
-								{ label: __( 'Left', 'elayne-blocks' ), value: 'left' },
-								{ label: __( 'Right', 'elayne-blocks' ), value: 'right' },
-								{ label: __( 'Center', 'elayne-blocks' ), value: 'center' },
-							] }
-							onChange={ ( value ) =>
-								setAttributes( { dropdownAlignment: value } )
-							}
-							help={ __( 'Choose how the dropdown panel aligns relative to the menu toggle button.', 'elayne-blocks' ) }
-						/>
+						<>
+							<SelectControl
+								label={ __( 'Dropdown Alignment', 'elayne-blocks' ) }
+								value={ dropdownAlignment }
+								options={ [
+									{ label: __( 'Left', 'elayne-blocks' ), value: 'left' },
+									{ label: __( 'Right', 'elayne-blocks' ), value: 'right' },
+									{ label: __( 'Center', 'elayne-blocks' ), value: 'center' },
+								] }
+								onChange={ ( value ) =>
+									setAttributes( { dropdownAlignment: value } )
+								}
+								help={ __( 'Choose how the dropdown panel aligns relative to the menu toggle button.', 'elayne-blocks' ) }
+							/>
+							<RangeControl
+								label={ __( 'Dropdown Spacing', 'elayne-blocks' ) }
+								value={ dropdownSpacing }
+								onChange={ ( value ) =>
+									setAttributes( { dropdownSpacing: value } )
+								}
+								min={ 0 }
+								max={ 48 }
+								step={ 2 }
+								help={ __( 'Vertical space between menu item and dropdown (in pixels)', 'elayne-blocks' ) }
+							/>
+							<RangeControl
+								label={ __( 'Maximum Dropdown Width', 'elayne-blocks' ) }
+								value={ dropdownMaxWidth }
+								onChange={ ( value ) =>
+									setAttributes( { dropdownMaxWidth: value } )
+								}
+								min={ 300 }
+								max={ 1600 }
+								step={ 50 }
+								help={ __( 'Maximum width of the dropdown on desktop (in pixels). Mobile always uses full width.', 'elayne-blocks' ) }
+								disabled={ useFullWidth }
+							/>
+							<ToggleControl
+								label={ __( 'Use Full Width', 'elayne-blocks' ) }
+								help={ __( 'Align dropdown with theme\'s wide content width. Enable this and adjust the offset below to match your header layout.', 'elayne-blocks' ) }
+								checked={ useFullWidth }
+								onChange={ ( value ) =>
+									setAttributes( { useFullWidth: value } )
+								}
+							/>
+						</>
 					) }
 
 					{ layoutMode === 'overlay' && (

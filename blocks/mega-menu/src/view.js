@@ -111,6 +111,9 @@ const { state, actions } = store( 'elayne/mega-menu', {
 				document.body.classList.add( 'mega-menu-overlay-open' );
 			}
 
+			// Position full-width panels before opening
+			actions.positionFullWidthPanel();
+
 			// Set open state
 			context.isOpen = true;
 
@@ -182,6 +185,37 @@ const { state, actions } = store( 'elayne/mega-menu', {
 			const breakpoint = context.mobileBreakpoint || 768;
 			context.isMobile = window.innerWidth < breakpoint;
 		},
+
+		positionFullWidthPanel() {
+			const { ref } = getElement();
+			const panel = ref.querySelector( '.wp-block-elayne-mega-menu__panel.mm-full-width' );
+
+			if ( ! panel ) {
+				return;
+			}
+
+			// Get the navigation container's position
+			const nav = ref.closest( '.wp-block-navigation' );
+			if ( ! nav ) {
+				return;
+			}
+
+			const navRect = nav.getBoundingClientRect();
+
+			// Get dropdown spacing from CSS variable
+			const computedStyle = getComputedStyle( ref );
+			const dropdownSpacing = parseInt( computedStyle.getPropertyValue( '--mm-dropdown-spacing' ) ) || 16;
+
+			// Calculate position to align panel with navigation container
+			const topPosition = navRect.bottom + dropdownSpacing; // Position below nav with spacing
+			const leftPosition = navRect.left;
+
+			// Apply positioning
+			panel.style.top = `${ topPosition }px`;
+			panel.style.left = `${ leftPosition }px`;
+			panel.style.transform = 'none';
+			panel.style.width = `${ navRect.width }px`;
+		},
 	},
 
 	callbacks: {
@@ -197,9 +231,15 @@ const { state, actions } = store( 'elayne/mega-menu', {
 			// Update mobile state on initialization
 			actions.updateMobileState();
 
-			// Add resize listener for mobile detection
+			// Position full-width panels
+			actions.positionFullWidthPanel();
+
+			// Add resize listener for mobile detection and full-width positioning
 			if ( ! context.resizeListenerAdded ) {
-				window.addEventListener( 'resize', actions.updateMobileState );
+				window.addEventListener( 'resize', () => {
+					actions.updateMobileState();
+					actions.positionFullWidthPanel();
+				} );
 				context.resizeListenerAdded = true;
 			}
 		},

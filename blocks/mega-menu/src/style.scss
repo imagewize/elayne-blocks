@@ -408,7 +408,7 @@ $z-index-close-button: 100;
 	&--layout-dropdown {
 		.wp-block-elayne-mega-menu__panel {
 			position: absolute;
-			top: 100%;
+			top: calc(100% + var(--mm-dropdown-spacing, 16px));
 			width: auto;
 			min-width: min(600px, calc(100vw - 40px));
 			max-width: calc(100vw - 40px);

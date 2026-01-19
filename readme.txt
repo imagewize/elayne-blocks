@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.3
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -124,6 +124,15 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 5. Mega menu dropdown with rich content
 
 == Changelog ==
+
+= 2.5.2 =
+* Added: PHP CodeSniffer (PHPCS) configuration with WordPress coding standards
+* Added: GitHub Actions workflow for automated WPCS checks on pull requests
+* Added: Composer scripts for code quality (lint, wpcs:scan, wpcs:fix)
+* Added: PHP parallel lint for syntax validation
+* Added: PHPCompatibility checks for PHP version compatibility
+* Changed: Added phpcs.xml.dist with WordPress coding standards configuration
+* Changed: Updated composer.json with development dependencies (php-parallel-lint, phpcompatibility-wp)
 
 = 2.5.1 =
 * Documentation: Updated credits to accurately reflect substantial enhancements to Mega Menu and Carousel blocks

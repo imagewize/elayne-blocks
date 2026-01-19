@@ -35,6 +35,9 @@ Thumbs.db
 vendor/
 composer.lock
 
+# PHPCS local configuration override
+phpcs.xml
+
 # Environment files
 .env
 .env.local

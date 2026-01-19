@@ -133,6 +133,8 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 * Added: PHPCompatibility checks for PHP version compatibility
 * Changed: Added phpcs.xml.dist with WordPress coding standards configuration
 * Changed: Updated composer.json with development dependencies (php-parallel-lint, phpcompatibility-wp)
+* Fixed: WordPress coding standards compliance in mega-menu render.php (equals sign alignment, comment punctuation)
+* Fixed: PHPCS workflow now properly excludes patterns directory from checks
 
 = 2.5.1 =
 * Documentation: Updated credits to accurately reflect substantial enhancements to Mega Menu and Carousel blocks

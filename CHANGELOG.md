@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated composer.json with development dependencies: php-parallel-lint, phpcompatibility-wp
 - Added phpcs.xml to .gitignore to allow local configuration overrides
 
+### Fixed
+- WordPress coding standards compliance in mega-menu render.php (equals sign alignment, comment punctuation)
+- PHPCS workflow now properly excludes patterns directory from checks
+
 ## [2.5.1] - 2026-01-19
 
 ### Documentation

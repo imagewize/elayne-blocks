@@ -73,6 +73,10 @@
 			"default": "left",
 			"enum": [ "left", "right", "center" ]
 		},
+		"dropdownSpacing": {
+			"type": "number",
+			"default": 16
+		},
 		"overlayBackdropColor": {
 			"type": "string",
 			"default": "rgba(0, 0, 0, 0.5)"

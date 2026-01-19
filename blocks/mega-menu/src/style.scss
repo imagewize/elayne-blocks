@@ -82,7 +82,7 @@ $z-index-close-button: 100;
     opacity: 0;
     overflow: hidden;
     position: absolute;
-    top: calc(100% + 0.5rem);
+    top: calc(100% + var(--mm-dropdown-spacing, 16px));
     transition: opacity $transition-speed linear;
     visibility: hidden;
     z-index: $z-index-menu;

@@ -10,13 +10,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Mega menu dropdown spacing control with configurable range (0-48px, default 16px)
 - Mega menu dropdown maximum width control with slider (300-1600px range, default 600px)
-- Mega menu "Use Full Width" option to align dropdown with theme's wide content width
-- Mega menu "Full Width Offset" control (-500px to +500px) for precise positioning adjustment when using full-width mode
+- Mega menu "Use Full Width" option to align dropdown with navigation container width
+- Mega menu JavaScript-based automatic positioning for full-width dropdowns
 
 ### Changed
 - Mega menu default dropdown spacing increased from 8px to 16px for better visual separation
 - Mega menu dropdown width now uses CSS variables for flexible, theme-agnostic control (desktop only, mobile remains full-width)
-- Mega menu full-width mode uses manual offset control for compatibility with different header layouts and navigation positioning
+- Mega menu full-width mode uses JavaScript to automatically calculate position based on navigation container
+- Mega menu full-width dropdowns now use `position: fixed` for consistent viewport positioning
+
+### Fixed
+- Mega menu full-width dropdown positioning now automatically aligns with navigation container without manual offset adjustments
+- Mega menu full-width dropdowns properly position on window resize
+- Mega menu full-width dropdowns recalculate position when menu opens to account for page scroll
 
 ## [2.4.1] - 2026-01-19
 

@@ -436,25 +436,18 @@ $z-index-close-button: 100;
 				transform: translateX(-50%) !important; // Center with transform
 			}
 
-			// Full Width Mode - Spans full viewport width (Tailwind-style)
-			// Uses CSS calc trick to break out of parent container
+			// Full Width Mode - Uses JavaScript to calculate position
+			// Positions dropdown to align with page content container
 			&.mm-full-width {
-				left: 0 !important;
-				right: 0 !important;
-				width: 100vw !important;
-				max-width: 100vw !important;
+				// JS will set inline styles for positioning
+				// Default fallback: centered on viewport
+				position: fixed !important;
+				left: 50% !important;
+				right: auto !important;
+				width: var(--wp--style--global--wide-size, 1280px) !important;
+				max-width: calc(100vw - 40px) !important;
 				min-width: auto !important;
-				margin-left: calc(-50vw + 50%) !important;
-				transform: none !important;
-
-				// Inner content container constrained to theme's wide width
-				> * {
-					max-width: var(--wp--style--global--wide-size, 1280px);
-					margin-left: auto;
-					margin-right: auto;
-					padding-left: 20px;
-					padding-right: 20px;
-				}
+				transform: translateX(-50%) !important;
 			}
 		}
 	}

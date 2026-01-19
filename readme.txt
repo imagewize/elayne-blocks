@@ -248,16 +248,16 @@ The plugin icon is based on IconPark Block One from Blade UI Kit.
 * License: MIT License
 
 = Mega Menu Implementation =
-The mega menu block implementation is inspired by and based on the HM Mega Menu Block by Human Made.
-* Source: https://github.com/humanmade/hm-mega-menu-block
+The mega menu block was originally inspired by the HM Mega Menu Block by Human Made and substantially enhanced.
+* Original Source: https://github.com/humanmade/hm-mega-menu-block
 * License: GPL v2 or later
-* Modifications: Adapted for Elayne theme integration and WordPress Interactivity API
+* Enhancements: Added multiple layout modes (dropdown/overlay), advanced JavaScript-based positioning for full-width panels, mobile responsive state management, comprehensive focus trap and keyboard navigation, body scroll lock, animation controls, and extensive accessibility improvements. The implementation is approximately 181% larger with substantially different functionality.
 
 = Carousel Block Implementation =
-The carousel block is based on the original work from the Carousel Block Plugin by Virgiliu Diaconu, enhanced with additional features and improvements.
-* Source: https://wordpress.org/plugins/carousel-block/
+The carousel block was originally inspired by the Carousel Block Plugin by Virgiliu Diaconu but completely reimplemented.
+* Original Source: https://wordpress.org/plugins/carousel-block/
 * License: GPL v2 or later
-* Modifications: Enhanced with Slick Carousel integration and additional customization options
+* Reimplementation: Completely rebuilt using Slick Carousel library (vs original Swiper.js), with distinct features including thumbnail navigation, center mode with peek, variable width slides, lazy loading, adaptive height, advanced arrow customization with multiple SVG styles, custom SVG support, 5 block patterns, and extensive styling controls. Different codebase and functionality from the original.
 
 == Developer Information ==
 

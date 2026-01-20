@@ -67,3 +67,6 @@ ehthumbs.db
 Thumbs.db
 create-pr.sh
 .playwright-mcp/
+
+# plugin release script
+release-plugin.sh

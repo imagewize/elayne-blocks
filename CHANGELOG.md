@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.3] - 2026-01-20
+
+### Added
+**Mega Menu Icon Features Pattern:**
+- Introduced a new "Icon Features" mega menu pattern with styled icon badges, headings, and short descriptions for feature highlights.
+
+### Changed
+**Mega Menu Pattern Styling Enhancements:**
+- Refined list-based navigation patterns to use theme spacing presets, no-indent list styles, and consistent link colors for cleaner, more modern layouts.
+- Added separators, heading size tweaks, and improved typography hierarchy across simple, three-column, multi-column, image-links, and featured-content patterns.
+- Enhanced promotional blocks with bordered cards, padded containers, rounded images, and full-width buttons for stronger visual emphasis.
+
+### Technical
+**Pattern Documentation Updates:**
+- Updated the mega menu pattern guidance to emphasize semantic list usage for navigation and reserve special content layouts for promotional sections.
+- Clarified list styling recommendations and expanded notes on featured content use cases.
+
+**Release Workflow:**
+- Added the release script to `.gitignore` to keep local release tooling out of version control.",
+
 ## [2.5.2] - 2026-01-19
 
 ### Added

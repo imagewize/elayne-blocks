@@ -219,6 +219,28 @@ add_filter( 'default_wp_template_part_areas', function( $areas ) {
 - `blocks/carousel/slick/` - Third-party Slick Carousel library (vendored)
 - `blocks/mega-menu/README.md` - Mega menu usage and integration guide
 
+## Pattern Development Guidelines
+
+### Separator Blocks in Patterns
+
+**Important:** When adding separator blocks to patterns, use the WordPress 6.7+ compatible format to avoid block validation errors:
+
+✅ **Correct format:**
+```html
+<!-- wp:separator {"className":"is-style-wide"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+<!-- /wp:separator -->
+```
+
+❌ **Avoid (causes validation errors):**
+```html
+<!-- wp:separator {"className":"is-style-wide","style":{"color":{"background":"var:preset|color|contrast-2"}}} -->
+<hr class="wp-block-separator has-background is-style-wide" style="background-color:var(--wp--preset--color--contrast-2);opacity:0.2"/>
+<!-- /wp:separator -->
+```
+
+The older format with inline `opacity` styles and custom background colors is incompatible with WordPress 6.7+ and will cause block validation errors. Use the simplified format which inherits theme colors automatically.
+
 ## Development Notes
 
 - Each block has isolated `node_modules` (allows independent versioning)

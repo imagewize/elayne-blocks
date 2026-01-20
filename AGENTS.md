@@ -40,3 +40,9 @@ Note: `blocks/mega-menu` uses `--experimental-modules` in its build/start script
 - Blocks are auto-discovered at runtime by scanning `blocks/*/build/block.json`.
 - Carousel only allows Slide children; Slide is constrained to Carousel.
 - Mega Menu uses the WordPress Interactivity API for frontend state.
+
+## Pattern Development
+- **Separator blocks:** Use WordPress 6.7+ compatible format without inline opacity styles:
+  - Correct: `<!-- wp:separator {"className":"is-style-wide"} --><hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/><!-- /wp:separator -->`
+  - Avoid: Custom background colors and opacity in inline styles (causes validation errors)
+- Patterns in `patterns/` are used by users to create template parts in the Site Editor.

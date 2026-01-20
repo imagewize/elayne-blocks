@@ -3,7 +3,7 @@
  * Plugin Name: Elayne Blocks
  * Plugin URI: https://github.com/imagewize/elayne-blocks
  * Description: Custom blocks for the Elayne WordPress theme including Mega Menu, Carousel, and Slide blocks
- * Version: 2.5.2
+ * Version: 2.5.3
  * Requires at least: 6.7
  * Requires PHP: 7.3
  * Author: Jasper Frumau

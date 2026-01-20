@@ -35,10 +35,10 @@ The plugin currently provides 6 mega menu patterns:
    - Missing: Call-to-action elements
    - Missing: Promotional/featured content areas
 
-4. **No Non-List Alternatives**
-   - Current: All patterns use `<ul>` lists for navigation
-   - Issue: Limited layout variety
-   - Need: Paragraph-based, flex-based, and custom group layouts
+4. **Limited Special Content Options**
+   - Current: All patterns focused on simple navigation lists
+   - Issue: Limited options for promotional or featured content
+   - Need: Featured content cards, promotional sections, CTA integrations
 
 5. **Minimal Use of Theme Design Tokens**
    - Current: Limited use of spacing presets, colors, typography
@@ -156,36 +156,32 @@ The plugin currently provides 6 mega menu patterns:
 
 ### 2. Enhance List Styling
 
-**Goal:** Make list-based patterns more visually appealing
+**Goal:** Make list-based patterns more visually appealing while maintaining semantic HTML
 
-**Approach A: Remove List Bullets, Add Custom Styling**
+**Approach: Style Lists with Hidden Bullets**
+
+Navigation menus are semantically lists, so we maintain `<ul>` structure while removing bullets for a clean appearance:
+
 ```php
-<!-- wp:list {"className":"is-style-no-bullets","style":{"spacing":{"padding":{"left":"0"},"blockGap":"var:preset|spacing|small"}}} -->
-<ul class="is-style-no-bullets" style="padding-left:0">
+<!-- wp:list {"style":{"spacing":{"padding":{"left":"0"},"blockGap":"var:preset|spacing|x-small","margin":{"top":"var:preset|spacing|small"}},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"className":"is-style-list-plain-no-indent"} -->
+<ul style="margin-top:var(--wp--preset--spacing--small);padding-left:0" class="is-style-list-plain-no-indent has-link-color">
+  <!-- wp:list-item -->
   <li><a href="#">Item One</a></li>
+  <!-- /wp:list-item -->
+
+  <!-- wp:list-item -->
+  <li><a href="#">Item Two</a></li>
+  <!-- /wp:list-item -->
 </ul>
+<!-- /wp:list -->
 ```
 
-**Approach B: Use Paragraph Groups Instead**
-```php
-<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group">
-  <!-- wp:paragraph -->
-  <p><a href="#">Item One</a></p>
-  <!-- /wp:paragraph -->
-
-  <!-- wp:paragraph -->
-  <p><a href="#">Item Two</a></p>
-  <!-- /wp:paragraph -->
-</div>
-<!-- /wp:group -->
-```
-
-**Benefits of Paragraph Approach:**
-- Better typography control
-- Easier spacing customization
-- More semantic for menu items
-- Cleaner visual hierarchy
+**Benefits of This Approach:**
+- Maintains proper semantic HTML (`<ul>` for navigation)
+- Removes visual bullets via styling
+- Full control over spacing and typography
+- Better for accessibility and SEO
+- Theme-compatible list styling
 
 ### 3. Add Visual Design Elements
 
@@ -243,39 +239,37 @@ style="{
 - More maintainable structure
 - Responsive by default
 
-### 5. Create Non-List Navigation Patterns
+### 5. Special Content Patterns (Non-Navigation)
 
-**Goal:** Provide alternatives to traditional list-based navigation
+**Goal:** Provide alternatives for promotional/descriptive content (not navigation links)
 
-**Pattern Type A: Stacked Paragraphs**
+**Note:** For navigation links, always use semantic `<ul>` lists. These patterns are for special content like featured cards, promotions, or descriptions.
+
+**Pattern Type: Heading + Description Cards (Promotional Content)**
 ```php
-<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|x-small"}}} -->
-<div class="wp-block-group">
-  <!-- wp:paragraph -->
-  <p><a href="#">Feature One</a></p>
-
-  <!-- wp:paragraph -->
-  <p><a href="#">Feature Two</a></p>
-</div>
-```
-
-**Pattern Type B: Heading + Description Cards**
-```php
-<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}}} -->
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small","padding":{...}},"border":{"radius":"12px","width":"1px"}},"borderColor":"contrast-2","layout":{"type":"constrained"}} -->
 <div class="wp-block-group">
   <!-- wp:heading {"level":4,"fontSize":"medium"} -->
-  <h4><a href="#">Service Name</a></h4>
+  <h4>Featured This Week</h4>
+
+  <!-- wp:image {...} -->
+  <figure class="wp-block-image">...</figure>
 
   <!-- wp:paragraph {"fontSize":"small","style":{"color":{"text":"var:preset|color|contrast-2"}}} -->
-  <p>Brief description of what this service offers</p>
+  <p>Brief description of the featured content</p>
+
+  <!-- wp:buttons -->
+  <div class="wp-block-buttons">...</div>
 </div>
 ```
 
-**Benefits:**
-- More flexible content structure
-- Better for descriptive navigation
-- Supports multi-line text naturally
-- Easier to style consistently
+**Use Cases:**
+- Featured product/content cards
+- Promotional banners
+- Call-to-action sections
+- Descriptive content blocks
+
+**Important:** This is NOT a replacement for list-based navigation. Navigation links should use semantic `<ul>` lists.
 
 ### 6. Enhance Spacing Using Theme Presets
 

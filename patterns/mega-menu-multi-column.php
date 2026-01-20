@@ -7,54 +7,144 @@
  * Description: Full-width multi-column organized link layout
  */
 ?>
-<!-- wp:group {"align":"wide","layout":{"type":"grid","minimumColumnWidth":"18rem"}} -->
-<div class="wp-block-group alignwide"><!-- wp:group -->
-<div class="wp-block-group"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Company</h4>
+<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}},"layout":{"type":"grid","minimumColumnWidth":"15rem"}} -->
+<div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":4,"fontSize":"medium"} -->
+<h4 class="wp-block-heading has-medium-font-size">Company</h4>
 <!-- /wp:heading -->
 
-<!-- wp:list -->
-<ul><li><a href="#">About</a></li><li><a href="#">Team</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
+<!-- wp:separator {"className":"is-style-wide","style":{"color":{"background":"var:preset|color|contrast-2"}}} -->
+<hr class="wp-block-separator has-background is-style-wide" style="background-color:var(--wp--preset--color--contrast-2);opacity:0.2"/>
+<!-- /wp:separator -->
+
+<!-- wp:list {"style":{"spacing":{"padding":{"left":"0"},"blockGap":"var:preset|spacing|x-small","margin":{"top":"var:preset|spacing|small"}},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"className":"is-style-list-plain-no-indent","fontSize":"small"} -->
+<ul style="margin-top:var(--wp--preset--spacing--small);padding-left:0" class="is-style-list-plain-no-indent has-link-color has-small-font-size"><!-- wp:list-item -->
+<li><a href="#">About</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Team</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Careers</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Press</a></li>
+<!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group -->
 
-<!-- wp:group -->
-<div class="wp-block-group"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Products</h4>
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":4,"fontSize":"medium"} -->
+<h4 class="wp-block-heading has-medium-font-size">Products</h4>
 <!-- /wp:heading -->
 
-<!-- wp:list -->
-<ul><li><a href="#">Features</a></li><li><a href="#">Pricing</a></li><li><a href="#">Security</a></li><li><a href="#">Updates</a></li></ul>
+<!-- wp:separator {"className":"is-style-wide","style":{"color":{"background":"var:preset|color|contrast-2"}}} -->
+<hr class="wp-block-separator has-background is-style-wide" style="background-color:var(--wp--preset--color--contrast-2);opacity:0.2"/>
+<!-- /wp:separator -->
+
+<!-- wp:list {"style":{"spacing":{"padding":{"left":"0"},"blockGap":"var:preset|spacing|x-small","margin":{"top":"var:preset|spacing|small"}},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"className":"is-style-list-plain-no-indent","fontSize":"small"} -->
+<ul style="margin-top:var(--wp--preset--spacing--small);padding-left:0" class="is-style-list-plain-no-indent has-link-color has-small-font-size"><!-- wp:list-item -->
+<li><a href="#">Features</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Pricing</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Security</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Updates</a></li>
+<!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group -->
 
-<!-- wp:group -->
-<div class="wp-block-group"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Resources</h4>
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":4,"fontSize":"medium"} -->
+<h4 class="wp-block-heading has-medium-font-size">Resources</h4>
 <!-- /wp:heading -->
 
-<!-- wp:list -->
-<ul><li><a href="#">Documentation</a></li><li><a href="#">Tutorials</a></li><li><a href="#">Blog</a></li><li><a href="#">Community</a></li></ul>
+<!-- wp:separator {"className":"is-style-wide","style":{"color":{"background":"var:preset|color|contrast-2"}}} -->
+<hr class="wp-block-separator has-background is-style-wide" style="background-color:var(--wp--preset--color--contrast-2);opacity:0.2"/>
+<!-- /wp:separator -->
+
+<!-- wp:list {"style":{"spacing":{"padding":{"left":"0"},"blockGap":"var:preset|spacing|x-small","margin":{"top":"var:preset|spacing|small"}},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"className":"is-style-list-plain-no-indent","fontSize":"small"} -->
+<ul style="margin-top:var(--wp--preset--spacing--small);padding-left:0" class="is-style-list-plain-no-indent has-link-color has-small-font-size"><!-- wp:list-item -->
+<li><a href="#">Documentation</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Tutorials</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Blog</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Community</a></li>
+<!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group -->
 
-<!-- wp:group -->
-<div class="wp-block-group"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Support</h4>
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":4,"fontSize":"medium"} -->
+<h4 class="wp-block-heading has-medium-font-size">Support</h4>
 <!-- /wp:heading -->
 
-<!-- wp:list -->
-<ul><li><a href="#">Help Center</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li><li><a href="#">Status</a></li></ul>
+<!-- wp:separator {"className":"is-style-wide","style":{"color":{"background":"var:preset|color|contrast-2"}}} -->
+<hr class="wp-block-separator has-background is-style-wide" style="background-color:var(--wp--preset--color--contrast-2);opacity:0.2"/>
+<!-- /wp:separator -->
+
+<!-- wp:list {"style":{"spacing":{"padding":{"left":"0"},"blockGap":"var:preset|spacing|x-small","margin":{"top":"var:preset|spacing|small"}},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"className":"is-style-list-plain-no-indent","fontSize":"small"} -->
+<ul style="margin-top:var(--wp--preset--spacing--small);padding-left:0" class="is-style-list-plain-no-indent has-link-color has-small-font-size"><!-- wp:list-item -->
+<li><a href="#">Help Center</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Contact</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">FAQ</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Status</a></li>
+<!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group -->
 
-<!-- wp:group -->
-<div class="wp-block-group"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Legal</h4>
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|small"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":4,"fontSize":"medium"} -->
+<h4 class="wp-block-heading has-medium-font-size">Legal</h4>
 <!-- /wp:heading -->
 
-<!-- wp:list -->
-<ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">License</a></li><li><a href="#">Cookies</a></li></ul>
+<!-- wp:separator {"className":"is-style-wide","style":{"color":{"background":"var:preset|color|contrast-2"}}} -->
+<hr class="wp-block-separator has-background is-style-wide" style="background-color:var(--wp--preset--color--contrast-2);opacity:0.2"/>
+<!-- /wp:separator -->
+
+<!-- wp:list {"style":{"spacing":{"padding":{"left":"0"},"blockGap":"var:preset|spacing|x-small","margin":{"top":"var:preset|spacing|small"}},"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"className":"is-style-list-plain-no-indent","fontSize":"small"} -->
+<ul style="margin-top:var(--wp--preset--spacing--small);padding-left:0" class="is-style-list-plain-no-indent has-link-color has-small-font-size"><!-- wp:list-item -->
+<li><a href="#">Privacy</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Terms</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">License</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#">Cookies</a></li>
+<!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

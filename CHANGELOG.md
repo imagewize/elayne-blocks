@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.5] - 2026-01-21
+
+### Added
+**Menu Template Part Area Registration:**
+- Added plugin-level registration of 'menu' template part area for mega menu support
+- Removes dependency on Elayne theme for mega menu functionality
+- Allows template parts with area 'menu' to be created in any theme
+- Makes mega menu block fully self-contained and theme-independent
+
+**Mega Menu Pattern:**
+- Added Services Showcase pattern (elayne/mega-menu-services-showcase)
+- Three-column grid layout with nested card components
+- Features service categories (Consulting, Development, Support) with sub-service links
+- Sophisticated design with custom icons, rounded corners, and contrasting colors
+- Responsive grid layout with minimum column width of 19rem",
+
 ## [2.5.4] - 2026-01-20
 
 ### Changed

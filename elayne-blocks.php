@@ -3,7 +3,7 @@
  * Plugin Name: Elayne Blocks
  * Plugin URI: https://github.com/imagewize/elayne-blocks
  * Description: Custom blocks for the Elayne WordPress theme including Mega Menu, Carousel, and Slide blocks
- * Version: 2.5.4
+ * Version: 2.5.5
  * Requires at least: 6.7
  * Requires PHP: 7.3
  * Author: Jasper Frumau
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'ELAYNE_BLOCKS_VERSION', '2.5.4' );
+define( 'ELAYNE_BLOCKS_VERSION', '2.5.5' );
 define( 'ELAYNE_BLOCKS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELAYNE_BLOCKS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
@@ -100,6 +100,23 @@ add_action(
 	}
 );
 
+/**
+ * Register menu template part area for mega menu support.
+ * This allows template parts with area 'menu' to be created and used with the mega menu block.
+ */
+add_filter(
+	'default_wp_template_part_areas',
+	function ( $areas ) {
+		$areas[] = array(
+			'area'        => 'menu',
+			'area_tag'    => 'div',
+			'label'       => __( 'Menus', 'elayne-blocks' ),
+			'description' => __( 'Template parts for navigation and mega menu content', 'elayne-blocks' ),
+			'icon'        => 'menu',
+		);
+		return $areas;
+	}
+);
 
 /**
  * Register mega menu patterns

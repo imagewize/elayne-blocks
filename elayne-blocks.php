@@ -100,6 +100,23 @@ add_action(
 	}
 );
 
+/**
+ * Register menu template part area for mega menu support.
+ * This allows template parts with area 'menu' to be created and used with the mega menu block.
+ */
+add_filter(
+	'default_wp_template_part_areas',
+	function ( $areas ) {
+		$areas[] = array(
+			'area'        => 'menu',
+			'area_tag'    => 'div',
+			'label'       => __( 'Menus', 'elayne-blocks' ),
+			'description' => __( 'Template parts for navigation and mega menu content', 'elayne-blocks' ),
+			'icon'        => 'menu',
+		);
+		return $areas;
+	}
+);
 
 /**
  * Register mega menu patterns

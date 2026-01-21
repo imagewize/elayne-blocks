@@ -126,7 +126,9 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 == Changelog ==
 
 = 2.5.7 =
-* Fixed: Mega menu close button positioning and scrolling on mobile devices"
+* Fixed: Mega menu horizontal overflow on mobile with proper full-width positioning
+* Fixed: Mega menu close button positioning and scrolling on mobile devices
+* Fixed: Services showcase pattern horizontal padding removed to prevent overflow"
 
 
 = 2.5.6 =

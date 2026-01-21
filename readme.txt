@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.3
-Stable tag: 2.5.6
+Stable tag: 2.5.7
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -124,6 +124,12 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 5. Mega menu dropdown with rich content
 
 == Changelog ==
+
+= 2.5.7 =
+* Fixed: Mega menu horizontal overflow on mobile with proper full-width positioning
+* Fixed: Mega menu close button positioning and scrolling on mobile devices
+* Fixed: Services showcase pattern horizontal padding removed to prevent overflow"
+
 
 = 2.5.6 =
 * Fixed: Mega Menu overlay close button positioning - moved to bottom-right corner for better mobile UX

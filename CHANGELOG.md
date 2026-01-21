@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.7] - 2026-01-21
+
+### Fixed
+**Mega Menu Mobile Responsiveness:**
+- Fixed horizontal overflow on mobile using proper full-width positioning (left: 0, right: 0, width: 100%)
+- Added box-sizing: border-box to ensure padding is included in width calculation
+- Fixed close button positioning on mobile devices - now properly anchored at top-right corner
+- Added overflow-y scrolling for mega menu panels on mobile to prevent content cutoff
+- Improved z-index layering to ensure close button remains accessible above panel content
+- Removed horizontal padding from services showcase pattern to prevent overflow",
+
 ## [2.5.6] - 2026-01-21
 
 ### Fixed

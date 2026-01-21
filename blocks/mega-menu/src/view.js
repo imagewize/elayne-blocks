@@ -4,7 +4,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/interactivity-api/
  */
-import { store, getContext, getElement } from '@wordpress/interactivity';
+import { store, getContext, getElement, withScope } from '@wordpress/interactivity';
 
 const { state, actions } = store( 'elayne/mega-menu', {
 	state: {
@@ -169,9 +169,10 @@ const { state, actions } = store( 'elayne/mega-menu', {
 			context.lastFocusable = focusableElements[ focusableElements.length - 1 ];
 
 			// Focus first element after a short delay
-			setTimeout( () => {
-				context.firstFocusable?.focus();
-			}, 100 );
+			setTimeout( withScope( () => {
+				const ctx = getContext();
+				ctx.firstFocusable?.focus();
+			} ), 100 );
 		},
 
 		returnFocus() {
@@ -236,10 +237,10 @@ const { state, actions } = store( 'elayne/mega-menu', {
 
 			// Add resize listener for mobile detection and full-width positioning
 			if ( ! context.resizeListenerAdded ) {
-				window.addEventListener( 'resize', () => {
+				window.addEventListener( 'resize', withScope( () => {
 					actions.updateMobileState();
 					actions.positionFullWidthPanel();
-				} );
+				} ) );
 				context.resizeListenerAdded = true;
 			}
 		},

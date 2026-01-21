@@ -254,11 +254,15 @@ $z-index-close-button: 100;
         }
     }
 
-    // Close button more prominent in overlay
+    // Close button more prominent in overlay - positioned bottom-left
     .menu-container__close-button {
         opacity: 1;
         background-color: rgba(0, 0, 0, 0.6);
         color: white;
+        top: auto;
+        bottom: 20px;
+        right: auto;
+        left: 20px;
 
         &:hover {
             background-color: rgba(0, 0, 0, 0.8);

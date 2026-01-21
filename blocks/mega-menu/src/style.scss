@@ -550,6 +550,15 @@ body.mega-menu-overlay-open {
 			border-radius: 0 !important;
 			padding: 60px 20px 20px !important;
 			transform: none !important;
+			overflow-y: auto !important; // Enable vertical scrolling for long content
+		}
+
+		// Keep close button visible at all times on mobile
+		.menu-container__close-button {
+			position: fixed !important; // Fixed positioning keeps button visible while scrolling
+			top: 12px !important;
+			right: 12px !important;
+			z-index: 101 !important; // Ensure button stays above scrolling content
 		}
 	}
 

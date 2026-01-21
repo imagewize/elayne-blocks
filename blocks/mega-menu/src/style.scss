@@ -556,8 +556,8 @@ body.mega-menu-overlay-open {
 		// Keep close button visible at all times on mobile
 		.menu-container__close-button {
 			position: fixed !important; // Fixed positioning keeps button visible while scrolling
-			top: 12px !important;
-			right: 12px !important;
+			top: var(--wp--preset--spacing--small, 1rem) !important;
+			right: var(--wp--preset--spacing--small, 1rem) !important;
 			z-index: 101 !important; // Ensure button stays above scrolling content
 		}
 	}

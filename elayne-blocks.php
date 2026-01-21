@@ -150,16 +150,15 @@ add_action(
 						? $headers['slug']
 						: 'elayne-blocks/' . basename( $template_file, '.php' );
 
-					// Register as block pattern with templateTypes and menus category.
+					// Register as block pattern for menu template parts.
 					register_block_pattern(
 						$slug,
 						array(
-							'title'         => ! empty( $headers['title'] ) ? $headers['title'] : basename( $template_file, '.php' ),
-							'description'   => ! empty( $headers['description'] ) ? $headers['description'] : '',
-							'content'       => $content,
-							'categories'    => array( 'menus' ),
-							'templateTypes' => array( 'template-part-menu' ),
-							'blockTypes'    => array( 'core/template-part/menu' ),
+							'title'       => ! empty( $headers['title'] ) ? $headers['title'] : basename( $template_file, '.php' ),
+							'description' => ! empty( $headers['description'] ) ? $headers['description'] : '',
+							'content'     => $content,
+							'categories'  => array( 'menus' ),
+							'blockTypes'  => array( 'core/template-part/menu' ),
 						)
 					);
 				}

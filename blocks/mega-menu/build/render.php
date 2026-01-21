@@ -9,17 +9,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-$elayne_blocks_label              = esc_html( $attributes['label'] ?? '' );
-$elayne_blocks_label_color        = esc_attr( $attributes['labelColor'] ?? '' );
-$elayne_blocks_description        = esc_html( $attributes['description'] ?? '' );
-$elayne_blocks_menu_slug          = esc_attr( $attributes['menuSlug'] ?? '' );
-$elayne_blocks_layout_mode        = esc_attr( $attributes['layoutMode'] ?? 'dropdown' );
-$elayne_blocks_enable_animations  = $attributes['enableAnimations'] ?? false;
-$elayne_blocks_animation_type     = esc_attr( $attributes['animationType'] ?? 'fade' );
-$elayne_blocks_animation_speed    = absint( $attributes['animationSpeed'] ?? 300 );
-$elayne_blocks_enable_icon        = $attributes['enableIcon'] ?? false;
-$elayne_blocks_icon_name          = esc_attr( $attributes['iconName'] ?? '' );
-$elayne_blocks_icon_position      = esc_attr( $attributes['iconPosition'] ?? 'left' );
+$elayne_blocks_label             = esc_html( $attributes['label'] ?? '' );
+$elayne_blocks_label_color       = esc_attr( $attributes['labelColor'] ?? '' );
+$elayne_blocks_description       = esc_html( $attributes['description'] ?? '' );
+$elayne_blocks_menu_slug         = esc_attr( $attributes['menuSlug'] ?? '' );
+$elayne_blocks_layout_mode       = esc_attr( $attributes['layoutMode'] ?? 'dropdown' );
+$elayne_blocks_enable_animations = $attributes['enableAnimations'] ?? false;
+$elayne_blocks_animation_type    = esc_attr( $attributes['animationType'] ?? 'fade' );
+$elayne_blocks_animation_speed   = absint( $attributes['animationSpeed'] ?? 300 );
+$elayne_blocks_enable_icon       = $attributes['enableIcon'] ?? false;
+$elayne_blocks_icon_name         = esc_attr( $attributes['iconName'] ?? '' );
+$elayne_blocks_icon_position     = esc_attr( $attributes['iconPosition'] ?? 'left' );
 // Handle migration: old blocks may have 'auto', convert to 'left'.
 $elayne_blocks_dropdown_alignment = esc_attr( $attributes['dropdownAlignment'] ?? 'left' );
 if ( 'auto' === $elayne_blocks_dropdown_alignment ) {

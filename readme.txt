@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.3
-Stable tag: 2.5.4
+Stable tag: 2.5.5
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -124,6 +124,11 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 5. Mega menu dropdown with rich content
 
 == Changelog ==
+
+= 2.5.5 =
+* Added: Menu template part area registration in plugin (removes theme dependency)
+* Added: Services Showcase mega menu pattern with three-column nested card layout"
+
 
 = 2.5.4 =
 * Changed: Updated mega menu patterns to use WordPress 6.7+ compatible separator format

@@ -3,7 +3,7 @@
  * Plugin Name: Elayne Blocks
  * Plugin URI: https://github.com/imagewize/elayne-blocks
  * Description: Custom blocks for the Elayne WordPress theme including Mega Menu, Carousel, and Slide blocks
- * Version:2.5.7
+ * Version: 2.5.8
  * Requires at least: 6.7
  * Requires PHP: 7.3
  * Author: Jasper Frumau
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'ELAYNE_BLOCKS_VERSION', '2.5.7' );
+define( 'ELAYNE_BLOCKS_VERSION', '2.5.8' );
 define( 'ELAYNE_BLOCKS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELAYNE_BLOCKS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
@@ -150,16 +150,15 @@ add_action(
 						? $headers['slug']
 						: 'elayne-blocks/' . basename( $template_file, '.php' );
 
-					// Register as block pattern with templateTypes and menus category.
+					// Register as block pattern for menu template parts.
 					register_block_pattern(
 						$slug,
 						array(
-							'title'         => ! empty( $headers['title'] ) ? $headers['title'] : basename( $template_file, '.php' ),
-							'description'   => ! empty( $headers['description'] ) ? $headers['description'] : '',
-							'content'       => $content,
-							'categories'    => array( 'menus' ),
-							'templateTypes' => array( 'template-part-menu' ),
-							'blockTypes'    => array( 'core/template-part/menu' ),
+							'title'       => ! empty( $headers['title'] ) ? $headers['title'] : basename( $template_file, '.php' ),
+							'description' => ! empty( $headers['description'] ) ? $headers['description'] : '',
+							'content'     => $content,
+							'categories'  => array( 'menus' ),
+							'blockTypes'  => array( 'core/template-part/menu' ),
 						)
 					);
 				}

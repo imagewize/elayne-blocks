@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.7.0] - 2026-02-15
+
+### Added
+- Admin settings page under Settings → Elayne Blocks for block management
+- Ability to selectively enable/disable individual blocks
+- Checkbox controls for all 6 blocks (Carousel, Slide, Mega Menu, FAQ Tabs, FAQ Tab Answer, Search Overlay Trigger)
+- Parent-child block dependency enforcement (Carousel→Slide, FAQ Tabs→FAQ Tab Answer)
+- Bulk actions: "Enable All" and "Disable All" buttons
+- Real-time JavaScript dependency handling in settings UI
+- Confirmation dialogs when disabling parent blocks with dependencies
+- Block descriptions and dependency warnings in settings UI
+- Admin CSS and JavaScript for enhanced settings page interactivity
+
+### Changed
+- Block registration now respects admin settings (disabled blocks won't register)
+- Carousel asset loading now checks both settings and block presence for optimization
+- Settings stored persistently in WordPress options (`elayne_blocks_enabled`)
+
+### Security
+- Proper capability checks (`manage_options`) for settings access
+- WordPress Settings API integration with automatic nonce handling
+- Input sanitization and validation for all settings
+- PHPCS WordPress coding standards compliance
+
+### Documentation
+- Added `docs/ADMIN-PANEL-PLAN.md` - Complete implementation plan
+- Added `docs/ADMIN-PANEL-TESTING.md` - Comprehensive testing guide
+- Added `docs/ADMIN-PANEL-IMPLEMENTATION.md` - Implementation summary
+
 ## [2.6.0] - 2026-02-15
 
 ### Changed

@@ -19,8 +19,8 @@
 namespace ELayneBlocks;
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 define( 'ELAYNE_BLOCKS_VERSION', '2.6.0' );

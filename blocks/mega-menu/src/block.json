@@ -140,7 +140,7 @@
 		},
 		"__experimentalSlashInserter": true
 	},
-	"textdomain": "elayne",
+	"textdomain": "elayne-blocks",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",

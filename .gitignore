@@ -70,3 +70,6 @@ create-pr.sh
 
 # plugin release script
 release-plugin.sh
+
+# translation extraction script
+extract-translations.sh

@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.0] - 2026-02-15
+
+### Changed
+- Updated minimum WordPress version requirement from 6.7 to 6.9
+- Updated minimum PHP version requirement from 7.3 to 7.4
+- Fixed text domain consistency across all blocks (carousel, mega-menu, slide) from `elayne` to `elayne-blocks`
+
+### Added
+- Dutch translation files (nl_NL)
+  - Added `languages/elayne-blocks-nl_NL.po` with complete Dutch translations
+  - Added `languages/elayne-blocks.pot` template file for translation support
+- Translation extraction script added to `.gitignore`
+- Comprehensive documentation in `/docs` directory
+  - Language files creation guide
+  - Dutch translation summary
+  - Plugin issues documentation
+
+### Fixed
+- Text domain consistency ensures proper translation loading across all blocks
+- All blocks now correctly use `elayne-blocks` text domain for WordPress.org compatibility
+- **WordPress.org compliance improvements:**
+  - Security check now placed before namespace declaration (WordPress.org requirement)
+  - `@package` tag moved outside main plugin header comment block
+  - Plugin constants now defined immediately after security check
+
 ## [2.5.8] - 2026-01-21
 
 ### Changed

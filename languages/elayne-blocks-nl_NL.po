@@ -1,0 +1,744 @@
+# Dutch translation for Elayne Blocks
+# Copyright (C) 2026 Jasper Frumau
+# This file is distributed under the GPL v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Elayne Blocks 2.5.8\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/elayne-blocks\n"
+"Last-Translator: Jasper Frumau <jasper@imagewize.nl>\n"
+"Language-Team: Dutch <nl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-02-15T07:31:57+00:00\n"
+"PO-Revision-Date: 2026-02-15 00:00+0000\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-POEDIT-BASEFILE: elayne-blocks.pot\n"
+"X-POEDIT-KEYWORDSList: _:1,gettext:1,__:1,_e:1,esc_html__:1,esc_html_e:1,esc_attr__:1,esc_attr_e:1,_x:1,esc_html_x:1,esc_attr_x:1\n"
+
+#. Plugin Name of the plugin
+#: elayne-blocks.php
+#: elayne-blocks.php:183
+msgid "Elayne Blocks"
+msgstr "Elayne Blokken"
+
+#. Plugin URI of the plugin
+#: elayne-blocks.php
+msgid "https://github.com/imagewize/elayne-blocks"
+msgstr "https://github.com/imagewize/elayne-blocks"
+
+#. Description of the plugin
+#: elayne-blocks.php
+msgid "Custom blocks for the Elayne WordPress theme including Mega Menu, Carousel, and Slide blocks"
+msgstr "Aangepaste blokken voor het Elayne WordPress-thema, inclusief Mega Menu, Carousel en Slide blokken"
+
+#. Author of the plugin
+#: elayne-blocks.php
+msgid "Jasper Frumau"
+msgstr "Jasper Frumau"
+
+#. Author URI of the plugin
+#: elayne-blocks.php
+msgid "https://github.com/imagewize"
+msgstr "https://github.com/imagewize"
+
+#: blocks/mega-menu/src/render.php:191
+msgid "Close menu"
+msgstr "Menu sluiten"
+
+#: elayne-blocks.php:113
+#: elayne-blocks.php:192
+msgid "Menus"
+msgstr "Menus"
+
+#: elayne-blocks.php:114
+msgid "Template parts for navigation and mega menu content"
+msgstr "Sjabloondeelen voor navigatie en mega menu inhoud"
+
+#: blocks/mega-menu/src/components/LayoutPicker.jsx:25
+msgid "Dropdown"
+msgstr "Uitklapbaar menu"
+
+#: blocks/mega-menu/src/components/LayoutPicker.jsx:27
+msgid "Classic dropdown below trigger"
+msgstr "Klassiek uitklapbaar menu onder de trigger"
+
+#: blocks/mega-menu/src/components/LayoutPicker.jsx:31
+msgid "Overlay"
+msgstr "Overlay"
+
+#: blocks/mega-menu/src/components/LayoutPicker.jsx:33
+msgid "Full-screen overlay"
+msgstr "Volledig scherm overlay"
+
+#: blocks/mega-menu/src/components/LayoutPicker.jsx:40
+msgid "Layout Mode"
+msgstr "Indelingsmodus"
+
+#: blocks/mega-menu/src/components/StylePanel.jsx:33
+msgid "Box Shadow"
+msgstr "Schaduw"
+
+#: blocks/mega-menu/src/components/StylePanel.jsx:34
+msgid "Add depth to the panel container"
+msgstr "Voeg diepte toe aan de paneelcontainer"
+
+#: blocks/mega-menu/src/components/StylePanel.jsx:41
+msgid "None"
+msgstr "Geen"
+
+#: blocks/mega-menu/src/components/StylePanel.jsx:47
+msgid "Small"
+msgstr "Klein"
+
+#: blocks/mega-menu/src/components/StylePanel.jsx:53
+msgid "Medium"
+msgstr "Middel"
+
+#: blocks/mega-menu/src/components/StylePanel.jsx:59
+msgid "Large"
+msgstr "Groot"
+
+#: blocks/mega-menu/src/components/StylePanel.jsx:65
+msgid "Border Radius (px)"
+msgstr "Randstraal (px)"
+
+#: blocks/mega-menu/src/components/StylePanel.jsx:74
+msgid "Border Width (px)"
+msgstr "Randbreedte (px)"
+
+#: blocks/mega-menu/src/components/StylePanel.jsx:83
+msgid "Border Color"
+msgstr "Randkleur"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:23
+msgid "Fade"
+msgstr "Verblenden"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:24
+msgid "Smooth fade in/out effect"
+msgstr "Zacht verblend effect in/uit"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:29
+msgid "Slide"
+msgstr "Schuiven"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:30
+msgid "Slide down from top"
+msgstr "Schuif omlaag vanaf boven"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:35
+msgid "Scale"
+msgstr "Schalen"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:36
+msgid "Grow from center"
+msgstr "Groei vanaf het midden"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:41
+msgid "Slide + Fade"
+msgstr "Schuiven + Verblenden"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:42
+msgid "Combined slide and fade"
+msgstr "Gecombineerd schuiven en verblenden"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:51
+msgid "Fast"
+msgstr "Snel"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:52
+msgid "Normal"
+msgstr "Normaal"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:53
+msgid "Slow"
+msgstr "Langzaam"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:85
+msgid "Animation Type"
+msgstr "Animatietype"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:86
+msgid "Choose how the menu animates when opening and closing"
+msgstr "Kies hoe het menu animeert bij openen en sluiten"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:146
+msgid "Animation Speed"
+msgstr "Animatiesnelheid"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:194
+msgid "Preview Animation"
+msgstr "Animatie voorvertonen"
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:227
+msgid "Mega Menu"
+msgstr "Mega Menu"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:24
+msgid "Menu (Hamburger)"
+msgstr "Menu (Hamburger)"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:25
+msgid "Menu Alt"
+msgstr "Menu Alt"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:26
+msgid "Menu Alt 2"
+msgstr "Menu Alt 2"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:27
+msgid "Menu Alt 3"
+msgstr "Menu Alt 3"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:28
+msgid "Site"
+msgstr "Site"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:29
+msgid "Site Alt"
+msgstr "Site Alt"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:30
+msgid "Site Alt 2"
+msgstr "Site Alt 2"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:31
+msgid "Site Alt 3"
+msgstr "Site Alt 3"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:32
+msgid "Home"
+msgstr "Home"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:33
+msgid "Building"
+msgstr "Gebouw"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:34
+msgid "Store"
+msgstr "Winkel"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:35
+msgid "Cart"
+msgstr "Winkelwagen"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:36
+msgid "Products"
+msgstr "Producten"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:37
+msgid "Portfolio"
+msgstr "Portfolio"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:38
+msgid "Book"
+msgstr "Boek"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:39
+msgid "Book Alt"
+msgstr "Boek Alt"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:40
+msgid "Lightbulb"
+msgstr "Lamp"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:41
+msgid "Heart"
+msgstr "Hart"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:42
+msgid "Star Filled"
+msgstr "Ster gevuld"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:43
+msgid "Star Empty"
+msgstr "Ster leeg"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:44
+msgid "Flag"
+msgstr "Vlag"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:45
+msgid "Location"
+msgstr "Locatie"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:46
+msgid "Phone"
+msgstr "Telefoon"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:47
+msgid "Email"
+msgstr "E-mail"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:48
+msgid "Users"
+msgstr "Gebruikers"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:49
+msgid "Groups"
+msgstr "Groepen"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:50
+msgid "Businessman"
+msgstr "Zakelijk"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:51
+msgid "ID"
+msgstr "ID"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:52
+msgid "Shield"
+msgstr "Schild"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:53
+msgid "SOS"
+msgstr "SOS"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:54
+msgid "Search"
+msgstr "Zoeken"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:55
+msgid "Learn More"
+msgstr "Meer informatie"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:56
+msgid "Info"
+msgstr "Info"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:57
+msgid "Megaphone"
+msgstr "Megafoon"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:58
+msgid "Chart Pie"
+msgstr "Tafel diagram"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:59
+msgid "Chart Bar"
+msgstr "Staafdiagram"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:60
+msgid "Analytics"
+msgstr "Analyse"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:61
+msgid "Money"
+msgstr "Geld"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:62
+msgid "Palmtree"
+msgstr "Palmbomen"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:63
+msgid "Smiley"
+msgstr "Glimlach"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:93
+msgid "Icon"
+msgstr "Pictogram"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:94
+msgid "Choose a Dashicon or upload custom SVG"
+msgstr "Kies een Dashicon of upload een aangepast SVG"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:101
+msgid "Dashicon"
+msgstr "Dashicon"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:107
+msgid "Custom SVG"
+msgstr "Aangepast SVG"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:134
+msgid "Select Icon..."
+msgstr "Selecteer pictogram..."
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:148
+msgid "Search icons..."
+msgstr "Zoek pictogrammen..."
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:204
+msgid "No icons found matching %s"
+msgstr "Geen pictogrammen gevonden die overeenkomen met %s"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:224
+msgid "Clear Icon"
+msgstr "Pictogram wissen"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:233
+msgid "Custom SVG Code"
+msgstr "Aangepaste SVG-code"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:239
+msgid "Paste your SVG code here"
+msgstr "Plak hier uw SVG-code"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:243
+msgid "SVG code must be properly formatted and valid"
+msgstr "SVG-code moet correct geformatteerd en geldig zijn"
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:253
+msgid "Preview:"
+msgstr "Voorvertoning:"
+
+#: blocks/mega-menu/src/edit.js:119
+msgid "Enable Animations"
+msgstr "Animaties inschakelen"
+
+#: blocks/mega-menu/src/edit.js:129
+msgid "Enable Icon"
+msgstr "Pictogram inschakelen"
+
+#: blocks/mega-menu/src/edit.js:143
+msgid "Settings"
+msgstr "Instellingen"
+
+#: blocks/mega-menu/src/edit.js:147
+msgid "Label"
+msgstr "Label"
+
+#: blocks/mega-menu/src/edit.js:156
+msgid "Description"
+msgstr "Beschrijving"
+
+#: blocks/mega-menu/src/edit.js:162
+msgid "Optional description for screen readers"
+msgstr "Optionele beschrijving voor schermlezers"
+
+#: blocks/mega-menu/src/edit.js:169
+msgid "Label Color"
+msgstr "Labelkleur"
+
+#: blocks/mega-menu/src/edit.js:178
+msgid "Select Menu Template"
+msgstr "Selecteer menu sjabloon"
+
+#: blocks/mega-menu/src/edit.js:186
+msgid "No menu templates found. Create one in the Site Editor."
+msgstr "Geen menu sjablonen gevonden. Maak er een aan in de Site Editor."
+
+#: blocks/mega-menu/src/edit.js:191
+msgid "Create a new menu template part"
+msgstr "Maak een nieuw menu sjabloondeel aan"
+
+#: blocks/mega-menu/src/edit.js:213
+msgid "Layout"
+msgstr "Indeling"
+
+#: blocks/mega-menu/src/edit.js:226
+msgid "Dropdown Alignment"
+msgstr "Uitklapbare uitlijning"
+
+#: blocks/mega-menu/src/edit.js:229
+msgid "Left"
+msgstr "Links"
+
+#: blocks/mega-menu/src/edit.js:230
+msgid "Right"
+msgstr "Rechts"
+
+#: blocks/mega-menu/src/edit.js:231
+msgid "Center"
+msgstr "Midden"
+
+#: blocks/mega-menu/src/edit.js:238
+msgid "Dropdown Spacing"
+msgstr "Uitklapbare spacing"
+
+#: blocks/mega-menu/src/edit.js:244
+msgid "Dropdown Max Width"
+msgstr "Maximale breedte uitklappen"
+
+#: blocks/mega-menu/src/edit.js:251
+msgid "Use Full Width"
+msgstr "Volledige breedte gebruiken"
+
+#: blocks/mega-menu/src/edit.js:257
+msgid "Align dropdown with navigation container"
+msgstr "Uitklappen uitlijnen met navigatiecontainer"
+
+#: blocks/mega-menu/src/edit.js:264
+msgid "Overlay Backdrop Color"
+msgstr "Overlay achtergrondkleur"
+
+#: blocks/mega-menu/src/edit.js:270
+msgid "Enable Hover Activation"
+msgstr "Hover activering inschakelen"
+
+#: blocks/mega-menu/src/edit.js:276
+msgid "Open menu on hover (dropdown mode only)"
+msgstr "Open menu bij hover (alleen uitklapmodus)"
+
+#: blocks/mega-menu/src/edit.js:283
+msgid "Backdrop Blur"
+msgstr "Achtergrond vervaging"
+
+#: blocks/mega-menu/src/edit.js:289
+msgid "Add blur effect to overlay backdrop"
+msgstr "Voeg vervagingseffect toe aan overlay achtergrond"
+
+#: blocks/mega-menu/src/edit.js:296
+msgid "Advanced"
+msgstr "Geavanceerd"
+
+#: blocks/mega-menu/src/edit.js:300
+msgid "Mobile Breakpoint"
+msgstr "Mobiel breakpoint"
+
+#: blocks/mega-menu/src/edit.js:306
+msgid "Enable Mobile Mode"
+msgstr "Mobiele modus inschakelen"
+
+#: blocks/mega-menu/src/edit.js:312
+msgid "Use mobile layout below this breakpoint"
+msgstr "Gebruik mobiele indeling onder dit breakpoint"
+
+#: blocks/mega-menu/src/edit.js:319
+msgid "Icon Position"
+msgstr "Pictogrampositie"
+
+#: blocks/mega-menu/src/edit.js:322
+msgid "Left"
+msgstr "Links"
+
+#: blocks/mega-menu/src/edit.js:323
+msgid "Right"
+msgstr "Rechts"
+
+#: blocks/mega-menu/src/edit.js:324
+msgid "Top"
+msgstr "Boven"
+
+#: blocks/mega-menu/src/edit.js:331
+msgid "Panel Settings"
+msgstr "Paneelinstellingen"
+
+#: blocks/mega-menu/src/edit.js:335
+msgid "Box Shadow"
+msgstr "Schaduw"
+
+#: blocks/mega-menu/src/edit.js:342
+msgid "Border Radius"
+msgstr "Randstraal"
+
+#: blocks/mega-menu/src/edit.js:349
+msgid "Border Width"
+msgstr "Randbreedte"
+
+#: blocks/mega-menu/src/edit.js:356
+msgid "Border Color"
+msgstr "Randkleur"
+
+#: blocks/mega-menu/src/edit.js:363
+msgid "Backdrop Blur"
+msgstr "Achtergrond vervaging"
+
+#: blocks/mega-menu/src/edit.js:369
+msgid "Add blur effect to panel background"
+msgstr "Voeg vervagingseffect toe aan paneelachtergrond"
+
+#: blocks/carousel/src/edit.js:10
+msgid "Click plus (+) to add slides"
+msgstr "Klik op plus (+) om dia's toe te voegen"
+
+#: blocks/carousel/src/edit.js:14
+msgid "Center Mode"
+msgstr "Centrummodus"
+
+#: blocks/carousel/src/edit.js:15
+msgid "Center the active slide"
+msgstr "Centreer de actieve dia"
+
+#: blocks/carousel/src/edit.js:20
+msgid "Thumbnail Navigation"
+msgstr "Miniatuur navigatie"
+
+#: blocks/carousel/src/edit.js:21
+msgid "Show thumbnails below the carousel"
+msgstr "Toon miniaturen onder de carousel"
+
+#: blocks/carousel/src/edit.js:26
+msgid "Variable Width"
+msgstr "Variabele breedte"
+
+#: blocks/carousel/src/edit.js:27
+msgid "Slides can have different widths"
+msgstr "Dia's kunnen verschillende breedtes hebben"
+
+#: blocks/carousel/src/edit.js:32
+msgid "Arrows"
+msgstr "Pijlen"
+
+#: blocks/carousel/src/edit.js:33
+msgid "Show navigation arrows"
+msgstr "Toon navigatiepijlen"
+
+#: blocks/carousel/src/edit.js:38
+msgid "Dots"
+msgstr "Puntjes"
+
+#: blocks/carousel/src/edit.js:39
+msgid "Show navigation dots"
+msgstr "Toon navigatiepuntjes"
+
+#: blocks/carousel/src/edit.js:44
+msgid "Infinite Loop"
+msgstr "Oneindige lus"
+
+#: blocks/carousel/src/edit.js:45
+msgid "Loop continuously"
+msgstr "Loop continu"
+
+#: blocks/carousel/src/edit.js:50
+msgid "Autoplay"
+msgstr "Automatisch afspelen"
+
+#: blocks/carousel/src/edit.js:51
+msgid "Automatically advance slides"
+msgstr "Dia's automatisch doorlaten"
+
+#: blocks/carousel/src/edit.js:56
+msgid "Autoplay Speed"
+msgstr "Automatische snelheid"
+
+#: blocks/carousel/src/edit.js:61
+msgid "Speed"
+msgstr "Snelheid"
+
+#: blocks/carousel/src/edit.js:62
+msgid "Transition speed"
+msgstr "Overgangssnelheid"
+
+#: blocks/carousel/src/edit.js:67
+msgid "Slides to Show"
+msgstr "Dia's om te tonen"
+
+#: blocks/carousel/src/edit.js:72
+msgid "Slides to Scroll"
+msgstr "Dia's om te scrollen"
+
+#: blocks/carousel/src/edit.js:77
+msgid "Arrow Color"
+msgstr "Pijlkleur"
+
+#: blocks/carousel/src/edit.js:82
+msgid "Arrow Background"
+msgstr "Pijl achtergrond"
+
+#: blocks/carousel/src/edit.js:87
+msgid "Arrow Hover Color"
+msgstr "Pijl hover kleur"
+
+#: blocks/carousel/src/edit.js:92
+msgid "Arrow Hover Background"
+msgstr "Pijl hover achtergrond"
+
+#: blocks/carousel/src/edit.js:97
+msgid "Layout"
+msgstr "Indeling"
+
+#: blocks/carousel/src/edit.js:101
+msgid "Responsive"
+msgstr "Responsief"
+
+#: blocks/carousel/src/edit.js:105
+msgid "Breakpoint"
+msgstr "Breakpoint"
+
+#: blocks/carousel/src/edit.js:110
+msgid "Settings"
+msgstr "Instellingen"
+
+#: blocks/carousel/src/edit.js:114
+msgid "Navigation"
+msgstr "Navigatie"
+
+#: blocks/carousel/src/edit.js:118
+msgid "Appearance"
+msgstr "Uiterlijk"
+
+#: blocks/carousel/src/edit.js:122
+msgid "Behavior"
+msgstr "Gedrag"
+
+#: blocks/carousel/src/edit.js:126
+msgid "Arrow Style"
+msgstr "Pijlstijl"
+
+#: blocks/carousel/src/edit.js:130
+msgid "Arrow Size"
+msgstr "Pijlgrootte"
+
+#: blocks/carousel/src/edit.js:134
+msgid "Arrow Shape"
+msgstr "Pijlvorm"
+
+#: blocks/carousel/src/edit.js:138
+msgid "Arrow Position"
+msgstr "Pijlpositie"
+
+#: blocks/carousel/src/edit.js:142
+msgid "Custom SVG"
+msgstr "Aangepast SVG"
+
+#: blocks/carousel/src/edit.js:146
+msgid "Upload custom SVG for arrows"
+msgstr "Upload aangepast SVG voor pijlen"
+
+#: blocks/faq-tabs/src/edit.js:11
+msgid "Add a question"
+msgstr "Voeg een vraag toe"
+
+#: blocks/faq-tabs/src/edit.js:15
+msgid "Add an answer"
+msgstr "Voeg een antwoord toe"
+
+#: blocks/faq-tabs/src/edit.js:19
+msgid "Add a button"
+msgstr "Voeg een knop toe"
+
+#: blocks/faq-tabs/src/edit.js:23
+msgid "Settings"
+msgstr "Instellingen"
+
+#: blocks/faq-tabs/src/edit.js:27
+msgid "Button Text"
+msgstr "Knoptekst"
+
+#: blocks/faq-tabs/src/edit.js:32
+msgid "Button URL"
+msgstr "Knop URL"
+
+#: blocks/faq-tabs/src/edit.js:37
+msgid "Open in new tab"
+msgstr "Open in nieuw tabblad"
+
+#: blocks/search-overlay-trigger/src/edit.js:13
+msgid "Search"
+msgstr "Zoeken"
+
+#: blocks/search-overlay-trigger/src/edit.js:17
+msgid "Settings"
+msgstr "Instellingen"
+
+#: blocks/search-overlay-trigger/src/edit.js:21
+msgid "Overlay Color"
+msgstr "Overlay kleur"
+
+#: blocks/search-overlay-trigger/src/edit.js:26
+msgid "Search Bar Color"
+msgstr "Zoekbalk kleur"
+
+#: blocks/search-overlay-trigger/src/edit.js:31
+msgid "Close Button Color"
+msgstr "Sluitknop kleur"
+
+#: blocks/search-overlay-trigger/src/edit.js:36
+msgid "Backdrop Blur"
+msgstr "Achtergrond vervaging"
+
+#: blocks/search-overlay-trigger/src/edit.js:41
+msgid "Add blur effect to overlay"
+msgstr "Voeg vervagingseffect toe aan overlay"

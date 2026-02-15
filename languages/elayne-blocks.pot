@@ -1,0 +1,933 @@
+# Copyright (C) 2026 Jasper Frumau
+# This file is distributed under the GPL v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Elayne Blocks 2.5.8\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/elayne-blocks\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-02-15T07:31:57+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: elayne-blocks\n"
+
+#. Plugin Name of the plugin
+#: elayne-blocks.php
+#: elayne-blocks.php:183
+msgid "Elayne Blocks"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: elayne-blocks.php
+msgid "https://github.com/imagewize/elayne-blocks"
+msgstr ""
+
+#. Description of the plugin
+#: elayne-blocks.php
+msgid "Custom blocks for the Elayne WordPress theme including Mega Menu, Carousel, and Slide blocks"
+msgstr ""
+
+#. Author of the plugin
+#: elayne-blocks.php
+msgid "Jasper Frumau"
+msgstr ""
+
+#. Author URI of the plugin
+#: elayne-blocks.php
+msgid "https://github.com/imagewize"
+msgstr ""
+
+#: blocks/mega-menu/src/render.php:191
+msgid "Close menu"
+msgstr ""
+
+#: elayne-blocks.php:113
+#: elayne-blocks.php:192
+msgid "Menus"
+msgstr ""
+
+#: elayne-blocks.php:114
+msgid "Template parts for navigation and mega menu content"
+msgstr ""
+
+#: elayne-blocks.php:184
+msgid "Pre-configured patterns for Elayne Blocks carousel."
+msgstr ""
+
+#: elayne-blocks.php:193
+msgid "Mega menu patterns for navigation template parts."
+msgstr ""
+
+#: elayne-blocks.php:206
+msgid "Hero Carousel"
+msgstr ""
+
+#: elayne-blocks.php:207
+msgid "Full-width hero carousel with autoplay and fade transition."
+msgstr ""
+
+#: elayne-blocks.php:253
+msgid "Testimonial Carousel"
+msgstr ""
+
+#: elayne-blocks.php:254
+msgid "Center mode carousel with 3 slides visible, perfect for testimonials."
+msgstr ""
+
+#: elayne-blocks.php:300
+msgid "Product Gallery with Thumbnails"
+msgstr ""
+
+#: elayne-blocks.php:301
+msgid "Image carousel with thumbnail navigation below, perfect for product galleries."
+msgstr ""
+
+#: elayne-blocks.php:335
+msgid "Portfolio Showcase"
+msgstr ""
+
+#: elayne-blocks.php:336
+msgid "Variable width carousel for displaying portfolio items with different sizes."
+msgstr ""
+
+#: elayne-blocks.php:376
+msgid "Team Members Carousel"
+msgstr ""
+
+#: elayne-blocks.php:377
+msgid "Multi-slide carousel with adaptive height for team member profiles."
+msgstr ""
+
+#: blocks/carousel/src/edit.js:98
+msgid "Click plus (+) to add slides"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:130
+msgid "Center Mode"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:136
+msgid "Thumbnail Navigation"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:142
+msgid "Variable Width"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:155
+msgid "Arrow Color"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:160
+msgid "Arrow Background"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:165
+msgid "Arrow Hover Color"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:170
+msgid "Arrow Hover Background"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:181
+#: blocks/mega-menu/src/edit.js:213
+msgid "Layout"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:183
+msgid "Slides to Show"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:190
+msgid "Slides to Scroll"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:198
+msgid "Center Padding"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:199
+msgid "Amount of adjacent slides visible"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:210
+msgid "Thumbnails to Show"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:217
+msgid "Thumbnail Position"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:220
+msgid "Below"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:221
+msgid "Above"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:222
+#: blocks/mega-menu/src/edit.js:229
+msgid "Left"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:223
+#: blocks/mega-menu/src/edit.js:230
+msgid "Right"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:228
+msgid "Thumbnail Spacing"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:238
+msgid "Behavior"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:240
+msgid "Autoplay"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:246
+msgid "Autoplay Speed (ms)"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:255
+msgid "Infinite Loop"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:260
+msgid "Animation Speed (ms)"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:268
+msgid "Lazy Loading"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:269
+msgid "Improves performance for image-heavy carousels"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:272
+msgid "Disabled"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:273
+msgid "On Demand"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:274
+msgid "Progressive"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:279
+msgid "Adaptive Height"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:280
+msgid "Auto-adjust height to match active slide"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:285
+msgid "Navigation"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:287
+msgid "Show Arrows"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:292
+msgid "Show Dots"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:298
+msgid "Dots Top Spacing"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:308
+msgid "Arrow Style"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:310
+msgid "Arrow Icon"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:313
+msgid "Arrow (Default)"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:314
+msgid "Chevron"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:315
+msgid "Caret (Triangle)"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:316
+#: blocks/mega-menu/src/components/IconPicker.jsx:107
+msgid "Custom SVG"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:319
+msgid "Choose the arrow icon style - all icons are SVG-based for sharp, scalable rendering"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:323
+#: blocks/mega-menu/src/components/IconPicker.jsx:233
+msgid "Custom SVG Code"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:326
+msgid "Paste SVG code for custom arrow icon"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:331
+msgid "Arrow Background Shape"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:334
+msgid "Circle"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:335
+msgid "Rounded Square"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:336
+msgid "Square"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:337
+msgid "None"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:340
+msgid "Choose the arrow background shape"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:343
+msgid "Arrow Size (px)"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:352
+msgid "Responsive"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:354
+#: blocks/mega-menu/src/edit.js:359
+msgid "Mobile Breakpoint (px)"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:362
+msgid "Mobile: Slides to Show"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:369
+msgid "Mobile: Slides to Scroll"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:376
+msgid "Advanced"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:378
+msgid "Total Slides"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:379
+msgid "Number of slide blocks to generate"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:386
+msgid "Slide Padding"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:387
+msgid "Add padding around slides"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:392
+msgid "RTL Mode"
+msgstr ""
+
+#: blocks/carousel/src/edit.js:393
+msgid "Right-to-left language support"
+msgstr ""
+
+#: blocks/faq-tab-answer/src/edit.js:48
+msgid "Tab Settings"
+msgstr ""
+
+#: blocks/faq-tab-answer/src/edit.js:50
+msgid "Question Text"
+msgstr ""
+
+#: blocks/faq-tab-answer/src/edit.js:53
+msgid "The question shown in the tab navigation"
+msgstr ""
+
+#: blocks/faq-tab-answer/src/edit.js:65
+msgid "Enter answer title..."
+msgstr ""
+
+#: blocks/faq-tab-answer/src/edit.js:74
+msgid "We provide a comprehensive range of professional services tailored to meet your specific needs. Our experienced team specializes in delivering high-quality solutions that drive results and exceed expectations."
+msgstr ""
+
+#: blocks/faq-tab-answer/src/edit.js:83
+msgid "Whether you're looking for strategic consulting, creative design, technical development, or ongoing support, we have the expertise and resources to help you succeed."
+msgstr ""
+
+#: blocks/faq-tabs/src/edit.js:161
+msgid "Add FAQ Tab Answer blocks to get started"
+msgstr ""
+
+#: blocks/faq-tabs/src/edit.js:174
+msgid "Enter question..."
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:23
+msgid "Fade"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:24
+msgid "Smooth fade in/out effect"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:29
+msgid "Slide"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:30
+msgid "Slide down from top"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:35
+msgid "Scale"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:36
+msgid "Grow from center"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:41
+msgid "Slide + Fade"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:42
+msgid "Combined slide and fade"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:51
+msgid "Fast"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:52
+msgid "Normal"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:53
+msgid "Slow"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:85
+msgid "Animation Type"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:86
+msgid "Choose how the mega menu appears and disappears"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:146
+msgid "Animation Speed"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:194
+msgid "Preview Animation"
+msgstr ""
+
+#: blocks/mega-menu/src/components/AnimationControls.jsx:227
+msgid "Mega Menu"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:24
+msgid "Menu (Hamburger)"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:25
+msgid "Menu Alt"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:26
+msgid "Menu Alt 2"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:27
+msgid "Menu Alt 3"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:28
+msgid "Site"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:29
+msgid "Site Alt"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:30
+msgid "Site Alt 2"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:31
+msgid "Site Alt 3"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:32
+msgid "Home"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:33
+msgid "Building"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:34
+msgid "Store"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:35
+msgid "Cart"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:36
+msgid "Products"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:37
+msgid "Portfolio"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:38
+msgid "Book"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:39
+msgid "Book Alt"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:40
+msgid "Lightbulb"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:41
+msgid "Heart"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:42
+msgid "Star Filled"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:43
+msgid "Star Empty"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:44
+msgid "Flag"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:45
+msgid "Location"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:46
+msgid "Phone"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:47
+msgid "Email"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:48
+msgid "Users"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:49
+msgid "Groups"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:50
+msgid "Businessman"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:51
+msgid "ID"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:52
+msgid "Shield"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:53
+msgid "SOS"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:54
+msgid "Search"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:55
+msgid "Learn More"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:56
+msgid "Info"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:57
+msgid "Megaphone"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:58
+msgid "Chart Pie"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:59
+msgid "Chart Bar"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:60
+msgid "Analytics"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:61
+msgid "Money"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:62
+msgid "Palmtree"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:63
+msgid "Smiley"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:93
+#: blocks/mega-menu/src/edit.js:298
+msgid "Icon"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:94
+msgid "Choose a Dashicon or upload custom SVG"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:101
+msgid "Dashicon"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:134
+msgid "Select Icon..."
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:148
+msgid "Search icons..."
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:204
+msgid "No icons found"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:224
+msgid "Clear Icon"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:239
+msgid "<svg>...</svg>"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:243
+msgid "Paste your custom SVG code here"
+msgstr ""
+
+#: blocks/mega-menu/src/components/IconPicker.jsx:253
+msgid "Preview:"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:119
+msgid "Enable Animations"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:129
+msgid "Enable Icon"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:143
+msgid "Settings"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:147
+msgid "Label"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:156
+msgid "Description"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:162
+msgid "Optional description for accessibility"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:169
+msgid "Label Color"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:178
+msgid "Select Menu Template"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:186
+msgid "Select a template part to display in the mega menu"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:191
+msgid "No menu template parts found. <a>Create one in the Site Editor</a>"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:226
+msgid "Dropdown Alignment"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:231
+msgid "Center"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:236
+msgid "Choose how the dropdown panel aligns relative to the menu toggle button."
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:239
+msgid "Dropdown Spacing"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:247
+msgid "Vertical space between menu item and dropdown (in pixels)"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:250
+msgid "Maximum Dropdown Width"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:258
+msgid "Maximum width of the dropdown on desktop (in pixels). Mobile always uses full width."
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:262
+msgid "Use Full Width"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:263
+msgid "Align dropdown with theme's wide content width. Enable this and adjust the offset below to match your header layout."
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:274
+msgid "Backdrop Color"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:279
+msgid "e.g., rgba(0, 0, 0, 0.5)"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:285
+msgid "Activate on Hover"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:286
+msgid "Open menu on hover instead of click"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:312
+msgid "Icon Position"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:315
+msgid "Left of Label"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:316
+msgid "Right of Label"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:317
+msgid "Above Label"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:329
+msgid "Animation"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:347
+msgid "Mobile Behavior"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:351
+msgid "Enable Mobile Mode"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:373
+msgid "Panel Effects"
+msgstr ""
+
+#: blocks/mega-menu/src/edit.js:396
+msgid "Add label..."
+msgstr ""
+
+#: blocks/search-overlay-trigger/src/edit.js:18
+msgid "Overlay Settings"
+msgstr ""
+
+#: blocks/search-overlay-trigger/src/edit.js:20
+msgid "Overlay Background Color"
+msgstr ""
+
+#: blocks/search-overlay-trigger/src/edit.js:26
+msgid "Search Bar Border Color"
+msgstr ""
+
+#: blocks/search-overlay-trigger/src/edit.js:32
+msgid "Close Button Color"
+msgstr ""
+
+#: blocks/search-overlay-trigger/src/edit.js:53
+msgid "(Search icon - click to open overlay)"
+msgstr ""
+
+#: blocks/slide/src/edit.js:21
+msgid "Slide Settings"
+msgstr ""
+
+#: blocks/slide/src/edit.js:23
+msgid "Slide ID"
+msgstr ""
+
+#: blocks/slide/src/edit.js:26
+msgid "Optional HTML ID for this slide"
+msgstr ""
+
+#: blocks/carousel/src/block.json
+msgctxt "block title"
+msgid "Carousel"
+msgstr ""
+
+#: blocks/carousel/src/block.json
+msgctxt "block description"
+msgid "Create a customizable slideshow of content with this carousel block."
+msgstr ""
+
+#: blocks/faq-tab-answer/src/block.json
+msgctxt "block title"
+msgid "FAQ Tab Answer"
+msgstr ""
+
+#: blocks/faq-tab-answer/src/block.json
+msgctxt "block description"
+msgid "A single FAQ tab answer with customizable content."
+msgstr ""
+
+#: blocks/faq-tab-answer/src/block.json
+#: blocks/faq-tabs/src/block.json
+msgctxt "block keyword"
+msgid "faq"
+msgstr ""
+
+#: blocks/faq-tab-answer/src/block.json
+msgctxt "block keyword"
+msgid "answer"
+msgstr ""
+
+#: blocks/faq-tab-answer/src/block.json
+msgctxt "block keyword"
+msgid "content"
+msgstr ""
+
+#: blocks/faq-tabs/src/block.json
+msgctxt "block title"
+msgid "FAQ Tabs"
+msgstr ""
+
+#: blocks/faq-tabs/src/block.json
+msgctxt "block description"
+msgid "Interactive FAQ tabs with vertical navigation and dynamic content display."
+msgstr ""
+
+#: blocks/faq-tabs/src/block.json
+msgctxt "block keyword"
+msgid "tabs"
+msgstr ""
+
+#: blocks/faq-tabs/src/block.json
+msgctxt "block keyword"
+msgid "accordion"
+msgstr ""
+
+#: blocks/faq-tabs/src/block.json
+msgctxt "block keyword"
+msgid "questions"
+msgstr ""
+
+#: blocks/faq-tabs/src/block.json
+msgctxt "block keyword"
+msgid "interactive"
+msgstr ""
+
+#: blocks/mega-menu/src/block.json
+msgctxt "block title"
+msgid "Mega Menu"
+msgstr ""
+
+#: blocks/mega-menu/src/block.json
+msgctxt "block description"
+msgid "Create dynamic mega menus with template parts and advanced styling options."
+msgstr ""
+
+#: blocks/mega-menu/src/block.json
+msgctxt "block keyword"
+msgid "menu"
+msgstr ""
+
+#: blocks/mega-menu/src/block.json
+msgctxt "block keyword"
+msgid "navigation"
+msgstr ""
+
+#: blocks/mega-menu/src/block.json
+msgctxt "block keyword"
+msgid "mega menu"
+msgstr ""
+
+#: blocks/mega-menu/src/block.json
+msgctxt "block keyword"
+msgid "dropdown"
+msgstr ""
+
+#: blocks/search-overlay-trigger/src/block.json
+msgctxt "block title"
+msgid "Search Overlay Trigger"
+msgstr ""
+
+#: blocks/search-overlay-trigger/src/block.json
+msgctxt "block description"
+msgid "A search icon that opens a full-screen search overlay when clicked."
+msgstr ""
+
+#: blocks/slide/src/block.json
+msgctxt "block title"
+msgid "Slide"
+msgstr ""
+
+#: blocks/slide/src/block.json
+msgctxt "block description"
+msgid "A single slide container that can hold any content within the carousel."
+msgstr ""

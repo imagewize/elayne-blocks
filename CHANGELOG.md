@@ -25,6 +25,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Text domain consistency ensures proper translation loading across all blocks
 - All blocks now correctly use `elayne-blocks` text domain for WordPress.org compatibility
+- **WordPress.org compliance improvements:**
+  - Security check now placed before namespace declaration (WordPress.org requirement)
+  - `@package` tag moved outside main plugin header comment block
+  - Plugin constants now defined immediately after security check
 
 ## [2.5.8] - 2026-01-21
 

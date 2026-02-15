@@ -1,10 +1,10 @@
 === Elayne Blocks ===
 Contributors: Rhand
 Tags: blocks, gutenberg, carousel, mega-menu, slider
-Requires at least: 6.7
+Requires at least: 6.9
 Tested up to: 6.9
-Requires PHP: 7.3
-Stable tag: 2.5.8
+Requires PHP: 7.4
+Stable tag: 2.6.0
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -57,8 +57,8 @@ Elayne Blocks is a companion plugin for the Elayne WordPress theme that provides
 
 = Requirements =
 
-* WordPress 6.7 or higher
-* PHP 7.3 or higher
+* WordPress 6.9 or higher
+* PHP 7.4 or higher
 * Elayne theme (recommended for best integration)
 
 = Block Structure =
@@ -124,6 +124,15 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 5. Mega menu dropdown with rich content
 
 == Changelog ==
+
+= 2.6.0 =
+* Changed: Updated minimum WordPress version requirement from 6.7 to 6.9
+* Changed: Updated minimum PHP version requirement from 7.3 to 7.4
+* Changed: Fixed text domain consistency across all blocks (carousel, mega-menu, slide) from `elayne` to `elayne-blocks`
+* Added: Dutch translation files (nl_NL) with complete translations
+* Added: Translation template file (elayne-blocks.pot) for translation support
+* Added: Comprehensive documentation in /docs directory
+* Fixed: Text domain consistency ensures proper translation loading across all blocks for WordPress.org compatibility
 
 = 2.5.8 =
 * Changed: Menu template part patterns now register without templateTypes for broader compatibility

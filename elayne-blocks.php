@@ -3,7 +3,7 @@
  * Plugin Name: Elayne Blocks
  * Plugin URI: https://github.com/imagewize/elayne-blocks
  * Description: Custom blocks for the Elayne WordPress theme including Mega Menu, Carousel, and Slide blocks
- * Version: 2.6.0
+ * Version: 2.7.0
  * Requires at least: 6.9
  * Requires PHP: 7.4
  * Author: Jasper Frumau
@@ -23,12 +23,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ELAYNE_BLOCKS_VERSION', '2.6.0' );
+define( 'ELAYNE_BLOCKS_VERSION', '2.7.0' );
 define( 'ELAYNE_BLOCKS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELAYNE_BLOCKS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
+// Load admin settings page.
+if ( is_admin() ) {
+	require_once ELAYNE_BLOCKS_PLUGIN_DIR . 'includes/admin/settings-page.php';
+}
+
 /**
- * Register custom blocks
+ * Register custom blocks with conditional registration based on settings.
  */
 add_action(
 	'init',
@@ -38,6 +43,19 @@ add_action(
 		if ( ! is_dir( $blocks_dir ) ) {
 			return;
 		}
+
+		// Get enabled blocks from settings.
+		$enabled_blocks = get_option(
+			'elayne_blocks_enabled',
+			array(
+				'carousel'               => true,
+				'slide'                  => true,
+				'mega-menu'              => true,
+				'faq-tabs'               => true,
+				'faq-tab-answer'         => true,
+				'search-overlay-trigger' => true,
+			)
+		);
 
 		$block_folders = scandir( $blocks_dir );
 
@@ -49,6 +67,11 @@ add_action(
 			$block_json_path = $blocks_dir . '/' . $folder . '/build/block.json';
 
 			if ( file_exists( $block_json_path ) ) {
+				// Skip if block is disabled in settings.
+				if ( isset( $enabled_blocks[ $folder ] ) && ! $enabled_blocks[ $folder ] ) {
+					continue;
+				}
+
 				register_block_type( $block_json_path );
 			}
 		}
@@ -62,6 +85,14 @@ add_action(
 add_action(
 	'wp_enqueue_scripts',
 	function () {
+		// Get enabled blocks from settings.
+		$enabled_blocks = get_option( 'elayne_blocks_enabled', array( 'carousel' => true ) );
+
+		// Don't load carousel assets if carousel is disabled in settings.
+		if ( empty( $enabled_blocks['carousel'] ) ) {
+			return;
+		}
+
 		// Only load carousel assets if carousel block is being used.
 		if ( has_block( 'elayne/carousel' ) ) {
 			// Enqueue Slick Carousel CSS.

@@ -1,0 +1,80 @@
+/**
+ * Admin Settings Page Styles
+ *
+ * @package ELayneBlocks
+ */
+
+.elayne-blocks-bulk-actions {
+	margin: 20px 0;
+	padding: 15px;
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.elayne-blocks-bulk-actions .button {
+	margin-right: 10px;
+}
+
+/* Settings field styling */
+#elayne_blocks_main_section .form-table th {
+	width: 250px;
+	vertical-align: top;
+	padding-top: 15px;
+}
+
+#elayne_blocks_main_section .form-table td {
+	padding-top: 10px;
+}
+
+#elayne_blocks_main_section .form-table td label {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+
+#elayne_blocks_main_section .form-table td input[type="checkbox"] {
+	margin: 0;
+}
+
+/* Description text styling */
+#elayne_blocks_main_section .description {
+	margin-top: 8px;
+	margin-bottom: 0;
+	color: #666;
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+#elayne_blocks_main_section .description strong {
+	color: #d63638;
+}
+
+/* Child block indentation */
+#elayne_blocks_main_section tr[data-parent] th,
+#elayne_blocks_main_section tr[data-parent] td {
+	padding-left: 30px;
+}
+
+/* Disabled state for child blocks */
+#elayne_blocks_main_section input[type="checkbox"]:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Dependency warning styling */
+.elayne-dependency-warning {
+	display: inline-block;
+	margin-left: 10px;
+	padding: 4px 8px;
+	background: #fff3cd;
+	border: 1px solid #ffc107;
+	border-radius: 3px;
+	font-size: 12px;
+	color: #856404;
+}
+
+/* Success message styling */
+.notice.settings-error {
+	margin-top: 15px;
+}

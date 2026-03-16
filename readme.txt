@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.9
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.6.0
+Stable tag: 2.7.0
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -124,6 +124,19 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 5. Mega menu dropdown with rich content
 
 == Changelog ==
+
+= 2.7.0 =
+* Added: Admin settings page under Settings → Elayne Blocks for block management
+* Added: Ability to selectively enable/disable individual blocks
+* Added: Checkbox controls for all 6 blocks (Carousel, Slide, Mega Menu, FAQ Tabs, FAQ Tab Answer, Search Overlay Trigger)
+* Added: Parent-child block dependency enforcement (Carousel→Slide, FAQ Tabs→FAQ Tab Answer)
+* Added: Bulk actions "Enable All" and "Disable All" buttons
+* Added: Real-time dependency handling with confirmation dialogs
+* Added: Block descriptions and dependency warnings in settings UI
+* Changed: Block registration now respects admin settings (disabled blocks won't register)
+* Changed: Carousel asset loading optimized to check both settings and block presence
+* Security: Proper capability checks and WordPress Settings API integration
+* Security: PHPCS WordPress coding standards compliance
 
 = 2.6.0 =
 * Changed: Updated minimum WordPress version requirement from 6.7 to 6.9

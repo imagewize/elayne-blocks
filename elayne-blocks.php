@@ -54,6 +54,7 @@ add_action(
 				'faq-tabs'               => true,
 				'faq-tab-answer'         => true,
 				'search-overlay-trigger' => true,
+				'plumbing-styles'        => false,
 			)
 		);
 

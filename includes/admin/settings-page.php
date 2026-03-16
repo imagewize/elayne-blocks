@@ -81,6 +81,7 @@ function elayne_blocks_get_default_settings() {
 		'faq-tabs'               => true,
 		'faq-tab-answer'         => true,
 		'search-overlay-trigger' => true,
+		'plumbing-styles'        => false,
 	);
 }
 
@@ -116,6 +117,10 @@ function elayne_blocks_get_available_blocks() {
 		'search-overlay-trigger' => array(
 			'label'       => __( 'Search Overlay Trigger Block', 'elayne-blocks' ),
 			'description' => __( 'Full-screen search overlay with custom styling', 'elayne-blocks' ),
+		),
+		'plumbing-styles'        => array(
+			'label'       => __( 'Plumbing Styles Block', 'elayne-blocks' ),
+			'description' => __( 'Loads plumbing vertical CSS utilities. Insert once per plumbing page. Off by default — enable only on plumbing sub-sites.', 'elayne-blocks' ),
 		),
 	);
 }

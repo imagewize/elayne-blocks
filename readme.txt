@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.9
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.7.0
+Stable tag: 2.7.1
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -124,6 +124,10 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 5. Mega menu dropdown with rich content
 
 == Changelog ==
+
+= 2.7.1 =
+* Added: Plumbing Styles block (`elayne/plumbing-styles`) for loading plumbing vertical CSS utilities per page
+* Added: Plumbing Styles block registered in admin settings with enable/disable support
 
 = 2.7.0 =
 * Added: Admin settings page under Settings → Elayne Blocks for block management

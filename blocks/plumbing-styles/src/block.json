@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "elayne/plumbing-styles",
+	"version": "1.0.0",
+	"title": "Plumbing Styles",
+	"category": "theme",
+	"icon": "admin-appearance",
+	"description": "Loads plumbing vertical CSS utilities. Insert once per plumbing page. No frontend output.",
+	"keywords": [ "plumbing", "styles", "utilities", "css" ],
+	"supports": {
+		"html": false,
+		"anchor": false,
+		"inserter": true,
+		"multiple": false,
+		"reusable": false
+	},
+	"textdomain": "elayne-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

@@ -1,0 +1,182 @@
+/**
+ * Plumbing vertical — utility CSS.
+ *
+ * Loaded on any page that contains the elayne/plumbing-styles block.
+ * Lives here (not in plumbing.json "css" key) to avoid the wp_global_styles
+ * database snapshot problem. See docs/elayne/WP-GLOBAL-STYLES-MULTISITE.md.
+ */
+
+/* ── Section label pill ─────────────────────────────────────────────────── */
+
+.plumbing-section-label {
+	display: inline-block;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: #e67e22;
+	margin-bottom: 0.75rem;
+	padding: 0.3rem 0.9rem;
+	background: rgba( 230, 126, 34, 0.1 );
+	border-radius: 999px;
+	border: 1px solid rgba( 230, 126, 34, 0.2 );
+}
+
+/* ── Stat blocks ────────────────────────────────────────────────────────── */
+
+.plumbing-stat-block strong {
+	display: block;
+	font-size: 1.6rem;
+	font-weight: 900;
+	color: #e67e22;
+	line-height: 1;
+	margin-bottom: 0.25rem;
+	font-stretch: 75%;
+}
+
+.plumbing-stat-block span {
+	display: block;
+	font-size: 0.72rem;
+	color: #8fa3bf;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+.plumbing-stats-divider {
+	display: block;
+	width: 1px;
+	height: 36px;
+	background: rgba( 255, 255, 255, 0.1 );
+	align-self: center;
+}
+
+/* ── Why-us items ───────────────────────────────────────────────────────── */
+
+.plumbing-check-icon {
+	width: 30px;
+	height: 30px;
+	min-width: 30px;
+	background: rgba( 230, 126, 34, 0.15 );
+	border: 1px solid rgba( 230, 126, 34, 0.3 );
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #e67e22;
+}
+
+.plumbing-why-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 1rem;
+}
+
+/* ── Featured card highlight ────────────────────────────────────────────── */
+
+.plumbing-t-featured {
+	border-color: rgba( 230, 126, 34, 0.35 ) !important;
+	background: rgba( 230, 126, 34, 0.05 ) !important;
+}
+
+/* ── Testimonial avatar ─────────────────────────────────────────────────── */
+
+.plumbing-avatar {
+	width: 42px;
+	height: 42px;
+	min-width: 42px;
+	border-radius: 50%;
+	background: linear-gradient( 135deg, #1e88e5, #e67e22 );
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.78rem;
+	font-weight: 700;
+	color: #fff;
+}
+
+/* ── Contact icon ───────────────────────────────────────────────────────── */
+
+.plumbing-contact-icon {
+	width: 38px;
+	height: 38px;
+	min-width: 38px;
+	background: rgba( 144, 202, 249, 0.1 );
+	border: 1px solid rgba( 144, 202, 249, 0.2 );
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #90caf9;
+}
+
+/* ── Always-on badge text ───────────────────────────────────────────────── */
+
+.plumbing-always-on {
+	color: #e67e22 !important;
+	font-weight: 600 !important;
+}
+
+/* ── Emergency icon pulse ───────────────────────────────────────────────── */
+
+@keyframes plumbing-pulse {
+	0%,
+	100% {
+		transform: scale( 1 );
+	}
+
+	50% {
+		transform: scale( 1.1 );
+	}
+}
+
+.plumbing-emergency-icon {
+	animation: plumbing-pulse 2s ease-in-out infinite;
+	display: inline-block;
+}
+
+/* ── Hero diagonal separator ────────────────────────────────────────────── */
+
+.plumbing-hero-section {
+	position: relative;
+	overflow: visible !important;
+}
+
+.plumbing-hero-section::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 80px;
+	background: #0b1628;
+	clip-path: polygon( 0 100%, 100% 0, 100% 100% );
+	z-index: 2;
+	pointer-events: none;
+}
+
+/* ── Header top bar ─────────────────────────────────────────────────────── */
+
+.plumbing-top-bar a {
+	color: #fff !important;
+}
+
+.plumbing-topbar-phone {
+	background: rgba( 255, 255, 255, 0.2 );
+}
+
+.plumbing-topbar-phone:hover {
+	background: rgba( 255, 255, 255, 0.35 );
+}
+
+/* ── Header CTA button ──────────────────────────────────────────────────── */
+
+.plumbing-header-cta {
+	transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.plumbing-header-cta:hover {
+	background: #cf6d17 !important;
+	transform: translateY( -1px );
+	box-shadow: 0 4px 16px rgba( 230, 126, 34, 0.4 );
+}

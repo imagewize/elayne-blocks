@@ -1,0 +1,22 @@
+{
+	"name": "plumbing-styles",
+	"version": "1.0.0",
+	"description": "CSS utility block for the Elayne plumbing vertical. Loads plumbing-specific styles without using the wp_global_styles database snapshot.",
+	"author": "Imagewize",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"start": "wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.27.0"
+	},
+	"overrides": {
+		"webpack-dev-server": "^5.2.2"
+	}
+}

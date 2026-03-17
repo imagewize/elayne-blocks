@@ -3,7 +3,7 @@
  * Plugin Name: Elayne Blocks
  * Plugin URI: https://github.com/imagewize/elayne-blocks
  * Description: Custom blocks for the Elayne WordPress theme including Mega Menu, Carousel, and Slide blocks
- * Version: 2.7.0
+ * Version: 2.7.1
  * Requires at least: 6.9
  * Requires PHP: 7.4
  * Author: Jasper Frumau
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ELAYNE_BLOCKS_VERSION', '2.7.0' );
+define( 'ELAYNE_BLOCKS_VERSION', '2.7.1' );
 define( 'ELAYNE_BLOCKS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELAYNE_BLOCKS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
@@ -238,7 +238,7 @@ add_action(
 					'description' => __( 'Full-width hero carousel with autoplay and fade transition.', 'elayne-blocks' ),
 					'categories'  => array( 'elayne-blocks' ),
 					'content'     => '<!-- wp:elayne/carousel {"slidesToShow":1,"slidesToScroll":1,"infinite":true,"autoplay":true,"autoplaySpeed":5000,"speed":1000,"arrows":true,"dots":true} -->
-<div class="wp-block-elayne-carousel slick-slider cb-single-slide" data-slick="{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;arrows&quot;:true,&quot;dots&quot;:true,&quot;infinite&quot;:true,&quot;autoplay&quot;:true,&quot;autoplaySpeed&quot;:5000,&quot;speed&quot;:1000,&quot;rtl&quot;:false,&quot;adaptiveHeight&quot;:false,&quot;centerMode&quot;:false,&quot;centerPadding&quot;:&quot;50px&quot;,&quot;variableWidth&quot;:false,&quot;responsive&quot;:[{&quot;breakpoint&quot;:769,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;centerMode&quot;:false,&quot;variableWidth&quot;:false}}]}"><!-- wp:elayne/slide -->
+<div class="wp-block-elayne-carousel slick-slider cb-single-slide cb-padding cb-arrow-style-arrow cb-arrow-bg-none" data-slick="{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;arrows&quot;:true,&quot;dots&quot;:true,&quot;infinite&quot;:true,&quot;autoplay&quot;:true,&quot;autoplaySpeed&quot;:5000,&quot;speed&quot;:1000,&quot;rtl&quot;:false,&quot;adaptiveHeight&quot;:false,&quot;centerMode&quot;:false,&quot;centerPadding&quot;:&quot;50px&quot;,&quot;variableWidth&quot;:false,&quot;lazyLoad&quot;:&quot;ondemand&quot;,&quot;responsive&quot;:[{&quot;breakpoint&quot;:769,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;centerMode&quot;:false,&quot;variableWidth&quot;:false}}]}" data-dots-top="0px" data-dots-bottom="0px" data-arrow-color="#000000" data-arrow-background="transparent" data-arrow-hover-color="#000000" data-arrow-hover-background="transparent" data-arrow-style="arrow" data-arrow-background-style="none" data-arrow-size="40"><!-- wp:elayne/slide -->
 <div class="wp-block-elayne-slide"><!-- wp:cover {"url":"https://images.unsplash.com/photo-1557683316-973673baf926","dimRatio":50,"minHeight":500,"minHeightUnit":"px","contentPosition":"center center"} -->
 <div class="wp-block-cover" style="min-height:500px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="https://images.unsplash.com/photo-1557683316-973673baf926" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:heading {"textAlign":"center","level":1} -->
 <h1 class="wp-block-heading has-text-align-center">Welcome to Our Site</h1>
@@ -285,7 +285,7 @@ add_action(
 					'description' => __( 'Center mode carousel with 3 slides visible, perfect for testimonials.', 'elayne-blocks' ),
 					'categories'  => array( 'elayne-blocks' ),
 					'content'     => '<!-- wp:elayne/carousel {"slidesToShow":1,"slidesToScroll":1,"infinite":true,"centerMode":true,"centerPadding":"100px","arrows":true,"dots":true} -->
-<div class="wp-block-elayne-carousel slick-slider cb-single-slide cb-center-mode" data-slick="{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;arrows&quot;:true,&quot;dots&quot;:true,&quot;infinite&quot;:true,&quot;autoplay&quot;:false,&quot;autoplaySpeed&quot;:3000,&quot;speed&quot;:500,&quot;rtl&quot;:false,&quot;adaptiveHeight&quot;:false,&quot;centerMode&quot;:true,&quot;centerPadding&quot;:&quot;100px&quot;,&quot;variableWidth&quot;:false,&quot;responsive&quot;:[{&quot;breakpoint&quot;:769,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;centerMode&quot;:false,&quot;variableWidth&quot;:false}}]}"><!-- wp:elayne/slide -->
+<div class="wp-block-elayne-carousel slick-slider cb-single-slide cb-padding cb-center-mode cb-arrow-style-arrow cb-arrow-bg-none" data-slick="{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;arrows&quot;:true,&quot;dots&quot;:true,&quot;infinite&quot;:true,&quot;autoplay&quot;:false,&quot;autoplaySpeed&quot;:3000,&quot;speed&quot;:300,&quot;rtl&quot;:false,&quot;adaptiveHeight&quot;:false,&quot;centerMode&quot;:true,&quot;centerPadding&quot;:&quot;100px&quot;,&quot;variableWidth&quot;:false,&quot;lazyLoad&quot;:&quot;ondemand&quot;,&quot;responsive&quot;:[{&quot;breakpoint&quot;:769,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;centerMode&quot;:false,&quot;variableWidth&quot;:false}}]}" data-dots-top="0px" data-dots-bottom="0px" data-arrow-color="#000000" data-arrow-background="transparent" data-arrow-hover-color="#000000" data-arrow-hover-background="transparent" data-arrow-style="arrow" data-arrow-background-style="none" data-arrow-size="40"><!-- wp:elayne/slide -->
 <div class="wp-block-elayne-slide"><!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}},"border":{"radius":"8px"}},"backgroundColor":"base"} -->
 <div class="wp-block-group has-base-background-color has-background" style="border-radius:8px;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)"><!-- wp:paragraph {"align":"center"} -->
 <p class="has-text-align-center">"This product changed my life! Highly recommended to everyone."</p>
@@ -332,7 +332,7 @@ add_action(
 					'description' => __( 'Image carousel with thumbnail navigation below, perfect for product galleries.', 'elayne-blocks' ),
 					'categories'  => array( 'elayne-blocks' ),
 					'content'     => '<!-- wp:elayne/carousel {"slidesToShow":1,"slidesToScroll":1,"infinite":true,"enableThumbnails":true,"thumbnailsToShow":4,"thumbnailPosition":"below","arrows":true,"dots":false} -->
-<div class="wp-block-elayne-carousel slick-slider cb-single-slide cb-thumbnails" data-slick="{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;arrows&quot;:true,&quot;dots&quot;:false,&quot;infinite&quot;:true,&quot;autoplay&quot;:false,&quot;autoplaySpeed&quot;:3000,&quot;speed&quot;:500,&quot;rtl&quot;:false,&quot;adaptiveHeight&quot;:false,&quot;centerMode&quot;:false,&quot;centerPadding&quot;:&quot;50px&quot;,&quot;variableWidth&quot;:false,&quot;responsive&quot;:[{&quot;breakpoint&quot;:769,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;centerMode&quot;:false,&quot;variableWidth&quot;:false}}]}" data-thumbnails="true" data-thumbnails-to-show="4" data-thumbnail-position="below"><!-- wp:elayne/slide -->
+<div class="wp-block-elayne-carousel slick-slider cb-single-slide cb-padding cb-thumbnails cb-arrow-style-arrow cb-arrow-bg-none" data-slick="{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;arrows&quot;:true,&quot;dots&quot;:false,&quot;infinite&quot;:true,&quot;autoplay&quot;:false,&quot;autoplaySpeed&quot;:3000,&quot;speed&quot;:300,&quot;rtl&quot;:false,&quot;adaptiveHeight&quot;:false,&quot;centerMode&quot;:false,&quot;centerPadding&quot;:&quot;50px&quot;,&quot;variableWidth&quot;:false,&quot;lazyLoad&quot;:&quot;ondemand&quot;,&quot;responsive&quot;:[{&quot;breakpoint&quot;:769,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;centerMode&quot;:false,&quot;variableWidth&quot;:false}}]}" data-dots-top="0px" data-dots-bottom="0px" data-arrow-color="#000000" data-arrow-background="transparent" data-arrow-hover-color="#000000" data-arrow-hover-background="transparent" data-thumbnails="true" data-thumbnails-to-show="4" data-thumbnail-position="below" data-thumbnail-spacing="30px" data-arrow-style="arrow" data-arrow-background-style="none" data-arrow-size="40"><!-- wp:elayne/slide -->
 <div class="wp-block-elayne-slide"><!-- wp:image {"sizeSlug":"large","linkDestination":"none"} -->
 <figure class="wp-block-image size-large"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" alt="Product view 1"/></figure>
 <!-- /wp:image --></div>
@@ -367,8 +367,8 @@ add_action(
 					'description' => __( 'Variable width carousel for displaying portfolio items with different sizes.', 'elayne-blocks' ),
 					'categories'  => array( 'elayne-blocks' ),
 					'content'     => '<!-- wp:elayne/carousel {"slidesToShow":3,"slidesToScroll":1,"infinite":true,"variableWidth":true,"arrows":true,"dots":true} -->
-<div class="wp-block-elayne-carousel slick-slider cb-variable-width" data-slick="{&quot;slidesToShow&quot;:3,&quot;slidesToScroll&quot;:1,&quot;arrows&quot;:true,&quot;dots&quot;:true,&quot;infinite&quot;:true,&quot;autoplay&quot;:false,&quot;autoplaySpeed&quot;:3000,&quot;speed&quot;:500,&quot;rtl&quot;:false,&quot;adaptiveHeight&quot;:false,&quot;centerMode&quot;:false,&quot;centerPadding&quot;:&quot;50px&quot;,&quot;variableWidth&quot;:true,&quot;responsive&quot;:[{&quot;breakpoint&quot;:769,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;centerMode&quot;:false,&quot;variableWidth&quot;:false}}]}"><!-- wp:elayne/slide -->
-<div class="wp-block-elayne-slide" style="width:300px"><!-- wp:image {"width":"300px","sizeSlug":"large"} -->
+<div class="wp-block-elayne-carousel slick-slider cb-padding cb-variable-width cb-arrow-style-arrow cb-arrow-bg-none" data-slick="{&quot;slidesToShow&quot;:3,&quot;slidesToScroll&quot;:1,&quot;arrows&quot;:true,&quot;dots&quot;:true,&quot;infinite&quot;:true,&quot;autoplay&quot;:false,&quot;autoplaySpeed&quot;:3000,&quot;speed&quot;:300,&quot;rtl&quot;:false,&quot;adaptiveHeight&quot;:false,&quot;centerMode&quot;:false,&quot;centerPadding&quot;:&quot;50px&quot;,&quot;variableWidth&quot;:true,&quot;lazyLoad&quot;:&quot;ondemand&quot;,&quot;responsive&quot;:[{&quot;breakpoint&quot;:769,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;centerMode&quot;:false,&quot;variableWidth&quot;:false}}]}" data-dots-top="0px" data-dots-bottom="0px" data-arrow-color="#000000" data-arrow-background="transparent" data-arrow-hover-color="#000000" data-arrow-hover-background="transparent" data-arrow-style="arrow" data-arrow-background-style="none" data-arrow-size="40"><!-- wp:elayne/slide -->
+<div class="wp-block-elayne-slide"><!-- wp:image {"width":"300px","sizeSlug":"large"} -->
 <figure class="wp-block-image size-large is-resized"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Project 1" style="width:300px"/></figure>
 <!-- /wp:image -->
 
@@ -378,7 +378,7 @@ add_action(
 <!-- /wp:elayne/slide -->
 
 <!-- wp:elayne/slide -->
-<div class="wp-block-elayne-slide" style="width:400px"><!-- wp:image {"width":"400px","sizeSlug":"large"} -->
+<div class="wp-block-elayne-slide"><!-- wp:image {"width":"400px","sizeSlug":"large"} -->
 <figure class="wp-block-image size-large is-resized"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f" alt="Project 2" style="width:400px"/></figure>
 <!-- /wp:image -->
 
@@ -388,7 +388,7 @@ add_action(
 <!-- /wp:elayne/slide -->
 
 <!-- wp:elayne/slide -->
-<div class="wp-block-elayne-slide" style="width:350px"><!-- wp:image {"width":"350px","sizeSlug":"large"} -->
+<div class="wp-block-elayne-slide"><!-- wp:image {"width":"350px","sizeSlug":"large"} -->
 <figure class="wp-block-image size-large is-resized"><img src="https://images.unsplash.com/photo-1551650975-87deedd944c3" alt="Project 3" style="width:350px"/></figure>
 <!-- /wp:image -->
 
@@ -408,7 +408,7 @@ add_action(
 					'description' => __( 'Multi-slide carousel with adaptive height for team member profiles.', 'elayne-blocks' ),
 					'categories'  => array( 'elayne-blocks' ),
 					'content'     => '<!-- wp:elayne/carousel {"slidesToShow":3,"slidesToScroll":1,"infinite":true,"adaptiveHeight":true,"arrows":true,"dots":true,"responsiveSlides":1} -->
-<div class="wp-block-elayne-carousel slick-slider" data-slick="{&quot;slidesToShow&quot;:3,&quot;slidesToScroll&quot;:1,&quot;arrows&quot;:true,&quot;dots&quot;:true,&quot;infinite&quot;:true,&quot;autoplay&quot;:false,&quot;autoplaySpeed&quot;:3000,&quot;speed&quot;:500,&quot;rtl&quot;:false,&quot;adaptiveHeight&quot;:true,&quot;centerMode&quot;:false,&quot;centerPadding&quot;:&quot;50px&quot;,&quot;variableWidth&quot;:false,&quot;responsive&quot;:[{&quot;breakpoint&quot;:769,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;centerMode&quot;:false,&quot;variableWidth&quot;:false}}]}"><!-- wp:elayne/slide -->
+<div class="wp-block-elayne-carousel slick-slider cb-padding cb-arrow-style-arrow cb-arrow-bg-none" data-slick="{&quot;slidesToShow&quot;:3,&quot;slidesToScroll&quot;:1,&quot;arrows&quot;:true,&quot;dots&quot;:true,&quot;infinite&quot;:true,&quot;autoplay&quot;:false,&quot;autoplaySpeed&quot;:3000,&quot;speed&quot;:300,&quot;rtl&quot;:false,&quot;adaptiveHeight&quot;:true,&quot;centerMode&quot;:false,&quot;centerPadding&quot;:&quot;50px&quot;,&quot;variableWidth&quot;:false,&quot;lazyLoad&quot;:&quot;ondemand&quot;,&quot;responsive&quot;:[{&quot;breakpoint&quot;:769,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesToScroll&quot;:1,&quot;centerMode&quot;:false,&quot;variableWidth&quot;:false}}]}" data-dots-top="0px" data-dots-bottom="0px" data-arrow-color="#000000" data-arrow-background="transparent" data-arrow-hover-color="#000000" data-arrow-hover-background="transparent" data-arrow-style="arrow" data-arrow-background-style="none" data-arrow-size="40"><!-- wp:elayne/slide -->
 <div class="wp-block-elayne-slide"><!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:image {"align":"center","width":"150px","height":"150px","sizeSlug":"large","className":"is-style-rounded"} -->
 <figure class="wp-block-image aligncenter size-large is-resized is-style-rounded"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Team member 1" style="width:150px;height:150px"/></figure>

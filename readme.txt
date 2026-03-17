@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, carousel, mega-menu, slider
 Requires at least: 6.9
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.7.0
+Stable tag: 2.7.1
 License: GPL v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -124,6 +124,12 @@ It's WordPress's official frontend reactivity system. The mega menu block uses i
 5. Mega menu dropdown with rich content
 
 == Changelog ==
+
+= 2.7.1 =
+* Fixed: Block validation errors in all 5 carousel patterns — carousel div classes and data attributes now match the save function output exactly
+* Fixed: Slide blocks in portfolio-showcase pattern had inline style attributes that the save function never outputs
+* Fixed: speed attribute defaulting to 500 in patterns instead of the correct default of 300
+* Fixed: Missing lazyLoad, data-dots-top/bottom, data-arrow-* attributes in carousel pattern HTML
 
 = 2.7.0 =
 * Added: Admin settings page under Settings → Elayne Blocks for block management
